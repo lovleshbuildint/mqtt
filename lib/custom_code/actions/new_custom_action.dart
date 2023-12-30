@@ -30,17 +30,13 @@ Future<String> newCustomAction(
   try {
     await client.connect();
     if (client.connectionStatus!.state == MqttConnectionState.connected) {
-      print('Connected to MQTT broker');
-      final MqttClientPayloadBuilder builder = MqttClientPayloadBuilder();
+      final builder = MqttClientPayloadBuilder();
       builder.addString(message!);
 
       client.publishMessage(topic!, MqttQos.exactlyOnce, builder.payload!);
-      client.disconnect();
-      print('Message sent successfully!');
       return 'Message sent successfully!';
     } else {
       client.disconnect();
-      print('Failed to connect to MQTT broker');
       return 'Failed to connect to MQTT broker';
     }
   } catch (e) {
