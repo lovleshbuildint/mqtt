@@ -52,6 +52,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Dashboard',
           path: '/dashboard',
           builder: (context, params) => DashboardWidget(),
+        ),
+        FFRoute(
+          name: 'DeviceDetails',
+          path: '/deviceDetails',
+          builder: (context, params) => DeviceDetailsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
