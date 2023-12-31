@@ -283,469 +283,480 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(13.0, 70.0, 13.0, 0.0),
-                  child: Wrap(
-                    spacing: 32.0,
-                    runSpacing: 16.0,
-                    alignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.start,
-                    direction: Axis.horizontal,
-                    runAlignment: WrapAlignment.start,
-                    verticalDirection: VerticalDirection.down,
-                    clipBehavior: Clip.none,
-                    children: [
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                child: Align(
+                  alignment: AlignmentDirectional(0.0, 1.0),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(13.0, 70.0, 13.0, 20.0),
+                    child: Wrap(
+                      spacing: 32.0,
+                      runSpacing: 16.0,
+                      alignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.start,
+                      direction: Axis.horizontal,
+                      runAlignment: WrapAlignment.start,
+                      verticalDirection: VerticalDirection.down,
+                      clipBehavior: Clip.none,
+                      children: [
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.home_max,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.home_max,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'AC 1',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'AC 1',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.home_max,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.home_max,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'AC 2',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'AC 2',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.door_front_door_outlined,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.door_front_door_outlined,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Door',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'Door',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.fiber_dvr,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.fiber_dvr,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'DVR',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'DVR',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.lightbulb_outline_rounded,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.lightbulb_outline_rounded,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Lobby Light',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontSize: 14.0,
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'Lobby Light',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 14.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.light_outlined,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.light_outlined,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Signage',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'Signage',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.atm,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.atm,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'ATM',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'ATM',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        width: 89.0,
-                        height: 89.0,
-                        decoration: BoxDecoration(
-                          color: Color(0xFFE6E6E6),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 38.0,
-                                height: 38.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0x98808080),
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
+                        Container(
+                          width: 89.0,
+                          height: 89.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFFE6E6E6),
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 10.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  width: 38.0,
+                                  height: 38.0,
+                                  decoration: BoxDecoration(
+                                    color: Color(0x98808080),
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      width: 2.0,
+                                    ),
+                                  ),
+                                  child: Icon(
+                                    Icons.close_sharp,
                                     color: FlutterFlowTheme.of(context)
                                         .secondaryBackground,
-                                    width: 2.0,
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.close_sharp,
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    13.0, 0.0, 13.0, 0.0),
-                                child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 1.0,
-                                  height: 2.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF808080),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Free',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.normal,
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      13.0, 0.0, 13.0, 0.0),
+                                  child: Container(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 1.0,
+                                    height: 2.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF808080),
                                     ),
-                              ),
-                            ],
+                                  ),
+                                ),
+                                Text(
+                                  'Free',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
