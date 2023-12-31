@@ -64,27 +64,16 @@ class _LogInWidgetState extends State<LogInWidget> {
             color: Colors.black,
             image: DecorationImage(
               fit: BoxFit.fitWidth,
-              alignment: AlignmentDirectional(0.0, -0.6),
+              alignment: AlignmentDirectional(0.0, -0.7),
               image: Image.asset(
-                'assets/images/Group_1000004896.png',
+                'assets/images/Group_1000004897.png',
               ).image,
             ),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(85.0, 23.0, 85.0, 0.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/Group_1000004811.png',
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
-              ),
               Align(
                 alignment: AlignmentDirectional(0.0, 1.0),
                 child: Container(
