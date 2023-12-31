@@ -78,7 +78,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: FlutterFlowTheme.of(context).primary,
-                          width: 1.5,
+                          width: 1.7,
                         ),
                       ),
                       child: Icon(
@@ -171,7 +171,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       ),
                                     ),
                                     Text(
-                                      '23 `\\u2103`',
+                                      '23 \"\\u2103\"',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
