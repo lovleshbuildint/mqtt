@@ -167,7 +167,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
-                                        fontSize: 47.0,
+                                        fontSize: 37.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
