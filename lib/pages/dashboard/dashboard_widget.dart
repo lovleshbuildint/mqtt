@@ -158,31 +158,17 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
-                                Stack(
-                                  alignment: AlignmentDirectional(0.0, -1.0),
-                                  children: [
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(0.0, -1.0),
-                                      child: Text(
-                                        'C',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
+                                Text(
+                                  '23 C',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 47.0,
+                                        fontWeight: FontWeight.w600,
                                       ),
-                                    ),
-                                    Text(
-                                      '\\\\u2103',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 47.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ],
                                 ),
                               ],
                             ),
@@ -190,6 +176,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(13.0, 13.0, 13.0, 0.0),
+                child: Container(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
                   ),
                 ),
               ),
