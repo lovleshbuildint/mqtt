@@ -58,7 +58,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(22.0, 10.0, 22.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(13.0, 10.0, 13.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -445,10 +445,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (Navigator.of(context).canPop()) {
-                                context.pop();
-                              }
-                              context.pushNamed('DeviceDetails');
+                              context.pushNamed(
+                                'DeviceDetails',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType: PageTransitionType.fade,
+                                    duration: Duration(milliseconds: 0),
+                                  ),
+                                },
+                              );
                             },
                             child: Container(
                               width: MediaQuery.sizeOf(context).width * 1.0,

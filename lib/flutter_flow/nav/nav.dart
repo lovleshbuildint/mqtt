@@ -57,6 +57,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'DeviceDetails',
           path: '/deviceDetails',
           builder: (context, params) => DeviceDetailsWidget(),
+        ),
+        FFRoute(
+          name: 'Controlling',
+          path: '/controlling',
+          builder: (context, params) => ControllingWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
