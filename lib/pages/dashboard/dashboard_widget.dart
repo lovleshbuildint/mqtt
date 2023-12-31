@@ -184,7 +184,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(13.0, 13.0, 13.0, 0.0),
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 113.0,
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(8.0),
@@ -247,18 +246,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   ),
                                 ),
                               ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 10.0, 0.0, 10.0),
-                          child: Container(
-                            width: 2.0,
-                            height: 93.0,
-                            decoration: BoxDecoration(
-                              color: Color(0x35404042),
-                              borderRadius: BorderRadius.circular(24.0),
                             ),
                           ),
                         ),
