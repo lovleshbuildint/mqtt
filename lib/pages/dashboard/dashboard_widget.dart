@@ -106,17 +106,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
-                          child: Text(
-                            'Mumbai',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 13.0, 0.0, 13.0),
+                            child: Text(
+                              'Mumbai',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                            ),
                           ),
                         ),
                         Padding(
@@ -133,39 +137,46 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           ),
                         ),
                         Expanded(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(
-                                dateTimeFormat('dMMMMy', getCurrentTimestamp),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'Readex Pro',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 13.0, 0.0, 13.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  dateTimeFormat(
+                                      'd,MMM.,y', getCurrentTimestamp),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                Stack(
+                                  children: [
+                                    Text(
+                                      'Hello World',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
                                     ),
-                              ),
-                              Stack(
-                                children: [
-                                  Text(
-                                    'Hello World',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  Text(
-                                    'Hello World',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    Text(
+                                      'Hello World',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
