@@ -249,6 +249,18 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 10.0, 0.0, 10.0),
+                          child: Container(
+                            width: 2.0,
+                            height: 113.0,
+                            decoration: BoxDecoration(
+                              color: Color(0x35404042),
+                              borderRadius: BorderRadius.circular(24.0),
+                            ),
+                          ),
+                        ),
                         Expanded(
                           flex: 2,
                           child: Padding(
