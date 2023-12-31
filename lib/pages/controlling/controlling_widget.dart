@@ -345,7 +345,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -401,7 +401,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -457,7 +457,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -513,7 +513,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -570,7 +570,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       fontSize: 14.0,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -626,7 +626,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -682,7 +682,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
@@ -738,7 +738,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.normal,
                                     ),
                               ),
                             ],
