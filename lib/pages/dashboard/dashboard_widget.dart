@@ -58,7 +58,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(22.0, 0.0, 22.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(22.0, 10.0, 22.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
