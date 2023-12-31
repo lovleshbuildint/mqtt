@@ -142,6 +142,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 0.0, 13.0, 0.0, 13.0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
                                   dateTimeFormat(
@@ -157,20 +159,27 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       ),
                                 ),
                                 Stack(
+                                  alignment: AlignmentDirectional(0.0, -1.0),
                                   children: [
-                                    Text(
-                                      'Hello World',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional(0.0, -1.0),
+                                      child: Text(
+                                        'C',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      ),
                                     ),
                                     Text(
-                                      'Hello World',
+                                      '23 \"\\u2103\"',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
+                                            fontSize: 47.0,
+                                            fontWeight: FontWeight.w600,
                                           ),
                                     ),
                                   ],
