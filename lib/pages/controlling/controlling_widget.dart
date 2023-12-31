@@ -145,16 +145,21 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Auto',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF4D4D4D),
-                                    fontSize: 16.0,
-                                  ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 10.0, 0.0),
+                          child: Text(
+                            'Auto',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Color(0xFF4D4D4D),
+                                  fontSize: 16.0,
+                                ),
+                          ),
                         ),
-                        Switch(
+                        Switch.adaptive(
                           value: _model.switchValue ??= true,
                           onChanged: (newValue) async {
                             setState(() => _model.switchValue = newValue!);
