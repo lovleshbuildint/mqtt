@@ -171,7 +171,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       ),
                                     ),
                                     Text(
-                                      '23\\u2103',
+                                      '23 \\u2103',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
