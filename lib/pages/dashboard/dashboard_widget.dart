@@ -429,7 +429,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 0.0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(13.0, 13.0, 13.0, 0.0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -437,7 +438,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
+                              0.0, 0.0, 0.0, 16.0),
                           child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
@@ -612,9 +613,160 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             ),
                           ),
                         ),
+                        Container(
+                          width: MediaQuery.sizeOf(context).width * 1.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            borderRadius: BorderRadius.circular(8.0),
+                            border: Border.all(
+                              color: Color(0x27404042),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 12.0, 20.0, 12.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Name',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Color(0xFF4D4D4D),
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 9.0, 0.0, 0.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 52.0,
+                                        height: 52.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: Color(0x58404042),
+                                            width: 2.0,
+                                          ),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          child: Image.network(
+                                            'https://picsum.photos/seed/778/600',
+                                            width: 52.0,
+                                            height: 52.0,
+                                            fit: BoxFit.fitWidth,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            11.0, 0.0, 0.0, 0.0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Site Status',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF4D4D4D),
+                                                    fontSize: 14.0,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                            ),
+                                            Text(
+                                              'Day\'s Usage',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF4D4D4D),
+                                                    fontSize: 14.0,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Align(
+                                          alignment:
+                                              AlignmentDirectional(1.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    20.0, 0.0, 0.0, 0.0),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                AutoSizeText(
+                                                  'Online',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            Color(0xFF2D2D2D),
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                  minFontSize: 10.0,
+                                                ),
+                                                AutoSizeText(
+                                                  '10000 kWh',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        color:
+                                                            Color(0xFF2D2D2D),
+                                                        fontSize: 14.0,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                  minFontSize: 10.0,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
+                              0.0, 0.0, 0.0, 16.0),
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             decoration: BoxDecoration(
@@ -773,7 +925,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
+                              0.0, 0.0, 0.0, 16.0),
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             decoration: BoxDecoration(
@@ -932,166 +1084,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
-                          child: Container(
-                            width: MediaQuery.sizeOf(context).width * 1.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              borderRadius: BorderRadius.circular(8.0),
-                              border: Border.all(
-                                color: Color(0x27404042),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  20.0, 12.0, 20.0, 12.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Name',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Color(0xFF4D4D4D),
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 9.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          width: 52.0,
-                                          height: 52.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color: Color(0x58404042),
-                                              width: 2.0,
-                                            ),
-                                          ),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              'https://picsum.photos/seed/778/600',
-                                              width: 52.0,
-                                              height: 52.0,
-                                              fit: BoxFit.fitWidth,
-                                            ),
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  11.0, 0.0, 0.0, 0.0),
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Site Status',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Color(0xFF4D4D4D),
-                                                      fontSize: 14.0,
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                    ),
-                                              ),
-                                              Text(
-                                                'Day\'s Usage',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Color(0xFF4D4D4D),
-                                                      fontSize: 14.0,
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                    ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Align(
-                                            alignment:
-                                                AlignmentDirectional(1.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      20.0, 0.0, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  AutoSizeText(
-                                                    'Online',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFF2D2D2D),
-                                                          fontSize: 14.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                    minFontSize: 10.0,
-                                                  ),
-                                                  AutoSizeText(
-                                                    '10000 kWh',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          color:
-                                                              Color(0xFF2D2D2D),
-                                                          fontSize: 14.0,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                        ),
-                                                    minFontSize: 10.0,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 16.0, 0.0, 0.0),
+                              0.0, 0.0, 0.0, 16.0),
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
                             decoration: BoxDecoration(
