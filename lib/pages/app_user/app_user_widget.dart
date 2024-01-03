@@ -27,6 +27,9 @@ class _AppUserWidgetState extends State<AppUserWidget> {
     super.initState();
     _model = createModel(context, () => AppUserModel());
 
+    _model.fullnameController ??= TextEditingController();
+    _model.fullnameFocusNode ??= FocusNode();
+
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -52,6 +55,8 @@ class _AppUserWidgetState extends State<AppUserWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -65,7 +70,7 @@ class _AppUserWidgetState extends State<AppUserWidget> {
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: Color(0x664154F1),
             ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -127,12 +132,89 @@ class _AppUserWidgetState extends State<AppUserWidget> {
                               children: [
                                 Expanded(
                                   child: TextFormField(
+                                    controller: _model.fullnameController,
+                                    focusNode: _model.fullnameFocusNode,
+                                    textCapitalization: TextCapitalization.none,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: 'Full Name',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFFB3B3B3),
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFFF2F2F2),
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0xFF4154F1),
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x00000000),
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      contentPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 0.0, 0.0, 0.0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF2D2D2D),
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.normal,
+                                        ),
+                                    validator: _model
+                                        .fullnameControllerValidator
+                                        .asValidator(context),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 12.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
                                     controller: _model.emailAddressController,
                                     focusNode: _model.emailAddressFocusNode,
                                     textCapitalization: TextCapitalization.none,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: 'User ID',
+                                      hintText: 'username',
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .bodySmall
                                           .override(
@@ -296,15 +378,100 @@ class _AppUserWidgetState extends State<AppUserWidget> {
                                 Expanded(
                                   child: FlutterFlowDropDown<String>(
                                     controller:
-                                        _model.dropDownValueController ??=
+                                        _model.projectValueController ??=
                                             FormFieldController<String>(null),
+                                    options: ['iATM', 'iEMS'],
+                                    onChanged: (val) => setState(
+                                        () => _model.projectValue = val),
+                                    width: 300.0,
+                                    height: 50.0,
+                                    textStyle:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    hintText: 'Select Project',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 2.0,
+                                    borderColor: Color(0xFFF2F2F2),
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isOverButton: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 14.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: FlutterFlowDropDown<String>(
+                                    controller:
+                                        _model.organizationValueController ??=
+                                            FormFieldController<String>(null),
+                                    options: ['Diebold', 'HDFC', 'Yes Bank'],
+                                    onChanged: (val) => setState(
+                                        () => _model.organizationValue = val),
+                                    width: 300.0,
+                                    height: 50.0,
+                                    textStyle:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    hintText: 'Select Organization',
+                                    icon: Icon(
+                                      Icons.keyboard_arrow_down_rounded,
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      size: 24.0,
+                                    ),
+                                    fillColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    elevation: 2.0,
+                                    borderColor: Color(0xFFF2F2F2),
+                                    borderWidth: 2.0,
+                                    borderRadius: 8.0,
+                                    margin: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 4.0, 16.0, 4.0),
+                                    hidesUnderline: true,
+                                    isOverButton: true,
+                                    isSearchable: false,
+                                    isMultiSelect: false,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 14.0, 0.0, 0.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: FlutterFlowDropDown<String>(
+                                    controller: _model.roleValueController ??=
+                                        FormFieldController<String>(null),
                                     options: [
                                       'Super Admin',
                                       'Admin',
                                       'Engineer'
                                     ],
-                                    onChanged: (val) => setState(
-                                        () => _model.dropDownValue = val),
+                                    onChanged: (val) =>
+                                        setState(() => _model.roleValue = val),
                                     width: 300.0,
                                     height: 50.0,
                                     textStyle:

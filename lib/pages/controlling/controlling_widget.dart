@@ -44,6 +44,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
       );
     }
 
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -58,7 +60,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(13.0, 10.0, 13.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 13.0, 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +79,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                           child: Icon(
                             Icons.arrow_back,
                             color: Color(0xFF2D2D2D),
-                            size: 22.0,
+                            size: 24.0,
                           ),
                         ),
                         Padding(
@@ -90,7 +92,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                 .override(
                                   fontFamily: 'Readex Pro',
                                   color: Color(0xFF2D2D2D),
-                                  fontSize: 16.0,
+                                  fontSize: 20.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),

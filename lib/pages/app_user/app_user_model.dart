@@ -17,6 +17,10 @@ class AppUserModel extends FlutterFlowModel<AppUserWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // State field(s) for fullname widget.
+  FocusNode? fullnameFocusNode;
+  TextEditingController? fullnameController;
+  String? Function(BuildContext, String?)? fullnameControllerValidator;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
@@ -26,9 +30,15 @@ class AppUserModel extends FlutterFlowModel<AppUserWidget> {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for project widget.
+  String? projectValue;
+  FormFieldController<String>? projectValueController;
+  // State field(s) for organization widget.
+  String? organizationValue;
+  FormFieldController<String>? organizationValueController;
+  // State field(s) for role widget.
+  String? roleValue;
+  FormFieldController<String>? roleValueController;
 
   /// Initialization and disposal methods.
 
@@ -38,6 +48,9 @@ class AppUserModel extends FlutterFlowModel<AppUserWidget> {
 
   void dispose() {
     unfocusNode.dispose();
+    fullnameFocusNode?.dispose();
+    fullnameController?.dispose();
+
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
 

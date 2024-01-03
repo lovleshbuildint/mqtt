@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -49,6 +50,8 @@ class _LogInWidgetState extends State<LogInWidget> {
         ),
       );
     }
+
+    context.watch<FFAppState>();
 
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
@@ -111,8 +114,9 @@ class _LogInWidgetState extends State<LogInWidget> {
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 6.0, 0.0, 0.0),
-                            child: Text(
-                              'Please enter your credentials to proceed',
+                            child: SelectionArea(
+                                child: Text(
+                              FFAppState().deviceId,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -121,7 +125,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     fontSize: 14.0,
                                     fontWeight: FontWeight.normal,
                                   ),
-                            ),
+                            )),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -301,7 +305,14 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       0.0, 25.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      context.goNamed('Dashboard');
+                                      _model.deviceIdResponce =
+                                          await actions.deviceId();
+                                      setState(() {
+                                        FFAppState().deviceId =
+                                            _model.deviceIdResponce!;
+                                      });
+
+                                      setState(() {});
                                     },
                                     text: 'Login',
                                     options: FFButtonOptions(
