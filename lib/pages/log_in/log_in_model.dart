@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -23,6 +24,10 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
   String? Function(BuildContext, String?)? passwordControllerValidator;
   // Stores action output result for [Custom Action - deviceId] action in Button-Login widget.
   String? deviceIdResponce;
+  // Stores action output result for [Backend Call - API (Login)] action in Button-Login widget.
+  ApiCallResponse? loginResponce;
+  // Stores action output result for [Backend Call - API (Register Device)] action in Button-Login widget.
+  ApiCallResponse? registerDeviceResponce;
 
   /// Initialization and disposal methods.
 

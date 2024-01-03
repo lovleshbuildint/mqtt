@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -116,7 +117,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                 0.0, 6.0, 0.0, 0.0),
                             child: SelectionArea(
                                 child: Text(
-                              FFAppState().deviceId,
+                              'Please enter your credentials to proceed',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -305,14 +306,190 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       0.0, 25.0, 0.0, 0.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      _model.deviceIdResponce =
-                                          await actions.deviceId();
-                                      setState(() {
-                                        FFAppState().deviceId =
-                                            _model.deviceIdResponce!;
-                                      });
+                                      var _shouldSetState = false;
+                                      if (!(FFAppState().deviceId != null &&
+                                          FFAppState().deviceId != '')) {
+                                        _model.deviceIdResponce =
+                                            await actions.deviceId();
+                                        _shouldSetState = true;
+                                        setState(() {
+                                          FFAppState().deviceId =
+                                              _model.deviceIdResponce!;
+                                        });
+                                      }
+                                      _model.loginResponce =
+                                          await MasterGroup.loginCall.call(
+                                        username:
+                                            _model.emailAddressController.text,
+                                        password:
+                                            _model.passwordController.text,
+                                        deviceId: FFAppState().deviceId,
+                                      );
+                                      _shouldSetState = true;
+                                      if ((_model.loginResponce?.succeeded ??
+                                          true)) {
+                                        setState(() {
+                                          FFAppState().token = getJsonField(
+                                            (_model.loginResponce?.jsonBody ??
+                                                ''),
+                                            r'''$.token''',
+                                          ).toString();
+                                        });
 
-                                      setState(() {});
+                                        context.goNamed('Dashboard');
+
+                                        if (_shouldSetState) setState(() {});
+                                        return;
+                                      } else {
+                                        if ((_model.loginResponce?.bodyText ??
+                                                '') ==
+                                            'Device not registered') {
+                                          var confirmDialogResponse =
+                                              await showDialog<bool>(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('Alert'),
+                                                        content: Text(
+                                                            'Device is not registered. Want to register?'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    false),
+                                                            child: Text('No'),
+                                                          ),
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext,
+                                                                    true),
+                                                            child: Text('Yes'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ) ??
+                                                  false;
+                                          if (confirmDialogResponse) {
+                                            _model.registerDeviceResponce =
+                                                await MasterGroup
+                                                    .registerDeviceCall
+                                                    .call(
+                                              username: _model
+                                                  .emailAddressController.text,
+                                              deviceId: FFAppState().deviceId,
+                                            );
+                                            _shouldSetState = true;
+                                            if ((_model.registerDeviceResponce
+                                                    ?.succeeded ??
+                                                true)) {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Info'),
+                                                    content: Text((_model
+                                                            .registerDeviceResponce
+                                                            ?.bodyText ??
+                                                        '')),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Alert'),
+                                                    content: Text((_model
+                                                            .registerDeviceResponce
+                                                            ?.bodyText ??
+                                                        '')),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+                                          } else {
+                                            setState(() {
+                                              _model.emailAddressController
+                                                  ?.clear();
+                                              _model.passwordController
+                                                  ?.clear();
+                                            });
+                                          }
+                                        } else {
+                                          if ((_model.loginResponce?.bodyText ??
+                                                  '') ==
+                                              'Device not active') {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Alert'),
+                                                  content: Text(
+                                                      'Device not active ! Please contact administrator'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Alert'),
+                                                  content: Text((_model
+                                                          .loginResponce
+                                                          ?.bodyText ??
+                                                      '')),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        }
+
+                                        if (_shouldSetState) setState(() {});
+                                        return;
+                                      }
+
+                                      if (_shouldSetState) setState(() {});
                                     },
                                     text: 'Login',
                                     options: FFButtonOptions(

@@ -16,6 +16,7 @@ class MasterGroup {
     'Authorization': '[token]',
   };
   static LoginCall loginCall = LoginCall();
+  static RegisterDeviceCall registerDeviceCall = RegisterDeviceCall();
 }
 
 class LoginCall {
@@ -34,6 +35,36 @@ class LoginCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
       apiUrl: '${MasterGroup.baseUrl}/login',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class RegisterDeviceCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    String? deviceId = '',
+    String? token = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "username": "${username}",
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Register Device',
+      apiUrl: '${MasterGroup.baseUrl}/createDevice',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
