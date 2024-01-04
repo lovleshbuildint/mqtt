@@ -670,6 +670,7 @@ class _AppUserWidgetState extends State<AppUserWidget> {
                                                   );
                                                 },
                                               );
+                                              context.safePop();
                                             } else {
                                               await showDialog(
                                                 context: context,
