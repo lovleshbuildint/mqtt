@@ -24,6 +24,18 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _deviceId = prefs.getString('ff_deviceId') ?? _deviceId;
     });
+    _safeInit(() {
+      _fullName = prefs.getString('ff_fullName') ?? _fullName;
+    });
+    _safeInit(() {
+      _role = prefs.getString('ff_role') ?? _role;
+    });
+    _safeInit(() {
+      _userOrg = prefs.getString('ff_userOrg') ?? _userOrg;
+    });
+    _safeInit(() {
+      _userProject = prefs.getString('ff_userProject') ?? _userProject;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -45,6 +57,34 @@ class FFAppState extends ChangeNotifier {
   set deviceId(String _value) {
     _deviceId = _value;
     prefs.setString('ff_deviceId', _value);
+  }
+
+  String _fullName = '';
+  String get fullName => _fullName;
+  set fullName(String _value) {
+    _fullName = _value;
+    prefs.setString('ff_fullName', _value);
+  }
+
+  String _role = '';
+  String get role => _role;
+  set role(String _value) {
+    _role = _value;
+    prefs.setString('ff_role', _value);
+  }
+
+  String _userOrg = '';
+  String get userOrg => _userOrg;
+  set userOrg(String _value) {
+    _userOrg = _value;
+    prefs.setString('ff_userOrg', _value);
+  }
+
+  String _userProject = '';
+  String get userProject => _userProject;
+  set userProject(String _value) {
+    _userProject = _value;
+    prefs.setString('ff_userProject', _value);
   }
 }
 

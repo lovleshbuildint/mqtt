@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -46,191 +47,252 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
-          child: Stack(
-            children: [
-              Container(
-                width: MediaQuery.sizeOf(context).width * 1.0,
-                height: MediaQuery.sizeOf(context).height * 1.0,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
+    return FutureBuilder<ApiCallResponse>(
+      future: MasterGroup.userInfoCall.call(
+        token: FFAppState().token,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Scaffold(
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Center(
+              child: SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    FlutterFlowTheme.of(context).primary,
+                  ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          InkWell(
+              ),
+            ),
+          );
+        }
+        final profileUserInfoResponse = snapshot.data!;
+        return GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: SafeArea(
+              top: true,
+              child: Stack(
+                children: [
+                  Container(
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    height: MediaQuery.sizeOf(context).height * 1.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              13.0, 20.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.safePop();
+                                },
+                                child: Icon(
+                                  Icons.close_sharp,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24.0,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    7.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Profile',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Color(0xFF2D2D2D),
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              13.0, 35.0, 20.0, 0.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                getJsonField(
+                                  profileUserInfoResponse.jsonBody,
+                                  r'''$.user_data.fullName''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 5.0, 0.0, 0.0),
+                                child: Text(
+                                  getJsonField(
+                                    profileUserInfoResponse.jsonBody,
+                                    r'''$.user_data.role''',
+                                  ).toString(),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        if ((FFAppState().role == 'Super Admin') ||
+                            (FFAppState().role == 'Admin') ||
+                            (FFAppState().role == 'Project Manager'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                13.0, 35.0, 13.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('AppUser');
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Add User',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xE02D2D2D),
+                                          fontSize: 18.0,
+                                        ),
+                                  ),
+                                  Icon(
+                                    Icons.person_add_alt,
+                                    color: Color(0xE02D2D2D),
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        if ((FFAppState().role == 'Super Admin') ||
+                            (FFAppState().role == 'Admin'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                13.0, 35.0, 13.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('Notification');
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Notifications',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xE02D2D2D),
+                                          fontSize: 18.0,
+                                        ),
+                                  ),
+                                  Icon(
+                                    Icons.notifications_outlined,
+                                    color: Color(0xE02D2D2D),
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              13.0, 35.0, 13.0, 0.0),
+                          child: InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              context.safePop();
+                              setState(() {
+                                FFAppState().token = '';
+                              });
+
+                              context.goNamed('LogIn');
                             },
-                            child: Icon(
-                              Icons.close_sharp,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                7.0, 0.0, 0.0, 0.0),
-                            child: Text(
-                              'Profile',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF2D2D2D),
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 35.0, 20.0, 0.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Lovlesh Dagar',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w600,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Logout',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        color: Color(0xE02D2D2D),
+                                        fontSize: 18.0,
+                                      ),
                                 ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
-                            child: Text(
-                              'Super Admin',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                Icon(
+                                  Icons.logout_sharp,
+                                  color: Color(0xE02D2D2D),
+                                  size: 24.0,
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 35.0, 13.0, 0.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed('AppUser');
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Add User',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xE02D2D2D),
-                                    fontSize: 18.0,
-                                  ),
-                            ),
-                            Icon(
-                              Icons.person_add_alt,
-                              color: Color(0xE02D2D2D),
-                              size: 24.0,
-                            ),
-                          ],
                         ),
-                      ),
+                      ],
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 35.0, 13.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Notifications',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xE02D2D2D),
-                                  fontSize: 18.0,
-                                ),
-                          ),
-                          Icon(
-                            Icons.notifications_outlined,
-                            color: Color(0xE02D2D2D),
-                            size: 24.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 35.0, 13.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Logout',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xE02D2D2D),
-                                  fontSize: 18.0,
-                                ),
-                          ),
-                          Icon(
-                            Icons.logout_sharp,
-                            color: Color(0xE02D2D2D),
-                            size: 24.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -1,8 +1,10 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'app_user_widget.dart' show AppUserWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +14,7 @@ import 'package:provider/provider.dart';
 class AppUserModel extends FlutterFlowModel<AppUserWidget> {
   ///  Local state fields for this page.
 
-  String test = '';
+  int? orgId;
 
   ///  State fields for stateful widgets in this page.
 
@@ -33,12 +35,16 @@ class AppUserModel extends FlutterFlowModel<AppUserWidget> {
   // State field(s) for project widget.
   String? projectValue;
   FormFieldController<String>? projectValueController;
+  // Stores action output result for [Backend Call - API (Get Organization)] action in project widget.
+  ApiCallResponse? getOrganizationResponse;
   // State field(s) for organization widget.
   String? organizationValue;
   FormFieldController<String>? organizationValueController;
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // Stores action output result for [Backend Call - API (Add User)] action in Button-Login widget.
+  ApiCallResponse? addUserResponse;
 
   /// Initialization and disposal methods.
 

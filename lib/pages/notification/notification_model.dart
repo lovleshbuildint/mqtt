@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -12,6 +14,10 @@ class NotificationModel extends FlutterFlowModel<NotificationWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - API (Change Device State)] action in IconButton widget.
+  ApiCallResponse? changeStateReponse;
+  // Stores action output result for [Backend Call - API (Change Device State)] action in IconButton widget.
+  ApiCallResponse? changeStateReponseCopy;
 
   /// Initialization and disposal methods.
 
