@@ -66,7 +66,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Hello, Lovlesh',
+                      'Hello, ${FFAppState().fullName}',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             fontSize: 18.0,
