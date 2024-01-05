@@ -279,6 +279,54 @@ class GetOrganizationCall {
           .toList();
 }
 
+class DashboardCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = '',
+    String? project = '',
+    String? orgId = '',
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Dashboard',
+      apiUrl: 'https://api.app.${project}.buildint.co/api/dashboard/${orgId}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static int? totalSites(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_total_sites''',
+      ));
+  static int? totalDevice(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_total_devices''',
+      ));
+  static int? onlineSites(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_online_count''',
+      ));
+  static int? offlineSites(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_offline_count''',
+      ));
+  static List? locationDetails(dynamic response) => getJsonField(
+        response,
+        r'''$.locationDetails''',
+        true,
+      ) as List?;
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
