@@ -620,7 +620,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           BorderRadius.circular(
                                                               8.0),
                                                       child: Image.network(
-                                                        'https://picsum.photos/seed/778/600',
+                                                        getJsonField(
+                                                                  locationDetailsItem,
+                                                                  r'''$..OrgLogo''',
+                                                                ) !=
+                                                                null
+                                                            ? getJsonField(
+                                                                locationDetailsItem,
+                                                                r'''$..OrgLogo''',
+                                                              ).toString()
+                                                            : 'https://firebasestorage.googleapis.com/v0/b/buildint-ebd3e.appspot.com/o/ATM.jpg?alt=media&token=8cb8f85d-86eb-45a4-813c-780e79c46367',
                                                         width: 52.0,
                                                         height: 52.0,
                                                         fit: BoxFit.fitWidth,
