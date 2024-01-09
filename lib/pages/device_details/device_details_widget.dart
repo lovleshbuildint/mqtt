@@ -380,7 +380,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 dataItem,
                                                 r'''$..evt_dt''',
                                               ).toString())} ${(String var1) {
-                                                return var1.split('.').last;
+                                                return var1.split('.').first;
                                               }(((String var1) {
                                                 return var1.split('T').last;
                                               }(getJsonField(
