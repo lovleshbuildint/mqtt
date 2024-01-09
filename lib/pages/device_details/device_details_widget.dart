@@ -380,11 +380,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 dataItem,
                                                 r'''$..evt_dt''',
                                               ).toString())} ${(String var1) {
+                                                return var1.split('.').last;
+                                              }(((String var1) {
                                                 return var1.split('T').last;
                                               }(getJsonField(
                                                 dataItem,
                                                 r'''$..evt_dt''',
-                                              ).toString())})',
+                                              ).toString())))})',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
