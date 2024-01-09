@@ -56,7 +56,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DeviceDetails',
           path: '/deviceDetails',
-          builder: (context, params) => DeviceDetailsWidget(),
+          builder: (context, params) => DeviceDetailsWidget(
+            locName: params.getParam('locName', ParamType.String),
+            locStatus: params.getParam('locStatus', ParamType.String),
+            locDevices: params.getParam('locDevices', ParamType.String),
+            locId: params.getParam('locId', ParamType.int),
+          ),
         ),
         FFRoute(
           name: 'Controlling',

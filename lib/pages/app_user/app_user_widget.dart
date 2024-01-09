@@ -432,9 +432,9 @@ class _AppUserWidgetState extends State<AppUserWidget> {
                                               () => _model.projectValue = val);
                                           _model.getOrganizationResponse =
                                               await GetOrganizationCall.call(
-                                            project: _model.projectValue,
                                             deviceId: FFAppState().deviceId,
                                             token: FFAppState().token,
+                                            project: FFAppState().userProject,
                                           );
 
                                           setState(() {});

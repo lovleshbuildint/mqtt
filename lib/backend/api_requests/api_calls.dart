@@ -230,61 +230,12 @@ class UserInfoCall {
 
 /// End Master Group Code
 
-class GetOrganizationCall {
-  static Future<ApiCallResponse> call({
-    String? project = '',
-    String? deviceId = '',
-    String? token = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Get Organization',
-      apiUrl: 'https://api.app.${project}.buildint.co/api/getOrganization',
-      callType: ApiCallType.GET,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {
-        'deviceId': deviceId,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-
-  static List? result(dynamic response) => getJsonField(
-        response,
-        r'''$.result''',
-        true,
-      ) as List?;
-  static List<int>? orgId(dynamic response) => (getJsonField(
-        response,
-        r'''$.result[:].org_id''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<int>(x))
-          .withoutNulls
-          .toList();
-  static List<String>? orgName(dynamic response) => (getJsonField(
-        response,
-        r'''$.result[:].org_name''',
-        true,
-      ) as List?)
-          ?.withoutNulls
-          .map((x) => castToType<String>(x))
-          .withoutNulls
-          .toList();
-}
-
 class DashboardCall {
   static Future<ApiCallResponse> call({
     String? deviceId = '',
-    String? project = '',
-    String? orgId = '',
     String? token = '',
+    String? orgId = '',
+    String? project = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Dashboard',
@@ -308,10 +259,6 @@ class DashboardCall {
         response,
         r'''$.siteDetails.out_total_sites''',
       ));
-  static int? totalDevice(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$.siteDetails.out_total_devices''',
-      ));
   static int? onlineSites(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.siteDetails.out_online_count''',
@@ -325,6 +272,76 @@ class DashboardCall {
         r'''$.locationDetails''',
         true,
       ) as List?;
+  static List<String>? onlineStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$.locationDetails[:].OnlineStatus''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? orgLogo(dynamic response) => (getJsonField(
+        response,
+        r'''$.locationDetails[:].OrgLogo''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class GetOrganizationCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = '',
+    String? token = '',
+    String? project = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Organization',
+      apiUrl: 'https://api.app.${project}.buildint.co/api/getOrganization',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetDeviceDetailsCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = '',
+    String? project = '',
+    int? locId,
+    String? token = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Device Details',
+      apiUrl:
+          'https://api.app.${project}.buildint.co/api/deviceDetails/${locId}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 class ApiPagingParams {

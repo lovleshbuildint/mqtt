@@ -51,9 +51,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     return FutureBuilder<ApiCallResponse>(
       future: DashboardCall.call(
         deviceId: FFAppState().deviceId,
+        token: FFAppState().token,
         project: FFAppState().userProject,
         orgId: FFAppState().userOrg,
-        token: FFAppState().token,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -143,97 +143,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           ],
                         ),
                       ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(34.0, 19.0, 34.0, 0.0),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: 135.0,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primary,
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            13.0, 0.0, 13.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 13.0, 0.0, 13.0),
-                                child: Text(
-                                  'Mumbai',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 13.0, 0.0, 13.0),
-                              child: Container(
-                                width: 2.0,
-                                height: MediaQuery.sizeOf(context).height * 1.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(24.0),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 13.0, 0.0, 13.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      dateTimeFormat(
-                                          'd,MMM.,y', getCurrentTimestamp),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 15.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                    Text(
-                                      '23 C',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 37.0,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                   Padding(
@@ -546,6 +455,36 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     onTap: () async {
                                       context.pushNamed(
                                         'DeviceDetails',
+                                        queryParameters: {
+                                          'locName': serializeParam(
+                                            getJsonField(
+                                              locationDetailsItem,
+                                              r'''$..LocationName''',
+                                            ).toString(),
+                                            ParamType.String,
+                                          ),
+                                          'locStatus': serializeParam(
+                                            getJsonField(
+                                              locationDetailsItem,
+                                              r'''$..OnlineStatus''',
+                                            ).toString(),
+                                            ParamType.String,
+                                          ),
+                                          'locDevices': serializeParam(
+                                            getJsonField(
+                                              locationDetailsItem,
+                                              r'''$..DeviceCount''',
+                                            ).toString(),
+                                            ParamType.String,
+                                          ),
+                                          'locId': serializeParam(
+                                            getJsonField(
+                                              locationDetailsItem,
+                                              r'''$..LocId''',
+                                            ),
+                                            ParamType.int,
+                                          ),
+                                        }.withoutNulls,
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
