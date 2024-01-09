@@ -484,6 +484,19 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                             ParamType.int,
                                           ),
+                                          'locImage': serializeParam(
+                                            getJsonField(
+                                                      locationDetailsItem,
+                                                      r'''$..OrgLogo''',
+                                                    ) !=
+                                                    null
+                                                ? getJsonField(
+                                                    locationDetailsItem,
+                                                    r'''$..OrgLogo''',
+                                                  ).toString()
+                                                : 'https://firebasestorage.googleapis.com/v0/b/buildint-ebd3e.appspot.com/o/ATM.jpg?alt=media&token=8cb8f85d-86eb-45a4-813c-780e79c46367',
+                                            ParamType.String,
+                                          ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(

@@ -17,12 +17,14 @@ class DeviceDetailsWidget extends StatefulWidget {
     required this.locStatus,
     required this.locDevices,
     required this.locId,
+    required this.locImage,
   }) : super(key: key);
 
   final String? locName;
   final String? locStatus;
   final String? locDevices;
   final int? locId;
+  final String? locImage;
 
   @override
   _DeviceDetailsWidgetState createState() => _DeviceDetailsWidgetState();
@@ -196,7 +198,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.network(
-                                        'https://picsum.photos/seed/778/600',
+                                        widget.locImage!,
                                         width: 52.0,
                                         height: 52.0,
                                         fit: BoxFit.fitWidth,
