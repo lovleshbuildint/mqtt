@@ -374,10 +374,17 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               '${getJsonField(
                                                 dataItem,
                                                 r'''$..DID''',
-                                              ).toString()} (${dateTimeFormat('d/M/y h:mm a', (getJsonField(
-                                                    dataItem,
-                                                    r'''$..evt_dt''',
-                                                  )))})',
+                                              ).toString()} (${(String var1) {
+                                                return var1.split('T').first;
+                                              }(getJsonField(
+                                                dataItem,
+                                                r'''$..evt_dt''',
+                                              ).toString())} ${(String var1) {
+                                                return var1.split('T').last;
+                                              }(getJsonField(
+                                                dataItem,
+                                                r'''$..evt_dt''',
+                                              ).toString())})',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
