@@ -302,9 +302,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       children: [
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -318,7 +318,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -340,7 +340,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -350,6 +350,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -359,9 +360,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -375,7 +376,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -397,7 +398,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -407,6 +408,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -416,9 +418,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -432,7 +434,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -454,7 +456,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -464,6 +466,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -473,9 +476,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -489,7 +492,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -511,7 +514,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -521,6 +524,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -530,9 +534,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -546,7 +550,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -568,7 +572,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -578,6 +582,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontSize: 14.0,
                                         fontWeight: FontWeight.normal,
                                       ),
@@ -588,9 +593,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -604,7 +609,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -626,7 +631,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -636,6 +641,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -645,9 +651,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -661,7 +667,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -683,7 +689,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -693,6 +699,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -702,9 +709,9 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                         Container(
                           width: 89.0,
-                          height: 89.0,
+                          height: 100.0,
                           decoration: BoxDecoration(
-                            color: Color(0xFFE6E6E6),
+                            color: Color(0xFFEEEFF1),
                             borderRadius: BorderRadius.circular(12.0),
                           ),
                           child: Padding(
@@ -718,7 +725,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   width: 38.0,
                                   height: 38.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0x98808080),
+                                    color: Color(0xFFA9AAAC),
                                     shape: BoxShape.circle,
                                     border: Border.all(
                                       color: FlutterFlowTheme.of(context)
@@ -740,7 +747,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         MediaQuery.sizeOf(context).width * 1.0,
                                     height: 2.0,
                                     decoration: BoxDecoration(
-                                      color: Color(0xFF808080),
+                                      color: Color(0xFF8B8C8E),
                                     ),
                                   ),
                                 ),
@@ -750,6 +757,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Readex Pro',
+                                        color: Color(0xFF929395),
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),

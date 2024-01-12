@@ -62,6 +62,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             locDevices: params.getParam('locDevices', ParamType.String),
             locId: params.getParam('locId', ParamType.int),
             locImage: params.getParam('locImage', ParamType.String),
+            branchCode: params.getParam('branchCode', ParamType.String),
           ),
         ),
         FFRoute(

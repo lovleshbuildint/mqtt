@@ -1,4 +1,4 @@
-package com.mycompany.mqtt
+package com.mycompany.atm360
 
 import io.flutter.embedding.android.FlutterActivity
 

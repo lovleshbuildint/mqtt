@@ -19,3 +19,22 @@ int? checkIndex(
     }
   }
 }
+
+dynamic filter(
+  dynamic mainData,
+  String? searchValue,
+) {
+  if (searchValue == null || searchValue.isEmpty) {
+    return mainData['locationDetails'];
+  }
+
+  List<dynamic> filteredData = [];
+  String searchValueLowerCase = searchValue.toLowerCase();
+  for (dynamic data in mainData['locationDetails']) {
+    if (data['BranchCode'].toLowerCase().contains(searchValueLowerCase)) {
+      filteredData.add(data);
+    }
+  }
+
+  return filteredData;
+}

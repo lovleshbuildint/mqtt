@@ -18,6 +18,7 @@ class DeviceDetailsWidget extends StatefulWidget {
     required this.locDevices,
     required this.locId,
     required this.locImage,
+    required this.branchCode,
   }) : super(key: key);
 
   final String? locName;
@@ -25,6 +26,7 @@ class DeviceDetailsWidget extends StatefulWidget {
   final String? locDevices;
   final int? locId;
   final String? locImage;
+  final String? branchCode;
 
   @override
   _DeviceDetailsWidgetState createState() => _DeviceDetailsWidgetState();
@@ -163,10 +165,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              valueOrDefault<String>(
-                                widget.locName,
-                                'Name',
-                              ),
+                              '${widget.locName} - ${widget.branchCode}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

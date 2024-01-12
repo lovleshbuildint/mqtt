@@ -34,6 +34,16 @@ Future<String> newCustomAction(
       final builder = MqttClientPayloadBuilder();
       builder.addString(message!);
 
+      client.subscribe(topic!, MqttQos.atMostOnce);
+
+      client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
+        final recMess = c![0].payload as MqttPublishMessage;
+        final pt =
+            MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+        print('EXAMPLE::Change notification:: payload is <-- $pt -->');
+        print('');
+      });
+
       client.publishMessage(topic!, MqttQos.exactlyOnce, builder.payload!);
       return 'Message sent successfully!';
     } else {

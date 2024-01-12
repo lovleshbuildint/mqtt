@@ -1,4 +1,4 @@
-name: mqtt
+name: atm_360
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -28,6 +28,7 @@ dependencies:
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
   dropdown_button2: 2.3.9
+  easy_debounce: 2.0.1
   equatable: 2.0.5
   flutter_animate: 4.1.1+1
   flutter_cache_manager: 3.3.1
