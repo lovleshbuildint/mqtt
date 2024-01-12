@@ -41,7 +41,7 @@ Future<String> newCustomAction(
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         print('EXAMPLE::Change notification:: payload is <-- $pt -->');
-        print('');
+        return '$pt';
       });
 
       client.publishMessage(topic!, MqttQos.exactlyOnce, builder.payload!);
