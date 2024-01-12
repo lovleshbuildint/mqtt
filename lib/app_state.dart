@@ -36,6 +36,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _userProject = prefs.getString('ff_userProject') ?? _userProject;
     });
+    _safeInit(() {
+      _test = prefs.getString('ff_test') ?? _test;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -85,6 +88,13 @@ class FFAppState extends ChangeNotifier {
   set userProject(String _value) {
     _userProject = _value;
     prefs.setString('ff_userProject', _value);
+  }
+
+  String _test = '';
+  String get test => _test;
+  set test(String _value) {
+    _test = _value;
+    prefs.setString('ff_test', _value);
   }
 }
 
