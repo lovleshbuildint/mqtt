@@ -204,10 +204,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 6.0, 0.0, 6.0, 0.0),
                             child: Text(
-                              valueOrDefault<String>(
-                                _model.test,
-                                'G',
-                              ),
+                              FFAppState().test,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
