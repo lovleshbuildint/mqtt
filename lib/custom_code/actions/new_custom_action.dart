@@ -41,6 +41,7 @@ Future<String> newCustomAction(
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         print('EXAMPLE::Change notification:: payload is <-- $pt -->');
+        FFAppState().deviceId = '$pt';
       });
 
       client.publishMessage(topic!, MqttQos.exactlyOnce, builder.payload!);
