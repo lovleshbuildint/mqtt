@@ -289,7 +289,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 70.0, 13.0, 20.0),
+                        EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 20.0),
                     child: Wrap(
                       spacing: 32.0,
                       runSpacing: 16.0,
