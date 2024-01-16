@@ -339,7 +339,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onDoubleTap: () async {
-                  setState(() {
+                  FFAppState().update(() {
                     FFAppState().test = _model.textController.text;
                   });
                 },
