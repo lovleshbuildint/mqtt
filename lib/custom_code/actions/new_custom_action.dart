@@ -11,6 +11,7 @@ import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
 Future<String> newCustomAction(
+  BuildContext context,
   String? topic,
   String? message,
 ) async {
@@ -41,7 +42,10 @@ Future<String> newCustomAction(
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         print('EXAMPLE::Change notification:: payload is <-- $pt -->');
-        FFAppState().deviceId = '$pt';
+        var appstate = FFAppState();
+        appstate.update(() {
+          appstate.test = pt;
+        });
       });
 
       client.publishMessage(topic!, MqttQos.exactlyOnce, builder.payload!);

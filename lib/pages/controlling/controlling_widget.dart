@@ -336,6 +336,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               FFButtonWidget(
                 onPressed: () async {
                   _model.test = await actions.newCustomAction(
+                    context,
                     _model.textController.text,
                     'Hello',
                   );
