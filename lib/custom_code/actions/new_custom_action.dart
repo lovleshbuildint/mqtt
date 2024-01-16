@@ -37,7 +37,7 @@ Future<String> newCustomAction(
 
       client.subscribe(topic!, MqttQos.atMostOnce);
 
-      client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
+      client.updates?.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
         final recMess = c![0].payload as MqttPublishMessage;
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
