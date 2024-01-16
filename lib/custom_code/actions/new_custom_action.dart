@@ -42,9 +42,8 @@ Future<String> newCustomAction(
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         print('EXAMPLE::Change notification:: payload is <-- $pt -->');
-        var appstate = FFAppState();
-        appstate.update(() {
-          appstate.test = pt;
+        FFAppState().update(() {
+          FFAppState().test = pt;
         });
       });
 
