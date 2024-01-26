@@ -68,7 +68,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Controlling',
           path: '/controlling',
-          builder: (context, params) => ControllingWidget(),
+          builder: (context, params) => ControllingWidget(
+            did: params.getParam('did', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'Profile',

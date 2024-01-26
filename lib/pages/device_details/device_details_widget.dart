@@ -12,14 +12,14 @@ export 'device_details_model.dart';
 
 class DeviceDetailsWidget extends StatefulWidget {
   const DeviceDetailsWidget({
-    Key? key,
+    super.key,
     required this.locName,
     required this.locStatus,
     required this.locDevices,
     required this.locId,
     required this.locImage,
     required this.branchCode,
-  }) : super(key: key);
+  });
 
   final String? locName;
   final String? locStatus;
@@ -29,7 +29,7 @@ class DeviceDetailsWidget extends StatefulWidget {
   final String? branchCode;
 
   @override
-  _DeviceDetailsWidgetState createState() => _DeviceDetailsWidgetState();
+  State<DeviceDetailsWidget> createState() => _DeviceDetailsWidgetState();
 }
 
 class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
@@ -150,6 +150,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                         EdgeInsetsDirectional.fromSTEB(13.0, 16.0, 13.0, 0.0),
                     child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
+                      constraints: BoxConstraints(
+                        minHeight: 113.0,
+                      ),
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
                         borderRadius: BorderRadius.circular(8.0),
@@ -339,6 +342,15 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     onTap: () async {
                                       context.pushNamed(
                                         'Controlling',
+                                        queryParameters: {
+                                          'did': serializeParam(
+                                            getJsonField(
+                                              dataItem,
+                                              r'''$..DID''',
+                                            ).toString(),
+                                            ParamType.String,
+                                          ),
+                                        }.withoutNulls,
                                         extra: <String, dynamic>{
                                           kTransitionInfoKey: TransitionInfo(
                                             hasTransition: true,
@@ -352,6 +364,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
                                           1.0,
+                                      constraints: BoxConstraints(
+                                        minHeight: 95.0,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,

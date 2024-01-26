@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,10 +9,15 @@ import 'controlling_model.dart';
 export 'controlling_model.dart';
 
 class ControllingWidget extends StatefulWidget {
-  const ControllingWidget({Key? key}) : super(key: key);
+  const ControllingWidget({
+    super.key,
+    required this.did,
+  });
+
+  final String? did;
 
   @override
-  _ControllingWidgetState createState() => _ControllingWidgetState();
+  State<ControllingWidget> createState() => _ControllingWidgetState();
 }
 
 class _ControllingWidgetState extends State<ControllingWidget> {
@@ -25,9 +29,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ControllingModel());
-
-    _model.textController ??= TextEditingController();
-    _model.textFieldFocusNode ??= FocusNode();
   }
 
   @override
@@ -140,7 +141,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Device ID',
+                      valueOrDefault<String>(
+                        widget.did,
+                        'Device ID',
+                      ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily: 'Readex Pro',
                             color: Color(0xFF4D4D4D),
@@ -204,7 +208,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 6.0, 0.0, 6.0, 0.0),
                             child: Text(
-                              FFAppState().test,
+                              'AC 1',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -286,92 +290,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-                child: TextFormField(
-                  controller: _model.textController,
-                  focusNode: _model.textFieldFocusNode,
-                  autofocus: true,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Label here...',
-                    labelStyle: FlutterFlowTheme.of(context).labelMedium,
-                    hintStyle: FlutterFlowTheme.of(context).labelMedium,
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium,
-                  validator:
-                      _model.textControllerValidator.asValidator(context),
-                ),
-              ),
-              InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onDoubleTap: () async {
-                  FFAppState().update(() {
-                    FFAppState().test = _model.textController.text;
-                  });
-                },
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    _model.test = await actions.newCustomAction(
-                      context,
-                      _model.textController.text,
-                      'Hello',
-                    );
-
-                    setState(() {});
-                  },
-                  text: 'Button',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
-                          color: Colors.white,
-                        ),
-                    elevation: 3.0,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
                 ),
               ),
               Expanded(

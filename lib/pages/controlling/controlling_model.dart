@@ -1,7 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'controlling_widget.dart' show ControllingWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,12 +13,6 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
   final unfocusNode = FocusNode();
   // State field(s) for Switch widget.
   bool? switchValue;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode;
-  TextEditingController? textController;
-  String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Custom Action - newCustomAction] action in Button widget.
-  String? test;
 
   /// Initialization and disposal methods.
 
@@ -27,8 +20,6 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
 
   void dispose() {
     unfocusNode.dispose();
-    textFieldFocusNode?.dispose();
-    textController?.dispose();
   }
 
   /// Action blocks are added here.

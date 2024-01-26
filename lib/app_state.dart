@@ -37,7 +37,7 @@ class FFAppState extends ChangeNotifier {
       _userProject = prefs.getString('ff_userProject') ?? _userProject;
     });
     _safeInit(() {
-      _test = prefs.getString('ff_test') ?? _test;
+      _mqqtData = prefs.getString('ff_mqqtData') ?? _mqqtData;
     });
   }
 
@@ -90,11 +90,11 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_userProject', _value);
   }
 
-  String _test = '';
-  String get test => _test;
-  set test(String _value) {
-    _test = _value;
-    prefs.setString('ff_test', _value);
+  String _mqqtData = '';
+  String get mqqtData => _mqqtData;
+  set mqqtData(String _value) {
+    _mqqtData = _value;
+    prefs.setString('ff_mqqtData', _value);
   }
 }
 

@@ -12,10 +12,10 @@ import 'log_in_model.dart';
 export 'log_in_model.dart';
 
 class LogInWidget extends StatefulWidget {
-  const LogInWidget({Key? key}) : super(key: key);
+  const LogInWidget({super.key});
 
   @override
-  _LogInWidgetState createState() => _LogInWidgetState();
+  State<LogInWidget> createState() => _LogInWidgetState();
 }
 
 class _LogInWidgetState extends State<LogInWidget> {

@@ -13,10 +13,10 @@ import 'app_user_model.dart';
 export 'app_user_model.dart';
 
 class AppUserWidget extends StatefulWidget {
-  const AppUserWidget({Key? key}) : super(key: key);
+  const AppUserWidget({super.key});
 
   @override
-  _AppUserWidgetState createState() => _AppUserWidgetState();
+  State<AppUserWidget> createState() => _AppUserWidgetState();
 }
 
 class _AppUserWidgetState extends State<AppUserWidget> {
