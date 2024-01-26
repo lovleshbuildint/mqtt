@@ -29,12 +29,7 @@ class _LogInWidgetState extends State<LogInWidget> {
     _model = createModel(context, () => LogInModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if ((FFAppState().token != null && FFAppState().token != '') &&
-          (FFAppState().deviceId != null && FFAppState().deviceId != '')) {
-        context.goNamed('Dashboard');
-      }
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();

@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -516,19 +517,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               13.0, 13.0, 13.0, 0.0),
                           child: Builder(
                             builder: (context) {
-                              final locationDetails =
-                                  DashboardCall.locationDetails(
-                                        dashboardDashboardResponse.jsonBody,
-                                      )
-                                          ?.where((e) =>
-                                              _model.textController.text ==
-                                              getJsonField(
-                                                e,
-                                                r'''$..BranchCode''',
-                                              ))
-                                          .toList()
-                                          ?.toList() ??
-                                      [];
+                              final locationDetails = functions
+                                      .filter(
+                                          dashboardDashboardResponse.jsonBody,
+                                          _model.textController.text)
+                                      ?.toList() ??
+                                  [];
                               return SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
