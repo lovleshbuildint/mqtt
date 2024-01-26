@@ -482,12 +482,16 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     isDense: true,
                                     hintText: 'Search Location',
                                     hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
+                                        ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
                                             .alternate,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -495,7 +499,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
                                             .primary,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -503,7 +507,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
@@ -511,13 +515,17 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       borderSide: BorderSide(
                                         color:
                                             FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
+                                        width: 1.0,
                                       ),
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 12.0,
+                                      ),
                                   validator: _model.textControllerValidator
                                       .asValidator(context),
                                 ),
