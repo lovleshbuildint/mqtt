@@ -20,11 +20,11 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  Completer<ApiCallResponse>? apiRequestCompleter;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  Completer<ApiCallResponse>? apiRequestCompleter;
 
   /// Initialization and disposal methods.
 
