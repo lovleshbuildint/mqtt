@@ -461,8 +461,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   focusNode: _model.textFieldFocusNode,
                                   onChanged: (_) => EasyDebounce.debounce(
                                     '_model.textController',
-                                    Duration(milliseconds: 1000),
-                                    () => setState(() {}),
+                                    Duration(milliseconds: 0),
+                                    () async {
+                                      setState(() {
+                                        _model.searchValue =
+                                            _model.textController.text;
+                                      });
+                                    },
                                   ),
                                   onFieldSubmitted: (_) async {
                                     setState(() {
@@ -474,8 +479,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       TextCapitalization.characters,
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
+                                    isDense: true,
                                     hintText: 'Search Location',
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium,
