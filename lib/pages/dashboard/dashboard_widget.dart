@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
+import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -54,12 +55,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: DashboardCall.call(
-        deviceId: FFAppState().deviceId,
-        token: FFAppState().token,
-        project: FFAppState().userProject,
-        orgId: FFAppState().userOrg,
-      ),
+      future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
+            ..complete(DashboardCall.call(
+              deviceId: FFAppState().deviceId,
+              token: FFAppState().token,
+              project: FFAppState().userProject,
+              orgId: FFAppState().userOrg,
+            )))
+          .future,
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -546,316 +549,330 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           _model.textController.text)
                                       ?.toList() ??
                                   [];
-                              return SingleChildScrollView(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children:
-                                      List.generate(locationDetails.length,
-                                          (locationDetailsIndex) {
-                                    final locationDetailsItem =
-                                        locationDetails[locationDetailsIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 16.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'DeviceDetails',
-                                            queryParameters: {
-                                              'locName': serializeParam(
-                                                getJsonField(
-                                                  locationDetailsItem,
-                                                  r'''$..LocationName''',
-                                                ).toString(),
-                                                ParamType.String,
-                                              ),
-                                              'locStatus': serializeParam(
-                                                getJsonField(
-                                                  locationDetailsItem,
-                                                  r'''$..OnlineStatus''',
-                                                ).toString(),
-                                                ParamType.String,
-                                              ),
-                                              'locDevices': serializeParam(
-                                                getJsonField(
-                                                  locationDetailsItem,
-                                                  r'''$..DeviceCount''',
-                                                ).toString(),
-                                                ParamType.String,
-                                              ),
-                                              'locId': serializeParam(
-                                                getJsonField(
-                                                  locationDetailsItem,
-                                                  r'''$..LocId''',
-                                                ),
-                                                ParamType.int,
-                                              ),
-                                              'locImage': serializeParam(
-                                                getJsonField(
-                                                          locationDetailsItem,
-                                                          r'''$..OrgLogo''',
-                                                        ) !=
-                                                        null
-                                                    ? getJsonField(
-                                                        locationDetailsItem,
-                                                        r'''$..OrgLogo''',
-                                                      ).toString()
-                                                    : 'https://firebasestorage.googleapis.com/v0/b/buildint-ebd3e.appspot.com/o/ATM.jpg?alt=media&token=8cb8f85d-86eb-45a4-813c-780e79c46367',
-                                                ParamType.String,
-                                              ),
-                                              'branchCode': serializeParam(
-                                                getJsonField(
-                                                  locationDetailsItem,
-                                                  r'''$..BranchCode''',
-                                                ).toString(),
-                                                ParamType.String,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType.fade,
-                                                duration:
-                                                    Duration(milliseconds: 0),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        child: Container(
-                                          width:
-                                              MediaQuery.sizeOf(context).width *
-                                                  1.0,
-                                          constraints: BoxConstraints(
-                                            minHeight: 113.0,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color: Color(0x27404042),
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 12.0, 20.0, 12.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '${getJsonField(
+                              return RefreshIndicator(
+                                onRefresh: () async {
+                                  setState(
+                                      () => _model.apiRequestCompleter = null);
+                                },
+                                child: SingleChildScrollView(
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children:
+                                        List.generate(locationDetails.length,
+                                            (locationDetailsIndex) {
+                                      final locationDetailsItem =
+                                          locationDetails[locationDetailsIndex];
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 16.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'DeviceDetails',
+                                              queryParameters: {
+                                                'locName': serializeParam(
+                                                  getJsonField(
                                                     locationDetailsItem,
                                                     r'''$..LocationName''',
-                                                  ).toString()} - ${getJsonField(
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                                'locStatus': serializeParam(
+                                                  getJsonField(
+                                                    locationDetailsItem,
+                                                    r'''$..OnlineStatus''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                                'locDevices': serializeParam(
+                                                  getJsonField(
+                                                    locationDetailsItem,
+                                                    r'''$..DeviceCount''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                                'locId': serializeParam(
+                                                  getJsonField(
+                                                    locationDetailsItem,
+                                                    r'''$..LocId''',
+                                                  ),
+                                                  ParamType.int,
+                                                ),
+                                                'locImage': serializeParam(
+                                                  getJsonField(
+                                                            locationDetailsItem,
+                                                            r'''$..OrgLogo''',
+                                                          ) !=
+                                                          null
+                                                      ? getJsonField(
+                                                          locationDetailsItem,
+                                                          r'''$..OrgLogo''',
+                                                        ).toString()
+                                                      : 'https://firebasestorage.googleapis.com/v0/b/buildint-ebd3e.appspot.com/o/ATM.jpg?alt=media&token=8cb8f85d-86eb-45a4-813c-780e79c46367',
+                                                  ParamType.String,
+                                                ),
+                                                'branchCode': serializeParam(
+                                                  getJsonField(
                                                     locationDetailsItem,
                                                     r'''$..BranchCode''',
-                                                  ).toString()}',
-                                                  textAlign: TextAlign.center,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color:
-                                                            Color(0xFF4D4D4D),
-                                                        fontSize: 16.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
+                                                  ).toString(),
+                                                  ParamType.String,
                                                 ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 9.0, 0.0, 0.0),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.start,
-                                                    children: [
-                                                      Container(
-                                                        width: 52.0,
-                                                        height: 52.0,
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryBackground,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          border: Border.all(
-                                                            color: Color(
-                                                                0x58404042),
-                                                            width: 2.0,
-                                                          ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          child: Container(
+                                            width: MediaQuery.sizeOf(context)
+                                                    .width *
+                                                1.0,
+                                            constraints: BoxConstraints(
+                                              minHeight: 113.0,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color: Color(0x27404042),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      20.0, 12.0, 20.0, 12.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    '${getJsonField(
+                                                      locationDetailsItem,
+                                                      r'''$..LocationName''',
+                                                    ).toString()} - ${getJsonField(
+                                                      locationDetailsItem,
+                                                      r'''$..BranchCode''',
+                                                    ).toString()}',
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color:
+                                                              Color(0xFF4D4D4D),
+                                                          fontSize: 16.0,
+                                                          fontWeight:
+                                                              FontWeight.w600,
                                                         ),
-                                                        child: ClipRRect(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0),
-                                                          child: Image.network(
-                                                            getJsonField(
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 9.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Container(
+                                                          width: 52.0,
+                                                          height: 52.0,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            border: Border.all(
+                                                              color: Color(
+                                                                  0x58404042),
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          child: ClipRRect(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            child:
+                                                                Image.network(
+                                                              getJsonField(
+                                                                        locationDetailsItem,
+                                                                        r'''$..OrgLogo''',
+                                                                      ) !=
+                                                                      null
+                                                                  ? getJsonField(
                                                                       locationDetailsItem,
                                                                       r'''$..OrgLogo''',
-                                                                    ) !=
-                                                                    null
-                                                                ? getJsonField(
-                                                                    locationDetailsItem,
-                                                                    r'''$..OrgLogo''',
-                                                                  ).toString()
-                                                                : 'https://firebasestorage.googleapis.com/v0/b/buildint-ebd3e.appspot.com/o/ATM.jpg?alt=media&token=8cb8f85d-86eb-45a4-813c-780e79c46367',
-                                                            width: 52.0,
-                                                            height: 52.0,
-                                                            fit:
-                                                                BoxFit.fitWidth,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    11.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              'Site Status',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Color(
-                                                                        0xFF4D4D4D),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
-                                                                  ),
-                                                            ),
-                                                            Text(
-                                                              'Devices',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Color(
-                                                                        0xFF4D4D4D),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
-                                                                  ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Expanded(
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                AutoSizeText(
-                                                                  getJsonField(
-                                                                    locationDetailsItem,
-                                                                    r'''$..OnlineStatus''',
-                                                                  ).toString(),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: Color(
-                                                                            0xFF2D2D2D),
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                  minFontSize:
-                                                                      10.0,
-                                                                ),
-                                                                AutoSizeText(
-                                                                  getJsonField(
-                                                                    locationDetailsItem,
-                                                                    r'''$..DeviceCount''',
-                                                                  ).toString(),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
-                                                                        color: Color(
-                                                                            0xFF2D2D2D),
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                      ),
-                                                                  minFontSize:
-                                                                      10.0,
-                                                                ),
-                                                              ],
+                                                                    ).toString()
+                                                                  : 'https://firebasestorage.googleapis.com/v0/b/buildint-ebd3e.appspot.com/o/ATM.jpg?alt=media&token=8cb8f85d-86eb-45a4-813c-780e79c46367',
+                                                              width: 52.0,
+                                                              height: 52.0,
+                                                              fit: BoxFit
+                                                                  .fitWidth,
                                                             ),
                                                           ),
                                                         ),
-                                                      ),
-                                                    ],
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      11.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                'Site Status',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: Color(
+                                                                          0xFF4D4D4D),
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w300,
+                                                                    ),
+                                                              ),
+                                                              Text(
+                                                                'Devices',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: Color(
+                                                                          0xFF4D4D4D),
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w300,
+                                                                    ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    1.0, 0.0),
+                                                            child: Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  AutoSizeText(
+                                                                    getJsonField(
+                                                                      locationDetailsItem,
+                                                                      r'''$..OnlineStatus''',
+                                                                    ).toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          color:
+                                                                              Color(0xFF2D2D2D),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        10.0,
+                                                                  ),
+                                                                  AutoSizeText(
+                                                                    getJsonField(
+                                                                      locationDetailsItem,
+                                                                      r'''$..DeviceCount''',
+                                                                    ).toString(),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Readex Pro',
+                                                                          color:
+                                                                              Color(0xFF2D2D2D),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                        ),
+                                                                    minFontSize:
+                                                                        10.0,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }),
+                                      );
+                                    }),
+                                  ),
                                 ),
                               );
                             },
