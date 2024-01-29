@@ -321,10 +321,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     6.0, 0.0, 6.0, 0.0),
                                 child: Text(
-                                  getJsonField(
+                                  (String var1) {
+                                    return var1[0];
+                                  }(getJsonField(
                                     controllingGetDeviceStatusResponse.jsonBody,
-                                    r'''$.deviceStatus.RS[0]''',
-                                  ).toString(),
+                                    r'''$.deviceStatus.RS''',
+                                  ).toString()),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
