@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,41 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DashboardModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
+        token: FFAppState().token,
+        deviceId: FFAppState().deviceId,
+      );
+      if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        return;
+      }
+
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('Alert'),
+            content: Text(
+                'Unauthorized access or your device is not registered. Try login again'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+      setState(() {
+        FFAppState().token = '';
+      });
+
+      context.goNamed('LogIn');
+
+      return;
+    });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
@@ -554,7 +590,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   setState(
                                       () => _model.apiRequestCompleter = null);
                                   await _model.waitForApiRequestCompleted(
-                                      minWait: 100, maxWait: 2000);
+                                      minWait: 2000, maxWait: 5000);
                                 },
                                 child: SingleChildScrollView(
                                   physics:

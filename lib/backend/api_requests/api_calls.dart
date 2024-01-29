@@ -218,7 +218,9 @@ class UserInfoCall {
       headers: {
         'Authorization': '${token}',
       },
-      params: {},
+      params: {
+        'deviceId': deviceId,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -328,6 +330,32 @@ class GetDeviceDetailsCall {
       callName: 'Get Device Details',
       apiUrl:
           'https://api.app.${project}.buildint.co/api/deviceDetails/${locId}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetDeviceStatusCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = '',
+    String? token = '',
+    String? did = '',
+    String? project = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Device Status',
+      apiUrl: 'https://api.app.${project}.buildint.co/api/deviceStatus/${did}',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',

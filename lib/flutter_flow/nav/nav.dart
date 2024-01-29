@@ -70,6 +70,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/controlling',
           builder: (context, params) => ControllingWidget(
             did: params.getParam('did', ParamType.String),
+            deviceStatus: params.getParam('deviceStatus', ParamType.String),
           ),
         ),
         FFRoute(
@@ -78,9 +79,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: 'AppUser',
-          path: '/appUser',
-          builder: (context, params) => AppUserWidget(),
+          name: 'AddUser',
+          path: '/addUser',
+          builder: (context, params) => AddUserWidget(),
         ),
         FFRoute(
           name: 'Notification',

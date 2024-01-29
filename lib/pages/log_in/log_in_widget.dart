@@ -392,7 +392,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                         return AlertDialog(
                                                           title: Text('Alert'),
                                                           content: Text(
-                                                              'Device is not registered. Want to register?'),
+                                                              'Your device is not registered. Want to register?'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
@@ -491,7 +491,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                   return AlertDialog(
                                                     title: Text('Alert'),
                                                     content: Text(
-                                                        'Device not active ! Please contact administrator'),
+                                                        'Your device is not active! Please contact administrator'),
                                                     actions: [
                                                       TextButton(
                                                         onPressed: () =>

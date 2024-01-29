@@ -5,5 +5,5 @@ export '/pages/device_details/device_details_widget.dart'
     show DeviceDetailsWidget;
 export '/pages/controlling/controlling_widget.dart' show ControllingWidget;
 export '/pages/profile/profile_widget.dart' show ProfileWidget;
-export '/pages/app_user/app_user_widget.dart' show AppUserWidget;
+export '/pages/add_user/add_user_widget.dart' show AddUserWidget;
 export '/pages/notification/notification_widget.dart' show NotificationWidget;

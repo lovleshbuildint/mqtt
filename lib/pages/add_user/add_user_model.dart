@@ -5,13 +5,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'app_user_widget.dart' show AppUserWidget;
+import 'add_user_widget.dart' show AddUserWidget;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AppUserModel extends FlutterFlowModel<AppUserWidget> {
+class AddUserModel extends FlutterFlowModel<AddUserWidget> {
   ///  Local state fields for this page.
 
   int? orgId;
@@ -19,6 +20,8 @@ class AppUserModel extends FlutterFlowModel<AppUserWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - API (User Info)] action in AddUser widget.
+  ApiCallResponse? userInfoRespnse;
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
   TextEditingController? fullnameController;

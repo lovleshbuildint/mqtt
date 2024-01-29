@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,41 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => DeviceDetailsModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
+        token: FFAppState().token,
+        deviceId: FFAppState().deviceId,
+      );
+      if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        return;
+      }
+
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('Alert'),
+            content: Text(
+                'Unauthorized access or your device is not registered. Try login again'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
+      setState(() {
+        FFAppState().token = '';
+      });
+
+      context.goNamed('LogIn');
+
+      return;
+    });
   }
 
   @override
@@ -347,6 +383,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                             getJsonField(
                                               dataItem,
                                               r'''$..DID''',
+                                            ).toString(),
+                                            ParamType.String,
+                                          ),
+                                          'deviceStatus': serializeParam(
+                                            getJsonField(
+                                              dataItem,
+                                              r'''$..DeviceStatus''',
                                             ).toString(),
                                             ParamType.String,
                                           ),
