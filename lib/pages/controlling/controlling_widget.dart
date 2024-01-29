@@ -321,12 +321,54 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     6.0, 0.0, 6.0, 0.0),
                                 child: Text(
-                                  (String var1) {
-                                    return var1[0];
-                                  }(getJsonField(
-                                    controllingGetDeviceStatusResponse.jsonBody,
-                                    r'''$.deviceStatus.RS''',
-                                  ).toString()),
+                                  () {
+                                    if ((((String var1) {
+                                              return var1[0];
+                                            }(getJsonField(
+                                              controllingGetDeviceStatusResponse
+                                                  .jsonBody,
+                                              r'''$.deviceStatus.RS''',
+                                            ).toString())) ==
+                                            '1') &&
+                                        (((String var1) {
+                                              return var1[1];
+                                            }(getJsonField(
+                                              controllingGetDeviceStatusResponse
+                                                  .jsonBody,
+                                              r'''$.deviceStatus.RS''',
+                                            ).toString())) ==
+                                            '1')) {
+                                      return 'Both AC ON';
+                                    } else if ((((String var1) {
+                                              return var1[0];
+                                            }(getJsonField(
+                                              controllingGetDeviceStatusResponse
+                                                  .jsonBody,
+                                              r'''$.deviceStatus.RS''',
+                                            ).toString())) ==
+                                            '0') &&
+                                        (((String var1) {
+                                              return var1[1];
+                                            }(getJsonField(
+                                              controllingGetDeviceStatusResponse
+                                                  .jsonBody,
+                                              r'''$.deviceStatus.RS''',
+                                            ).toString())) ==
+                                            '0')) {
+                                      return 'Both AC OFF';
+                                    } else if (((String var1) {
+                                          return var1[0];
+                                        }(getJsonField(
+                                          controllingGetDeviceStatusResponse
+                                              .jsonBody,
+                                          r'''$.deviceStatus.RS''',
+                                        ).toString())) ==
+                                        '1') {
+                                      return 'AC 1 ON';
+                                    } else {
+                                      return 'AC 2 ON';
+                                    }
+                                  }(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -367,7 +409,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '26 C',
+                                      '${getJsonField(
+                                        controllingGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.TM''',
+                                      ).toString()}C',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -448,7 +494,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[0];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -508,7 +563,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[1];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -568,7 +632,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[2];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -628,7 +701,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[3];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -688,7 +770,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[4];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -749,7 +840,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[5];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -809,7 +909,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[6];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -869,7 +978,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFA9AAAC),
+                                        color: ((String var1) {
+                                                  return var1[7];
+                                                }(getJsonField(
+                                                  controllingGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.RS''',
+                                                ).toString())) ==
+                                                '1'
+                                            ? Color(0xFF7385F6)
+                                            : Color(0xFFA9AAAC),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
