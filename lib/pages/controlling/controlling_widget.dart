@@ -413,7 +413,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         controllingGetDeviceStatusResponse
                                             .jsonBody,
                                         r'''$.deviceStatus.TM''',
-                                      ).toString()}C',
+                                      ).toString()} C',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
