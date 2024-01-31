@@ -283,6 +283,43 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               ),
                             ),
                           ),
+                        if ((FFAppState().role == 'Super Admin') ||
+                            (FFAppState().role == 'Admin'))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                13.0, 35.0, 13.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.pushNamed('UserManagement');
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'User Management ',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xE02D2D2D),
+                                          fontSize: 18.0,
+                                        ),
+                                  ),
+                                  Icon(
+                                    Icons.manage_accounts_outlined,
+                                    color: Color(0xE02D2D2D),
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               13.0, 35.0, 13.0, 0.0),

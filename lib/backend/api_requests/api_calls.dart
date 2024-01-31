@@ -22,6 +22,7 @@ class MasterGroup {
   static GetProjectCall getProjectCall = GetProjectCall();
   static AddUserCall addUserCall = AddUserCall();
   static UserInfoCall userInfoCall = UserInfoCall();
+  static GetUserListCall getUserListCall = GetUserListCall();
 }
 
 class LoginCall {
@@ -214,6 +215,30 @@ class UserInfoCall {
     return ApiManager.instance.makeApiCall(
       callName: 'User Info',
       apiUrl: '${MasterGroup.baseUrl}/getUserInfo',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetUserListCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get User List',
+      apiUrl: '${MasterGroup.baseUrl}/getUsersList',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
