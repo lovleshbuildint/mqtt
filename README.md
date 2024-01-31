@@ -1,4 +1,4 @@
-# ATM 360
+# SyncATM
 
 A new Flutter project.
 

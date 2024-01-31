@@ -1,4 +1,4 @@
-package com.mycompany.atm360
+package com.mycompany.syncatm
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>ATM 360</string>
+	<string>SyncATM</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>ATM 360</string>
+	<string>SyncATM</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -26,10 +26,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>atm360.com</string>
+        <string>syncatm.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>atm360</string>
+        <string>syncatm</string>
         </array>
         </dict>
     </array>
