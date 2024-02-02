@@ -220,7 +220,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                context.pushNamed('AddUser');
+                                context.pushNamed('AddOrCreateUser');
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,

@@ -5,14 +5,14 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'add_user_widget.dart' show AddUserWidget;
+import 'add_or_create_user_widget.dart' show AddOrCreateUserWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AddUserModel extends FlutterFlowModel<AddUserWidget> {
+class AddOrCreateUserModel extends FlutterFlowModel<AddOrCreateUserWidget> {
   ///  Local state fields for this page.
 
   int? orgId;
@@ -20,7 +20,7 @@ class AddUserModel extends FlutterFlowModel<AddUserWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in AddUser widget.
+  // Stores action output result for [Backend Call - API (User Info)] action in AddOrCreateUser widget.
   ApiCallResponse? userInfoRespnse;
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
@@ -46,7 +46,7 @@ class AddUserModel extends FlutterFlowModel<AddUserWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
-  // Stores action output result for [Backend Call - API (Add User)] action in Button-Login widget.
+  // Stores action output result for [Backend Call - API (Add Or Create User)] action in Button-Login widget.
   ApiCallResponse? addUserResponse;
 
   /// Initialization and disposal methods.

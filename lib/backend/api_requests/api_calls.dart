@@ -20,7 +20,7 @@ class MasterGroup {
   static GetNotificationCall getNotificationCall = GetNotificationCall();
   static ChangeDeviceStateCall changeDeviceStateCall = ChangeDeviceStateCall();
   static GetProjectCall getProjectCall = GetProjectCall();
-  static AddUserCall addUserCall = AddUserCall();
+  static AddOrCreateUserCall addOrCreateUserCall = AddOrCreateUserCall();
   static UserInfoCall userInfoCall = UserInfoCall();
   static GetUserListCall getUserListCall = GetUserListCall();
 }
@@ -167,7 +167,7 @@ class GetProjectCall {
   }
 }
 
-class AddUserCall {
+class AddOrCreateUserCall {
   Future<ApiCallResponse> call({
     String? username = '',
     String? password = '',
@@ -189,8 +189,8 @@ class AddUserCall {
     "deviceId": "${deviceId}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Add User',
-      apiUrl: '${MasterGroup.baseUrl}/addUser',
+      callName: 'Add Or Create User',
+      apiUrl: '${MasterGroup.baseUrl}/updateOrCreateUser',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',

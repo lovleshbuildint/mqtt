@@ -39,12 +39,17 @@ class _MyAppState extends State<MyApp> {
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
 
+  bool displaySplashImage = true;
+
   @override
   void initState() {
     super.initState();
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
+
+    Future.delayed(Duration(milliseconds: 3000),
+        () => setState(() => _appStateNotifier.stopShowingSplashImage()));
   }
 
   void setLocale(String language) {
@@ -69,7 +74,6 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(
         brightness: Brightness.light,
-        scrollbarTheme: ScrollbarThemeData(),
       ),
       themeMode: _themeMode,
       routerConfig: _router,

@@ -10,25 +10,38 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'add_user_model.dart';
-export 'add_user_model.dart';
+import 'add_or_create_user_model.dart';
+export 'add_or_create_user_model.dart';
 
-class AddUserWidget extends StatefulWidget {
-  const AddUserWidget({super.key});
+class AddOrCreateUserWidget extends StatefulWidget {
+  const AddOrCreateUserWidget({
+    super.key,
+    String? fullName,
+    this.username,
+    this.password,
+    this.userProject,
+    this.userOrg,
+  }) : this.fullName = fullName ?? '';
+
+  final String fullName;
+  final String? username;
+  final String? password;
+  final String? userProject;
+  final String? userOrg;
 
   @override
-  State<AddUserWidget> createState() => _AddUserWidgetState();
+  State<AddOrCreateUserWidget> createState() => _AddOrCreateUserWidgetState();
 }
 
-class _AddUserWidgetState extends State<AddUserWidget> {
-  late AddUserModel _model;
+class _AddOrCreateUserWidgetState extends State<AddOrCreateUserWidget> {
+  late AddOrCreateUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddUserModel());
+    _model = createModel(context, () => AddOrCreateUserModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -118,7 +131,7 @@ class _AddUserWidgetState extends State<AddUserWidget> {
             ),
           );
         }
-        final addUserGetProjectResponse = snapshot.data!;
+        final addOrCreateUserGetProjectResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -457,7 +470,8 @@ class _AddUserWidgetState extends State<AddUserWidget> {
                                                 .projectValueController ??=
                                             FormFieldController<String>(null),
                                         options: (getJsonField(
-                                          addUserGetProjectResponse.jsonBody,
+                                          addOrCreateUserGetProjectResponse
+                                              .jsonBody,
                                           r'''$.result..project''',
                                           true,
                                         ) as List)
@@ -670,7 +684,8 @@ class _AddUserWidgetState extends State<AddUserWidget> {
                                               (_model.roleValue != null &&
                                                   _model.roleValue != '')) {
                                             _model.addUserResponse =
-                                                await MasterGroup.addUserCall
+                                                await MasterGroup
+                                                    .addOrCreateUserCall
                                                     .call(
                                               username: _model
                                                   .emailAddressController.text,

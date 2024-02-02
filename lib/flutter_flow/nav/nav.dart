@@ -36,12 +36,38 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => LogInWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Colors.transparent,
+                child: Center(
+                  child: Image.asset(
+                    'assets/images/WhatsApp_Video_2024-02-02_at_14.48.51_7646e276.mp4',
+                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            )
+          : LogInWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => LogInWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Colors.transparent,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/WhatsApp_Video_2024-02-02_at_14.48.51_7646e276.mp4',
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                )
+              : LogInWidget(),
         ),
         FFRoute(
           name: 'LogIn',
@@ -79,9 +105,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: 'AddUser',
-          path: '/addUser',
-          builder: (context, params) => AddUserWidget(),
+          name: 'AddOrCreateUser',
+          path: '/addOrCreateUser',
+          builder: (context, params) => AddOrCreateUserWidget(
+            fullName: params.getParam('fullName', ParamType.String),
+            username: params.getParam('username', ParamType.String),
+            password: params.getParam('password', ParamType.String),
+            userProject: params.getParam('userProject', ParamType.String),
+            userOrg: params.getParam('userOrg', ParamType.String),
+          ),
         ),
         FFRoute(
           name: 'Notification',
