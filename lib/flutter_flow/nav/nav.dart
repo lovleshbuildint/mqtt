@@ -42,8 +42,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 color: Colors.transparent,
                 child: Center(
                   child: Image.asset(
-                    'assets/images/WhatsApp_Video_2024-02-02_at_14.48.51_7646e276.mp4',
-                    width: MediaQuery.sizeOf(context).width * 1.0,
+                    'assets/images/VID-20240202-WA0031.gif',
+                    height: MediaQuery.sizeOf(context).height * 1.0,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -60,8 +60,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     color: Colors.transparent,
                     child: Center(
                       child: Image.asset(
-                        'assets/images/WhatsApp_Video_2024-02-02_at_14.48.51_7646e276.mp4',
-                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        'assets/images/VID-20240202-WA0031.gif',
+                        height: MediaQuery.sizeOf(context).height * 1.0,
                         fit: BoxFit.cover,
                       ),
                     ),
