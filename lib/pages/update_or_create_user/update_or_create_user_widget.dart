@@ -549,7 +549,9 @@ class _UpdateOrCreateUserWidgetState extends State<UpdateOrCreateUserWidget> {
                                                   (_model.getOrganizationResponse
                                                           ?.jsonBody ??
                                                       ''),
-                                                  _model.organizationValue);
+                                                  _model.organizationValue,
+                                                  'org_name',
+                                                  'org_id');
                                             });
                                           },
                                           width: 300.0,

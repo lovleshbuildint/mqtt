@@ -12,10 +12,12 @@ import 'uploaded_file.dart';
 int? checkIndex(
   dynamic list,
   String? value,
+  String? checkKey,
+  String? resultKey,
 ) {
   for (int i = 0; i < list['result'].length; i++) {
-    if (list['result'][i]['org_name'] == value) {
-      return list['result'][i]['org_id'];
+    if (list['result'][i][checkKey] == value) {
+      return list['result'][i][resultKey];
     }
   }
 }
