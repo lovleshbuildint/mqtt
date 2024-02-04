@@ -224,13 +224,6 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                     ).toString(),
                                                     ParamType.String,
                                                   ),
-                                                  'password': serializeParam(
-                                                    getJsonField(
-                                                      userListItem,
-                                                      r'''$..password''',
-                                                    ).toString(),
-                                                    ParamType.String,
-                                                  ),
                                                   'userProject': serializeParam(
                                                     getJsonField(
                                                       userListItem,

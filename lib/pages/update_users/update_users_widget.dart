@@ -18,7 +18,6 @@ class UpdateUsersWidget extends StatefulWidget {
     super.key,
     String? fullName,
     required this.username,
-    required this.password,
     required this.userProject,
     required this.userOrg,
     required this.userRole,
@@ -26,7 +25,6 @@ class UpdateUsersWidget extends StatefulWidget {
 
   final String fullName;
   final String? username;
-  final String? password;
   final String? userProject;
   final int? userOrg;
   final String? userRole;

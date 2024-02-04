@@ -119,7 +119,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => UpdateUsersWidget(
             fullName: params.getParam('fullName', ParamType.String),
             username: params.getParam('username', ParamType.String),
-            password: params.getParam('password', ParamType.String),
             userProject: params.getParam('userProject', ParamType.String),
             userOrg: params.getParam('userOrg', ParamType.int),
             userRole: params.getParam('userRole', ParamType.String),
