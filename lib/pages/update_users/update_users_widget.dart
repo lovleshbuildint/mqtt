@@ -174,7 +174,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Edit User',
+                                'Update User',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -188,7 +188,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 6.0, 0.0, 0.0),
                                 child: Text(
-                                  'Please edit user details',
+                                  'Please update user details',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -785,7 +785,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
 
                                           setState(() {});
                                         },
-                                        text: 'Add User',
+                                        text: 'Update User',
                                         options: FFButtonOptions(
                                           width: 351.0,
                                           height: 46.0,
