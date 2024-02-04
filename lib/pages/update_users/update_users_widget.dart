@@ -17,11 +17,11 @@ class UpdateUsersWidget extends StatefulWidget {
   const UpdateUsersWidget({
     super.key,
     String? fullName,
-    this.username,
-    this.password,
-    this.userProject,
-    this.userOrg,
-    this.userRole,
+    required this.username,
+    required this.password,
+    required this.userProject,
+    required this.userOrg,
+    required this.userRole,
   }) : this.fullName = fullName ?? '';
 
   final String fullName;
