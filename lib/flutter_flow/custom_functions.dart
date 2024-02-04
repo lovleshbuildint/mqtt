@@ -9,7 +9,7 @@ import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
 
-int? checkIndex(
+String? checkIndex(
   dynamic list,
   String? value,
   String? checkKey,

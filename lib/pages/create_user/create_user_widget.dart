@@ -10,39 +10,25 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'update_or_create_user_model.dart';
-export 'update_or_create_user_model.dart';
+import 'create_user_model.dart';
+export 'create_user_model.dart';
 
-class UpdateOrCreateUserWidget extends StatefulWidget {
-  const UpdateOrCreateUserWidget({
-    super.key,
-    String? fullName,
-    this.username,
-    this.password,
-    this.userProject,
-    this.userOrg,
-  }) : this.fullName = fullName ?? '';
-
-  final String fullName;
-  final String? username;
-  final String? password;
-  final String? userProject;
-  final String? userOrg;
+class CreateUserWidget extends StatefulWidget {
+  const CreateUserWidget({super.key});
 
   @override
-  State<UpdateOrCreateUserWidget> createState() =>
-      _UpdateOrCreateUserWidgetState();
+  State<CreateUserWidget> createState() => _CreateUserWidgetState();
 }
 
-class _UpdateOrCreateUserWidgetState extends State<UpdateOrCreateUserWidget> {
-  late UpdateOrCreateUserModel _model;
+class _CreateUserWidgetState extends State<CreateUserWidget> {
+  late CreateUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => UpdateOrCreateUserModel());
+    _model = createModel(context, () => CreateUserModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -132,7 +118,7 @@ class _UpdateOrCreateUserWidgetState extends State<UpdateOrCreateUserWidget> {
             ),
           );
         }
-        final updateOrCreateUserGetProjectResponse = snapshot.data!;
+        final createUserGetProjectResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -471,8 +457,7 @@ class _UpdateOrCreateUserWidgetState extends State<UpdateOrCreateUserWidget> {
                                                 .projectValueController ??=
                                             FormFieldController<String>(null),
                                         options: (getJsonField(
-                                          updateOrCreateUserGetProjectResponse
-                                              .jsonBody,
+                                          createUserGetProjectResponse.jsonBody,
                                           r'''$.result..project''',
                                           true,
                                         ) as List)

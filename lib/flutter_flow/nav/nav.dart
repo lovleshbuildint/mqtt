@@ -99,15 +99,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: 'UpdateOrCreateUser',
-          path: '/updateOrCreateUser',
-          builder: (context, params) => UpdateOrCreateUserWidget(
-            fullName: params.getParam('fullName', ParamType.String),
-            username: params.getParam('username', ParamType.String),
-            password: params.getParam('password', ParamType.String),
-            userProject: params.getParam('userProject', ParamType.String),
-            userOrg: params.getParam('userOrg', ParamType.String),
-          ),
+          name: 'CreateUser',
+          path: '/createUser',
+          builder: (context, params) => CreateUserWidget(),
         ),
         FFRoute(
           name: 'Notification',
@@ -118,6 +112,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'UserManagement',
           path: '/userManagement',
           builder: (context, params) => UserManagementWidget(),
+        ),
+        FFRoute(
+          name: 'UpdateUsers',
+          path: '/updateUsers',
+          builder: (context, params) => UpdateUsersWidget(
+            fullName: params.getParam('fullName', ParamType.String),
+            username: params.getParam('username', ParamType.String),
+            password: params.getParam('password', ParamType.String),
+            userProject: params.getParam('userProject', ParamType.String),
+            userOrg: params.getParam('userOrg', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

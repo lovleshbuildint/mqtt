@@ -172,7 +172,7 @@ class AddOrCreateUserCall {
     String? username = '',
     String? password = '',
     String? userRole = '',
-    int? userOrg,
+    String? userOrg = '',
     String? fullName = '',
     String? userProject = '',
     String? token = '',
