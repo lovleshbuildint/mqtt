@@ -17,7 +17,12 @@ String? checkIndex(
 ) {
   for (int i = 0; i < list['result'].length; i++) {
     if (list['result'][i][checkKey] == value) {
-      return list['result'][i][resultKey];
+      var resultValue = list['result'][i][resultKey];
+      if (resultValue is int) {
+        // Convert integer to string
+        return resultValue.toString();
+      }
+      return resultValue;
     }
   }
 }
