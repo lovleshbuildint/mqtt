@@ -198,7 +198,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         controller: _model.fullnameController,
                                         focusNode: _model.fullnameFocusNode,
                                         textCapitalization:
-                                            TextCapitalization.none,
+                                            TextCapitalization.words,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: 'Full Name',
@@ -281,6 +282,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         focusNode: _model.emailAddressFocusNode,
                                         textCapitalization:
                                             TextCapitalization.none,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: 'username',
@@ -360,6 +362,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                       child: TextFormField(
                                         controller: _model.passwordController,
                                         focusNode: _model.passwordFocusNode,
+                                        textInputAction: TextInputAction.done,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',

@@ -211,7 +211,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         controller: _model.fullnameController,
                                         focusNode: _model.fullnameFocusNode,
                                         textCapitalization:
-                                            TextCapitalization.none,
+                                            TextCapitalization.words,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: 'Full Name',
