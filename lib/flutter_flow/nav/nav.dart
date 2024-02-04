@@ -99,9 +99,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: 'AddOrCreateUser',
-          path: '/addOrCreateUser',
-          builder: (context, params) => AddOrCreateUserWidget(
+          name: 'UpdateOrCreateUser',
+          path: '/updateOrCreateUser',
+          builder: (context, params) => UpdateOrCreateUserWidget(
             fullName: params.getParam('fullName', ParamType.String),
             username: params.getParam('username', ParamType.String),
             password: params.getParam('password', ParamType.String),

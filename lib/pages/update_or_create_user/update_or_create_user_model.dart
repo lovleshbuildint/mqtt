@@ -5,14 +5,15 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'add_or_create_user_widget.dart' show AddOrCreateUserWidget;
+import 'update_or_create_user_widget.dart' show UpdateOrCreateUserWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AddOrCreateUserModel extends FlutterFlowModel<AddOrCreateUserWidget> {
+class UpdateOrCreateUserModel
+    extends FlutterFlowModel<UpdateOrCreateUserWidget> {
   ///  Local state fields for this page.
 
   int? orgId;
@@ -20,7 +21,7 @@ class AddOrCreateUserModel extends FlutterFlowModel<AddOrCreateUserWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in AddOrCreateUser widget.
+  // Stores action output result for [Backend Call - API (User Info)] action in UpdateOrCreateUser widget.
   ApiCallResponse? userInfoRespnse;
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;

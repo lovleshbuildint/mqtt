@@ -10,11 +10,11 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'add_or_create_user_model.dart';
-export 'add_or_create_user_model.dart';
+import 'update_or_create_user_model.dart';
+export 'update_or_create_user_model.dart';
 
-class AddOrCreateUserWidget extends StatefulWidget {
-  const AddOrCreateUserWidget({
+class UpdateOrCreateUserWidget extends StatefulWidget {
+  const UpdateOrCreateUserWidget({
     super.key,
     String? fullName,
     this.username,
@@ -30,18 +30,19 @@ class AddOrCreateUserWidget extends StatefulWidget {
   final String? userOrg;
 
   @override
-  State<AddOrCreateUserWidget> createState() => _AddOrCreateUserWidgetState();
+  State<UpdateOrCreateUserWidget> createState() =>
+      _UpdateOrCreateUserWidgetState();
 }
 
-class _AddOrCreateUserWidgetState extends State<AddOrCreateUserWidget> {
-  late AddOrCreateUserModel _model;
+class _UpdateOrCreateUserWidgetState extends State<UpdateOrCreateUserWidget> {
+  late UpdateOrCreateUserModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AddOrCreateUserModel());
+    _model = createModel(context, () => UpdateOrCreateUserModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -131,7 +132,7 @@ class _AddOrCreateUserWidgetState extends State<AddOrCreateUserWidget> {
             ),
           );
         }
-        final addOrCreateUserGetProjectResponse = snapshot.data!;
+        final updateOrCreateUserGetProjectResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -470,7 +471,7 @@ class _AddOrCreateUserWidgetState extends State<AddOrCreateUserWidget> {
                                                 .projectValueController ??=
                                             FormFieldController<String>(null),
                                         options: (getJsonField(
-                                          addOrCreateUserGetProjectResponse
+                                          updateOrCreateUserGetProjectResponse
                                               .jsonBody,
                                           r'''$.result..project''',
                                           true,
@@ -484,7 +485,7 @@ class _AddOrCreateUserWidgetState extends State<AddOrCreateUserWidget> {
                                               await GetOrganizationCall.call(
                                             deviceId: FFAppState().deviceId,
                                             token: FFAppState().token,
-                                            project: FFAppState().userProject,
+                                            project: _model.projectValue,
                                           );
 
                                           setState(() {});
