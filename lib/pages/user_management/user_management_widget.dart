@@ -242,6 +242,13 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                     getJsonField(
                                                       userListItem,
                                                       r'''$..user_org''',
+                                                    ),
+                                                    ParamType.int,
+                                                  ),
+                                                  'userRole': serializeParam(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..user_role''',
                                                     ).toString(),
                                                     ParamType.String,
                                                   ),

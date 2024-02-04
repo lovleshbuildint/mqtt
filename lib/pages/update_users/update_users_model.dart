@@ -15,7 +15,7 @@ import 'package:provider/provider.dart';
 class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   ///  Local state fields for this page.
 
-  String? orgId;
+  int? orgId;
 
   ///  State fields for stateful widgets in this page.
 
@@ -35,6 +35,8 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
+  // State field(s) for CheckboxListTile widget.
+  bool? checkboxListTileValue;
   // State field(s) for project widget.
   String? projectValue;
   FormFieldController<String>? projectValueController;
@@ -46,7 +48,7 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
-  // Stores action output result for [Backend Call - API (Add Or Create User)] action in Button-Login widget.
+  // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
   ApiCallResponse? addUserResponse;
 
   /// Initialization and disposal methods.

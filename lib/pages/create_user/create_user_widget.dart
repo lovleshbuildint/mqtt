@@ -675,8 +675,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               (_model.roleValue != null &&
                                                   _model.roleValue != '')) {
                                             _model.addUserResponse =
-                                                await MasterGroup
-                                                    .addOrCreateUserCall
+                                                await MasterGroup.createUserCall
                                                     .call(
                                               username: _model
                                                   .emailAddressController.text,

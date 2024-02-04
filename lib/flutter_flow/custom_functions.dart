@@ -9,9 +9,22 @@ import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
 
-String? checkIndex(
+int? checkIndex(
   dynamic list,
   String? value,
+  String? checkKey,
+  String? resultKey,
+) {
+  for (int i = 0; i < list['result'].length; i++) {
+    if (list['result'][i][checkKey] == value) {
+      return list['result'][i][resultKey];
+    }
+  }
+}
+
+String? editUserOrg(
+  dynamic list,
+  int? value,
   String? checkKey,
   String? resultKey,
 ) {

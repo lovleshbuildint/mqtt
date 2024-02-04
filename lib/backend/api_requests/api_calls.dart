@@ -20,7 +20,8 @@ class MasterGroup {
   static GetNotificationCall getNotificationCall = GetNotificationCall();
   static ChangeDeviceStateCall changeDeviceStateCall = ChangeDeviceStateCall();
   static GetProjectCall getProjectCall = GetProjectCall();
-  static AddOrCreateUserCall addOrCreateUserCall = AddOrCreateUserCall();
+  static CreateUserCall createUserCall = CreateUserCall();
+  static UpdateUserCall updateUserCall = UpdateUserCall();
   static UserInfoCall userInfoCall = UserInfoCall();
   static GetUserListCall getUserListCall = GetUserListCall();
 }
@@ -167,12 +168,12 @@ class GetProjectCall {
   }
 }
 
-class AddOrCreateUserCall {
+class CreateUserCall {
   Future<ApiCallResponse> call({
     String? username = '',
     String? password = '',
     String? userRole = '',
-    String? userOrg = '',
+    int? userOrg,
     String? fullName = '',
     String? userProject = '',
     String? token = '',
@@ -189,8 +190,48 @@ class AddOrCreateUserCall {
     "deviceId": "${deviceId}"
 }''';
     return ApiManager.instance.makeApiCall(
-      callName: 'Add Or Create User',
-      apiUrl: '${MasterGroup.baseUrl}/updateOrCreateUser',
+      callName: 'Create User',
+      apiUrl: '${MasterGroup.baseUrl}/createUser',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateUserCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    String? password = '',
+    String? userRole = '',
+    int? userOrg,
+    String? fullName = '',
+    String? userProject = '',
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+    "username": "${username}",
+    "password": "${password}",
+    "userRole": "${userRole}",
+    "fullName": "${fullName}",
+    "user_org": ${userOrg},
+    "user_project": "${userProject}",
+    "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update User',
+      apiUrl: '${MasterGroup.baseUrl}/updateUser',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',

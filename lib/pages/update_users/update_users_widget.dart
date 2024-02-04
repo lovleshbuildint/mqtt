@@ -21,13 +21,15 @@ class UpdateUsersWidget extends StatefulWidget {
     this.password,
     this.userProject,
     this.userOrg,
+    this.userRole,
   }) : this.fullName = fullName ?? '';
 
   final String fullName;
   final String? username;
   final String? password;
   final String? userProject;
-  final String? userOrg;
+  final int? userOrg;
+  final String? userRole;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -50,41 +52,44 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
         deviceId: FFAppState().deviceId,
       );
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        setState(() {
+          _model.orgId = widget.userOrg;
+        });
+      } else {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('Alert'),
+              content: Text(
+                  'Unauthorized access or your device is not registered. Try login again'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+        setState(() {
+          FFAppState().token = '';
+        });
+
+        context.goNamed('LogIn');
+
         return;
       }
-
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Alert'),
-            content: Text(
-                'Unauthorized access or your device is not registered. Try login again'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-      setState(() {
-        FFAppState().token = '';
-      });
-
-      context.goNamed('LogIn');
-
-      return;
     });
 
-    _model.fullnameController ??= TextEditingController();
+    _model.fullnameController ??= TextEditingController(text: widget.fullName);
     _model.fullnameFocusNode ??= FocusNode();
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressController ??=
+        TextEditingController(text: widget.username);
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordController ??= TextEditingController(text: '*****');
     _model.passwordFocusNode ??= FocusNode();
   }
 
@@ -376,6 +381,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         controller: _model.passwordController,
                                         focusNode: _model.passwordFocusNode,
                                         textInputAction: TextInputAction.done,
+                                        readOnly:
+                                            !_model.checkboxListTileValue!,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
@@ -463,6 +470,55 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 14.0, 0.0, 0.0),
+                                child: Theme(
+                                  data: ThemeData(
+                                    checkboxTheme: CheckboxThemeData(
+                                      visualDensity: VisualDensity.compact,
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                    unselectedWidgetColor:
+                                        FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                  ),
+                                  child: CheckboxListTile(
+                                    value: _model.checkboxListTileValue ??=
+                                        false,
+                                    onChanged: (newValue) async {
+                                      setState(() => _model
+                                          .checkboxListTileValue = newValue!);
+                                      if (newValue!) {
+                                        setState(() {
+                                          _model.passwordController?.text =
+                                              '*****';
+                                        });
+                                      }
+                                    },
+                                    title: Text(
+                                      'Edit Passowrd',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleLarge
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF4D4D4D),
+                                            fontSize: 12.0,
+                                          ),
+                                    ),
+                                    tileColor: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    activeColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    checkColor:
+                                        FlutterFlowTheme.of(context).info,
+                                    dense: true,
+                                    controlAffinity:
+                                        ListTileControlAffinity.trailing,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 14.0, 0.0, 0.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -538,7 +594,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   .organizationValueController ??=
                                               FormFieldController<String>(
                                             _model.organizationValue ??=
-                                                functions.checkIndex(
+                                                functions.editUserOrg(
                                                     (_model.getOrganizationResponse
                                                             ?.jsonBody ??
                                                         ''),
@@ -608,9 +664,11 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   children: [
                                     Expanded(
                                       child: FlutterFlowDropDown<String>(
-                                        controller: _model
-                                                .roleValueController ??=
-                                            FormFieldController<String>(null),
+                                        controller:
+                                            _model.roleValueController ??=
+                                                FormFieldController<String>(
+                                          _model.roleValue ??= widget.userRole,
+                                        ),
                                         options: () {
                                           if (FFAppState().role ==
                                               'Super Admin') {
@@ -701,21 +759,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               (_model.roleValue != null &&
                                                   _model.roleValue != '')) {
                                             _model.addUserResponse =
-                                                await MasterGroup
-                                                    .addOrCreateUserCall
-                                                    .call(
-                                              username: _model
-                                                  .emailAddressController.text,
-                                              password: _model
-                                                  .passwordController.text,
-                                              userRole: _model.roleValue,
-                                              userOrg: _model.orgId,
-                                              fullName: _model
-                                                  .fullnameController.text,
-                                              userProject: _model.projectValue,
-                                              token: FFAppState().token,
-                                              deviceId: FFAppState().deviceId,
-                                            );
+                                                await MasterGroup.updateUserCall
+                                                    .call();
                                             if ((_model.addUserResponse
                                                     ?.succeeded ??
                                                 true)) {

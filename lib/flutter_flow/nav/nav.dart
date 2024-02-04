@@ -121,7 +121,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             username: params.getParam('username', ParamType.String),
             password: params.getParam('password', ParamType.String),
             userProject: params.getParam('userProject', ParamType.String),
-            userOrg: params.getParam('userOrg', ParamType.String),
+            userOrg: params.getParam('userOrg', ParamType.int),
+            userRole: params.getParam('userRole', ParamType.String),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
