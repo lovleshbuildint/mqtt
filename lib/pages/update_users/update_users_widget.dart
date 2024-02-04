@@ -212,6 +212,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         focusNode: _model.fullnameFocusNode,
                                         textCapitalization:
                                             TextCapitalization.words,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: 'Full Name',
@@ -294,6 +295,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         focusNode: _model.emailAddressFocusNode,
                                         textCapitalization:
                                             TextCapitalization.none,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: 'username',
@@ -373,6 +375,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                       child: TextFormField(
                                         controller: _model.passwordController,
                                         focusNode: _model.passwordFocusNode,
+                                        textInputAction: TextInputAction.done,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
