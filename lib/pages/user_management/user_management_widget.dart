@@ -201,19 +201,68 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          AutoSizeText(
-                                            getJsonField(
-                                              userListItem,
-                                              r'''$..username''',
-                                            ).toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF2D2D2D),
-                                                  fontSize: 16.0,
-                                                ),
-                                            minFontSize: 12.0,
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              context.pushNamed(
+                                                'UpdateUsers',
+                                                queryParameters: {
+                                                  'fullName': serializeParam(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..full_name''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'username': serializeParam(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..username''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'password': serializeParam(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..password''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'userProject': serializeParam(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..user_project''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'userOrg': serializeParam(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..user_org''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+                                            },
+                                            child: AutoSizeText(
+                                              getJsonField(
+                                                userListItem,
+                                                r'''$..username''',
+                                              ).toString(),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF2D2D2D),
+                                                    fontSize: 16.0,
+                                                  ),
+                                              minFontSize: 12.0,
+                                            ),
                                           ),
                                           Text(
                                             'Role: ${getJsonField(
