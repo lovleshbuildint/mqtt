@@ -204,8 +204,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                     0.0, 6.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    _model.projectName,
-                                    'Test',
+                                    _model.orgList?.toString(),
+                                    'w',
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
