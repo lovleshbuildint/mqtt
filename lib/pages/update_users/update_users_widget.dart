@@ -527,9 +527,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   children: [
                                     Expanded(
                                       child: FlutterFlowDropDown<String>(
-                                        controller: _model
-                                                .projectValueController ??=
-                                            FormFieldController<String>(null),
+                                        controller:
+                                            _model.projectValueController ??=
+                                                FormFieldController<String>(
+                                          _model.projectValue ??=
+                                              _model.projectName,
+                                        ),
                                         options: (getJsonField(
                                           updateUsersGetProjectResponse
                                               .jsonBody,
@@ -581,72 +584,67 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    if (_model.projectValue != null &&
-                                        _model.projectValue != '')
-                                      Expanded(
-                                        child: FlutterFlowDropDown<String>(
-                                          controller: _model
-                                                  .organizationValueController ??=
-                                              FormFieldController<String>(
-                                            _model.organizationValue ??=
-                                                functions.editUserOrg(
-                                                    (_model.getOrganizationResponse
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    widget.userOrg,
-                                                    'org_id',
-                                                    'org_name'),
-                                          ),
-                                          options: (getJsonField(
-                                            (_model.getOrganizationResponse
-                                                    ?.jsonBody ??
-                                                ''),
-                                            r'''$.result..org_name''',
-                                            true,
-                                          ) as List)
-                                              .map<String>((s) => s.toString())
-                                              .toList()!,
-                                          onChanged: (val) async {
-                                            setState(() =>
-                                                _model.organizationValue = val);
-                                            setState(() {
-                                              _model.orgId = functions.checkIndex(
+                                    Expanded(
+                                      child: FlutterFlowDropDown<String>(
+                                        controller: _model
+                                                .organizationValueController ??=
+                                            FormFieldController<String>(
+                                          _model.organizationValue ??=
+                                              functions.editUserOrg(
                                                   (_model.getOrganizationResponse
                                                           ?.jsonBody ??
                                                       ''),
-                                                  _model.organizationValue,
-                                                  'org_name',
-                                                  'org_id');
-                                            });
-                                          },
-                                          width: 300.0,
-                                          height: 50.0,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium,
-                                          hintText: 'Select Organization',
-                                          icon: Icon(
-                                            Icons.keyboard_arrow_down_rounded,
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryText,
-                                            size: 24.0,
-                                          ),
-                                          fillColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          elevation: 2.0,
-                                          borderColor: Color(0xFFF2F2F2),
-                                          borderWidth: 2.0,
-                                          borderRadius: 8.0,
-                                          margin:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 4.0, 16.0, 4.0),
-                                          hidesUnderline: true,
-                                          isOverButton: true,
-                                          isSearchable: false,
-                                          isMultiSelect: false,
+                                                  widget.userOrg,
+                                                  'org_id',
+                                                  'org_name'),
                                         ),
+                                        options: (getJsonField(
+                                          (_model.getOrganizationResponse
+                                                  ?.jsonBody ??
+                                              ''),
+                                          r'''$.result..org_name''',
+                                          true,
+                                        ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()!,
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.organizationValue = val);
+                                          setState(() {
+                                            _model.orgId = functions.checkIndex(
+                                                (_model.getOrganizationResponse
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                _model.organizationValue,
+                                                'org_name',
+                                                'org_id');
+                                          });
+                                        },
+                                        width: 300.0,
+                                        height: 50.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                        hintText: 'Select Organization',
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 2.0,
+                                        borderColor: Color(0xFFF2F2F2),
+                                        borderWidth: 2.0,
+                                        borderRadius: 8.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 4.0, 16.0, 4.0),
+                                        hidesUnderline: true,
+                                        isOverButton: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
                                       ),
+                                    ),
                                   ],
                                 ),
                               ),
