@@ -521,9 +521,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   children: [
                                     Expanded(
                                       child: FlutterFlowDropDown<String>(
-                                        controller: _model
-                                                .projectValueController ??=
-                                            FormFieldController<String>(null),
+                                        controller:
+                                            _model.projectValueController ??=
+                                                FormFieldController<String>(
+                                          _model.projectValue ??=
+                                              widget.userProject,
+                                        ),
                                         options: (getJsonField(
                                           updateUsersGetProjectResponse
                                               .jsonBody,
