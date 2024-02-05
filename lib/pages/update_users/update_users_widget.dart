@@ -59,6 +59,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
           token: FFAppState().token,
           project: _model.projectName,
         );
+        setState(() {
+          _model.orgList = getJsonField(
+            (_model.getOrganizationResponse?.jsonBody ?? ''),
+            r'''$.result''',
+          );
+        });
       } else {
         await showDialog(
           context: context,
@@ -551,6 +557,22 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                             _model.projectName =
                                                 _model.projectValue;
                                           });
+                                          _model.getOrganizationResponse2 =
+                                              await GetOrganizationCall.call(
+                                            deviceId: FFAppState().deviceId,
+                                            token: FFAppState().token,
+                                            project: _model.projectName,
+                                          );
+                                          setState(() {
+                                            _model.orgList = getJsonField(
+                                              (_model.getOrganizationResponse2
+                                                      ?.jsonBody ??
+                                                  ''),
+                                              r'''$.result''',
+                                            );
+                                          });
+
+                                          setState(() {});
                                         },
                                         width: 300.0,
                                         height: 50.0,
@@ -601,15 +623,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   'org_id',
                                                   'org_name'),
                                         ),
-                                        options: (getJsonField(
-                                          (_model.getOrganizationResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.result..org_name''',
-                                          true,
-                                        ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList()!,
+                                        options: _model.orgList!,
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.organizationValue = val);

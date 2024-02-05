@@ -19,6 +19,8 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
 
   String? projectName;
 
+  dynamic orgList;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -44,6 +46,8 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   // State field(s) for project widget.
   String? projectValue;
   FormFieldController<String>? projectValueController;
+  // Stores action output result for [Backend Call - API (Get Organization)] action in project widget.
+  ApiCallResponse? getOrganizationResponse2;
   // State field(s) for organization widget.
   String? organizationValue;
   FormFieldController<String>? organizationValueController;
