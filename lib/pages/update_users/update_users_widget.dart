@@ -52,7 +52,13 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
         setState(() {
           _model.orgId = widget.userOrg;
+          _model.projectName = widget.userProject;
         });
+        _model.getOrganizationResponse = await GetOrganizationCall.call(
+          deviceId: FFAppState().deviceId,
+          token: FFAppState().token,
+          project: _model.projectName,
+        );
       } else {
         await showDialog(
           context: context,
@@ -538,14 +544,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         onChanged: (val) async {
                                           setState(
                                               () => _model.projectValue = val);
-                                          _model.getOrganizationResponse =
-                                              await GetOrganizationCall.call(
-                                            deviceId: FFAppState().deviceId,
-                                            token: FFAppState().token,
-                                            project: _model.projectValue,
-                                          );
-
-                                          setState(() {});
+                                          setState(() {
+                                            _model.projectName =
+                                                _model.projectValue;
+                                          });
                                         },
                                         width: 300.0,
                                         height: 50.0,
