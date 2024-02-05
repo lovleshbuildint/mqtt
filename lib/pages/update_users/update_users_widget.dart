@@ -623,7 +623,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   'org_id',
                                                   'org_name'),
                                         ),
-                                        options: _model.orgList!,
+                                        options: <String>[],
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.organizationValue = val);
