@@ -618,7 +618,13 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   'org_id',
                                                   'org_name'),
                                         ),
-                                        options: _model.orgList!,
+                                        options: (getJsonField(
+                                          _model.orgList,
+                                          r'''$.result..org_name''',
+                                          true,
+                                        ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()!,
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.organizationValue = val);
