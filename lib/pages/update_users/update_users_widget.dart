@@ -60,10 +60,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
           project: _model.projectName,
         );
         setState(() {
-          _model.orgList = getJsonField(
-            (_model.getOrganizationResponse?.jsonBody ?? ''),
-            r'''$.result..org_name''',
-          );
+          _model.orgList = (_model.getOrganizationResponse?.jsonBody ?? '');
         });
       } else {
         await showDialog(
@@ -564,12 +561,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                             project: _model.projectName,
                                           );
                                           setState(() {
-                                            _model.orgList = getJsonField(
-                                              (_model.getOrganizationResponse2
-                                                      ?.jsonBody ??
-                                                  ''),
-                                              r'''$.result..org_name''',
-                                            );
+                                            _model.orgList = (_model
+                                                    .getOrganizationResponse2
+                                                    ?.jsonBody ??
+                                                '');
                                           });
 
                                           setState(() {});
@@ -623,7 +618,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   'org_id',
                                                   'org_name'),
                                         ),
-                                        options: <String>[],
+                                        options: _model.orgList!,
                                         onChanged: (val) async {
                                           setState(() =>
                                               _model.organizationValue = val);
