@@ -379,8 +379,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         controller: _model.passwordController,
                                         focusNode: _model.passwordFocusNode,
                                         textInputAction: TextInputAction.done,
-                                        readOnly:
-                                            !_model.checkboxListTileValue!,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
