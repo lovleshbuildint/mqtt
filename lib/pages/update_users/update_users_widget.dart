@@ -191,10 +191,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 6.0, 0.0, 0.0),
                                 child: Text(
-                                  valueOrDefault<String>(
-                                    widget.userProject,
-                                    '1',
-                                  ),
+                                  getJsonField(
+                                    updateUsersGetProjectResponse.jsonBody,
+                                    r'''$.result..project''',
+                                  ).toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
