@@ -41,8 +41,8 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
-  // State field(s) for CheckboxListTile widget.
-  bool? checkboxListTileValue;
+  // State field(s) for changePasswordCheckBox widget.
+  bool? changePasswordCheckBoxValue;
   // State field(s) for project widget.
   String? projectValue;
   FormFieldController<String>? projectValueController;
@@ -55,7 +55,9 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   String? roleValue;
   FormFieldController<String>? roleValueController;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
-  ApiCallResponse? addUserResponse;
+  ApiCallResponse? updateUserResponse2;
+  // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
+  ApiCallResponse? updateUserResponse;
 
   /// Initialization and disposal methods.
 

@@ -132,7 +132,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
                 decoration: BoxDecoration(
-                  color: Color(0x664154F1),
+                  color: Color(0xFF08182F),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,

@@ -157,7 +157,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                 width: MediaQuery.sizeOf(context).width * 1.0,
                 height: MediaQuery.sizeOf(context).height * 1.0,
                 decoration: BoxDecoration(
-                  color: Color(0x664154F1),
+                  color: Color(0xFF08182F),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
@@ -388,9 +388,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         controller: _model.passwordController,
                                         focusNode: _model.passwordFocusNode,
                                         textInputAction: TextInputAction.done,
-                                        readOnly:
-                                            _model.checkboxListTileValue ==
-                                                true,
+                                        readOnly: _model
+                                                .changePasswordCheckBoxValue ==
+                                            false,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
@@ -490,11 +490,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                             .secondaryText,
                                   ),
                                   child: CheckboxListTile(
-                                    value: _model.checkboxListTileValue ??=
-                                        false,
+                                    value: _model
+                                        .changePasswordCheckBoxValue ??= false,
                                     onChanged: (newValue) async {
-                                      setState(() => _model
-                                          .checkboxListTileValue = newValue!);
+                                      setState(() =>
+                                          _model.changePasswordCheckBoxValue =
+                                              newValue!);
                                       if (newValue!) {
                                         setState(() {
                                           _model.passwordController?.text =
@@ -749,6 +750,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                           0.0, 25.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          var _shouldSetState = false;
                                           if ((_model.fullnameController.text != null && _model.fullnameController.text != '') &&
                                               (_model.emailAddressController
                                                           .text !=
@@ -769,52 +771,193 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       '') &&
                                               (_model.roleValue != null &&
                                                   _model.roleValue != '')) {
-                                            _model.addUserResponse =
-                                                await MasterGroup.updateUserCall
-                                                    .call();
-                                            if ((_model.addUserResponse
-                                                    ?.succeeded ??
-                                                true)) {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    content: Text((_model
-                                                            .addUserResponse
-                                                            ?.bodyText ??
-                                                        '')),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
+                                            if (_model
+                                                    .changePasswordCheckBoxValue ==
+                                                true) {
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title:
+                                                                Text('Alert'),
+                                                            content: Text(
+                                                                'Password will be updated. Want to Update?'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child:
+                                                                    Text('No'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child:
+                                                                    Text('Yes'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              if (confirmDialogResponse) {
+                                                _model.updateUserResponse2 =
+                                                    await MasterGroup
+                                                        .updateUserCall
+                                                        .call(
+                                                  username: _model
+                                                      .emailAddressController
+                                                      .text,
+                                                  password: _model
+                                                      .passwordController.text,
+                                                  userRole: _model.roleValue,
+                                                  userOrg: functions.checkIndex(
+                                                      _model.orgList!,
+                                                      _model.organizationValue,
+                                                      'org_name',
+                                                      'org_id'),
+                                                  fullName: _model
+                                                      .fullnameController.text,
+                                                  userProject:
+                                                      _model.projectValue,
+                                                  token: FFAppState().token,
+                                                  deviceId:
+                                                      FFAppState().deviceId,
+                                                );
+                                                _shouldSetState = true;
+                                                if ((_model.updateUserResponse2
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        content: Text((_model
+                                                                .updateUserResponse2
+                                                                ?.bodyText ??
+                                                            '')),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
                                                   );
-                                                },
-                                              );
-                                              context.safePop();
+                                                  context.safePop();
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        content: Text((_model
+                                                                .updateUserResponse2
+                                                                ?.bodyText ??
+                                                            '')),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+
+                                                if (_shouldSetState)
+                                                  setState(() {});
+                                                return;
+                                              } else {
+                                                if (_shouldSetState)
+                                                  setState(() {});
+                                                return;
+                                              }
                                             } else {
-                                              await showDialog(
-                                                context: context,
-                                                builder: (alertDialogContext) {
-                                                  return AlertDialog(
-                                                    content: Text((_model
-                                                            .addUserResponse
-                                                            ?.bodyText ??
-                                                        '')),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  );
-                                                },
+                                              _model.updateUserResponse =
+                                                  await MasterGroup
+                                                      .updateUserCall
+                                                      .call(
+                                                username: _model
+                                                    .emailAddressController
+                                                    .text,
+                                                userRole: _model.roleValue,
+                                                userOrg: functions.checkIndex(
+                                                    _model.orgList!,
+                                                    _model.organizationValue,
+                                                    'org_name',
+                                                    'org_id'),
+                                                fullName: _model
+                                                    .fullnameController.text,
+                                                userProject:
+                                                    _model.projectValue,
+                                                token: FFAppState().token,
+                                                deviceId: FFAppState().deviceId,
                                               );
+                                              _shouldSetState = true;
+                                              if ((_model.updateUserResponse
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      content: Text((_model
+                                                              .updateUserResponse
+                                                              ?.bodyText ??
+                                                          '')),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                                context.safePop();
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      content: Text((_model
+                                                              .updateUserResponse
+                                                              ?.bodyText ??
+                                                          '')),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
+
+                                              if (_shouldSetState)
+                                                setState(() {});
+                                              return;
                                             }
                                           } else {
                                             ScaffoldMessenger.of(context)
@@ -840,9 +983,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                         .primaryText,
                                               ),
                                             );
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
                                           }
 
-                                          setState(() {});
+                                          if (_shouldSetState) setState(() {});
                                         },
                                         text: 'Update User',
                                         options: FFButtonOptions(
