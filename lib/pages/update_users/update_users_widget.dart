@@ -62,7 +62,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
         setState(() {
           _model.orgList = getJsonField(
             (_model.getOrganizationResponse?.jsonBody ?? ''),
-            r'''$.result''',
+            r'''$.result..org_name''',
           );
         });
       } else {
@@ -568,7 +568,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               (_model.getOrganizationResponse2
                                                       ?.jsonBody ??
                                                   ''),
-                                              r'''$.result''',
+                                              r'''$.result..org_name''',
                                             );
                                           });
 
