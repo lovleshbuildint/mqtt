@@ -197,7 +197,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 6.0, 0.0, 0.0),
                                 child: Text(
-                                  'Please update user details',
+                                  valueOrDefault<String>(
+                                    _model.projectName,
+                                    'Test',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
