@@ -196,59 +196,59 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              context.pushNamed(
-                                                'UpdateUsers',
-                                                queryParameters: {
-                                                  'fullName': serializeParam(
-                                                    getJsonField(
-                                                      userListItem,
-                                                      r'''$..full_name''',
-                                                    ).toString(),
-                                                    ParamType.String,
-                                                  ),
-                                                  'username': serializeParam(
-                                                    getJsonField(
-                                                      userListItem,
-                                                      r'''$..username''',
-                                                    ).toString(),
-                                                    ParamType.String,
-                                                  ),
-                                                  'userProject': serializeParam(
-                                                    getJsonField(
-                                                      userListItem,
-                                                      r'''$..user_project''',
-                                                    ).toString(),
-                                                    ParamType.String,
-                                                  ),
-                                                  'userOrg': serializeParam(
-                                                    getJsonField(
-                                                      userListItem,
-                                                      r'''$..user_org''',
-                                                    ),
-                                                    ParamType.int,
-                                                  ),
-                                                  'userRole': serializeParam(
-                                                    getJsonField(
-                                                      userListItem,
-                                                      r'''$..user_role''',
-                                                    ).toString(),
-                                                    ParamType.String,
-                                                  ),
-                                                }.withoutNulls,
-                                              );
-                                            },
-                                            child: AutoSizeText(
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'UpdateUsers',
+                                            queryParameters: {
+                                              'fullName': serializeParam(
+                                                getJsonField(
+                                                  userListItem,
+                                                  r'''$..full_name''',
+                                                ).toString(),
+                                                ParamType.String,
+                                              ),
+                                              'username': serializeParam(
+                                                getJsonField(
+                                                  userListItem,
+                                                  r'''$..username''',
+                                                ).toString(),
+                                                ParamType.String,
+                                              ),
+                                              'userProject': serializeParam(
+                                                getJsonField(
+                                                  userListItem,
+                                                  r'''$..user_project''',
+                                                ).toString(),
+                                                ParamType.String,
+                                              ),
+                                              'userOrg': serializeParam(
+                                                getJsonField(
+                                                  userListItem,
+                                                  r'''$..user_org''',
+                                                ),
+                                                ParamType.int,
+                                              ),
+                                              'userRole': serializeParam(
+                                                getJsonField(
+                                                  userListItem,
+                                                  r'''$..user_role''',
+                                                ).toString(),
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AutoSizeText(
                                               getJsonField(
                                                 userListItem,
                                                 r'''$..username''',
@@ -263,20 +263,21 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                   ),
                                               minFontSize: 12.0,
                                             ),
-                                          ),
-                                          Text(
-                                            'Role: ${getJsonField(
-                                              userListItem,
-                                              r'''$..user_role''',
-                                            ).toString()}',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF737373),
-                                                ),
-                                          ),
-                                        ],
+                                            Text(
+                                              'Role: ${getJsonField(
+                                                userListItem,
+                                                r'''$..user_role''',
+                                              ).toString()}',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF737373),
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                     Column(
