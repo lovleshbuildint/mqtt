@@ -538,7 +538,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                             _model.projectValueController ??=
                                                 FormFieldController<String>(
                                           _model.projectValue ??=
-                                              _model.projectName,
+                                              widget.userProject,
                                         ),
                                         options: (getJsonField(
                                           updateUsersGetProjectResponse
