@@ -200,10 +200,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 6.0, 0.0, 0.0),
                                 child: Text(
-                                  valueOrDefault<String>(
-                                    _model.orgList?.toString(),
-                                    'w',
-                                  ),
+                                  'Please update user details',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -391,6 +388,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         controller: _model.passwordController,
                                         focusNode: _model.passwordFocusNode,
                                         textInputAction: TextInputAction.done,
+                                        readOnly:
+                                            _model.checkboxListTileValue ==
+                                                true,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
                                           hintText: 'Password',
