@@ -5,27 +5,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'switchs_model.dart';
-export 'switchs_model.dart';
+import 'switchs2_model.dart';
+export 'switchs2_model.dart';
 
-class SwitchsWidget extends StatefulWidget {
-  const SwitchsWidget({
+class Switchs2Widget extends StatefulWidget {
+  const Switchs2Widget({
     super.key,
     required this.value,
     required this.username,
-    required this.deviceState,
+    required this.newUserState,
   });
 
   final int? value;
   final String? username;
-  final int? deviceState;
+  final int? newUserState;
 
   @override
-  State<SwitchsWidget> createState() => _SwitchsWidgetState();
+  State<Switchs2Widget> createState() => _Switchs2WidgetState();
 }
 
-class _SwitchsWidgetState extends State<SwitchsWidget> {
-  late SwitchsModel _model;
+class _Switchs2WidgetState extends State<Switchs2Widget> {
+  late Switchs2Model _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -36,7 +36,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SwitchsModel());
+    _model = createModel(context, () => Switchs2Model());
   }
 
   @override
@@ -55,20 +55,19 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
       onChanged: (newValue) async {
         setState(() => _model.switchValue = newValue!);
         if (newValue!) {
-          _model.updateUserStateOn =
+          _model.updateDeviceStateOn =
               await MasterGroup.updateUserOrDeviceStateCall.call(
             username: widget.username,
-            newUserState: 1,
+            newUserState: widget.newUserState,
             token: FFAppState().token,
-            deviceId: FFAppState().deviceId,
-            deviceState: widget.deviceState,
+            deviceId: '1',
           );
-          if ((_model.updateUserStateOn?.succeeded ?? true)) {
+          if ((_model.updateDeviceStateOn?.succeeded ?? true)) {
             await showDialog(
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  content: Text((_model.updateUserStateOn?.bodyText ?? '')),
+                  content: Text((_model.updateDeviceStateOn?.bodyText ?? '')),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),
@@ -83,7 +82,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  content: Text((_model.updateUserStateOn?.bodyText ?? '')),
+                  content: Text((_model.updateDeviceStateOn?.bodyText ?? '')),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),
@@ -97,19 +96,19 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
 
           setState(() {});
         } else {
-          _model.updateUserStateOnCopy =
+          _model.updateDeviceStateOff =
               await MasterGroup.updateUserOrDeviceStateCall.call(
             username: widget.username,
-            newUserState: 0,
+            newUserState: widget.newUserState,
             token: FFAppState().token,
-            deviceId: FFAppState().deviceId,
+            deviceId: '0',
           );
-          if ((_model.updateUserStateOn?.succeeded ?? true)) {
+          if ((_model.updateDeviceStateOff?.succeeded ?? true)) {
             await showDialog(
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  content: Text((_model.updateUserStateOn?.bodyText ?? '')),
+                  content: Text((_model.updateDeviceStateOff?.bodyText ?? '')),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),
@@ -124,7 +123,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  content: Text((_model.updateUserStateOn?.bodyText ?? '')),
+                  content: Text((_model.updateDeviceStateOff?.bodyText ?? '')),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),

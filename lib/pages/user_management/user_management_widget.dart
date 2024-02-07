@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/switchs/switchs_widget.dart';
+import '/pages/switchs2/switchs2_widget.dart';
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -179,6 +180,9 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                             setState(() => _model.apiRequestCompleter = null);
                             await _model.waitForApiRequestCompleted(
                                 minWait: 2000, maxWait: 5000);
+                            setState(() {
+                              _model.test = null;
+                            });
                           },
                           child: ListView.builder(
                             padding: EdgeInsets.zero,
@@ -297,12 +301,36 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                 color: Color(0xE02D2D2D),
                                                 size: 28.0,
                                               ),
-                                              SwitchsWidget(
-                                                key: Key(
-                                                    'Keyqy4_${userListIndex}_of_${userList.length}'),
-                                                value: getJsonField(
-                                                  userListItem,
-                                                  r'''$..user_state''',
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  setState(() => _model
+                                                          .apiRequestCompleter =
+                                                      null);
+                                                  await _model
+                                                      .waitForApiRequestCompleted(
+                                                          minWait: 1000,
+                                                          maxWait: 5000);
+                                                },
+                                                child: SwitchsWidget(
+                                                  key: Key(
+                                                      'Keyqy4_${userListIndex}_of_${userList.length}'),
+                                                  value: getJsonField(
+                                                    userListItem,
+                                                    r'''$..user_state''',
+                                                  ),
+                                                  username: getJsonField(
+                                                    userListItem,
+                                                    r'''$..username''',
+                                                  ).toString(),
+                                                  deviceState: getJsonField(
+                                                    userListItem,
+                                                    r'''$..device_id_state''',
+                                                  ),
                                                 ),
                                               ),
                                               FlutterFlowIconButton(
@@ -315,9 +343,121 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       .primaryText,
                                                   size: 28.0,
                                                 ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
+                                                onPressed: () async {
+                                                  var _shouldSetState = false;
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                content: Text(
+                                                                    'Delete User?'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: Text(
+                                                                        'Cancel'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    _model.deleteUserResponse =
+                                                        await MasterGroup
+                                                            .deleteUserOrDeviceCall
+                                                            .call(
+                                                      username: getJsonField(
+                                                        userListItem,
+                                                        r'''$..username''',
+                                                      ).toString(),
+                                                      deleteUser: 1,
+                                                      deleteDevice: 0,
+                                                      token: FFAppState().token,
+                                                      deviceId:
+                                                          FFAppState().deviceId,
+                                                    );
+                                                    _shouldSetState = true;
+                                                    if ((_model
+                                                            .deleteUserResponse
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            content: Text((_model
+                                                                    .deleteUserResponse
+                                                                    ?.bodyText ??
+                                                                '')),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    } else {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            content: Text((_model
+                                                                    .deleteUserResponse
+                                                                    ?.bodyText ??
+                                                                '')),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+
+                                                    setState(() => _model
+                                                            .apiRequestCompleter =
+                                                        null);
+                                                    await _model
+                                                        .waitForApiRequestCompleted(
+                                                            minWait: 1000,
+                                                            maxWait: 5000);
+                                                    if (_shouldSetState)
+                                                      setState(() {});
+                                                    return;
+                                                  } else {
+                                                    if (_shouldSetState)
+                                                      setState(() {});
+                                                    return;
+                                                  }
+
+                                                  if (_shouldSetState)
+                                                    setState(() {});
                                                 },
                                               ),
                                             ],
@@ -335,12 +475,36 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                 color: Color(0xE02D2D2D),
                                                 size: 28.0,
                                               ),
-                                              SwitchsWidget(
-                                                key: Key(
-                                                    'Key165_${userListIndex}_of_${userList.length}'),
-                                                value: getJsonField(
-                                                  userListItem,
-                                                  r'''$..device_id_state''',
+                                              InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  setState(() => _model
+                                                          .apiRequestCompleter =
+                                                      null);
+                                                  await _model
+                                                      .waitForApiRequestCompleted(
+                                                          minWait: 1000,
+                                                          maxWait: 5000);
+                                                },
+                                                child: Switchs2Widget(
+                                                  key: Key(
+                                                      'Keyhn4_${userListIndex}_of_${userList.length}'),
+                                                  value: getJsonField(
+                                                    userListItem,
+                                                    r'''$..device_id_state''',
+                                                  ),
+                                                  username: getJsonField(
+                                                    userListItem,
+                                                    r'''$..username''',
+                                                  ).toString(),
+                                                  newUserState: getJsonField(
+                                                    userListItem,
+                                                    r'''$..user_state''',
+                                                  ),
                                                 ),
                                               ),
                                               FlutterFlowIconButton(
@@ -355,9 +519,121 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       .primaryText,
                                                   size: 28.0,
                                                 ),
-                                                onPressed: () {
-                                                  print(
-                                                      'IconButton pressed ...');
+                                                onPressed: () async {
+                                                  var _shouldSetState = false;
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                content: Text(
+                                                                    'Delete Device?'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: Text(
+                                                                        'Cancel'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    _model.deleteDeviceResponse =
+                                                        await MasterGroup
+                                                            .deleteUserOrDeviceCall
+                                                            .call(
+                                                      username: getJsonField(
+                                                        userListItem,
+                                                        r'''$..username''',
+                                                      ).toString(),
+                                                      deleteUser: 0,
+                                                      deleteDevice: 1,
+                                                      token: FFAppState().token,
+                                                      deviceId:
+                                                          FFAppState().deviceId,
+                                                    );
+                                                    _shouldSetState = true;
+                                                    if ((_model
+                                                            .deleteDeviceResponse
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            content: Text((_model
+                                                                    .deleteDeviceResponse
+                                                                    ?.bodyText ??
+                                                                '')),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    } else {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            content: Text((_model
+                                                                    .deleteDeviceResponse
+                                                                    ?.bodyText ??
+                                                                '')),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                    }
+
+                                                    setState(() => _model
+                                                            .apiRequestCompleter =
+                                                        null);
+                                                    await _model
+                                                        .waitForApiRequestCompleted(
+                                                            minWait: 1000,
+                                                            maxWait: 5000);
+                                                    if (_shouldSetState)
+                                                      setState(() {});
+                                                    return;
+                                                  } else {
+                                                    if (_shouldSetState)
+                                                      setState(() {});
+                                                    return;
+                                                  }
+
+                                                  if (_shouldSetState)
+                                                    setState(() {});
                                                 },
                                               ),
                                             ],

@@ -24,6 +24,10 @@ class MasterGroup {
   static UpdateUserCall updateUserCall = UpdateUserCall();
   static UserInfoCall userInfoCall = UserInfoCall();
   static GetUserListCall getUserListCall = GetUserListCall();
+  static UpdateUserOrDeviceStateCall updateUserOrDeviceStateCall =
+      UpdateUserOrDeviceStateCall();
+  static DeleteUserOrDeviceCall deleteUserOrDeviceCall =
+      DeleteUserOrDeviceCall();
 }
 
 class LoginCall {
@@ -287,6 +291,74 @@ class GetUserListCall {
       params: {
         'deviceId': deviceId,
       },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class UpdateUserOrDeviceStateCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    int? newUserState,
+    int? deviceState,
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "username": "${username}",
+  "newUserState": "${newUserState}",
+  "deviceState": "${deviceState}",
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update User or Device State',
+      apiUrl: '${MasterGroup.baseUrl}/updateUserDeviceState',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class DeleteUserOrDeviceCall {
+  Future<ApiCallResponse> call({
+    String? username = '',
+    int? deleteUser,
+    int? deleteDevice,
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "username": "${username}",
+  "deleteUser": "${deleteUser}",
+  "deleteDevice": "${deleteDevice}",
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete User or Device',
+      apiUrl: '${MasterGroup.baseUrl}/deleteUserDevice',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

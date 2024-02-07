@@ -308,6 +308,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         textCapitalization:
                                             TextCapitalization.none,
                                         textInputAction: TextInputAction.next,
+                                        readOnly: true,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText: 'username',
@@ -355,7 +356,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                 BorderRadius.circular(8.0),
                                           ),
                                           filled: true,
-                                          fillColor: Colors.white,
+                                          fillColor: Color(0x7F57636C),
                                           contentPadding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   16.0, 0.0, 0.0, 0.0),
