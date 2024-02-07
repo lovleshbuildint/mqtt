@@ -10,10 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
-Future<String> newCustomAction(
+Future<String> subcribeMqtt(
   BuildContext context,
-  String? topic,
-  String? message,
+  String? subscribeTopic,
 ) async {
   final MqttServerClient client = MqttServerClient('15.206.230.32', '');
 
@@ -32,11 +31,7 @@ Future<String> newCustomAction(
   try {
     await client.connect();
     if (client.connectionStatus!.state == MqttConnectionState.connected) {
-      final builder = MqttClientPayloadBuilder();
-      builder.addString(message!);
-
-      client.subscribe(topic!, MqttQos.atMostOnce);
-
+      client.subscribe(subscribeTopic!, MqttQos.atMostOnce);
       client.updates?.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
         final recMess = c![0].payload as MqttPublishMessage;
         final pt =
@@ -46,9 +41,7 @@ Future<String> newCustomAction(
           FFAppState().mqqtData = pt;
         });
       });
-
-      client.publishMessage(topic!, MqttQos.exactlyOnce, builder.payload!);
-      return 'Message sent successfully!';
+      return 'Subscribed';
     } else {
       client.disconnect();
       return 'Failed to connect to MQTT broker';

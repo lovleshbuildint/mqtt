@@ -271,6 +271,9 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                               'Role: ${getJsonField(
                                                 userListItem,
                                                 r'''$..user_role''',
+                                              ).toString()} - ${getJsonField(
+                                                userListItem,
+                                                r'''$..device_id_state''',
                                               ).toString()}',
                                               style: FlutterFlowTheme.of(
                                                       context)
