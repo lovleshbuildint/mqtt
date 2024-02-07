@@ -18,7 +18,7 @@ Future<String> publishTopic(
   final MqttServerClient client = MqttServerClient('15.206.230.32', '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
-      .withClientIdentifier('your_client_id')
+      .withClientIdentifier('atmSync_publish')
       .startClean()
       .keepAliveFor(60)
       .withWillTopic('will_topic')
