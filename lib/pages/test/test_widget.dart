@@ -159,10 +159,11 @@ class _TestWidgetState extends State<TestWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await actions.publishTopic(
+                    await actions.publishMqtt(
                       context,
                       _model.topicController.text,
                       _model.messageController.text,
+                      FFAppState().deviceId,
                     );
                   },
                   text: 'Button',
@@ -207,9 +208,10 @@ class _TestWidgetState extends State<TestWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    _model.subTopicResponse = await actions.subcribeMqtt(
+                    _model.subTopicResponse = await actions.subscribeMqtt(
                       context,
                       'subTopic',
+                      FFAppState().deviceId,
                     );
 
                     setState(() {});

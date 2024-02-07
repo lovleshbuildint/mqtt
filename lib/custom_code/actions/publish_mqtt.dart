@@ -10,14 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
-Future<String> subcribeMqtt(
-  BuildContext context,
-  String? subscribeTopic,
-) async {
+Future<String> publishMqtt(BuildContext context, String? pubtopic,
+    String? message, String? deviceId) async {
   final MqttServerClient client = MqttServerClient('15.206.230.32', '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
-      .withClientIdentifier('your_client_id')
+      .withClientIdentifier('$deviceId-publish')
       .startClean()
       .keepAliveFor(60)
       .withWillTopic('will_topic')
@@ -31,17 +29,11 @@ Future<String> subcribeMqtt(
   try {
     await client.connect();
     if (client.connectionStatus!.state == MqttConnectionState.connected) {
-      client.subscribe(subscribeTopic!, MqttQos.atMostOnce);
-      client.updates?.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
-        final recMess = c![0].payload as MqttPublishMessage;
-        final pt =
-            MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-        print('EXAMPLE::Change notification:: payload is <-- $pt -->');
-        FFAppState().update(() {
-          FFAppState().mqqtData = pt;
-        });
-      });
-      return 'Subscribed';
+      final builder = MqttClientPayloadBuilder();
+      builder.addString(message!);
+
+      client.publishMessage(pubtopic!, MqttQos.exactlyOnce, builder.payload!);
+      return 'Message sent successfully!';
     } else {
       client.disconnect();
       return 'Failed to connect to MQTT broker';
