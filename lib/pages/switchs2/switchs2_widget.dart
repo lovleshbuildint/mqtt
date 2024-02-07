@@ -60,7 +60,8 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
             username: widget.username,
             newUserState: widget.newUserState,
             token: FFAppState().token,
-            deviceId: '1',
+            deviceId: FFAppState().deviceId,
+            deviceState: 1,
           );
           if ((_model.updateDeviceStateOn?.succeeded ?? true)) {
             await showDialog(
@@ -101,7 +102,8 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
             username: widget.username,
             newUserState: widget.newUserState,
             token: FFAppState().token,
-            deviceId: '0',
+            deviceId: FFAppState().deviceId,
+            deviceState: 0,
           );
           if ((_model.updateDeviceStateOff?.succeeded ?? true)) {
             await showDialog(

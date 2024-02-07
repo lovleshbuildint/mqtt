@@ -103,6 +103,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
             newUserState: 0,
             token: FFAppState().token,
             deviceId: FFAppState().deviceId,
+            deviceState: widget.deviceState,
           );
           if ((_model.updateUserStateOn?.succeeded ?? true)) {
             await showDialog(
