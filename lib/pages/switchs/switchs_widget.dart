@@ -105,7 +105,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
 
           setState(() {});
         } else {
-          _model.updateUserStateOnCopy =
+          _model.updateUserStateOff =
               await MasterGroup.updateUserOrDeviceStateCall.call(
             username: widget.username,
             newUserState: 0,
@@ -113,12 +113,12 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
             deviceId: FFAppState().deviceId,
             deviceState: widget.deviceState,
           );
-          if ((_model.updateUserStateOn?.succeeded ?? true)) {
+          if ((_model.updateUserStateOff?.succeeded ?? true)) {
             await showDialog(
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  content: Text((_model.updateUserStateOn?.bodyText ?? '')),
+                  content: Text((_model.updateUserStateOff?.bodyText ?? '')),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),
@@ -133,7 +133,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
               context: context,
               builder: (alertDialogContext) {
                 return AlertDialog(
-                  content: Text((_model.updateUserStateOn?.bodyText ?? '')),
+                  content: Text((_model.updateUserStateOff?.bodyText ?? '')),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(alertDialogContext),

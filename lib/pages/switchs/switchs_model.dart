@@ -16,7 +16,7 @@ class SwitchsModel extends FlutterFlowModel<SwitchsWidget> {
   // Stores action output result for [Backend Call - API (Update User or Device State)] action in Switch widget.
   ApiCallResponse? updateUserStateOn;
   // Stores action output result for [Backend Call - API (Update User or Device State)] action in Switch widget.
-  ApiCallResponse? updateUserStateOnCopy;
+  ApiCallResponse? updateUserStateOff;
 
   /// Initialization and disposal methods.
 
