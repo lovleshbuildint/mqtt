@@ -123,6 +123,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             userOrg: params.getParam('userOrg', ParamType.int),
             userRole: params.getParam('userRole', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'test',
+          path: '/test',
+          builder: (context, params) => TestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

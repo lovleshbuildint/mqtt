@@ -10,3 +10,4 @@ export '/pages/notification/notification_widget.dart' show NotificationWidget;
 export '/pages/user_management/user_management_widget.dart'
     show UserManagementWidget;
 export '/pages/update_users/update_users_widget.dart' show UpdateUsersWidget;
+export '/pages/test/test_widget.dart' show TestWidget;

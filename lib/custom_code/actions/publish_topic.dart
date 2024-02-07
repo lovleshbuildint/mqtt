@@ -12,7 +12,7 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 
 Future<String> publishTopic(
   BuildContext context,
-  String? publishTopic,
+  String? pubtopic,
   String? message,
 ) async {
   final MqttServerClient client = MqttServerClient('15.206.230.32', '');
@@ -35,12 +35,11 @@ Future<String> publishTopic(
       final builder = MqttClientPayloadBuilder();
       builder.addString(message!);
 
-      client.publishMessage(
-          publishTopic!, MqttQos.exactlyOnce, builder.payload!);
+      client.publishMessage(pubtopic!, MqttQos.exactlyOnce, builder.payload!);
       return 'Message sent successfully!';
     } else {
       client.disconnect();
-      return 'Failed to connect to MQTT broke';
+      return 'Failed to connect to MQTT broker';
     }
   } catch (e) {
     print('Error: $e');
