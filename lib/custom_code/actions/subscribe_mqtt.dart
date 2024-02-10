@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
-Future<String> subscribeMqtt(
-    BuildContext context, String? subscribeTopic, String? deviceId) async {
+Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
+    String? deviceId, String? did) async {
   final MqttServerClient client = MqttServerClient('15.206.230.32', '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
@@ -35,9 +35,11 @@ Future<String> subscribeMqtt(
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         print('EXAMPLE::Change notification:: payload is <-- $pt -->');
-        FFAppState().update(() {
-          FFAppState().deviceStateDid = pt;
-        });
+        if (pt.split(',').first == did) {
+          FFAppState().update(() {
+            FFAppState().deviceStateDid = pt;
+          });
+        }
       });
       return 'Subscribed';
     } else {

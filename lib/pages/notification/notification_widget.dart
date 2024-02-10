@@ -56,6 +56,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
         },
       );
       setState(() {
+        FFAppState().deleteToken();
         FFAppState().token = '';
       });
 

@@ -59,6 +59,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
         },
       );
       setState(() {
+        FFAppState().deleteToken();
         FFAppState().token = '';
       });
 

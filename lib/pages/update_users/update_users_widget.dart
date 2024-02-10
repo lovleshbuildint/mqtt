@@ -80,6 +80,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
           },
         );
         setState(() {
+          FFAppState().deleteToken();
           FFAppState().token = '';
         });
 

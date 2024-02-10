@@ -51,6 +51,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               context,
               'Response',
               FFAppState().deviceId,
+              widget.did,
             );
           }(),
         );
@@ -91,6 +92,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
           },
         );
         setState(() {
+          FFAppState().deleteToken();
           FFAppState().token = '';
         });
 
@@ -456,6 +458,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    FFAppState().deviceStateDid,
+                    style: FlutterFlowTheme.of(context).bodyMedium,
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -536,31 +542,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             color: Color(0xFF929395),
                                             fontWeight: FontWeight.normal,
                                           ),
-                                    ),
-                                    Switch.adaptive(
-                                      value: _model.switchValue ??=
-                                          ((String var1) {
-                                                return var1[0];
-                                              }(getJsonField(
-                                                controllingGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.RS''',
-                                              ).toString())) ==
-                                              '1',
-                                      onChanged: (newValue) async {
-                                        setState(() =>
-                                            _model.switchValue = newValue!);
-                                      },
-                                      activeColor:
-                                          FlutterFlowTheme.of(context).primary,
-                                      activeTrackColor:
-                                          FlutterFlowTheme.of(context).accent1,
-                                      inactiveTrackColor:
-                                          FlutterFlowTheme.of(context)
-                                              .alternate,
-                                      inactiveThumbColor:
-                                          FlutterFlowTheme.of(context)
-                                              .secondaryText,
                                     ),
                                   ],
                                 ),

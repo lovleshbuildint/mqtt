@@ -70,6 +70,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
         },
       );
       setState(() {
+        FFAppState().deleteToken();
         FFAppState().token = '';
       });
 

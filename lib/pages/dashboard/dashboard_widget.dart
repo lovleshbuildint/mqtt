@@ -58,6 +58,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         },
       );
       setState(() {
+        FFAppState().deleteToken();
         FFAppState().token = '';
       });
 

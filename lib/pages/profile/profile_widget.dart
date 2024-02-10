@@ -54,6 +54,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         },
       );
       setState(() {
+        FFAppState().deleteToken();
         FFAppState().token = '';
       });
 
@@ -330,6 +331,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             highlightColor: Colors.transparent,
                             onTap: () async {
                               setState(() {
+                                FFAppState().deleteToken();
                                 FFAppState().token = '';
                               });
 

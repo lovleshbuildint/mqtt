@@ -57,6 +57,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
         },
       );
       setState(() {
+        FFAppState().deleteToken();
         FFAppState().token = '';
       });
 
