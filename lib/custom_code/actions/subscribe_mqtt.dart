@@ -38,7 +38,8 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         if (pt.split(',').first == did) {
           if (pt.split(',')[2] == '\$GRES') {
             FFAppState().update(() {
-              FFAppState().deviceStateDid = pt;
+              FFAppState().deviceStateDid =
+                  pt.split(',')[3] + ',' + pt.split(',').last;
             });
           }
         }

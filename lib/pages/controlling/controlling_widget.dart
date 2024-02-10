@@ -458,6 +458,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    FFAppState().deviceStateDid,
+                    style: FlutterFlowTheme.of(context).bodyMedium,
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
