@@ -404,6 +404,11 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           ),
                                         },
                                       );
+
+                                      setState(() {
+                                        FFAppState().deleteDeviceStateDid();
+                                        FFAppState().deviceStateDid = '';
+                                      });
                                     },
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *

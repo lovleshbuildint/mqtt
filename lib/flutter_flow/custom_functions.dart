@@ -58,3 +58,28 @@ dynamic filter(
 
   return filteredData;
 }
+
+String? decimalToBinary(int decimal) {
+  // convert decimal to binary
+  if (decimal == null) {
+    return null;
+  }
+  if (decimal == 0) {
+    return '0';
+  }
+  String binary = '';
+  binary = decimal.toRadixString(2);
+
+  while (binary.length < 4) {
+    binary = '0' + binary;
+  }
+
+  if (binary.length > 4) {
+    // If it's longer than 4 digits, remove the excess digits
+    binary = binary.substring(0, binary.length - 1);
+  }
+
+  binary = binary.split('').reversed.join();
+
+  return binary;
+}

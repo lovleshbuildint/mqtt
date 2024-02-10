@@ -636,144 +636,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       height: 38.0,
                                       decoration: BoxDecoration(
                                         color: ((String var1) {
-                                                  return var1[2];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.door_front_door_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          13.0, 0.0, 13.0, 0.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height: 2.0,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF8B8C8E),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'Door',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Color(0xFF929395),
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 89.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFEEEFF1),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 10.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: 38.0,
-                                      height: 38.0,
-                                      decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[3];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.fiber_dvr,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          13.0, 0.0, 13.0, 0.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.sizeOf(context).width *
-                                                1.0,
-                                        height: 2.0,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFF8B8C8E),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      'DVR',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Color(0xFF929395),
-                                            fontWeight: FontWeight.normal,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 89.0,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFEEEFF1),
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 10.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      width: 38.0,
-                                      height: 38.0,
-                                      decoration: BoxDecoration(
-                                        color: ((String var1) {
                                                   return var1[4];
                                                 }(getJsonField(
                                                   controllingGetDeviceStatusResponse
@@ -912,16 +774,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[6];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
+                                        color: Color(0xFF7385F6),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -981,16 +834,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[7];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
+                                        color: Color(0xFF7385F6),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -999,7 +843,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         ),
                                       ),
                                       child: Icon(
-                                        Icons.close_sharp,
+                                        Icons.fiber_dvr,
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                       ),
@@ -1018,7 +862,127 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       ),
                                     ),
                                     Text(
-                                      'Free',
+                                      'DVR',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF929395),
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 89.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEFF1),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 38.0,
+                                      height: 38.0,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF7385F6),
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          width: 2.0,
+                                        ),
+                                      ),
+                                      child: Icon(
+                                        Icons.router_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          13.0, 0.0, 13.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 2.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFF8B8C8E),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'Router',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF929395),
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 89.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEFF1),
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 10.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 38.0,
+                                      height: 38.0,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFF7385F6),
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          width: 2.0,
+                                        ),
+                                      ),
+                                      child: Icon(
+                                        Icons.router_outlined,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          13.0, 0.0, 13.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 2.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFF8B8C8E),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'VSAT',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
