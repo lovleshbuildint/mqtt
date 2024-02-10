@@ -20,6 +20,8 @@ class TestModel extends FlutterFlowModel<TestWidget> {
   FocusNode? messageFocusNode;
   TextEditingController? messageController;
   String? Function(BuildContext, String?)? messageControllerValidator;
+  // Stores action output result for [Custom Action - publishMqtt] action in Button widget.
+  String? actionResponse;
   // Stores action output result for [Custom Action - subscribeMqtt] action in Button widget.
   String? subTopicResponse;
 

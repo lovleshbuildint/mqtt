@@ -36,7 +36,7 @@ Future<String> subscribeMqtt(
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         print('EXAMPLE::Change notification:: payload is <-- $pt -->');
         FFAppState().update(() {
-          FFAppState().mqqtData = pt;
+          FFAppState().deviceStateDid = pt;
         });
       });
       return 'Subscribed';

@@ -37,7 +37,7 @@ class FFAppState extends ChangeNotifier {
       _userProject = prefs.getString('ff_userProject') ?? _userProject;
     });
     _safeInit(() {
-      _mqqtData = prefs.getString('ff_mqqtData') ?? _mqqtData;
+      _deviceStateDid = prefs.getString('ff_deviceStateDid') ?? _deviceStateDid;
     });
   }
 
@@ -90,22 +90,12 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_userProject', _value);
   }
 
-  String _mqqtData = '';
-  String get mqqtData => _mqqtData;
-  set mqqtData(String _value) {
-    _mqqtData = _value;
-    prefs.setString('ff_mqqtData', _value);
+  String _deviceStateDid = '';
+  String get deviceStateDid => _deviceStateDid;
+  set deviceStateDid(String _value) {
+    _deviceStateDid = _value;
+    prefs.setString('ff_deviceStateDid', _value);
   }
-}
-
-LatLng? _latLngFromString(String? val) {
-  if (val == null) {
-    return null;
-  }
-  final split = val.split(',');
-  final lat = double.parse(split.first);
-  final lng = double.parse(split.last);
-  return LatLng(lat, lng);
 }
 
 void _safeInit(Function() initializeField) {

@@ -2,6 +2,10 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -41,32 +45,59 @@ class _ControllingWidgetState extends State<ControllingWidget> {
         deviceId: FFAppState().deviceId,
       );
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        unawaited(
+          () async {
+            await actions.subscribeMqtt(
+              context,
+              'Response',
+              FFAppState().deviceId,
+            );
+          }(),
+        );
+        _model.instantTimer = InstantTimer.periodic(
+          duration: Duration(milliseconds: 10000),
+          callback: (timer) async {
+            setState(() => _model.apiRequestCompleter = null);
+            await _model.waitForApiRequestCompleted(
+                minWait: 1000, maxWait: 2000);
+            unawaited(
+              () async {
+                await actions.publishMqtt(
+                  context,
+                  'Settings',
+                  '${widget.did}\$GRES,',
+                  FFAppState().deviceId,
+                );
+              }(),
+            );
+          },
+          startImmediately: true,
+        );
+      } else {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('Alert'),
+              content: Text(
+                  'Unauthorized access or your device is not registered. Try login again'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+        setState(() {
+          FFAppState().token = '';
+        });
+
+        context.goNamed('LogIn');
+
         return;
       }
-
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Alert'),
-            content: Text(
-                'Unauthorized access or your device is not registered. Try login again'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-      setState(() {
-        FFAppState().token = '';
-      });
-
-      context.goNamed('LogIn');
-
-      return;
     });
   }
 
@@ -91,12 +122,14 @@ class _ControllingWidgetState extends State<ControllingWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: GetDeviceStatusCall.call(
-        deviceId: FFAppState().deviceId,
-        token: FFAppState().token,
-        did: widget.did,
-        project: FFAppState().userProject,
-      ),
+      future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
+            ..complete(GetDeviceStatusCall.call(
+              deviceId: FFAppState().deviceId,
+              token: FFAppState().token,
+              did: widget.did,
+              project: FFAppState().userProject,
+            )))
+          .future,
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -170,8 +203,32 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                           ],
                         ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(13.0, 10.0, 13.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          valueOrDefault<String>(
+                            widget.did,
+                            'Device ID',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFF4D4D4D),
+                                    fontSize: 16.0,
+                                  ),
+                        ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
@@ -236,66 +293,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 10.0, 13.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          valueOrDefault<String>(
-                            widget.did,
-                            'Device ID',
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF4D4D4D),
-                                    fontSize: 16.0,
-                                  ),
-                        ),
-                        if ((FFAppState().role == 'Admin') ||
-                            (FFAppState().role == 'Super Admins'))
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 0.0),
-                                child: Text(
-                                  'Auto',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF4D4D4D),
-                                        fontSize: 16.0,
-                                      ),
-                                ),
-                              ),
-                              Switch.adaptive(
-                                value: _model.switchValue ??= true,
-                                onChanged: (newValue) async {
-                                  setState(
-                                      () => _model.switchValue = newValue!);
-                                },
-                                activeColor:
-                                    FlutterFlowTheme.of(context).primary,
-                                activeTrackColor:
-                                    FlutterFlowTheme.of(context).accent1,
-                                inactiveTrackColor:
-                                    FlutterFlowTheme.of(context).alternate,
-                                inactiveThumbColor:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                              ),
-                            ],
-                          ),
                       ],
                     ),
                   ),
@@ -458,6 +455,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                       ],
                     ),
+                  ),
+                  Text(
+                    FFAppState().deviceStateDid,
+                    style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Expanded(
                     child: Align(
