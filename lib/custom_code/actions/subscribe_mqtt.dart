@@ -34,9 +34,9 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         final recMess = c![0].payload as MqttPublishMessage;
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
-        print('EXAMPLE::Change notification:: payload is <-- $pt -->');
         if (pt.split(',').first == did) {
           if (pt.split(',')[2] == '\$GRES') {
+            print('$pt');
             FFAppState().update(() {
               FFAppState().deviceStateDid =
                   pt.split(',')[3] + ',' + pt.split(',').last;
