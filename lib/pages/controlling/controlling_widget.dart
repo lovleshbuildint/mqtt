@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -71,6 +72,14 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 );
               }(),
             );
+            if (FFAppState().deviceStateDid != null &&
+                FFAppState().deviceStateDid != '') {
+              setState(() {
+                _model.relayStatus = functions.decimalToBinary((String var1) {
+                  return int.parse(var1.split(',').last);
+                }(FFAppState().deviceStateDid));
+              });
+            }
           },
           startImmediately: true,
         );
@@ -457,6 +466,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                       ],
                     ),
+                  ),
+                  Text(
+                    FFAppState().deviceStateDid,
+                    style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Text(
                     FFAppState().deviceStateDid,
