@@ -709,8 +709,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -756,6 +756,31 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() =>
                                                           _model.ac1Value =
                                                               newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                '0';
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
@@ -892,8 +917,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1076,8 +1101,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1260,8 +1285,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1474,8 +1499,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1618,8 +1643,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1762,8 +1787,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (FFAppState().deviceStateDid != null &&
-                                        FFAppState().deviceStateDid != '')
+                                    if (_model.relayStatus != null &&
+                                        _model.relayStatus != '')
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
