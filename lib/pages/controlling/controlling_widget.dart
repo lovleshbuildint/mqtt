@@ -291,7 +291,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   child: Text(
                                     FFAppState().deviceStateDid != null &&
                                             FFAppState().deviceStateDid != ''
-                                        ? 'Time'
+                                        ? ((String var1) {
+                                            return (var1.split(',')[1])
+                                                .split('.')[0];
+                                          }(FFAppState().deviceStateDid))
                                         : '${(String var1) {
                                             return var1.split('T').first;
                                           }(getJsonField(
