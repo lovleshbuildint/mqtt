@@ -597,7 +597,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                     return '0' +
                                                         var1[1] +
                                                         var1[2] +
-                                                        var1[3];
+                                                        var1[3] +
+                                                        '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
                                                 );
@@ -659,7 +660,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                     return '1' +
                                                         var1[1] +
                                                         var1[2] +
-                                                        var1[3];
+                                                        var1[3] +
+                                                        '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
                                                 );
@@ -875,56 +877,118 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                     .jsonBody,
                                                 r'''$.deviceStatus.RS''',
                                               ).toString()))) {
-                                          return Container(
-                                            width: 38.0,
-                                            height: 38.0,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                  Color(0xFFC070C2)
-                                                ],
-                                                stops: [0.0, 1.0],
-                                                begin: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                end: AlignmentDirectional(
-                                                    0, 1.0),
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (!_model.ac2Value!) {
+                                                await actions.publishMqtt(
+                                                  context,
+                                                  'Settings',
+                                                  '${widget.did}\$SREL${(String var1) {
+                                                    return var1[0] +
+                                                        '0' +
+                                                        var1[2] +
+                                                        var1[3] +
+                                                        '0000';
+                                                  }(_model.relayStatus!)},',
+                                                  FFAppState().deviceId,
+                                                );
+                                                setState(() {
+                                                  _model.relayStatus =
+                                                      (String var1) {
+                                                    return var1[0] +
+                                                        '0' +
+                                                        var1[2] +
+                                                        var1[3];
+                                                  }(_model.relayStatus!);
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 38.0,
+                                              height: 38.0,
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                    Color(0xFFC070C2)
+                                                  ],
+                                                  stops: [0.0, 1.0],
+                                                  begin: AlignmentDirectional(
+                                                      0.0, -1.0),
+                                                  end: AlignmentDirectional(
+                                                      0, 1.0),
+                                                ),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  width: 2.0,
+                                                ),
                                               ),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                              child: Icon(
+                                                Icons.home_max,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                width: 2.0,
                                               ),
-                                            ),
-                                            child: Icon(
-                                              Icons.home_max,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
                                           );
                                         } else {
-                                          return Container(
-                                            width: 38.0,
-                                            height: 38.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFA9AAAC),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (!_model.ac2Value!) {
+                                                await actions.publishMqtt(
+                                                  context,
+                                                  'Settings',
+                                                  '${widget.did}\$SREL${(String var1) {
+                                                    return var1[0] +
+                                                        '1' +
+                                                        var1[2] +
+                                                        var1[3] +
+                                                        '0000';
+                                                  }(_model.relayStatus!)},',
+                                                  FFAppState().deviceId,
+                                                );
+                                                setState(() {
+                                                  _model.relayStatus =
+                                                      (String var1) {
+                                                    return var1[0] +
+                                                        '1' +
+                                                        var1[2] +
+                                                        var1[3];
+                                                  }(_model.relayStatus!);
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 38.0,
+                                              height: 38.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFA9AAAC),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  width: 2.0,
+                                                ),
+                                              ),
+                                              child: Icon(
+                                                Icons.home_max,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                width: 2.0,
                                               ),
-                                            ),
-                                            child: Icon(
-                                              Icons.home_max,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
                                           );
                                         }
@@ -1107,56 +1171,118 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                     .jsonBody,
                                                 r'''$.deviceStatus.RS''',
                                               ).toString()))) {
-                                          return Container(
-                                            width: 38.0,
-                                            height: 38.0,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                  Color(0xFFC070C2)
-                                                ],
-                                                stops: [0.0, 1.0],
-                                                begin: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                end: AlignmentDirectional(
-                                                    0, 1.0),
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (!_model.lobbyLightValue!) {
+                                                await actions.publishMqtt(
+                                                  context,
+                                                  'Settings',
+                                                  '${widget.did}\$SREL${(String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        '0' +
+                                                        var1[3] +
+                                                        '0000';
+                                                  }(_model.relayStatus!)},',
+                                                  FFAppState().deviceId,
+                                                );
+                                                setState(() {
+                                                  _model.relayStatus =
+                                                      (String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        '0' +
+                                                        var1[3];
+                                                  }(_model.relayStatus!);
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 38.0,
+                                              height: 38.0,
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                    Color(0xFFC070C2)
+                                                  ],
+                                                  stops: [0.0, 1.0],
+                                                  begin: AlignmentDirectional(
+                                                      0.0, -1.0),
+                                                  end: AlignmentDirectional(
+                                                      0, 1.0),
+                                                ),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  width: 2.0,
+                                                ),
                                               ),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                              child: Icon(
+                                                Icons.lightbulb_outline_rounded,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                width: 2.0,
                                               ),
-                                            ),
-                                            child: Icon(
-                                              Icons.lightbulb_outline_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
                                           );
                                         } else {
-                                          return Container(
-                                            width: 38.0,
-                                            height: 38.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFA9AAAC),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (!_model.lobbyLightValue!) {
+                                                await actions.publishMqtt(
+                                                  context,
+                                                  'Settings',
+                                                  '${widget.did}\$SREL${(String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        '1' +
+                                                        var1[3] +
+                                                        '0000';
+                                                  }(_model.relayStatus!)},',
+                                                  FFAppState().deviceId,
+                                                );
+                                                setState(() {
+                                                  _model.relayStatus =
+                                                      (String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        '1' +
+                                                        var1[3];
+                                                  }(_model.relayStatus!);
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 38.0,
+                                              height: 38.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFA9AAAC),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  width: 2.0,
+                                                ),
+                                              ),
+                                              child: Icon(
+                                                Icons.lightbulb_outline_rounded,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                width: 2.0,
                                               ),
-                                            ),
-                                            child: Icon(
-                                              Icons.lightbulb_outline_rounded,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
                                           );
                                         }
@@ -1341,56 +1467,118 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                     .jsonBody,
                                                 r'''$.deviceStatus.RS''',
                                               ).toString()))) {
-                                          return Container(
-                                            width: 38.0,
-                                            height: 38.0,
-                                            decoration: BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                                  Color(0xFFC070C2)
-                                                ],
-                                                stops: [0.0, 1.0],
-                                                begin: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                end: AlignmentDirectional(
-                                                    0, 1.0),
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (!_model.signageValue!) {
+                                                await actions.publishMqtt(
+                                                  context,
+                                                  'Settings',
+                                                  '${widget.did}\$SREL${(String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        var1[2] +
+                                                        '0' +
+                                                        '0000';
+                                                  }(_model.relayStatus!)},',
+                                                  FFAppState().deviceId,
+                                                );
+                                                setState(() {
+                                                  _model.relayStatus =
+                                                      (String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        var1[2] +
+                                                        '0';
+                                                  }(_model.relayStatus!);
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 38.0,
+                                              height: 38.0,
+                                              decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                  colors: [
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                    Color(0xFFC070C2)
+                                                  ],
+                                                  stops: [0.0, 1.0],
+                                                  begin: AlignmentDirectional(
+                                                      0.0, -1.0),
+                                                  end: AlignmentDirectional(
+                                                      0, 1.0),
+                                                ),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  width: 2.0,
+                                                ),
                                               ),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                              child: Icon(
+                                                Icons.light_outlined,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                width: 2.0,
                                               ),
-                                            ),
-                                            child: Icon(
-                                              Icons.light_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
                                           );
                                         } else {
-                                          return Container(
-                                            width: 38.0,
-                                            height: 38.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFA9AAAC),
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
+                                          return InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (!_model.signageValue!) {
+                                                await actions.publishMqtt(
+                                                  context,
+                                                  'Settings',
+                                                  '${widget.did}\$SREL${(String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        var1[2] +
+                                                        '1' +
+                                                        '0000';
+                                                  }(_model.relayStatus!)},',
+                                                  FFAppState().deviceId,
+                                                );
+                                                setState(() {
+                                                  _model.relayStatus =
+                                                      (String var1) {
+                                                    return var1[0] +
+                                                        var1[1] +
+                                                        var1[2] +
+                                                        '1';
+                                                  }(_model.relayStatus!);
+                                                });
+                                              }
+                                            },
+                                            child: Container(
+                                              width: 38.0,
+                                              height: 38.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFA9AAAC),
+                                                shape: BoxShape.circle,
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                  width: 2.0,
+                                                ),
+                                              ),
+                                              child: Icon(
+                                                Icons.light_outlined,
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                width: 2.0,
                                               ),
-                                            ),
-                                            child: Icon(
-                                              Icons.light_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
                                             ),
                                           );
                                         }
