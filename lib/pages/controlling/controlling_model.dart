@@ -18,7 +18,7 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
 
   String? relayStatus;
 
-  bool test = false;
+  String? maskStatus;
 
   ///  State fields for stateful widgets in this page.
 

@@ -55,8 +55,19 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             );
           }(),
         );
-        if (FFAppState().deviceStateDid != null &&
-            FFAppState().deviceStateDid != '') {
+        unawaited(
+          () async {
+            await actions.publishMqtt(
+              context,
+              'Settings',
+              '${widget.did}\$GRES,',
+              FFAppState().deviceId,
+            );
+          }(),
+        );
+        if ((FFAppState().deviceStateDid != null &&
+                FFAppState().deviceStateDid != '') &&
+            (FFAppState().deviceStateDid != _model.maskStatus)) {
           setState(() {
             _model.ac1Value = ((String var1) {
               return var1.split(',')[0][7] == "1";
@@ -96,6 +107,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             _model.relayStatus = functions.decimalToBinary((String var1) {
               return int.parse(var1.split(',').last);
             }(FFAppState().deviceStateDid));
+            _model.maskStatus = FFAppState().deviceStateDid;
           });
         } else {
           setState(() {
@@ -103,16 +115,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
           });
         }
 
-        unawaited(
-          () async {
-            await actions.publishMqtt(
-              context,
-              'Settings',
-              '${widget.did}\$GRES,',
-              FFAppState().deviceId,
-            );
-          }(),
-        );
         _model.instantTimer = InstantTimer.periodic(
           duration: Duration(milliseconds: 5000),
           callback: (timer) async {
@@ -167,6 +169,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 _model.relayStatus = functions.decimalToBinary((String var1) {
                   return int.parse(var1.split(',').last);
                 }(FFAppState().deviceStateDid));
+                _model.maskStatus = FFAppState().deviceStateDid;
               });
             } else {
               setState(() {
