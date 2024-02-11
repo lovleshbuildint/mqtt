@@ -86,9 +86,19 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 }(FFAppState().deviceStateDid));
               });
               setState(() {
-                _model.test = (String var1) {
+                _model.ac1Value = ((String var1) {
                   return var1.split(',')[0][0] == "1";
-                }(FFAppState().deviceStateDid);
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.ac2Value = ((String var1) {
+                  return var1.split(',')[0][1] == "1";
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.lobbyLightValue = ((String var1) {
+                  return var1.split(',')[0][2] == "1";
+                }(FFAppState().deviceStateDid));
               });
             } else {
               setState(() {
@@ -505,10 +515,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       _model.relayStatus,
                       'null',
                     ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
-                  Text(
-                    _model.test.toString(),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Expanded(
