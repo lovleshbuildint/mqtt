@@ -498,6 +498,46 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
+                  Builder(
+                    builder: (context) {
+                      if ((String var1) {
+                        return var1[0] == "1";
+                      }((_model.relayStatus != null && _model.relayStatus != ''
+                          ? _model.relayStatus!
+                          : getJsonField(
+                              controllingGetDeviceStatusResponse.jsonBody,
+                              r'''$.deviceStatus.RS''',
+                            ).toString()))) {
+                        return Switch.adaptive(
+                          value: _model.switchValue1 ??= true,
+                          onChanged: (newValue) async {
+                            setState(() => _model.switchValue1 = newValue!);
+                          },
+                          activeColor: FlutterFlowTheme.of(context).primary,
+                          activeTrackColor:
+                              FlutterFlowTheme.of(context).accent1,
+                          inactiveTrackColor:
+                              FlutterFlowTheme.of(context).alternate,
+                          inactiveThumbColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                        );
+                      } else {
+                        return Switch.adaptive(
+                          value: _model.switchValue2 ??= false,
+                          onChanged: (newValue) async {
+                            setState(() => _model.switchValue2 = newValue!);
+                          },
+                          activeColor: FlutterFlowTheme.of(context).primary,
+                          activeTrackColor:
+                              FlutterFlowTheme.of(context).accent1,
+                          inactiveTrackColor:
+                              FlutterFlowTheme.of(context).alternate,
+                          inactiveThumbColor:
+                              FlutterFlowTheme.of(context).secondaryText,
+                        );
+                      }
+                    },
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
