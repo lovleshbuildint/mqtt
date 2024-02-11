@@ -289,21 +289,24 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    '${(String var1) {
-                                      return var1.split('T').first;
-                                    }(getJsonField(
-                                      controllingGetDeviceStatusResponse
-                                          .jsonBody,
-                                      r'''$.deviceStatus.evt_dt''',
-                                    ).toString())} ${(String var1) {
-                                      return var1.split('.').first;
-                                    }(((String var1) {
-                                      return var1.split('T').last;
-                                    }(getJsonField(
-                                      controllingGetDeviceStatusResponse
-                                          .jsonBody,
-                                      r'''$.deviceStatus.evt_dt''',
-                                    ).toString())))}',
+                                    FFAppState().deviceStateDid != null &&
+                                            FFAppState().deviceStateDid != ''
+                                        ? 'Time'
+                                        : '${(String var1) {
+                                            return var1.split('T').first;
+                                          }(getJsonField(
+                                            controllingGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.evt_dt''',
+                                          ).toString())} ${(String var1) {
+                                            return var1.split('.').first;
+                                          }(((String var1) {
+                                            return var1.split('T').last;
+                                          }(getJsonField(
+                                            controllingGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.evt_dt''',
+                                          ).toString())))}',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
