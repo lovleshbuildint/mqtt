@@ -509,7 +509,15 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                               r'''$.deviceStatus.RS''',
                             ).toString()))) {
                         return Switch.adaptive(
-                          value: _model.switchValue1 ??= true,
+                          value: _model.switchValue1 ??= (String var1) {
+                            return var1[0] == "1";
+                          }((_model.relayStatus != null &&
+                                  _model.relayStatus != ''
+                              ? _model.relayStatus!
+                              : getJsonField(
+                                  controllingGetDeviceStatusResponse.jsonBody,
+                                  r'''$.deviceStatus.RS''',
+                                ).toString())),
                           onChanged: (newValue) async {
                             setState(() => _model.switchValue1 = newValue!);
                           },
@@ -523,7 +531,15 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         );
                       } else {
                         return Switch.adaptive(
-                          value: _model.switchValue2 ??= false,
+                          value: _model.switchValue2 ??= (String var1) {
+                            return var1[0] == "1";
+                          }((_model.relayStatus != null &&
+                                  _model.relayStatus != ''
+                              ? _model.relayStatus!
+                              : getJsonField(
+                                  controllingGetDeviceStatusResponse.jsonBody,
+                                  r'''$.deviceStatus.RS''',
+                                ).toString())),
                           onChanged: (newValue) async {
                             setState(() => _model.switchValue2 = newValue!);
                           },
