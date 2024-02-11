@@ -46,9 +46,11 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         if (pt.split(',').first == did) {
           if (pt.split(',')[2] == '\$GRES') {
             print('$pt');
+            DateTime now = DateTime.now();
+            String timestamp = now.toLocal().toString();
             FFAppState().update(() {
               FFAppState().deviceStateDid =
-                  pt.split(',')[3] + ',' + pt.split(',').last;
+                  pt.split(',')[3] + ',' + timestamp + ',' + pt.split(',').last;
             });
           }
         }
