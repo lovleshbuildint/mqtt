@@ -472,7 +472,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Text(
-                    FFAppState().deviceStateDid,
+                    valueOrDefault<String>(
+                      _model.relayStatus,
+                      'null',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
                   Expanded(
