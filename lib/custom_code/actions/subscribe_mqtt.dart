@@ -38,6 +38,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
       client.updates?.timeout(timeoutDuration, onTimeout: (sink) {
         FFAppState().update(() {
           FFAppState().deviceStateDid = "";
+          FFAppState().mqttTime = "";
         });
       }).listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
         final recMess = c![0].payload as MqttPublishMessage;
@@ -49,8 +50,9 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
             DateTime now = DateTime.now();
             String timestamp = now.toLocal().toString();
             FFAppState().update(() {
+              FFAppState().mqttTime = timestamp;
               FFAppState().deviceStateDid =
-                  pt.split(',')[3] + ',' + timestamp + ',' + pt.split(',').last;
+                  pt.split(',')[3] + ',' + pt.split(',').last;
             });
           }
         }

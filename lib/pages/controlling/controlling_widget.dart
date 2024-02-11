@@ -375,12 +375,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    FFAppState().deviceStateDid != null &&
-                                            FFAppState().deviceStateDid != ''
+                                    FFAppState().mqttTime != null &&
+                                            FFAppState().mqttTime != ''
                                         ? ((String var1) {
-                                            return (var1.split(',')[1])
-                                                .split('.')[0];
-                                          }(FFAppState().deviceStateDid))
+                                            return var1.split('.')[0];
+                                          }(FFAppState().mqttTime))
                                         : '${(String var1) {
                                             return var1.split('T').first;
                                           }(getJsonField(

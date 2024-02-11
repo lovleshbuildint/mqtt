@@ -43,6 +43,9 @@ class FFAppState extends ChangeNotifier {
       _deviceStateDid =
           await secureStorage.getString('ff_deviceStateDid') ?? _deviceStateDid;
     });
+    await _safeInitAsync(() async {
+      _mqttTime = await secureStorage.getString('ff_mqttTime') ?? _mqttTime;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -127,6 +130,17 @@ class FFAppState extends ChangeNotifier {
 
   void deleteDeviceStateDid() {
     secureStorage.delete(key: 'ff_deviceStateDid');
+  }
+
+  String _mqttTime = '';
+  String get mqttTime => _mqttTime;
+  set mqttTime(String _value) {
+    _mqttTime = _value;
+    secureStorage.setString('ff_mqttTime', _value);
+  }
+
+  void deleteMqttTime() {
+    secureStorage.delete(key: 'ff_mqttTime');
   }
 }
 
