@@ -64,9 +64,7 @@ String? decimalToBinary(int decimal) {
   if (decimal == null) {
     return null;
   }
-  if (decimal == 0) {
-    return '0';
-  }
+
   String binary = '';
   binary = decimal.toRadixString(2);
 
