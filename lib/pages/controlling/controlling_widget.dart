@@ -68,11 +68,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
         if (FFAppState().deviceStateDid != null &&
             FFAppState().deviceStateDid != '') {
           setState(() {
-            _model.relayStatus = functions.decimalToBinary((String var1) {
-              return int.parse(var1.split(',').last);
-            }(FFAppState().deviceStateDid));
-          });
-          setState(() {
             _model.ac1Value = ((String var1) {
               return var1.split(',')[0][7] == "1";
             }(FFAppState().deviceStateDid));
@@ -107,6 +102,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               return var1.split(',')[0][6] == "1";
             }(FFAppState().deviceStateDid));
           });
+          setState(() {
+            _model.relayStatus = functions.decimalToBinary((String var1) {
+              return int.parse(var1.split(',').last);
+            }(FFAppState().deviceStateDid));
+          });
         } else {
           setState(() {
             _model.relayStatus = null;
@@ -114,7 +114,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
         }
 
         _model.instantTimer = InstantTimer.periodic(
-          duration: Duration(milliseconds: 10000),
+          duration: Duration(milliseconds: 5000),
           callback: (timer) async {
             unawaited(
               () async {
@@ -128,11 +128,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             );
             if (FFAppState().deviceStateDid != null &&
                 FFAppState().deviceStateDid != '') {
-              setState(() {
-                _model.relayStatus = functions.decimalToBinary((String var1) {
-                  return int.parse(var1.split(',').last);
-                }(FFAppState().deviceStateDid));
-              });
               setState(() {
                 _model.ac1Value = ((String var1) {
                   return var1.split(',')[0][7] == "1";
@@ -166,6 +161,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               setState(() {
                 _model.dvrValue = ((String var1) {
                   return var1.split(',')[0][6] == "1";
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.relayStatus = functions.decimalToBinary((String var1) {
+                  return int.parse(var1.split(',').last);
                 }(FFAppState().deviceStateDid));
               });
             } else {
@@ -776,6 +776,30 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                     ',')[0][5] +
                                                                 var1.split(
                                                                     ',')[0][6] +
+                                                                '1';
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
                                                                 '0';
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
@@ -964,6 +988,55 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() =>
                                                           _model.ac2Value =
                                                               newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                '1';
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                '0';
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
