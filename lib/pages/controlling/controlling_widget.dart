@@ -74,12 +74,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
           });
           setState(() {
             _model.ac1Value = ((String var1) {
-              return var1.split(',')[0][0] == "1";
+              return var1.split(',')[0][7] == "1";
             }(FFAppState().deviceStateDid));
           });
           setState(() {
             _model.ac2Value = ((String var1) {
-              return var1.split(',')[0][1] == "1";
+              return var1.split(',')[0][7] == "1";
             }(FFAppState().deviceStateDid));
           });
           setState(() {
@@ -135,12 +135,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               });
               setState(() {
                 _model.ac1Value = ((String var1) {
-                  return var1.split(',')[0][0] == "1";
+                  return var1.split(',')[0][7] == "1";
                 }(FFAppState().deviceStateDid));
               });
               setState(() {
                 _model.ac2Value = ((String var1) {
-                  return var1.split(',')[0][1] == "1";
+                  return var1.split(',')[0][7] == "1";
                 }(FFAppState().deviceStateDid));
               });
               setState(() {
@@ -728,7 +728,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [7] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -905,7 +911,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [7] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1083,7 +1095,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [2] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1261,7 +1279,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [3] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1469,7 +1493,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [6] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1607,7 +1637,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [4] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1745,7 +1781,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                'Manual',
+                                                (String var1) {
+                                                  return var1.split(',')[0]
+                                                          [5] ==
+                                                      "1";
+                                                }(FFAppState().deviceStateDid)
+                                                    ? 'Auto'
+                                                    : 'Manual',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
