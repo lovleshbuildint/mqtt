@@ -1411,6 +1411,55 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() =>
                                                           _model.signageValue =
                                                               newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                '1' +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                '0' +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
@@ -1625,6 +1674,55 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() =>
                                                           _model.dvrValue =
                                                               newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                '1' +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                '0' +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
@@ -1769,6 +1867,55 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() =>
                                                           _model.routerValue =
                                                               newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                '1' +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                '0' +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
@@ -1913,6 +2060,55 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() =>
                                                           _model.vsatValue =
                                                               newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                '1' +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                var1.split(
+                                                                    ',')[0][2] +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                '0' +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
