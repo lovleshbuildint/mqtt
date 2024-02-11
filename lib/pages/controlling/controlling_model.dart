@@ -18,26 +18,28 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
 
   String? relayStatus;
 
+  bool test = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (User Info)] action in Controlling widget.
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
-  // State field(s) for Switch widget.
-  bool? switchValue3;
-  // State field(s) for Switch widget.
-  bool? switchValue4;
-  // State field(s) for Switch widget.
-  bool? switchValue5;
-  // State field(s) for Switch widget.
-  bool? switchValue6;
-  // State field(s) for Switch widget.
-  bool? switchValue7;
+  // State field(s) for AC1 widget.
+  bool? ac1Value;
+  // State field(s) for AC2 widget.
+  bool? ac2Value;
+  // State field(s) for LobbyLight widget.
+  bool? lobbyLightValue;
+  // State field(s) for Signage widget.
+  bool? signageValue;
+  // State field(s) for DVR widget.
+  bool? dvrValue;
+  // State field(s) for Router widget.
+  bool? routerValue;
+  // State field(s) for VSAT widget.
+  bool? vsatValue;
 
   /// Initialization and disposal methods.
 
