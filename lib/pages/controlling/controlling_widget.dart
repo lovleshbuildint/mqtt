@@ -340,48 +340,58 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     6.0, 0.0, 6.0, 0.0),
                                 child: Text(
                                   () {
-                                    if ((((String var1) {
-                                              return var1[0];
-                                            }(getJsonField(
-                                              controllingGetDeviceStatusResponse
-                                                  .jsonBody,
-                                              r'''$.deviceStatus.RS''',
-                                            ).toString())) ==
-                                            '1') &&
-                                        (((String var1) {
-                                              return var1[1];
-                                            }(getJsonField(
-                                              controllingGetDeviceStatusResponse
-                                                  .jsonBody,
-                                              r'''$.deviceStatus.RS''',
-                                            ).toString())) ==
-                                            '1')) {
+                                    if (((String var1) {
+                                          return var1[0] == "1";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString()))) &&
+                                        ((String var1) {
+                                          return var1[1] == "1";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString())))) {
                                       return 'Both AC ON';
-                                    } else if ((((String var1) {
-                                              return var1[0];
-                                            }(getJsonField(
-                                              controllingGetDeviceStatusResponse
-                                                  .jsonBody,
-                                              r'''$.deviceStatus.RS''',
-                                            ).toString())) ==
-                                            '0') &&
-                                        (((String var1) {
-                                              return var1[1];
-                                            }(getJsonField(
-                                              controllingGetDeviceStatusResponse
-                                                  .jsonBody,
-                                              r'''$.deviceStatus.RS''',
-                                            ).toString())) ==
-                                            '0')) {
-                                      return 'Both AC OFF';
                                     } else if (((String var1) {
-                                          return var1[0];
-                                        }(getJsonField(
-                                          controllingGetDeviceStatusResponse
-                                              .jsonBody,
-                                          r'''$.deviceStatus.RS''',
-                                        ).toString())) ==
-                                        '1') {
+                                          return var1[0] == "0";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString()))) &&
+                                        ((String var1) {
+                                          return var1[1] == "0";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString())))) {
+                                      return 'Both AC OFF';
+                                    } else if ((String var1) {
+                                      return var1[0] == "1";
+                                    }((_model.relayStatus != null &&
+                                            _model.relayStatus != ''
+                                        ? _model.relayStatus!
+                                        : getJsonField(
+                                            controllingGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.RS''',
+                                          ).toString()))) {
                                       return 'AC 1 ON';
                                     } else {
                                       return 'AC 2 ON';
@@ -737,32 +747,72 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      width: 38.0,
-                                      height: 38.0,
-                                      decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[4];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.lightbulb_outline_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
+                                    Builder(
+                                      builder: (context) {
+                                        if ((String var1) {
+                                          return var1[2] == "1";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString()))) {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.lightbulb_outline_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        } else {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFA9AAAC),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.lightbulb_outline_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        }
+                                      },
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -807,32 +857,72 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      width: 38.0,
-                                      height: 38.0,
-                                      decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[5];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.light_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
+                                    Builder(
+                                      builder: (context) {
+                                        if ((String var1) {
+                                          return var1[3] == "1";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString()))) {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.light_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        } else {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFA9AAAC),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.light_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        }
+                                      },
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
