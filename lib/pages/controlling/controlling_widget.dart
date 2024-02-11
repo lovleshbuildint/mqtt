@@ -517,7 +517,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       borderWidth: 2.0,
                       onChange: () async {
                         setState(() {
-                          _model.test = false;
+                          _model.test = !_model.test;
                         });
                       },
                     ),
