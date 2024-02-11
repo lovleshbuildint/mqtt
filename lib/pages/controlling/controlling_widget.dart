@@ -55,16 +55,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             );
           }(),
         );
-        unawaited(
-          () async {
-            await actions.publishMqtt(
-              context,
-              'Settings',
-              '${widget.did}\$GRES,',
-              FFAppState().deviceId,
-            );
-          }(),
-        );
         if (FFAppState().deviceStateDid != null &&
             FFAppState().deviceStateDid != '') {
           setState(() {
@@ -113,6 +103,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
           });
         }
 
+        unawaited(
+          () async {
+            await actions.publishMqtt(
+              context,
+              'Settings',
+              '${widget.did}\$GRES,',
+              FFAppState().deviceId,
+            );
+          }(),
+        );
         _model.instantTimer = InstantTimer.periodic(
           duration: Duration(milliseconds: 5000),
           callback: (timer) async {
