@@ -1179,6 +1179,55 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       setState(() => _model
                                                               .lobbyLightValue =
                                                           newValue!);
+                                                      if (newValue!) {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                '1' +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .publishMqtt(
+                                                          context,
+                                                          'Settings',
+                                                          '${widget.did}\$SRMK${(String var1) {
+                                                            return var1.split(
+                                                                    ',')[0][0] +
+                                                                var1.split(
+                                                                    ',')[0][1] +
+                                                                '0' +
+                                                                var1.split(
+                                                                    ',')[0][3] +
+                                                                var1.split(
+                                                                    ',')[0][4] +
+                                                                var1.split(
+                                                                    ',')[0][5] +
+                                                                var1.split(
+                                                                    ',')[0][6] +
+                                                                var1.split(
+                                                                    ',')[0][7];
+                                                          }(FFAppState().deviceStateDid)},',
+                                                          FFAppState().deviceId,
+                                                        );
+                                                      }
                                                     },
                                                     activeColor:
                                                         FlutterFlowTheme.of(
