@@ -65,6 +65,54 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             );
           }(),
         );
+        if (FFAppState().deviceStateDid != null &&
+            FFAppState().deviceStateDid != '') {
+          setState(() {
+            _model.relayStatus = functions.decimalToBinary((String var1) {
+              return int.parse(var1.split(',').last);
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.ac1Value = ((String var1) {
+              return var1.split(',')[0][0] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.ac2Value = ((String var1) {
+              return var1.split(',')[0][1] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.lobbyLightValue = ((String var1) {
+              return var1.split(',')[0][2] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.signageValue = ((String var1) {
+              return var1.split(',')[0][3] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.routerValue = ((String var1) {
+              return var1.split(',')[0][4] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.vsatValue = ((String var1) {
+              return var1.split(',')[0][5] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+          setState(() {
+            _model.dvrValue = ((String var1) {
+              return var1.split(',')[0][6] == "1";
+            }(FFAppState().deviceStateDid));
+          });
+        } else {
+          setState(() {
+            _model.relayStatus = null;
+          });
+        }
+
         _model.instantTimer = InstantTimer.periodic(
           duration: Duration(milliseconds: 10000),
           callback: (timer) async {
@@ -98,6 +146,26 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               setState(() {
                 _model.lobbyLightValue = ((String var1) {
                   return var1.split(',')[0][2] == "1";
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.signageValue = ((String var1) {
+                  return var1.split(',')[0][3] == "1";
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.routerValue = ((String var1) {
+                  return var1.split(',')[0][4] == "1";
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.vsatValue = ((String var1) {
+                  return var1.split(',')[0][5] == "1";
+                }(FFAppState().deviceStateDid));
+              });
+              setState(() {
+                _model.dvrValue = ((String var1) {
+                  return var1.split(',')[0][6] == "1";
                 }(FFAppState().deviceStateDid));
               });
             } else {
