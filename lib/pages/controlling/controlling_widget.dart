@@ -70,7 +70,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             );
             if ((FFAppState().deviceStateDid != null &&
                     FFAppState().deviceStateDid != '') &&
-                (FFAppState().deviceStateDid != _model.maskStatus)) {
+                (((String var1) {
+                      return var1.split(',')[0];
+                    }(FFAppState().deviceStateDid)) !=
+                    _model.maskStatus)) {
               setState(() {
                 _model.ac1Value = ((String var1) {
                   return var1.split(',')[0][7] == "1";
@@ -110,7 +113,15 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 _model.relayStatus = functions.decimalToBinary((String var1) {
                   return int.parse(var1.split(',').last);
                 }(FFAppState().deviceStateDid));
-                _model.maskStatus = FFAppState().deviceStateDid;
+                _model.maskStatus = (String var1) {
+                  return var1.split(',')[0];
+                }(FFAppState().deviceStateDid);
+              });
+            } else if (FFAppState().deviceStateDid == null ||
+                FFAppState().deviceStateDid == '') {
+              setState(() {
+                _model.relayStatus = null;
+                _model.maskStatus = null;
               });
             }
           },
