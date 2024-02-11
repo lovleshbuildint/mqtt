@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -498,61 +499,28 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
                   ),
-                  Builder(
-                    builder: (context) {
-                      if ((String var1) {
-                        return var1[0] == "1";
-                      }((_model.relayStatus != null && _model.relayStatus != ''
-                          ? _model.relayStatus!
-                          : getJsonField(
-                              controllingGetDeviceStatusResponse.jsonBody,
-                              r'''$.deviceStatus.RS''',
-                            ).toString()))) {
-                        return Switch.adaptive(
-                          value: _model.switchValue1 ??= (String var1) {
-                            return var1[0] == "1";
-                          }((_model.relayStatus != null &&
-                                  _model.relayStatus != ''
-                              ? _model.relayStatus!
-                              : getJsonField(
-                                  controllingGetDeviceStatusResponse.jsonBody,
-                                  r'''$.deviceStatus.RS''',
-                                ).toString())),
-                          onChanged: (newValue) async {
-                            setState(() => _model.switchValue1 = newValue!);
-                          },
-                          activeColor: FlutterFlowTheme.of(context).primary,
-                          activeTrackColor:
-                              FlutterFlowTheme.of(context).accent1,
-                          inactiveTrackColor:
-                              FlutterFlowTheme.of(context).alternate,
-                          inactiveThumbColor:
-                              FlutterFlowTheme.of(context).secondaryText,
-                        );
-                      } else {
-                        return Switch.adaptive(
-                          value: _model.switchValue2 ??= (String var1) {
-                            return var1[0] == "1";
-                          }((_model.relayStatus != null &&
-                                  _model.relayStatus != ''
-                              ? _model.relayStatus!
-                              : getJsonField(
-                                  controllingGetDeviceStatusResponse.jsonBody,
-                                  r'''$.deviceStatus.RS''',
-                                ).toString())),
-                          onChanged: (newValue) async {
-                            setState(() => _model.switchValue2 = newValue!);
-                          },
-                          activeColor: FlutterFlowTheme.of(context).primary,
-                          activeTrackColor:
-                              FlutterFlowTheme.of(context).accent1,
-                          inactiveTrackColor:
-                              FlutterFlowTheme.of(context).alternate,
-                          inactiveThumbColor:
-                              FlutterFlowTheme.of(context).secondaryText,
-                        );
-                      }
-                    },
+                  Text(
+                    _model.test.toString(),
+                    style: FlutterFlowTheme.of(context).bodyMedium,
+                  ),
+                  Container(
+                    width: 100.0,
+                    height: 20.0,
+                    child: custom_widgets.SatisfyingSwitch(
+                      width: 100.0,
+                      height: 20.0,
+                      size: 200.0,
+                      onColor: FlutterFlowTheme.of(context).primary,
+                      offColor: FlutterFlowTheme.of(context).alternate,
+                      value: true,
+                      borderColor: FlutterFlowTheme.of(context).primaryText,
+                      borderWidth: 2.0,
+                      onChange: () async {
+                        setState(() {
+                          _model.test = false;
+                        });
+                      },
+                    ),
                   ),
                   Expanded(
                     child: Align(

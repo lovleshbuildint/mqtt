@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'controlling_widget.dart' show ControllingWidget;
 import 'dart:async';
@@ -19,6 +20,8 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
 
   String? relayStatus;
 
+  bool test = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -26,10 +29,6 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   Completer<ApiCallResponse>? apiRequestCompleter;
-  // State field(s) for Switch widget.
-  bool? switchValue1;
-  // State field(s) for Switch widget.
-  bool? switchValue2;
 
   /// Initialization and disposal methods.
 
