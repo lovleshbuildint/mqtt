@@ -520,7 +520,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                           children: [
                             Container(
                               width: 89.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 150.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -622,6 +625,29 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             color: Color(0xFF929395),
                                             fontWeight: FontWeight.normal,
                                           ),
+                                    ),
+                                    Transform.scale(
+                                      scaleX: 0.7,
+                                      scaleY: 0.7,
+                                      child: Switch.adaptive(
+                                        value: _model.switchValue ??= true,
+                                        onChanged: (newValue) async {
+                                          setState(() =>
+                                              _model.switchValue = newValue!);
+                                        },
+                                        activeColor:
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                        activeTrackColor:
+                                            FlutterFlowTheme.of(context)
+                                                .accent1,
+                                        inactiveTrackColor:
+                                            FlutterFlowTheme.of(context)
+                                                .alternate,
+                                        inactiveThumbColor:
+                                            FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                      ),
                                     ),
                                   ],
                                 ),

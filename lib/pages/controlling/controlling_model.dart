@@ -24,6 +24,8 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
   // Stores action output result for [Backend Call - API (User Info)] action in Controlling widget.
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
+  // State field(s) for Switch widget.
+  bool? switchValue;
 
   /// Initialization and disposal methods.
 
