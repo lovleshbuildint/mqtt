@@ -5,9 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -70,9 +68,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
         _model.instantTimer = InstantTimer.periodic(
           duration: Duration(milliseconds: 10000),
           callback: (timer) async {
-            setState(() => _model.apiRequestCompleter = null);
-            await _model.waitForApiRequestCompleted(
-                minWait: 1000, maxWait: 2000);
             unawaited(
               () async {
                 await actions.publishMqtt(
@@ -89,6 +84,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 _model.relayStatus = functions.decimalToBinary((String var1) {
                   return int.parse(var1.split(',').last);
                 }(FFAppState().deviceStateDid));
+              });
+            } else {
+              setState(() {
+                _model.relayStatus = null;
               });
             }
           },
@@ -144,14 +143,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
-            ..complete(GetDeviceStatusCall.call(
-              deviceId: FFAppState().deviceId,
-              token: FFAppState().token,
-              did: widget.did,
-              project: FFAppState().userProject,
-            )))
-          .future,
+      future: GetDeviceStatusCall.call(
+        deviceId: FFAppState().deviceId,
+        token: FFAppState().token,
+        did: widget.did,
+        project: FFAppState().userProject,
+      ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -498,29 +495,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       'null',
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
-                  Text(
-                    _model.test.toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
-                  Container(
-                    width: 100.0,
-                    height: 20.0,
-                    child: custom_widgets.SatisfyingSwitch(
-                      width: 100.0,
-                      height: 20.0,
-                      size: 200.0,
-                      onColor: FlutterFlowTheme.of(context).primary,
-                      offColor: FlutterFlowTheme.of(context).alternate,
-                      value: true,
-                      borderColor: FlutterFlowTheme.of(context).primaryText,
-                      borderWidth: 2.0,
-                      onChange: () async {
-                        setState(() {
-                          _model.test = !_model.test;
-                        });
-                      },
-                    ),
                   ),
                   Expanded(
                     child: Align(

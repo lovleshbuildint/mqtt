@@ -55,7 +55,6 @@ dependencies:
   shared_preferences_platform_interface: 2.3.1
   shared_preferences_web: 2.2.1
   sqflite: 2.2.6
-  switcher_button: ^0.0.4
   synchronized: 3.1.0
   timeago: 3.2.2
   url_launcher: 6.1.10

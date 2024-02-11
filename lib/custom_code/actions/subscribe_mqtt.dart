@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
@@ -30,7 +32,14 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
     await client.connect();
     if (client.connectionStatus!.state == MqttConnectionState.connected) {
       client.subscribe(subscribeTopic!, MqttQos.atMostOnce);
-      client.updates?.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
+
+      final timeoutDuration = Duration(seconds: 20);
+
+      client.updates?.timeout(timeoutDuration, onTimeout: (sink) {
+        FFAppState().update(() {
+          FFAppState().deviceStateDid = "";
+        });
+      }).listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
         final recMess = c![0].payload as MqttPublishMessage;
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
@@ -44,6 +53,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
           }
         }
       });
+
       return 'Subscribed';
     } else {
       client.disconnect();
