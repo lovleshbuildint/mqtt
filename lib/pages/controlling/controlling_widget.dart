@@ -626,27 +626,36 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    Transform.scale(
-                                      scaleX: 0.7,
-                                      scaleY: 0.7,
-                                      child: Switch.adaptive(
-                                        value: _model.switchValue ??= true,
-                                        onChanged: (newValue) async {
-                                          setState(() =>
-                                              _model.switchValue = newValue!);
-                                        },
-                                        activeColor:
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
-                                        activeTrackColor:
-                                            FlutterFlowTheme.of(context)
-                                                .accent1,
-                                        inactiveTrackColor:
-                                            FlutterFlowTheme.of(context)
-                                                .alternate,
-                                        inactiveThumbColor:
-                                            FlutterFlowTheme.of(context)
-                                                .secondaryText,
+                                    Container(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      height: 30.0,
+                                      decoration: BoxDecoration(
+                                        color: Color(0x00FFFFFF),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Transform.scale(
+                                        scaleX: 0.7,
+                                        scaleY: 0.7,
+                                        child: Switch.adaptive(
+                                          value: _model.switchValue ??= true,
+                                          onChanged: (newValue) async {
+                                            setState(() =>
+                                                _model.switchValue = newValue!);
+                                          },
+                                          activeColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                          activeTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .accent1,
+                                          inactiveTrackColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .alternate,
+                                          inactiveThumbColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                        ),
                                       ),
                                     ),
                                   ],
