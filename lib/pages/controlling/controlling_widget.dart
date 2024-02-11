@@ -560,16 +560,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             width: 38.0,
                                             height: 38.0,
                                             decoration: BoxDecoration(
-                                              color: ((String var1) {
-                                                        return var1[0];
-                                                      }(getJsonField(
-                                                        controllingGetDeviceStatusResponse
-                                                            .jsonBody,
-                                                        r'''$.deviceStatus.RS''',
-                                                      ).toString())) ==
-                                                      '1'
-                                                  ? Color(0xFF7385F6)
-                                                  : Color(0xFFA9AAAC),
+                                              color: Color(0xFFA9AAAC),
                                               shape: BoxShape.circle,
                                               border: Border.all(
                                                 color:
@@ -633,7 +624,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     Builder(
                                       builder: (context) {
                                         if ((String var1) {
-                                          return var1[1] == 1;
+                                          return var1[1] == "1";
                                         }(_model.relayStatus!)) {
                                           return Container(
                                             width: 38.0,
@@ -671,16 +662,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             width: 38.0,
                                             height: 38.0,
                                             decoration: BoxDecoration(
-                                              color: ((String var1) {
-                                                        return var1[0];
-                                                      }(getJsonField(
-                                                        controllingGetDeviceStatusResponse
-                                                            .jsonBody,
-                                                        r'''$.deviceStatus.RS''',
-                                                      ).toString())) ==
-                                                      '1'
-                                                  ? Color(0xFF7385F6)
-                                                  : Color(0xFFA9AAAC),
+                                              color: Color(0xFFA9AAAC),
                                               shape: BoxShape.circle,
                                               border: Border.all(
                                                 color:
