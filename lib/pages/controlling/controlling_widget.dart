@@ -522,7 +522,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                               width: 95.0,
                               height: _model.relayStatus != null &&
                                       _model.relayStatus != ''
-                                  ? 150.0
+                                  ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
@@ -658,11 +658,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 scaleX: 0.7,
                                                 scaleY: 0.7,
                                                 child: Switch.adaptive(
-                                                  value: _model.switchValue ??=
+                                                  value: _model.switchValue1 ??=
                                                       true,
                                                   onChanged: (newValue) async {
                                                     setState(() =>
-                                                        _model.switchValue =
+                                                        _model.switchValue1 =
                                                             newValue!);
                                                   },
                                                   activeColor:
@@ -694,7 +694,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 95.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -797,13 +800,78 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Manual',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF929395),
+                                                    fontSize: 10.0,
+                                                  ),
+                                            ),
+                                            Flexible(
+                                              child: Transform.scale(
+                                                scaleX: 0.7,
+                                                scaleY: 0.7,
+                                                child: Switch.adaptive(
+                                                  value: _model.switchValue2 ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue2 =
+                                                            newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  activeTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .accent1,
+                                                  inactiveTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  inactiveThumbColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
                               width: 95.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -907,13 +975,78 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Manual',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF929395),
+                                                    fontSize: 10.0,
+                                                  ),
+                                            ),
+                                            Flexible(
+                                              child: Transform.scale(
+                                                scaleX: 0.7,
+                                                scaleY: 0.7,
+                                                child: Switch.adaptive(
+                                                  value: _model.switchValue3 ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue3 =
+                                                            newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  activeTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .accent1,
+                                                  inactiveTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  inactiveThumbColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
                               width: 89.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -1016,13 +1149,78 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Manual',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF929395),
+                                                    fontSize: 10.0,
+                                                  ),
+                                            ),
+                                            Flexible(
+                                              child: Transform.scale(
+                                                scaleX: 0.7,
+                                                scaleY: 0.7,
+                                                child: Switch.adaptive(
+                                                  value: _model.switchValue4 ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue4 =
+                                                            newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  activeTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .accent1,
+                                                  inactiveTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  inactiveThumbColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
                               width: 89.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -1092,7 +1290,10 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 89.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -1156,13 +1357,78 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Manual',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF929395),
+                                                    fontSize: 10.0,
+                                                  ),
+                                            ),
+                                            Flexible(
+                                              child: Transform.scale(
+                                                scaleX: 0.7,
+                                                scaleY: 0.7,
+                                                child: Switch.adaptive(
+                                                  value: _model.switchValue5 ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue5 =
+                                                            newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  activeTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .accent1,
+                                                  inactiveTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  inactiveThumbColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
                               width: 89.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -1226,13 +1492,78 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Manual',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF929395),
+                                                    fontSize: 10.0,
+                                                  ),
+                                            ),
+                                            Flexible(
+                                              child: Transform.scale(
+                                                scaleX: 0.7,
+                                                scaleY: 0.7,
+                                                child: Switch.adaptive(
+                                                  value: _model.switchValue6 ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue6 =
+                                                            newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  activeTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .accent1,
+                                                  inactiveTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  inactiveThumbColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
                               width: 89.0,
-                              height: 100.0,
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
+                                  ? 130.0
+                                  : 100.0,
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEFF1),
                                 borderRadius: BorderRadius.circular(12.0),
@@ -1295,6 +1626,68 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             color: Color(0xFF929395),
                                             fontWeight: FontWeight.normal,
                                           ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        width:
+                                            MediaQuery.sizeOf(context).width *
+                                                1.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x00FFFFFF),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              'Manual',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xFF929395),
+                                                    fontSize: 10.0,
+                                                  ),
+                                            ),
+                                            Flexible(
+                                              child: Transform.scale(
+                                                scaleX: 0.7,
+                                                scaleY: 0.7,
+                                                child: Switch.adaptive(
+                                                  value: _model.switchValue7 ??=
+                                                      true,
+                                                  onChanged: (newValue) async {
+                                                    setState(() =>
+                                                        _model.switchValue7 =
+                                                            newValue!);
+                                                  },
+                                                  activeColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primary,
+                                                  activeTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .accent1,
+                                                  inactiveTrackColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .alternate,
+                                                  inactiveThumbColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),

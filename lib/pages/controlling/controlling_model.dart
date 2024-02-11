@@ -25,7 +25,19 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   // State field(s) for Switch widget.
-  bool? switchValue;
+  bool? switchValue1;
+  // State field(s) for Switch widget.
+  bool? switchValue2;
+  // State field(s) for Switch widget.
+  bool? switchValue3;
+  // State field(s) for Switch widget.
+  bool? switchValue4;
+  // State field(s) for Switch widget.
+  bool? switchValue5;
+  // State field(s) for Switch widget.
+  bool? switchValue6;
+  // State field(s) for Switch widget.
+  bool? switchValue7;
 
   /// Initialization and disposal methods.
 
