@@ -56,6 +56,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             );
           }(),
         );
+        unawaited(
+          () async {
+            await actions.publishMqtt(
+              context,
+              'Settings',
+              '${widget.did}\$GRES,',
+              FFAppState().deviceId,
+            );
+          }(),
+        );
         _model.instantTimer = InstantTimer.periodic(
           duration: Duration(milliseconds: 10000),
           callback: (timer) async {
