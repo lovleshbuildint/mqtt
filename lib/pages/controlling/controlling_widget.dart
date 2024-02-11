@@ -519,32 +519,74 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      width: 38.0,
-                                      height: 38.0,
-                                      decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[0];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.home_max,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
+                                    Builder(
+                                      builder: (context) {
+                                        if ((String var1) {
+                                          return var1[0] == 1;
+                                        }(_model.relayStatus!)) {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.home_max,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        } else {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              color: ((String var1) {
+                                                        return var1[0];
+                                                      }(getJsonField(
+                                                        controllingGetDeviceStatusResponse
+                                                            .jsonBody,
+                                                        r'''$.deviceStatus.RS''',
+                                                      ).toString())) ==
+                                                      '1'
+                                                  ? Color(0xFF7385F6)
+                                                  : Color(0xFFA9AAAC),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.home_max,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        }
+                                      },
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -588,32 +630,74 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      width: 38.0,
-                                      height: 38.0,
-                                      decoration: BoxDecoration(
-                                        color: ((String var1) {
-                                                  return var1[1];
-                                                }(getJsonField(
-                                                  controllingGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.RS''',
-                                                ).toString())) ==
-                                                '1'
-                                            ? Color(0xFF7385F6)
-                                            : Color(0xFFA9AAAC),
-                                        shape: BoxShape.circle,
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Icon(
-                                        Icons.home_max,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
+                                    Builder(
+                                      builder: (context) {
+                                        if ((String var1) {
+                                          return var1[1] == 1;
+                                        }(_model.relayStatus!)) {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.home_max,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        } else {
+                                          return Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              color: ((String var1) {
+                                                        return var1[0];
+                                                      }(getJsonField(
+                                                        controllingGetDeviceStatusResponse
+                                                            .jsonBody,
+                                                        r'''$.deviceStatus.RS''',
+                                                      ).toString())) ==
+                                                      '1'
+                                                  ? Color(0xFF7385F6)
+                                                  : Color(0xFFA9AAAC),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.home_max,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          );
+                                        }
+                                      },
                                     ),
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -800,7 +884,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF7385F6),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                            Color(0xFFC070C2)
+                                          ],
+                                          stops: [0.0, 1.0],
+                                          begin:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
+                                        ),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -860,7 +954,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF7385F6),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                            Color(0xFFC070C2)
+                                          ],
+                                          stops: [0.0, 1.0],
+                                          begin:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
+                                        ),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -920,7 +1024,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF7385F6),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                            Color(0xFFC070C2)
+                                          ],
+                                          stops: [0.0, 1.0],
+                                          begin:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
+                                        ),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
@@ -980,7 +1094,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 38.0,
                                       height: 38.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFF7385F6),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                            Color(0xFFC070C2)
+                                          ],
+                                          stops: [0.0, 1.0],
+                                          begin:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
+                                        ),
                                         shape: BoxShape.circle,
                                         border: Border.all(
                                           color: FlutterFlowTheme.of(context)
