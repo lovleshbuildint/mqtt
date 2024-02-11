@@ -522,8 +522,15 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     Builder(
                                       builder: (context) {
                                         if ((String var1) {
-                                          return var1[0] == 1;
-                                        }(_model.relayStatus!)) {
+                                          return var1[0] == "1";
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString()))) {
                                           return Container(
                                             width: 38.0,
                                             height: 38.0,
@@ -625,7 +632,14 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       builder: (context) {
                                         if ((String var1) {
                                           return var1[1] == "1";
-                                        }(_model.relayStatus!)) {
+                                        }((_model.relayStatus != null &&
+                                                _model.relayStatus != ''
+                                            ? _model.relayStatus!
+                                            : getJsonField(
+                                                controllingGetDeviceStatusResponse
+                                                    .jsonBody,
+                                                r'''$.deviceStatus.RS''',
+                                              ).toString()))) {
                                           return Container(
                                             width: 38.0,
                                             height: 38.0,
