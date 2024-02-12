@@ -519,24 +519,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       ],
                     ),
                   ),
-                  Text(
-                    FFAppState().deviceStateDid,
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
-                  Text(
-                    valueOrDefault<String>(
-                      _model.relayStatus,
-                      'null',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
-                  Text(
-                    valueOrDefault<String>(
-                      _model.maskStatus,
-                      'null',
-                    ),
-                    style: FlutterFlowTheme.of(context).bodyMedium,
-                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -555,8 +537,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                           children: [
                             Container(
                               width: 95.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -589,7 +571,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.ac1Value!) {
+                                              if ((_model.ac1Value == false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -652,7 +638,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.ac1Value!) {
+                                              if ((_model.ac1Value == false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -723,8 +713,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -771,29 +764,42 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           _model.ac1Value =
                                                               newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                var1.split(
-                                                                    ',')[0][2] +
-                                                                var1.split(
-                                                                    ',')[0][3] +
-                                                                var1.split(
-                                                                    ',')[0][4] +
-                                                                var1.split(
-                                                                    ',')[0][5] +
-                                                                var1.split(
-                                                                    ',')[0][6] +
-                                                                '1';
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  var1.split(',')[0]
+                                                                      [2] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [3] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [4] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [5] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [6] +
+                                                                  '1';
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
@@ -849,8 +855,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 95.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -883,7 +889,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.ac2Value!) {
+                                              if ((_model.ac2Value == false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -946,7 +956,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.ac2Value!) {
+                                              if ((_model.ac2Value == false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -1017,8 +1031,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1065,29 +1082,42 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           _model.ac2Value =
                                                               newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                var1.split(
-                                                                    ',')[0][2] +
-                                                                var1.split(
-                                                                    ',')[0][3] +
-                                                                var1.split(
-                                                                    ',')[0][4] +
-                                                                var1.split(
-                                                                    ',')[0][5] +
-                                                                var1.split(
-                                                                    ',')[0][6] +
-                                                                '1';
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  var1.split(',')[0]
+                                                                      [2] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [3] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [4] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [5] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [6] +
+                                                                  '1';
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
@@ -1143,8 +1173,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 95.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -1177,7 +1207,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.lobbyLightValue!) {
+                                              if ((_model.lobbyLightValue ==
+                                                      false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -1240,7 +1275,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.lobbyLightValue!) {
+                                              if ((_model.lobbyLightValue ==
+                                                      false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -1312,8 +1352,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1361,29 +1404,41 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .lobbyLightValue =
                                                           newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                '1' +
-                                                                var1.split(
-                                                                    ',')[0][3] +
-                                                                var1.split(
-                                                                    ',')[0][4] +
-                                                                var1.split(
-                                                                    ',')[0][5] +
-                                                                var1.split(
-                                                                    ',')[0][6] +
-                                                                var1.split(
-                                                                    ',')[0][7];
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  '1' +
+                                                                  var1.split(',')[0]
+                                                                      [3] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [4] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [5] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [6] +
+                                                                  var1.split(
+                                                                      ',')[0][7];
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
@@ -1439,8 +1494,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 89.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -1473,7 +1528,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.signageValue!) {
+                                              if ((_model.signageValue ==
+                                                      false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -1536,7 +1596,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              if (!_model.signageValue!) {
+                                              if ((_model.signageValue ==
+                                                      false) &&
+                                                  ((FFAppState().role ==
+                                                          'Engineer') ||
+                                                      (FFAppState().role ==
+                                                          'Super Admin'))) {
                                                 await actions.publishMqtt(
                                                   context,
                                                   'Settings',
@@ -1607,8 +1672,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1655,29 +1723,41 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           _model.signageValue =
                                                               newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                var1.split(
-                                                                    ',')[0][2] +
-                                                                '1' +
-                                                                var1.split(
-                                                                    ',')[0][4] +
-                                                                var1.split(
-                                                                    ',')[0][5] +
-                                                                var1.split(
-                                                                    ',')[0][6] +
-                                                                var1.split(
-                                                                    ',')[0][7];
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  var1.split(',')[0]
+                                                                      [2] +
+                                                                  '1' +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [4] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [5] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [6] +
+                                                                  var1.split(
+                                                                      ',')[0][7];
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
@@ -1803,8 +1883,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 89.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -1870,8 +1950,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -1918,29 +2001,41 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           _model.dvrValue =
                                                               newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                var1.split(
-                                                                    ',')[0][2] +
-                                                                var1.split(
-                                                                    ',')[0][3] +
-                                                                var1.split(
-                                                                    ',')[0][4] +
-                                                                var1.split(
-                                                                    ',')[0][5] +
-                                                                '1' +
-                                                                var1.split(
-                                                                    ',')[0][7];
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  var1.split(',')[0]
+                                                                      [2] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [3] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [4] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [5] +
+                                                                  '1' +
+                                                                  var1.split(
+                                                                      ',')[0][7];
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
@@ -1996,8 +2091,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 89.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -2063,8 +2158,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -2111,29 +2209,41 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           _model.routerValue =
                                                               newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                var1.split(
-                                                                    ',')[0][2] +
-                                                                var1.split(
-                                                                    ',')[0][3] +
-                                                                '1' +
-                                                                var1.split(
-                                                                    ',')[0][5] +
-                                                                var1.split(
-                                                                    ',')[0][6] +
-                                                                var1.split(
-                                                                    ',')[0][7];
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  var1.split(',')[0]
+                                                                      [2] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [3] +
+                                                                  '1' +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [5] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [6] +
+                                                                  var1.split(
+                                                                      ',')[0][7];
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
@@ -2189,8 +2299,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                             Container(
                               width: 89.0,
-                              height: FFAppState().deviceStateDid != null &&
-                                      FFAppState().deviceStateDid != ''
+                              height: _model.relayStatus != null &&
+                                      _model.relayStatus != ''
                                   ? 130.0
                                   : 100.0,
                               decoration: BoxDecoration(
@@ -2256,8 +2366,11 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontWeight: FontWeight.normal,
                                           ),
                                     ),
-                                    if (_model.relayStatus != null &&
-                                        _model.relayStatus != '')
+                                    if ((_model.relayStatus != null &&
+                                            _model.relayStatus != '') &&
+                                        ((FFAppState().role == 'Engineer') ||
+                                            (FFAppState().role ==
+                                                'Super Admin')))
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             5.0, 0.0, 5.0, 0.0),
@@ -2304,29 +2417,41 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           _model.vsatValue =
                                                               newValue!);
                                                       if (newValue!) {
-                                                        await actions
-                                                            .publishMqtt(
-                                                          context,
-                                                          'Settings',
-                                                          '${widget.did}\$SRMK${(String var1) {
-                                                            return var1.split(
-                                                                    ',')[0][0] +
-                                                                var1.split(
-                                                                    ',')[0][1] +
-                                                                var1.split(
-                                                                    ',')[0][2] +
-                                                                var1.split(
-                                                                    ',')[0][3] +
-                                                                var1.split(
-                                                                    ',')[0][4] +
-                                                                '1' +
-                                                                var1.split(
-                                                                    ',')[0][6] +
-                                                                var1.split(
-                                                                    ',')[0][7];
-                                                          }(FFAppState().deviceStateDid)},',
-                                                          FFAppState().deviceId,
-                                                        );
+                                                        if ((FFAppState()
+                                                                    .role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SRMK${(String var1) {
+                                                              return var1.split(
+                                                                          ',')[0]
+                                                                      [0] +
+                                                                  var1.split(',')[0]
+                                                                      [1] +
+                                                                  var1.split(',')[0]
+                                                                      [2] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [3] +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [4] +
+                                                                  '1' +
+                                                                  var1.split(
+                                                                          ',')[0]
+                                                                      [6] +
+                                                                  var1.split(
+                                                                      ',')[0][7];
+                                                            }(FFAppState().deviceStateDid)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                          );
+                                                        }
                                                       } else {
                                                         await actions
                                                             .publishMqtt(
