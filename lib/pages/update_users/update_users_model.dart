@@ -61,10 +61,12 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     passwordVisibility = false;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     fullnameFocusNode?.dispose();

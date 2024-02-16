@@ -51,10 +51,12 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {
     passwordVisibility = false;
   }
 
+  @override
   void dispose() {
     unfocusNode.dispose();
     fullnameFocusNode?.dispose();

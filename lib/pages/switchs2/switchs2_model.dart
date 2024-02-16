@@ -19,8 +19,10 @@ class Switchs2Model extends FlutterFlowModel<Switchs2Widget> {
 
   /// Initialization and disposal methods.
 
+  @override
   void initState(BuildContext context) {}
 
+  @override
   void dispose() {}
 
   /// Action blocks are added here.
