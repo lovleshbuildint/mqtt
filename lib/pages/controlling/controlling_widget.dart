@@ -52,6 +52,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
               'Response',
               FFAppState().deviceId,
               widget.did,
+              '15.206.230.32',
+              'mqtt_buildint_\$\$2023',
             );
           }(),
         );

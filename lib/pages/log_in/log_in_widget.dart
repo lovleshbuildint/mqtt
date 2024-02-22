@@ -346,10 +346,16 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                         .text ==
                                                     'testPa\$\$word')) {
                                               setState(() {
+                                                FFAppState().deviceId =
+                                                    '123456';
+                                                FFAppState().userProject =
+                                                    'iEMS';
+                                                FFAppState().role = 'ATM';
                                                 FFAppState().fullName =
-                                                    'Demo Mode';
-                                                FFAppState().role = 'ATMO';
-                                                FFAppState().userProject = '';
+                                                    'Demo User';
+                                                FFAppState().userOrg = '7';
+                                                FFAppState().token =
+                                                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlbW9Nb2RlIiwicm9sZSI6IkFUTU8iLCJkZXZpY2VfaWQiOiIxMjM0NTYiLCJ1c2VyX3Byb2plY3QiOiJpRU1TIiwidXNlcl9vcmciOiI3IiwiZnVsbE5hbWUiOiJEZW1vIFVzZXIiLCJpYXQiOjE3MDgxNzY3Mzl9.mncjy5-hq-CExJ-osJvuaObh2E3jjotpKgOb1UYScyI';
                                               });
 
                                               context.goNamed('Dashboard');
@@ -654,7 +660,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 10.0, 0.0, 0.0),
                                   child: Text(
-                                    'APP VERSION 1.0',
+                                    'APP VERSION 1.1',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(

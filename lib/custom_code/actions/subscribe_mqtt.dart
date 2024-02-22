@@ -7,14 +7,16 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'dart:developer';
+
 import 'index.dart'; // Imports other custom actions
 
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
 Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
-    String? deviceId, String? did) async {
-  final MqttServerClient client = MqttServerClient('15.206.230.32', '');
+    String? deviceId, String? did, String ip, String pass) async {
+  final MqttServerClient client = MqttServerClient(ip, '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
       .withClientIdentifier('$deviceId-subscribe')
@@ -24,7 +26,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
       .withWillMessage('Connection lost')
       .withWillQos(MqttQos.atLeastOnce)
       .withWillRetain()
-      .authenticateAs('mqtt_buildint', 'mqtt_buildint_\$\$2023');
+      .authenticateAs('mqtt_buildint', pass);
 
   client.connectionMessage = connectMessage;
 
