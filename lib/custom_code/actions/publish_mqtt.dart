@@ -11,8 +11,8 @@ import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
 Future<String> publishMqtt(BuildContext context, String? pubtopic,
-    String? message, String? deviceId) async {
-  final MqttServerClient client = MqttServerClient('15.206.230.32', '');
+    String? message, String? deviceId, String ip, String pass) async {
+  final MqttServerClient client = MqttServerClient(ip, '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
       .withClientIdentifier('$deviceId-publish')
@@ -22,7 +22,7 @@ Future<String> publishMqtt(BuildContext context, String? pubtopic,
       .withWillMessage('Connection lost')
       .withWillQos(MqttQos.atLeastOnce)
       .withWillRetain()
-      .authenticateAs('mqtt_buildint', 'mqtt_buildint_\$\$2023');
+      .authenticateAs('mqtt_buildint', pass);
 
   client.connectionMessage = connectMessage;
 

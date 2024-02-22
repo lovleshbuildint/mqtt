@@ -67,6 +67,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                   'Settings',
                   '${widget.did}\$GRES,',
                   FFAppState().deviceId,
+                  '15.206.230.32',
+                  'mqtt_buildint_\$\$2023',
                 );
               }(),
             );
@@ -589,6 +591,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -656,6 +660,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -800,6 +806,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -825,6 +833,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                 '0';
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },
@@ -907,6 +917,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -974,6 +986,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -1118,6 +1132,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -1143,6 +1159,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                 '0';
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },
@@ -1226,6 +1244,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -1294,6 +1314,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -1439,6 +1461,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -1464,6 +1488,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                     ',')[0][7];
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },
@@ -1547,6 +1573,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -1615,6 +1643,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         '0000';
                                                   }(_model.relayStatus!)},',
                                                   FFAppState().deviceId,
+                                                  '15.206.230.32',
+                                                  'mqtt_buildint_\$\$2023',
                                                 );
                                                 setState(() {
                                                   _model.relayStatus =
@@ -1758,6 +1788,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -1783,6 +1815,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                     ',')[0][7];
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },
@@ -2036,6 +2070,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -2061,6 +2097,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                     ',')[0][7];
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },
@@ -2244,6 +2282,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -2269,6 +2309,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                     ',')[0][7];
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },
@@ -2452,6 +2494,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                             }(FFAppState().deviceStateDid)},',
                                                             FFAppState()
                                                                 .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
                                                           );
                                                         }
                                                       } else {
@@ -2477,6 +2521,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                                     ',')[0][7];
                                                           }(FFAppState().deviceStateDid)},',
                                                           FFAppState().deviceId,
+                                                          '15.206.230.32',
+                                                          'mqtt_buildint_\$\$2023',
                                                         );
                                                       }
                                                     },

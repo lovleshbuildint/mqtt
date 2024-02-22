@@ -164,6 +164,8 @@ class _TestWidgetState extends State<TestWidget> {
                       _model.topicController.text,
                       _model.messageController.text,
                       FFAppState().deviceId,
+                      '15.206.230.32',
+                      'mqtt_buildint_\$\$2023',
                     );
                     await showDialog(
                       context: context,
