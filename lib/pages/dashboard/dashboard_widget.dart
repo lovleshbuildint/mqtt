@@ -1,5 +1,4 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -9,6 +8,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'dashboard_model.dart';
@@ -471,7 +471,149 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            13.0, 20.0, 13.0, 0.0),
+                            13.0, 13.0, 13.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 87.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.circular(6.0),
+                                border: Border.all(
+                                  color: Color(0xFFF2F2F2),
+                                  width: 2.0,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 2.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Filter',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Colors.black,
+                                          ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 0.0, 0.0),
+                                    child: FaIcon(
+                                      FontAwesomeIcons.slidersH,
+                                      color: Color(0xFF959595),
+                                      size: 20.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                width: 42.0,
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFFF2F2F2),
+                                    width: 2.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 2.0, 0.0, 0.0),
+                                  child: Text(
+                                    'All',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.black,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFFF2F2F2),
+                                    width: 2.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 2.0, 10.0, 0.0),
+                                  child: Text(
+                                    'Online',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.black,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                height: 40.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFFF2F2F2),
+                                    width: 2.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 2.0, 10.0, 0.0),
+                                  child: Text(
+                                    'Offline',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Colors.black,
+                                        ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            13.0, 13.0, 13.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -566,27 +708,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                               ),
                             ),
-                            if (!_model.fliter)
-                              Align(
-                                alignment: AlignmentDirectional(1.0, 1.0),
-                                child: FlutterFlowIconButton(
-                                  borderColor: Color(0x004154F1),
-                                  borderRadius: 30.0,
-                                  borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: Color(0x004B39EF),
-                                  icon: Icon(
-                                    Icons.filter_alt,
-                                    color: Color(0xFF4D4D4D),
-                                    size: 30.0,
-                                  ),
-                                  onPressed: () async {
-                                    setState(() {
-                                      _model.fliter = !_model.fliter;
-                                    });
-                                  },
-                                ),
-                              ),
                           ],
                         ),
                       ),
@@ -936,31 +1057,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       ),
                     ],
                   ),
-                  if (_model.fliter)
-                    Align(
-                      alignment: AlignmentDirectional(1.0, 1.0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 0.0, 30.0, 30.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Color(0x004154F1),
-                          borderRadius: 30.0,
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor: Color(0x004B39EF),
-                          icon: Icon(
-                            Icons.filter_alt_off_sharp,
-                            color: Color(0xFF4D4D4D),
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            setState(() {
-                              _model.fliter = !_model.fliter;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
                 ],
               ),
             ),
