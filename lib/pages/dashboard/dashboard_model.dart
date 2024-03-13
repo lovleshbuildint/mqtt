@@ -18,7 +18,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
 
   String? searchValue = '';
 
-  bool fliter = false;
+  int fliter = 1;
 
   ///  State fields for stateful widgets in this page.
 

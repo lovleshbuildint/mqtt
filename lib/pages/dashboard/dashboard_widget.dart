@@ -503,60 +503,46 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 0.0, 0.0, 0.0),
-                              child: Container(
-                                width: 42.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  border: Border.all(
-                                    color: Color(0x35404042),
-                                    width: 1.0,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(() {
+                                    _model.fliter = 1;
+                                  });
+                                },
+                                child: Container(
+                                  width: 42.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: _model.fliter == 1
+                                        ? Color(0x264154F1)
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    border: Border.all(
+                                      color: Color(0x35404042),
+                                      width: 1.0,
+                                    ),
                                   ),
-                                ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 2.0, 0.0, 0.0),
-                                  child: Text(
-                                    'All',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Color(0xFF4D4D4D),
-                                        ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Container(
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  border: Border.all(
-                                    color: Color(0x35404042),
-                                    width: 1.0,
-                                  ),
-                                ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 2.0, 10.0, 0.0),
-                                  child: Text(
-                                    'Online',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Color(0xFF4D4D4D),
-                                        ),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 2.0, 0.0, 0.0),
+                                    child: Text(
+                                      'All',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: _model.fliter == 1
+                                                ? FlutterFlowTheme.of(context)
+                                                    .secondaryBackground
+                                                : Color(0xFF4D4D4D),
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -564,29 +550,91 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   15.0, 0.0, 0.0, 0.0),
-                              child: Container(
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: BorderRadius.circular(6.0),
-                                  border: Border.all(
-                                    color: Color(0x35404042),
-                                    width: 1.0,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(() {
+                                    _model.fliter = 2;
+                                  });
+                                },
+                                child: Container(
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: _model.fliter == 2
+                                        ? Color(0x264154F1)
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    border: Border.all(
+                                      color: Color(0x35404042),
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 2.0, 10.0, 0.0),
+                                    child: Text(
+                                      'Online',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: _model.fliter == 2
+                                                ? FlutterFlowTheme.of(context)
+                                                    .secondaryBackground
+                                                : Color(0xFF4D4D4D),
+                                          ),
+                                    ),
                                   ),
                                 ),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      10.0, 2.0, 10.0, 0.0),
-                                  child: Text(
-                                    'Offline',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Color(0xFF4D4D4D),
-                                        ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 0.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(() {
+                                    _model.fliter = 3;
+                                  });
+                                },
+                                child: Container(
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: _model.fliter == 3
+                                        ? Color(0x264154F1)
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                    borderRadius: BorderRadius.circular(6.0),
+                                    border: Border.all(
+                                      color: Color(0x35404042),
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 2.0, 10.0, 0.0),
+                                    child: Text(
+                                      'Offline',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: _model.fliter == 3
+                                                ? FlutterFlowTheme.of(context)
+                                                    .secondaryBackground
+                                                : Color(0xFF4D4D4D),
+                                          ),
+                                    ),
                                   ),
                                 ),
                               ),
