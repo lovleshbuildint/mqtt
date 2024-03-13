@@ -507,7 +507,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     child: FaIcon(
                                       FontAwesomeIcons.slidersH,
                                       color: Color(0xFF4D4D4D),
-                                      size: 20.0,
+                                      size: 18.0,
                                     ),
                                   ),
                                 ],
