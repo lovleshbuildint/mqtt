@@ -183,10 +183,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                               ],
                             ),
-                            Text(
-                              _model.fliter.toString(),
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                            ),
                           ],
                         ),
                       ),
@@ -484,7 +480,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     .secondaryBackground,
                                 borderRadius: BorderRadius.circular(6.0),
                                 border: Border.all(
-                                  color: Color(0xFFF2F2F2),
+                                  color: Color(0x35404042),
                                   width: 2.0,
                                 ),
                               ),
@@ -501,7 +497,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
-                                            color: Colors.black,
+                                            color: Color(0xFF4D4D4D),
                                           ),
                                     ),
                                   ),
@@ -510,7 +506,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         8.0, 0.0, 0.0, 0.0),
                                     child: FaIcon(
                                       FontAwesomeIcons.slidersH,
-                                      color: Color(0xFF959595),
+                                      color: Color(0xFF4D4D4D),
                                       size: 20.0,
                                     ),
                                   ),
@@ -528,7 +524,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
-                                    color: Color(0xFFF2F2F2),
+                                    color: Color(0x35404042),
                                     width: 2.0,
                                   ),
                                 ),
@@ -542,7 +538,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
-                                          color: Colors.black,
+                                          color: Color(0xFF4D4D4D),
                                         ),
                                   ),
                                 ),
@@ -558,7 +554,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
-                                    color: Color(0xFFF2F2F2),
+                                    color: Color(0x35404042),
                                     width: 2.0,
                                   ),
                                 ),
@@ -572,7 +568,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
-                                          color: Colors.black,
+                                          color: Color(0xFF4D4D4D),
                                         ),
                                   ),
                                 ),
@@ -588,7 +584,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
-                                    color: Color(0xFFF2F2F2),
+                                    color: Color(0x35404042),
                                     width: 2.0,
                                   ),
                                 ),
@@ -602,7 +598,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
-                                          color: Colors.black,
+                                          color: Color(0xFF4D4D4D),
                                         ),
                                   ),
                                 ),
