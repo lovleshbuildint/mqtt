@@ -481,7 +481,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 borderRadius: BorderRadius.circular(6.0),
                                 border: Border.all(
                                   color: Color(0x35404042),
-                                  width: 2.0,
+                                  width: 1.0,
                                 ),
                               ),
                               child: Row(
@@ -525,7 +525,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
                                     color: Color(0x35404042),
-                                    width: 2.0,
+                                    width: 1.0,
                                   ),
                                 ),
                                 alignment: AlignmentDirectional(0.0, 0.0),
@@ -555,7 +555,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
                                     color: Color(0x35404042),
-                                    width: 2.0,
+                                    width: 1.0,
                                   ),
                                 ),
                                 alignment: AlignmentDirectional(0.0, 0.0),
@@ -585,7 +585,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
                                     color: Color(0x35404042),
-                                    width: 2.0,
+                                    width: 1.0,
                                   ),
                                 ),
                                 alignment: AlignmentDirectional(0.0, 0.0),
