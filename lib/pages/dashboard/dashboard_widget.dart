@@ -518,7 +518,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: _model.fliter == 1
-                                        ? Color(0x264154F1)
+                                        ? FlutterFlowTheme.of(context).primary
                                         : FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                     borderRadius: BorderRadius.circular(6.0),
@@ -564,7 +564,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   height: 40.0,
                                   decoration: BoxDecoration(
                                     color: _model.fliter == 2
-                                        ? Color(0x264154F1)
+                                        ? FlutterFlowTheme.of(context).primary
                                         : FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                     borderRadius: BorderRadius.circular(6.0),
