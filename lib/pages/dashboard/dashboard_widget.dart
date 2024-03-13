@@ -566,6 +566,27 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                               ),
                             ),
+                            if (!_model.fliter)
+                              Align(
+                                alignment: AlignmentDirectional(1.0, 1.0),
+                                child: FlutterFlowIconButton(
+                                  borderColor: Color(0x004154F1),
+                                  borderRadius: 30.0,
+                                  borderWidth: 1.0,
+                                  buttonSize: 40.0,
+                                  fillColor: Color(0x004B39EF),
+                                  icon: Icon(
+                                    Icons.filter_alt,
+                                    color: Color(0xFF4D4D4D),
+                                    size: 30.0,
+                                  ),
+                                  onPressed: () async {
+                                    setState(() {
+                                      _model.fliter = !_model.fliter;
+                                    });
+                                  },
+                                ),
+                              ),
                           ],
                         ),
                       ),
@@ -915,30 +936,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       ),
                     ],
                   ),
-                  if (!_model.fliter)
-                    Align(
-                      alignment: AlignmentDirectional(1.0, 1.0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 0.0, 30.0, 30.0),
-                        child: FlutterFlowIconButton(
-                          borderColor: Color(0x004154F1),
-                          borderWidth: 1.0,
-                          buttonSize: 40.0,
-                          fillColor: Color(0x004B39EF),
-                          icon: Icon(
-                            Icons.filter_alt,
-                            color: Color(0xFF4D4D4D),
-                            size: 30.0,
-                          ),
-                          onPressed: () async {
-                            setState(() {
-                              _model.fliter = !_model.fliter;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
                   if (_model.fliter)
                     Align(
                       alignment: AlignmentDirectional(1.0, 1.0),
