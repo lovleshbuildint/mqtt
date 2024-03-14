@@ -350,6 +350,24 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             ),
                           ),
                         ),
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 1.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 10.0, 0.0, 0.0),
+                            child: Text(
+                              'APP VERSION 1.0.2',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Readex Pro',
+                                    color: Color(0xFFB3B3B3),
+                                    fontSize: 10.0,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
