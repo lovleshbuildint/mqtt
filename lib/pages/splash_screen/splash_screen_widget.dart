@@ -59,17 +59,21 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
+        body: Container(
+          width: MediaQuery.sizeOf(context).width * 1.0,
+          height: MediaQuery.sizeOf(context).height * 1.0,
+          decoration: BoxDecoration(
+            color: Color(0xFF0C172A),
+          ),
           child: FlutterFlowVideoPlayer(
             path: 'assets/videos/VID-20240202-WA0031.mp4',
             videoType: VideoType.asset,
             width: double.infinity,
-            height: double.infinity,
+            height: MediaQuery.sizeOf(context).height * 1.0,
             autoPlay: true,
             looping: false,
             showControls: false,
-            allowFullScreen: false,
+            allowFullScreen: true,
             allowPlaybackSpeedMenu: false,
           ),
         ),
