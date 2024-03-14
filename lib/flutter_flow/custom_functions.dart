@@ -43,9 +43,30 @@ String? editUserOrg(
 dynamic filter(
   dynamic mainData,
   String? searchValue,
+  int? status,
 ) {
+  mainData['locationDetails'].sort((a, b) =>
+      (a['BranchCode'] as String).compareTo(b['BranchCode'] as String));
+
   if (searchValue == null || searchValue.isEmpty) {
-    return mainData['locationDetails'];
+    List<dynamic> filteredData = [];
+    if (status == 2) {
+      for (dynamic data in mainData['locationDetails']) {
+        if (data['OnlineStatus'] == 'Online') {
+          filteredData.add(data);
+        }
+      }
+      return filteredData;
+    } else if (status == 3) {
+      for (dynamic data in mainData['locationDetails']) {
+        if (data['OnlineStatus'] == 'Offline') {
+          filteredData.add(data);
+        }
+      }
+      return filteredData;
+    } else {
+      return mainData['locationDetails'];
+    }
   }
 
   List<dynamic> filteredData = [];

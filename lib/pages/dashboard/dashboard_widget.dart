@@ -751,7 +751,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               final locationDetails = functions
                                       .filter(
                                           dashboardDashboardResponse.jsonBody,
-                                          _model.textController.text)
+                                          _model.textController.text,
+                                          _model.fliter)
                                       ?.toList() ??
                                   [];
                               return RefreshIndicator(
