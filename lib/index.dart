@@ -11,3 +11,4 @@ export '/pages/user_management/user_management_widget.dart'
     show UserManagementWidget;
 export '/pages/update_users/update_users_widget.dart' show UpdateUsersWidget;
 export '/pages/test/test_widget.dart' show TestWidget;
+export '/pages/splash_screen/splash_screen_widget.dart' show SplashScreenWidget;

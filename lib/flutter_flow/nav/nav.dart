@@ -46,7 +46,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : LogInWidget(),
+          : SplashScreenWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -61,7 +61,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : LogInWidget(),
+              : SplashScreenWidget(),
         ),
         FFRoute(
           name: 'LogIn',
@@ -128,8 +128,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'test',
           path: '/test',
           builder: (context, params) => TestWidget(),
+        ),
+        FFRoute(
+          name: 'splashScreen',
+          path: '/splashScreen',
+          builder: (context, params) => SplashScreenWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
+      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
