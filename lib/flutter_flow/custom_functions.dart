@@ -64,6 +64,13 @@ dynamic filter(
         }
       }
       return filteredData;
+    } else if (status == 4) {
+      for (dynamic data in mainData['locationDetails']) {
+        if (data['OnlineStatus'] == 'No Data') {
+          filteredData.add(data);
+        }
+      }
+      return filteredData;
     } else {
       return mainData['locationDetails'];
     }
