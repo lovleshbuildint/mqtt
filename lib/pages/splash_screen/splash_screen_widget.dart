@@ -29,17 +29,34 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 3000));
+      if ((FFAppState().token != null && FFAppState().token != '') &&
+          (FFAppState().deviceId != null && FFAppState().deviceId != '')) {
+        context.goNamed(
+          'Dashboard',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+            ),
+          },
+        );
 
-      context.goNamed(
-        'LogIn',
-        extra: <String, dynamic>{
-          kTransitionInfoKey: TransitionInfo(
-            hasTransition: true,
-            transitionType: PageTransitionType.fade,
-            duration: Duration(milliseconds: 0),
-          ),
-        },
-      );
+        return;
+      } else {
+        context.goNamed(
+          'LogIn',
+          extra: <String, dynamic>{
+            kTransitionInfoKey: TransitionInfo(
+              hasTransition: true,
+              transitionType: PageTransitionType.fade,
+              duration: Duration(milliseconds: 0),
+            ),
+          },
+        );
+
+        return;
+      }
     });
   }
 
@@ -52,6 +69,8 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
