@@ -38,21 +38,36 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
           return;
         } else {
-          await showDialog(
-            context: context,
-            builder: (alertDialogContext) {
-              return AlertDialog(
-                title: Text('Alert'),
-                content: Text((_model.versionCheck?.bodyText ?? '')),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              );
-            },
-          );
+          var confirmDialogResponse = await showDialog<bool>(
+                context: context,
+                builder: (alertDialogContext) {
+                  return AlertDialog(
+                    title: Text('Alert'),
+                    content: Text(
+                        'New version of SyncATM is available. Please update to continue.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.pop(alertDialogContext, false),
+                        child: Text('Not Now'),
+                      ),
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.pop(alertDialogContext, true),
+                        child: Text('Update'),
+                      ),
+                    ],
+                  );
+                },
+              ) ??
+              false;
+          if (confirmDialogResponse) {
+            await launchURL(
+                'https://play.google.com/store/apps/details?id=com.buildint.syncatm');
+          } else {
+            Navigator.pop(context);
+          }
+
           return;
         }
       } else {
