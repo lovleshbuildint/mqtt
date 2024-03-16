@@ -358,7 +358,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 10.0, 0.0, 0.0),
                             child: Text(
-                              'APP VERSION 1.0.2',
+                              'APP VERSION ${FFAppConstants.appVersion}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
