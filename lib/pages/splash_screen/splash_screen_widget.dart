@@ -32,10 +32,8 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
       await Future.delayed(const Duration(milliseconds: 3000));
       _model.versionCheck = await MasterGroup.appVersionCheckCall.call();
       if ((_model.versionCheck?.succeeded ?? true)) {
-        if ((_model.versionCheck?.jsonBody ?? '') ==
-            <String, String?>{
-              'version': FFAppConstants.appVersion,
-            }) {
+        if ((_model.versionCheck?.bodyText ?? '') ==
+            FFAppConstants.appVersion) {
           context.goNamed('Dashboard');
 
           return;
