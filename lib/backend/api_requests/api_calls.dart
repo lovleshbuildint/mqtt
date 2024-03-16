@@ -28,6 +28,7 @@ class MasterGroup {
       UpdateUserOrDeviceStateCall();
   static DeleteUserOrDeviceCall deleteUserOrDeviceCall =
       DeleteUserOrDeviceCall();
+  static AppVersionCheckCall appVersionCheckCall = AppVersionCheckCall();
 }
 
 class LoginCall {
@@ -359,6 +360,28 @@ class DeleteUserOrDeviceCall {
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class AppVersionCheckCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'App Version Check',
+      apiUrl: '${MasterGroup.baseUrl}/appVersionInfo',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

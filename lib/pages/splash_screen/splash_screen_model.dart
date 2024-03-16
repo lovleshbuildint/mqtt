@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
@@ -12,6 +13,8 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - API (App Version Check)] action in splashScreen widget.
+  ApiCallResponse? versionCheck;
 
   /// Initialization and disposal methods.
 

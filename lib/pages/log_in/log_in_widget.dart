@@ -79,8 +79,23 @@ class _LogInWidgetState extends State<LogInWidget> {
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.0, -1.0),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(0.0),
+                          child: Image.asset(
+                            'assets/images/Group_1000004811.png',
+                            width: 225.0,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                    ),
                     Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
                       child: Container(
@@ -668,20 +683,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                       ),
                     ),
                   ],
-                ),
-              ),
-              Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 0.0, 0.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(0.0),
-                    child: Image.asset(
-                      'assets/images/Group_1000004811.png',
-                      width: 225.0,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
                 ),
               ),
             ],
