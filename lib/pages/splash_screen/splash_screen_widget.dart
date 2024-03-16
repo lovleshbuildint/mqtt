@@ -32,15 +32,38 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
       await Future.delayed(const Duration(milliseconds: 3000));
       _model.versionCheck = await MasterGroup.appVersionCheckCall.call();
       if ((_model.versionCheck?.succeeded ?? true)) {
-        context.pushNamed('LogIn');
+        if ((_model.versionCheck?.jsonBody ?? '') ==
+            <String, String?>{
+              'version': FFAppConstants.appVersion,
+            }) {
+          context.goNamed('Dashboard');
+
+          return;
+        } else {
+          await showDialog(
+            context: context,
+            builder: (alertDialogContext) {
+              return AlertDialog(
+                title: Text('Alert'),
+                content: Text('Error'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              );
+            },
+          );
+          return;
+        }
       } else {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
             return AlertDialog(
               title: Text('Alert'),
-              content:
-                  Text((_model.versionCheck?.statusCode ?? 200).toString()),
+              content: Text('Sorry, somthing went wrong.'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
@@ -50,6 +73,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
             );
           },
         );
+        return;
       }
     });
 
