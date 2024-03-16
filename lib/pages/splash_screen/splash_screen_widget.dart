@@ -43,7 +43,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
             builder: (alertDialogContext) {
               return AlertDialog(
                 title: Text('Alert'),
-                content: Text('Error'),
+                content: Text((_model.versionCheck?.bodyText ?? '')),
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.pop(alertDialogContext),
