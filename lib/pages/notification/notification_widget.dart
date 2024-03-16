@@ -63,6 +63,8 @@ class _NotificationWidgetState extends State<NotificationWidget> {
 
       return;
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

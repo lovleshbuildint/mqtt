@@ -152,6 +152,8 @@ class _ControllingWidgetState extends State<ControllingWidget> {
         return;
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

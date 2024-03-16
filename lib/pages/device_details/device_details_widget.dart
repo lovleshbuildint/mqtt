@@ -77,6 +77,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
 
       return;
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

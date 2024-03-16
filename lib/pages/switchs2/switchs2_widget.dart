@@ -36,6 +36,8 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Switchs2Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

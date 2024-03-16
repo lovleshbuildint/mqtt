@@ -66,6 +66,8 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
 
       return;
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

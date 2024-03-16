@@ -98,6 +98,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
 
     _model.passwordController ??= TextEditingController(text: '*****');
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

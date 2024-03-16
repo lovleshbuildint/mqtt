@@ -31,7 +31,9 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 3000));
       _model.versionCheck = await MasterGroup.appVersionCheckCall.call();
-      if (!(_model.versionCheck?.succeeded ?? true)) {
+      if ((_model.versionCheck?.succeeded ?? true)) {
+        context.pushNamed('LogIn');
+      } else {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
@@ -50,6 +52,8 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
         );
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

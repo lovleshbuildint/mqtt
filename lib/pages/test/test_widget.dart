@@ -30,6 +30,8 @@ class _TestWidgetState extends State<TestWidget> {
 
     _model.messageController ??= TextEditingController();
     _model.messageFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
