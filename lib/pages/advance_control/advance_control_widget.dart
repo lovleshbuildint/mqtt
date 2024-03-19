@@ -1860,7 +1860,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 50.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 50.0, 30.0),
                 child: FFButtonWidget(
                   onPressed: () {
                     print('Button pressed ...');
