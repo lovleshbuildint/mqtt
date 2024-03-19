@@ -502,221 +502,227 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                               ],
                             ),
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        setState(() {
-                                          _model.fliter = 1;
-                                        });
-                                      },
-                                      child: Container(
-                                        width: 42.0,
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: _model.fliter == 1
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
-                                          border: Border.all(
-                                            color: Color(0x35404042),
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 2.0, 0.0, 0.0),
-                                          child: AutoSizeText(
-                                            'All',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: _model.fliter == 1
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground
-                                                      : Color(0xFF4D4D4D),
-                                                ),
-                                            minFontSize: 9.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        setState(() {
-                                          _model.fliter = 2;
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: _model.fliter == 2
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
-                                          border: Border.all(
-                                            color: Color(0x35404042),
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4.0, 2.0, 4.0, 0.0),
-                                          child: AutoSizeText(
-                                            'Online',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: _model.fliter == 2
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground
-                                                      : Color(0xFF4D4D4D),
-                                                ),
-                                            minFontSize: 9.0,
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    5.0, 0.0, 0.0, 0.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            setState(() {
+                                              _model.fliter = 1;
+                                            });
+                                          },
+                                          child: Container(
+                                            width: 42.0,
+                                            height: 30.0,
+                                            decoration: BoxDecoration(
+                                              color: _model.fliter == 1
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 2.0, 0.0, 0.0),
+                                              child: AutoSizeText(
+                                                'All',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: _model.fliter == 1
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground
+                                                          : Color(0xFF4D4D4D),
+                                                    ),
+                                                minFontSize: 9.0,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        setState(() {
-                                          _model.fliter = 3;
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: _model.fliter == 3
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
-                                          border: Border.all(
-                                            color: Color(0x35404042),
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4.0, 2.0, 4.0, 0.0),
-                                          child: AutoSizeText(
-                                            'Offline',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: _model.fliter == 3
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground
-                                                      : Color(0xFF4D4D4D),
-                                                ),
-                                            minFontSize: 9.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 0.0, 0.0),
-                                    child: InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        setState(() {
-                                          _model.fliter = 4;
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: _model.fliter == 4
-                                              ? FlutterFlowTheme.of(context)
-                                                  .primary
-                                              : FlutterFlowTheme.of(context)
-                                                  .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
-                                          border: Border.all(
-                                            color: Color(0x35404042),
-                                            width: 1.0,
-                                          ),
-                                        ),
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  4.0, 2.0, 4.0, 0.0),
-                                          child: AutoSizeText(
-                                            'No Data',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: _model.fliter == 4
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground
-                                                      : Color(0xFF4D4D4D),
-                                                ),
-                                            minFontSize: 9.0,
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            setState(() {
+                                              _model.fliter = 2;
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 30.0,
+                                            decoration: BoxDecoration(
+                                              color: _model.fliter == 2
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(4.0, 2.0, 4.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Online',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: _model.fliter == 2
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground
+                                                          : Color(0xFF4D4D4D),
+                                                    ),
+                                                minFontSize: 9.0,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            setState(() {
+                                              _model.fliter = 3;
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 30.0,
+                                            decoration: BoxDecoration(
+                                              color: _model.fliter == 3
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(4.0, 2.0, 4.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Offline',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: _model.fliter == 3
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground
+                                                          : Color(0xFF4D4D4D),
+                                                    ),
+                                                minFontSize: 9.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            setState(() {
+                                              _model.fliter = 4;
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 30.0,
+                                            decoration: BoxDecoration(
+                                              color: _model.fliter == 4
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .primary
+                                                  : FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(4.0, 2.0, 4.0, 0.0),
+                                              child: AutoSizeText(
+                                                'No Data',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: _model.fliter == 4
+                                                          ? FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondaryBackground
+                                                          : Color(0xFF4D4D4D),
+                                                    ),
+                                                minFontSize: 9.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ],

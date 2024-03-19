@@ -70,7 +70,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/controlling',
           builder: (context, params) => ControllingWidget(
             did: params.getParam('did', ParamType.String),
-            deviceStatus: params.getParam('deviceStatus', ParamType.String),
+            onlineOfflineStatus:
+                params.getParam('onlineOfflineStatus', ParamType.String),
           ),
         ),
         FFRoute(
@@ -105,14 +106,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'test',
-          path: '/test',
-          builder: (context, params) => TestWidget(),
-        ),
-        FFRoute(
           name: 'splashScreen',
           path: '/splashScreen',
           builder: (context, params) => SplashScreenWidget(),
+        ),
+        FFRoute(
+          name: 'advanceControl',
+          path: '/advanceControl',
+          builder: (context, params) => AdvanceControlWidget(
+            onlineOfflineStatus:
+                params.getParam('onlineOfflineStatus', ParamType.String),
+            deviceStatus: params.getParam('deviceStatus', ParamType.JSON),
+            did: params.getParam('did', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

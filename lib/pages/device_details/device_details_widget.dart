@@ -379,7 +379,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                             ).toString(),
                                             ParamType.String,
                                           ),
-                                          'deviceStatus': serializeParam(
+                                          'onlineOfflineStatus': serializeParam(
                                             getJsonField(
                                               dataItem,
                                               r'''$..DeviceStatus''',
@@ -400,6 +400,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                       setState(() {
                                         FFAppState().deleteDeviceStateDid();
                                         FFAppState().deviceStateDid = '';
+
+                                        FFAppState().deleteMqttTime();
+                                        FFAppState().mqttTime = '';
                                       });
                                     },
                                     child: Container(

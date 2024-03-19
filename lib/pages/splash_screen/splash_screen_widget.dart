@@ -34,9 +34,34 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
       if ((_model.versionCheck?.succeeded ?? true)) {
         if ((_model.versionCheck?.bodyText ?? '') ==
             FFAppConstants.appVersion) {
-          context.goNamed('Dashboard');
+          if ((FFAppState().token != null && FFAppState().token != '') &&
+              (FFAppState().deviceId != null && FFAppState().deviceId != '')) {
+            context.goNamed(
+              'Dashboard',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
 
-          return;
+            return;
+          } else {
+            context.goNamed(
+              'LogIn',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.fade,
+                  duration: Duration(milliseconds: 0),
+                ),
+              },
+            );
+
+            return;
+          }
         } else {
           var confirmDialogResponse = await showDialog<bool>(
                 context: context,
@@ -102,6 +127,8 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () => _model.unfocusNode.canRequestFocus
           ? FocusScope.of(context).requestFocus(_model.unfocusNode)
