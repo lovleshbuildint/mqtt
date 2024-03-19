@@ -4,9 +4,9 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'advance_control_model.dart';
@@ -37,6 +37,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AdvanceControlModel());
+
+    _model.textController ??= TextEditingController(text: '0120');
+    _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -219,7 +222,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
-                                    color: Color(0x35404042),
+                                    color: Color(0xFF404042),
                                     width: 1.0,
                                   ),
                                 ),
@@ -302,7 +305,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                       .secondaryBackground,
                                   borderRadius: BorderRadius.circular(6.0),
                                   border: Border.all(
-                                    color: Color(0x35404042),
+                                    color: Color(0xFF404042),
                                     width: 1.0,
                                   ),
                                 ),
@@ -311,7 +314,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       10.0, 2.0, 10.0, 0.0),
                                   child: AutoSizeText(
-                                    'Day Time',
+                                    'Set Day Time',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -332,79 +335,67 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      await showModalBottomSheet<bool>(
-                                          context: context,
-                                          builder: (context) {
-                                            final _datePickedCupertinoTheme =
-                                                CupertinoTheme.of(context);
-                                            return ScrollConfiguration(
-                                              behavior:
-                                                  const MaterialScrollBehavior()
-                                                      .copyWith(
-                                                dragDevices: {
-                                                  PointerDeviceKind.mouse,
-                                                  PointerDeviceKind.touch,
-                                                  PointerDeviceKind.stylus,
-                                                  PointerDeviceKind.unknown
-                                                },
-                                              ),
-                                              child: Container(
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height /
-                                                    3,
-                                                width: MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                child: CupertinoTheme(
-                                                  data:
-                                                      _datePickedCupertinoTheme
-                                                          .copyWith(
-                                                    textTheme:
-                                                        _datePickedCupertinoTheme
-                                                            .textTheme
-                                                            .copyWith(
-                                                      dateTimePickerTextStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Poppins',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primaryText,
-                                                              ),
+                                      final _datePicked1Time =
+                                          await showTimePicker(
+                                        context: context,
+                                        initialTime: TimeOfDay.fromDateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                1710822600000000)),
+                                        builder: (context, child) {
+                                          return wrapInMaterialTimePickerTheme(
+                                            context,
+                                            child!,
+                                            headerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            headerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            headerTextStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 32.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
-                                                  ),
-                                                  child: CupertinoDatePicker(
-                                                    mode:
-                                                        CupertinoDatePickerMode
-                                                            .time,
-                                                    minimumDate: DateTime(1900),
-                                                    initialDateTime: DateTime
-                                                        .fromMicrosecondsSinceEpoch(
-                                                            1710822600000000),
-                                                    maximumDate: DateTime(2050),
-                                                    backgroundColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryBackground,
-                                                    use24hFormat: false,
-                                                    onDateTimeChanged:
-                                                        (newDateTime) =>
-                                                            safeSetState(() {
-                                                      _model.datePicked =
-                                                          newDateTime;
-                                                    }),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          });
+                                            pickerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            pickerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            selectedDateTimeBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            selectedDateTimeForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            actionButtonForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 24.0,
+                                          );
+                                        },
+                                      );
+                                      if (_datePicked1Time != null) {
+                                        safeSetState(() {
+                                          _model.datePicked1 = DateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710822600000000)
+                                                .year,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710822600000000)
+                                                .month,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710822600000000)
+                                                .day,
+                                            _datePicked1Time.hour,
+                                            _datePicked1Time.minute,
+                                          );
+                                        });
+                                      }
                                     },
                                     child: Container(
                                       height: 35.0,
@@ -425,8 +416,8 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         child: AutoSizeText(
                                           valueOrDefault<String>(
                                             dateTimeFormat(
-                                                'Hm', _model.datePicked),
-                                            'Time',
+                                                'Hm', _model.datePicked1),
+                                            '10:00',
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -438,6 +429,545 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         ),
                                       ),
                                     ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 15.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 35.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFF404042),
+                                    width: 1.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 2.0, 10.0, 0.0),
+                                  child: AutoSizeText(
+                                    'Set Night Time',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF4D4D4D),
+                                        ),
+                                    minFontSize: 9.0,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      final _datePicked2Time =
+                                          await showTimePicker(
+                                        context: context,
+                                        initialTime: TimeOfDay.fromDateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                1710851400000000)),
+                                        builder: (context, child) {
+                                          return wrapInMaterialTimePickerTheme(
+                                            context,
+                                            child!,
+                                            headerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            headerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            headerTextStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 32.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                            pickerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            pickerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            selectedDateTimeBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            selectedDateTimeForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            actionButtonForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 24.0,
+                                          );
+                                        },
+                                      );
+                                      if (_datePicked2Time != null) {
+                                        safeSetState(() {
+                                          _model.datePicked2 = DateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710851400000000)
+                                                .year,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710851400000000)
+                                                .month,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710851400000000)
+                                                .day,
+                                            _datePicked2Time.hour,
+                                            _datePicked2Time.minute,
+                                          );
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0x35404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          valueOrDefault<String>(
+                                            dateTimeFormat(
+                                                'Hm', _model.datePicked2),
+                                            '18:00',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 15.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 35.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFF404042),
+                                    width: 1.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 2.0, 10.0, 0.0),
+                                  child: AutoSizeText(
+                                    'Signage On Time',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF4D4D4D),
+                                        ),
+                                    minFontSize: 9.0,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      final _datePicked3Time =
+                                          await showTimePicker(
+                                        context: context,
+                                        initialTime: TimeOfDay.fromDateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                1710851400000000)),
+                                        builder: (context, child) {
+                                          return wrapInMaterialTimePickerTheme(
+                                            context,
+                                            child!,
+                                            headerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            headerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            headerTextStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 32.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                            pickerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            pickerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            selectedDateTimeBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            selectedDateTimeForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            actionButtonForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 24.0,
+                                          );
+                                        },
+                                      );
+                                      if (_datePicked3Time != null) {
+                                        safeSetState(() {
+                                          _model.datePicked3 = DateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710851400000000)
+                                                .year,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710851400000000)
+                                                .month,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710851400000000)
+                                                .day,
+                                            _datePicked3Time.hour,
+                                            _datePicked3Time.minute,
+                                          );
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0x35404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          valueOrDefault<String>(
+                                            dateTimeFormat(
+                                                'Hm', _model.datePicked3),
+                                            '18:00',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 15.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 35.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFF404042),
+                                    width: 1.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 2.0, 10.0, 0.0),
+                                  child: AutoSizeText(
+                                    'Signage Off Time',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF4D4D4D),
+                                        ),
+                                    minFontSize: 9.0,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      final _datePicked4Time =
+                                          await showTimePicker(
+                                        context: context,
+                                        initialTime: TimeOfDay.fromDateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                1710808200000000)),
+                                        builder: (context, child) {
+                                          return wrapInMaterialTimePickerTheme(
+                                            context,
+                                            child!,
+                                            headerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            headerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            headerTextStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .headlineLarge
+                                                    .override(
+                                                      fontFamily: 'Poppins',
+                                                      fontSize: 32.0,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                            pickerBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            pickerForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            selectedDateTimeBackgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            selectedDateTimeForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                            actionButtonForegroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                            iconSize: 24.0,
+                                          );
+                                        },
+                                      );
+                                      if (_datePicked4Time != null) {
+                                        safeSetState(() {
+                                          _model.datePicked4 = DateTime(
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710808200000000)
+                                                .year,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710808200000000)
+                                                .month,
+                                            DateTime.fromMicrosecondsSinceEpoch(
+                                                    1710808200000000)
+                                                .day,
+                                            _datePicked4Time.hour,
+                                            _datePicked4Time.minute,
+                                          );
+                                        });
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0x35404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          valueOrDefault<String>(
+                                            dateTimeFormat(
+                                                'Hm', _model.datePicked4),
+                                            '18:00',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              15.0, 0.0, 15.0, 15.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 35.0,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  border: Border.all(
+                                    color: Color(0xFF404042),
+                                    width: 1.0,
+                                  ),
+                                ),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      10.0, 2.0, 10.0, 0.0),
+                                  child: AutoSizeText(
+                                    'Data interval',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Poppins',
+                                          color: Color(0xFF4D4D4D),
+                                        ),
+                                    minFontSize: 9.0,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      15.0, 0.0, 0.0, 0.0),
+                                  child: TextFormField(
+                                    controller: _model.textController,
+                                    focusNode: _model.textFieldFocusNode,
+                                    textInputAction: TextInputAction.done,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Color(0x35404042),
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                      ),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: Color(0xFF4D4D4D),
+                                        ),
+                                    maxLength: 4,
+                                    maxLengthEnforcement:
+                                        MaxLengthEnforcement.enforced,
+                                    buildCounter: (context,
+                                            {required currentLength,
+                                            required isFocused,
+                                            maxLength}) =>
+                                        null,
+                                    keyboardType: TextInputType.number,
+                                    validator: _model.textControllerValidator
+                                        .asValidator(context),
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.allow(
+                                          RegExp('[0-9]'))
+                                    ],
                                   ),
                                 ),
                               ),
