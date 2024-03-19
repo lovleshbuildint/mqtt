@@ -424,7 +424,8 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
                                           valueOrDefault<String>(
-                                            _model.datePicked?.toString(),
+                                            dateTimeFormat(
+                                                'Hm', _model.datePicked),
                                             'Time',
                                           ),
                                           style: FlutterFlowTheme.of(context)
