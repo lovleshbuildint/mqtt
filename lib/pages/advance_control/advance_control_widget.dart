@@ -4,7 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -331,60 +332,79 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      final _datePickedTime =
-                                          await showTimePicker(
-                                        context: context,
-                                        initialTime: TimeOfDay.fromDateTime(
-                                            getCurrentTimestamp),
-                                        builder: (context, child) {
-                                          return wrapInMaterialTimePickerTheme(
-                                            context,
-                                            child!,
-                                            headerBackgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            headerForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .info,
-                                            headerTextStyle:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineLarge
-                                                    .override(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 32.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                                      await showModalBottomSheet<bool>(
+                                          context: context,
+                                          builder: (context) {
+                                            final _datePickedCupertinoTheme =
+                                                CupertinoTheme.of(context);
+                                            return ScrollConfiguration(
+                                              behavior:
+                                                  const MaterialScrollBehavior()
+                                                      .copyWith(
+                                                dragDevices: {
+                                                  PointerDeviceKind.mouse,
+                                                  PointerDeviceKind.touch,
+                                                  PointerDeviceKind.stylus,
+                                                  PointerDeviceKind.unknown
+                                                },
+                                              ),
+                                              child: Container(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    3,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                child: CupertinoTheme(
+                                                  data:
+                                                      _datePickedCupertinoTheme
+                                                          .copyWith(
+                                                    textTheme:
+                                                        _datePickedCupertinoTheme
+                                                            .textTheme
+                                                            .copyWith(
+                                                      dateTimePickerTextStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .headlineMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Poppins',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                              ),
                                                     ),
-                                            pickerBackgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .secondaryBackground,
-                                            pickerForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            selectedDateTimeBackgroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            selectedDateTimeForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .info,
-                                            actionButtonForegroundColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primaryText,
-                                            iconSize: 24.0,
-                                          );
-                                        },
-                                      );
-                                      if (_datePickedTime != null) {
-                                        safeSetState(() {
-                                          _model.datePicked = DateTime(
-                                            getCurrentTimestamp.year,
-                                            getCurrentTimestamp.month,
-                                            getCurrentTimestamp.day,
-                                            _datePickedTime.hour,
-                                            _datePickedTime.minute,
-                                          );
-                                        });
-                                      }
+                                                  ),
+                                                  child: CupertinoDatePicker(
+                                                    mode:
+                                                        CupertinoDatePickerMode
+                                                            .time,
+                                                    minimumDate: DateTime(1900),
+                                                    initialDateTime: DateTime
+                                                        .fromMicrosecondsSinceEpoch(
+                                                            1710822600000000),
+                                                    maximumDate: DateTime(2050),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryBackground,
+                                                    use24hFormat: false,
+                                                    onDateTimeChanged:
+                                                        (newDateTime) =>
+                                                            safeSetState(() {
+                                                      _model.datePicked =
+                                                          newDateTime;
+                                                    }),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          });
                                     },
                                     child: Container(
                                       height: 35.0,
