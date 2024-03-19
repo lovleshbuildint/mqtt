@@ -403,7 +403,10 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          'Set Time',
+                                          valueOrDefault<String>(
+                                            _model.datePicked?.toString(),
+                                            'Time',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
