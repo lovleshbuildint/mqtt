@@ -272,7 +272,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .secondaryBackground,
                                     elevation: 2.0,
                                     borderColor: Color(0x35404042),
-                                    borderWidth: 2.0,
+                                    borderWidth: 1.0,
                                     borderRadius: 6.0,
                                     margin: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 0.0, 16.0, 0.0),
