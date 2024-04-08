@@ -21,8 +21,6 @@ class NotificationModel extends FlutterFlowModel<NotificationWidget> {
   // Stores action output result for [Backend Call - API (Change Device State)] action in IconButton widget.
   ApiCallResponse? changeStateReponseCopy;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -30,8 +28,4 @@ class NotificationModel extends FlutterFlowModel<NotificationWidget> {
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

@@ -57,21 +57,44 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'DeviceDetails',
           path: '/deviceDetails',
           builder: (context, params) => DeviceDetailsWidget(
-            locName: params.getParam('locName', ParamType.String),
-            locStatus: params.getParam('locStatus', ParamType.String),
-            locDevices: params.getParam('locDevices', ParamType.String),
-            locId: params.getParam('locId', ParamType.int),
-            locImage: params.getParam('locImage', ParamType.String),
-            branchCode: params.getParam('branchCode', ParamType.String),
+            locName: params.getParam(
+              'locName',
+              ParamType.String,
+            ),
+            locStatus: params.getParam(
+              'locStatus',
+              ParamType.String,
+            ),
+            locDevices: params.getParam(
+              'locDevices',
+              ParamType.String,
+            ),
+            locId: params.getParam(
+              'locId',
+              ParamType.int,
+            ),
+            locImage: params.getParam(
+              'locImage',
+              ParamType.String,
+            ),
+            branchCode: params.getParam(
+              'branchCode',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
           name: 'Controlling',
           path: '/controlling',
           builder: (context, params) => ControllingWidget(
-            did: params.getParam('did', ParamType.String),
-            onlineOfflineStatus:
-                params.getParam('onlineOfflineStatus', ParamType.String),
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+            onlineOfflineStatus: params.getParam(
+              'onlineOfflineStatus',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -98,11 +121,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'UpdateUsers',
           path: '/updateUsers',
           builder: (context, params) => UpdateUsersWidget(
-            fullName: params.getParam('fullName', ParamType.String),
-            username: params.getParam('username', ParamType.String),
-            userProject: params.getParam('userProject', ParamType.String),
-            userOrg: params.getParam('userOrg', ParamType.int),
-            userRole: params.getParam('userRole', ParamType.String),
+            fullName: params.getParam(
+              'fullName',
+              ParamType.String,
+            ),
+            username: params.getParam(
+              'username',
+              ParamType.String,
+            ),
+            userProject: params.getParam(
+              'userProject',
+              ParamType.String,
+            ),
+            userOrg: params.getParam(
+              'userOrg',
+              ParamType.int,
+            ),
+            userRole: params.getParam(
+              'userRole',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -114,10 +152,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'advanceControl',
           path: '/advanceControl',
           builder: (context, params) => AdvanceControlWidget(
-            onlineOfflineStatus:
-                params.getParam('onlineOfflineStatus', ParamType.String),
-            deviceStatus: params.getParam('deviceStatus', ParamType.JSON),
-            did: params.getParam('did', ParamType.String),
+            onlineOfflineStatus: params.getParam(
+              'onlineOfflineStatus',
+              ParamType.String,
+            ),
+            deviceStatus: params.getParam(
+              'deviceStatus',
+              ParamType.JSON,
+            ),
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

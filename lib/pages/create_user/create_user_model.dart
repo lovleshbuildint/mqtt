@@ -48,8 +48,6 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   // Stores action output result for [Backend Call - API (Create User)] action in Button-Login widget.
   ApiCallResponse? addUserResponse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
@@ -67,8 +65,4 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
     passwordFocusNode?.dispose();
     passwordController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

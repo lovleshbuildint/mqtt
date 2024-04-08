@@ -161,6 +161,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                       fontFamily: 'Poppins',
                                       color: Color(0xFF2D2D2D),
                                       fontSize: 24.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -175,6 +176,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         fontFamily: 'Poppins',
                                         color: Color(0xFF4D4D4D),
                                         fontSize: 14.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -203,6 +205,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Color(0xFFB3B3B3),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
@@ -251,8 +254,10 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF2D2D2D),
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
+                                        minLines: null,
                                         validator: _model
                                             .fullnameControllerValidator
                                             .asValidator(context),
@@ -286,6 +291,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Color(0xFFB3B3B3),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
@@ -334,8 +340,10 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF2D2D2D),
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
+                                        minLines: null,
                                         validator: _model
                                             .emailAddressControllerValidator
                                             .asValidator(context),
@@ -358,6 +366,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         textInputAction: TextInputAction.done,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
+                                          isDense: false,
                                           hintText: 'Password',
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
@@ -366,6 +375,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Color(0xFFB3B3B3),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
@@ -430,8 +440,10 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF2D2D2D),
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
+                                        minLines: null,
                                         validator: _model
                                             .passwordControllerValidator
                                             .asValidator(context),
@@ -474,7 +486,11 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         width: 300.0,
                                         height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         hintText: 'Select Project',
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
@@ -539,7 +555,11 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                           height: 50.0,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
-                                                  .bodyMedium,
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                  ),
                                           hintText: 'Select Organization',
                                           icon: Icon(
                                             Icons.keyboard_arrow_down_rounded,
@@ -612,7 +632,11 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         width: 300.0,
                                         height: 50.0,
                                         textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
                                         hintText: 'Select Role',
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
@@ -741,6 +765,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
+                                                        letterSpacing: 0.0,
                                                       ),
                                                 ),
                                                 duration: Duration(
@@ -772,6 +797,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Colors.white,
                                                     fontSize: 18.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                           elevation: 3.0,

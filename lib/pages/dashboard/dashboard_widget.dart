@@ -140,6 +140,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   .override(
                                     fontFamily: 'Readex Pro',
                                     fontSize: 18.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
@@ -239,6 +240,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                 fontFamily: 'Readex Pro',
                                                 color: Color(0xFF4D4D4D),
                                                 fontSize: 16.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                               ),
                                         ),
@@ -259,6 +261,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   fontSize: 20.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.bold,
                                                 ),
                                           ),
@@ -335,6 +338,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           color:
                                                               Color(0xFF4D4D4D),
                                                           fontSize: 10.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w300,
                                                         ),
@@ -356,6 +360,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           color:
                                                               Color(0xFF2D2D2D),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -427,6 +432,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           color:
                                                               Color(0xFF4D4D4D),
                                                           fontSize: 10.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w300,
                                                         ),
@@ -449,6 +455,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           color:
                                                               Color(0xFF2D2D2D),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.bold,
                                                         ),
@@ -488,6 +495,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                 ),
@@ -557,6 +565,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   context)
                                                               .secondaryBackground
                                                           : Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
                                                     ),
                                                 minFontSize: 9.0,
                                               ),
@@ -609,6 +618,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   context)
                                                               .secondaryBackground
                                                           : Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
                                                     ),
                                                 minFontSize: 9.0,
                                               ),
@@ -661,6 +671,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   context)
                                                               .secondaryBackground
                                                           : Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
                                                     ),
                                                 minFontSize: 9.0,
                                               ),
@@ -713,6 +724,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                   context)
                                                               .secondaryBackground
                                                           : Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
                                                     ),
                                                 minFontSize: 9.0,
                                               ),
@@ -743,6 +755,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: Color(0xFF2D2D2D),
                                     fontSize: 20.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                             ),
@@ -769,6 +782,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           _model.textController.text;
                                     });
                                   },
+                                  autofocus: false,
                                   textCapitalization:
                                       TextCapitalization.characters,
                                   obscureText: false,
@@ -780,6 +794,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           fontSize: 12.0,
+                                          letterSpacing: 0.0,
                                         ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
@@ -819,7 +834,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         fontSize: 12.0,
+                                        letterSpacing: 0.0,
                                       ),
+                                  minLines: null,
                                   validator: _model.textControllerValidator
                                       .asValidator(context),
                                 ),
@@ -977,6 +994,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           color:
                                                               Color(0xFF4D4D4D),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
@@ -1063,6 +1081,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           0xFF4D4D4D),
                                                                       fontSize:
                                                                           14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w300,
@@ -1080,6 +1100,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           0xFF4D4D4D),
                                                                       fontSize:
                                                                           14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w300,
@@ -1124,6 +1146,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                               Color(0xFF2D2D2D),
                                                                           fontSize:
                                                                               14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),
@@ -1145,6 +1169,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                               Color(0xFF2D2D2D),
                                                                           fontSize:
                                                                               14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),

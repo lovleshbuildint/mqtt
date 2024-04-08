@@ -16,8 +16,6 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   // Stores action output result for [Backend Call - API (App Version Check)] action in splashScreen widget.
   ApiCallResponse? versionCheck;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -25,8 +23,4 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

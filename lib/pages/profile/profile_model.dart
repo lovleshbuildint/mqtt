@@ -15,8 +15,6 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   // Stores action output result for [Backend Call - API (User Info)] action in Profile widget.
   ApiCallResponse? userInfoRespnse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -24,8 +22,4 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

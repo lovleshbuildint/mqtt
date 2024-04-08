@@ -16,8 +16,6 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   // Stores action output result for [Backend Call - API (User Info)] action in DeviceDetails widget.
   ApiCallResponse? userInfoRespnse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -25,8 +23,4 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   void dispose() {
     unfocusNode.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

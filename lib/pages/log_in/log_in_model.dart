@@ -29,8 +29,6 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
   // Stores action output result for [Backend Call - API (Register Device)] action in Button-Login widget.
   ApiCallResponse? registerDeviceResponce;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
@@ -45,8 +43,4 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
     passwordFocusNode?.dispose();
     passwordController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

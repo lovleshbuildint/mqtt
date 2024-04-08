@@ -154,6 +154,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: Color(0xFF2D2D2D),
                                         fontSize: 20.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
                                 ),
@@ -178,6 +179,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     .override(
                                       fontFamily: 'Readex Pro',
                                       fontSize: 18.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w600,
                                     ),
                               ),
@@ -194,6 +196,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                       .override(
                                         fontFamily: 'Readex Pro',
                                         fontSize: 12.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                       ),
                                 ),
@@ -228,6 +231,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xE02D2D2D),
                                           fontSize: 18.0,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                   Icon(
@@ -265,6 +269,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xE02D2D2D),
                                           fontSize: 18.0,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                   Icon(
@@ -302,6 +307,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xE02D2D2D),
                                           fontSize: 18.0,
+                                          letterSpacing: 0.0,
                                         ),
                                   ),
                                   Icon(
@@ -341,6 +347,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: Color(0xE02D2D2D),
                                         fontSize: 18.0,
+                                        letterSpacing: 0.0,
                                       ),
                                 ),
                                 Icon(
@@ -365,6 +372,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: Color(0xFFB3B3B3),
                                     fontSize: 10.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.normal,
                                   ),
                             ),

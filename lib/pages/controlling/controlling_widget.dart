@@ -241,6 +241,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       fontFamily: 'Readex Pro',
                                       color: Color(0xFF2D2D2D),
                                       fontSize: 20.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
@@ -298,6 +299,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: Color(0xFF4D4D4D),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                   ),
                         ),
                         Row(
@@ -337,6 +339,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: Color(0xFF2D2D2D),
                                             fontSize: 16.0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                   ],
@@ -365,8 +368,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .jsonBody,
                                             r'''$.deviceStatus.evt_dt''',
                                           ).toString())))}',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                               ],
@@ -463,6 +470,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                         fontSize: 18.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                       ),
                                 ),
@@ -507,6 +515,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: Color(0xFF808080),
                                             fontSize: 26.0,
+                                            letterSpacing: 0.0,
                                           ),
                                     ),
                                     Container(
@@ -766,6 +775,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -802,17 +812,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(
@@ -1126,6 +1136,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -1162,17 +1173,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(
@@ -1489,6 +1500,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
                                                   fontSize: 14.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -1525,17 +1537,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(
@@ -1848,6 +1860,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -1884,17 +1897,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(
@@ -2075,6 +2088,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -2156,6 +2170,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -2192,17 +2207,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(
@@ -2390,6 +2405,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -2426,17 +2442,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(
@@ -2624,6 +2640,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
@@ -2660,17 +2677,17 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                               .deviceStateDid)
                                                           ? 'Auto'
                                                           : 'Manual',
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF929395),
-                                                                fontSize: 10.0,
-                                                              ),
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
                                                     ),
                                                     Flexible(
                                                       child: Transform.scale(

@@ -147,6 +147,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                   fontFamily: 'Readex Pro',
                                   color: Color(0xFF2D2D2D),
                                   fontSize: 20.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),
@@ -203,6 +204,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                           color:
                                                               Color(0xFF2D2D2D),
                                                           fontSize: 16.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
@@ -218,7 +220,12 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                 ],
                                                 style:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                               ),
                                             ),
                                           ),

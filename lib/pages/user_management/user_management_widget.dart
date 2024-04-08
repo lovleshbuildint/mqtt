@@ -152,6 +152,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                   fontFamily: 'Readex Pro',
                                   color: Color(0xFF2D2D2D),
                                   fontSize: 20.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),
@@ -258,6 +259,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       fontFamily: 'Readex Pro',
                                                       color: Color(0xFF2D2D2D),
                                                       fontSize: 16.0,
+                                                      letterSpacing: 0.0,
                                                     ),
                                                 minFontSize: 12.0,
                                               ),
@@ -272,6 +274,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                     .override(
                                                       fontFamily: 'Readex Pro',
                                                       color: Color(0xFF737373),
+                                                      letterSpacing: 0.0,
                                                     ),
                                               ),
                                             ],

@@ -29,8 +29,6 @@ class UserManagementModel extends FlutterFlowModel<UserManagementWidget> {
   // Stores action output result for [Backend Call - API (Delete User or Device)] action in IconButton widget.
   ApiCallResponse? deleteDeviceResponse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -39,10 +37,7 @@ class UserManagementModel extends FlutterFlowModel<UserManagementWidget> {
     unfocusNode.dispose();
   }
 
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
-
+  /// Additional helper methods.
   Future waitForApiRequestCompleted({
     double minWait = 0,
     double maxWait = double.infinity,

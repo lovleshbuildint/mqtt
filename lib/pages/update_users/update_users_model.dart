@@ -58,8 +58,6 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
   ApiCallResponse? updateUserResponse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     passwordVisibility = false;
@@ -77,8 +75,4 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
     passwordFocusNode?.dispose();
     passwordController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

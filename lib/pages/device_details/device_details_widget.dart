@@ -165,6 +165,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                       fontFamily: 'Readex Pro',
                                       color: Color(0xFF2D2D2D),
                                       fontSize: 20.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                     ),
                               ),
@@ -204,6 +205,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: Color(0xFF4D4D4D),
                                     fontSize: 16.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                   ),
                             ),
@@ -252,6 +254,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 fontFamily: 'Readex Pro',
                                                 color: Color(0xFF4D4D4D),
                                                 fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                               ),
                                         ),
@@ -263,6 +266,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 fontFamily: 'Readex Pro',
                                                 color: Color(0xFF4D4D4D),
                                                 fontSize: 14.0,
+                                                letterSpacing: 0.0,
                                                 fontWeight: FontWeight.w300,
                                               ),
                                         ),
@@ -292,6 +296,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: Color(0xFF2D2D2D),
                                                     fontSize: 14.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                               minFontSize: 10.0,
@@ -308,6 +313,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: Color(0xFF2D2D2D),
                                                     fontSize: 14.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                               minFontSize: 10.0,
@@ -338,6 +344,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     fontFamily: 'Readex Pro',
                                     color: Color(0xFF2D2D2D),
                                     fontSize: 20.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                         ),
@@ -452,6 +459,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     fontFamily: 'Readex Pro',
                                                     color: Color(0xFF4D4D4D),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w600,
                                                   ),
                                             ),
@@ -486,6 +494,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 color: Color(
                                                                     0xFF4D4D4D),
                                                                 fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -502,6 +512,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 color: Color(
                                                                     0xFF4D4D4D),
                                                                 fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .w300,
@@ -542,6 +554,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         0xFF2D2D2D),
                                                                     fontSize:
                                                                         14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,
@@ -563,6 +577,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         0xFF2D2D2D),
                                                                     fontSize:
                                                                         14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .bold,

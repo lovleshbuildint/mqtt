@@ -40,8 +40,6 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
   // State field(s) for VSAT widget.
   bool? vsatValue;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -50,8 +48,4 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
     unfocusNode.dispose();
     instantTimer?.cancel();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

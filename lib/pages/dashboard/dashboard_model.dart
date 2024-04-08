@@ -31,8 +31,6 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   Completer<ApiCallResponse>? apiRequestCompleter;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -43,10 +41,7 @@ class DashboardModel extends FlutterFlowModel<DashboardWidget> {
     textController?.dispose();
   }
 
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
-
+  /// Additional helper methods.
   Future waitForApiRequestCompleted({
     double minWait = 0,
     double maxWait = double.infinity,

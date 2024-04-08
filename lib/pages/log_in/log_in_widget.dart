@@ -128,6 +128,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       fontFamily: 'Poppins',
                                       color: Color(0xFF2D2D2D),
                                       fontSize: 24.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
@@ -143,6 +144,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         fontFamily: 'Poppins',
                                         color: Color(0xFF4D4D4D),
                                         fontSize: 14.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.normal,
                                       ),
                                 )),
@@ -171,6 +173,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Color(0xFFB3B3B3),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
@@ -219,8 +222,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF2D2D2D),
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
+                                        minLines: null,
                                         validator: _model
                                             .emailAddressControllerValidator
                                             .asValidator(context),
@@ -242,6 +247,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                         focusNode: _model.passwordFocusNode,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
+                                          isDense: false,
                                           hintText: 'Password',
                                           hintStyle:
                                               FlutterFlowTheme.of(context)
@@ -250,6 +256,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Color(0xFFB3B3B3),
                                                     fontSize: 16.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight:
                                                         FontWeight.normal,
                                                   ),
@@ -314,8 +321,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                               fontFamily: 'Poppins',
                                               color: Color(0xFF2D2D2D),
                                               fontSize: 16.0,
+                                              letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
+                                        minLines: null,
                                         validator: _model
                                             .passwordControllerValidator
                                             .asValidator(context),
@@ -615,6 +624,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                       .override(
                                                         fontFamily: 'Poppins',
                                                         color: Colors.white,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.normal,
                                                       ),
@@ -646,6 +656,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                     fontFamily: 'Poppins',
                                                     color: Colors.white,
                                                     fontSize: 18.0,
+                                                    letterSpacing: 0.0,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                           elevation: 3.0,
@@ -674,6 +685,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFFB3B3B3),
                                           fontSize: 10.0,
+                                          letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
                                         ),
                                   ),

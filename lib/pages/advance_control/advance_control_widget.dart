@@ -126,6 +126,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   fontFamily: 'Readex Pro',
                                   color: Color(0xFF2D2D2D),
                                   fontSize: 20.0,
+                                  letterSpacing: 0.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                           ),
@@ -151,6 +152,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                             fontFamily: 'Readex Pro',
                             color: Color(0xFF4D4D4D),
                             fontSize: 16.0,
+                            letterSpacing: 0.0,
                           ),
                     ),
                     Row(
@@ -189,6 +191,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         fontFamily: 'Readex Pro',
                                         color: Color(0xFF2D2D2D),
                                         fontSize: 16.0,
+                                        letterSpacing: 0.0,
                                       ),
                                 ),
                               ],
@@ -215,7 +218,12 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         widget.deviceStatus,
                                         r'''$.deviceStatus.evt_dt''',
                                       ).toString())))}',
-                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      letterSpacing: 0.0,
+                                    ),
                               ),
                             ),
                           ],
@@ -261,6 +269,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -290,6 +299,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     icon: Icon(
                                       Icons.keyboard_arrow_down_rounded,
@@ -344,6 +354,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -381,6 +392,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                                     .override(
                                                       fontFamily: 'Poppins',
                                                       fontSize: 32.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -448,6 +460,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                               .override(
                                                 fontFamily: 'Poppins',
                                                 color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
                                               ),
                                           minFontSize: 9.0,
                                         ),
@@ -488,6 +501,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -525,6 +539,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                                     .override(
                                                       fontFamily: 'Poppins',
                                                       fontSize: 32.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -592,6 +607,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                               .override(
                                                 fontFamily: 'Poppins',
                                                 color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
                                               ),
                                           minFontSize: 9.0,
                                         ),
@@ -632,6 +648,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -669,6 +686,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                                     .override(
                                                       fontFamily: 'Poppins',
                                                       fontSize: 32.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -736,6 +754,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                               .override(
                                                 fontFamily: 'Poppins',
                                                 color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
                                               ),
                                           minFontSize: 9.0,
                                         ),
@@ -776,6 +795,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -813,6 +833,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                                     .override(
                                                       fontFamily: 'Poppins',
                                                       fontSize: 32.0,
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.w600,
                                                     ),
@@ -880,6 +901,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                               .override(
                                                 fontFamily: 'Poppins',
                                                 color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
                                               ),
                                           minFontSize: 9.0,
                                         ),
@@ -920,6 +942,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -932,6 +955,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController1,
                                     focusNode: _model.textFieldFocusNode1,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -976,7 +1000,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1027,6 +1053,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1039,6 +1066,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController2,
                                     focusNode: _model.textFieldFocusNode2,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1083,7 +1111,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1134,6 +1164,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1146,6 +1177,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController3,
                                     focusNode: _model.textFieldFocusNode3,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1190,7 +1222,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1241,6 +1275,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1253,6 +1288,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController4,
                                     focusNode: _model.textFieldFocusNode4,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1297,7 +1333,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1348,6 +1386,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1360,6 +1399,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController5,
                                     focusNode: _model.textFieldFocusNode5,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1404,7 +1444,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1455,6 +1497,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1467,6 +1510,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController6,
                                     focusNode: _model.textFieldFocusNode6,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1511,7 +1555,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1562,6 +1608,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1574,6 +1621,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController7,
                                     focusNode: _model.textFieldFocusNode7,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1618,7 +1666,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1669,6 +1719,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1681,6 +1732,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController8,
                                     focusNode: _model.textFieldFocusNode8,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1725,7 +1777,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1776,6 +1830,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Poppins',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
                                     minFontSize: 9.0,
                                   ),
@@ -1788,6 +1843,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                   child: TextFormField(
                                     controller: _model.textController9,
                                     focusNode: _model.textFieldFocusNode9,
+                                    autofocus: false,
                                     textInputAction: TextInputAction.done,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -1832,7 +1888,9 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           color: Color(0xFF4D4D4D),
+                                          letterSpacing: 0.0,
                                         ),
+                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1860,7 +1918,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 50.0, 30.0),
+                padding: EdgeInsetsDirectional.fromSTEB(50.0, 0.0, 50.0, 18.0),
                 child: FFButtonWidget(
                   onPressed: () {
                     print('Button pressed ...');
@@ -1876,6 +1934,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: Colors.white,
+                          letterSpacing: 0.0,
                         ),
                     elevation: 3.0,
                     borderSide: BorderSide(
