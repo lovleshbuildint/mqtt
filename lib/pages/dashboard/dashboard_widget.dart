@@ -122,7 +122,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             drawer: Drawer(
               elevation: 16.0,
               child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 0.0),
+                padding: EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 13.0, 24.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,7 +140,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 .bodyMedium
                                 .override(
                                   fontFamily: 'Readex Pro',
-                                  fontSize: 14.0,
+                                  fontSize: 18.0,
                                   letterSpacing: 0.0,
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -159,191 +159,233 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             child: Icon(
                               Icons.close,
                               color: Colors.black,
-                              size: 25.0,
+                              size: 24.0,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if ((FFAppState().role == 'Super Admin') ||
-                            (FFAppState().role == 'Admin') ||
-                            (FFAppState().role == 'Project Manager'))
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 35.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('CreateUser');
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Add User',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          color: Color(0xE02D2D2D),
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if ((FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'Admin') ||
+                                  (FFAppState().role == 'Project Manager'))
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 35.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('Profile');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Profile',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xE02D2D2D),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
                                         ),
-                                  ),
-                                  Icon(
-                                    Icons.person_add_alt,
-                                    color: Color(0xE02D2D2D),
-                                    size: 20.0,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        if ((FFAppState().role == 'Super Admin') ||
-                            (FFAppState().role == 'Admin'))
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 35.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('Notification');
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Notifications',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
+                                        Icon(
+                                          Icons.person_outlined,
                                           color: Color(0xE02D2D2D),
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
+                                          size: 20.0,
                                         ),
+                                      ],
+                                    ),
                                   ),
-                                  Icon(
-                                    Icons.notifications_outlined,
-                                    color: Color(0xE02D2D2D),
-                                    size: 20.0,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        if ((FFAppState().role == 'Super Admin') ||
-                            (FFAppState().role == 'Admin'))
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 35.0, 0.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed('UserManagement');
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'User Management ',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
+                                ),
+                              if ((FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'Admin') ||
+                                  (FFAppState().role == 'Project Manager'))
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('CreateUser');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Add User',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xE02D2D2D),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Icon(
+                                          Icons.person_add_alt,
                                           color: Color(0xE02D2D2D),
-                                          fontSize: 16.0,
-                                          letterSpacing: 0.0,
+                                          size: 20.0,
                                         ),
+                                      ],
+                                    ),
                                   ),
-                                  Icon(
-                                    Icons.manage_accounts_outlined,
-                                    color: Color(0xE02D2D2D),
-                                    size: 20.0,
+                                ),
+                              if ((FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'Admin'))
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('Notification');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Notifications',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xE02D2D2D),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Icon(
+                                          Icons.notifications_outlined,
+                                          color: Color(0xE02D2D2D),
+                                          size: 20.0,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 35.0, 0.0, 0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              setState(() {
-                                FFAppState().deleteToken();
-                                FFAppState().token = '';
-                              });
+                                ),
+                              if ((FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'Admin'))
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('UserManagement');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'User Management ',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xE02D2D2D),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Icon(
+                                          Icons.manage_accounts_outlined,
+                                          color: Color(0xE02D2D2D),
+                                          size: 20.0,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    setState(() {
+                                      FFAppState().deleteToken();
+                                      FFAppState().token = '';
+                                    });
 
-                              context.goNamed('LogIn');
-                            },
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Logout',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xE02D2D2D),
-                                        fontSize: 16.0,
-                                        letterSpacing: 0.0,
+                                    context.goNamed('LogIn');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Logout',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Color(0xE02D2D2D),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
-                                ),
-                                Icon(
-                                  Icons.logout_sharp,
-                                  color: Color(0xE02D2D2D),
-                                  size: 20.0,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 1.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 10.0, 0.0, 0.0),
-                            child: Text(
-                              'APP VERSION ${FFAppConstants.appVersion}',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFFB3B3B3),
-                                    fontSize: 10.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.normal,
+                                      Icon(
+                                        Icons.logout_sharp,
+                                        color: Color(0xE02D2D2D),
+                                        size: 20.0,
+                                      ),
+                                    ],
                                   ),
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 1.0),
+                      child: Text(
+                        'APP VERSION ${FFAppConstants.appVersion}',
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              color: Color(0xFFB3B3B3),
+                              fontSize: 10.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                      ),
                     ),
                   ],
                 ),
