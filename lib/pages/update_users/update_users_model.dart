@@ -8,6 +8,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'update_users_widget.dart' show UpdateUsersWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +36,10 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  // State field(s) for contact_num widget.
+  FocusNode? contactNumFocusNode;
+  TextEditingController? contactNumController;
+  String? Function(BuildContext, String?)? contactNumControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
@@ -71,6 +76,9 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
 
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
+
+    contactNumFocusNode?.dispose();
+    contactNumController?.dispose();
 
     passwordFocusNode?.dispose();
     passwordController?.dispose();

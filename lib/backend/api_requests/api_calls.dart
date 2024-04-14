@@ -223,18 +223,20 @@ class UpdateUserCall {
     int? userOrg,
     String? fullName = '',
     String? userProject = '',
+    int? contactNum,
     String? token = '',
     String? deviceId = '',
   }) async {
     final ffApiRequestBody = '''
 {
-    "username": "${username}",
-    "password": "${password}",
-    "userRole": "${userRole}",
-    "fullName": "${fullName}",
-    "user_org": ${userOrg},
-    "user_project": "${userProject}",
-    "deviceId": "${deviceId}"
+  "username": "${username}",
+  "password": "${password}",
+  "userRole": "${userRole}",
+  "fullName": "${fullName}",
+  "user_org": ${userOrg},
+  "user_project": "${userProject}",
+  "deviceId": "${deviceId}",
+  "contact_num": "${contactNum}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update User',
