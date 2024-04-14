@@ -8,6 +8,7 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'create_user_widget.dart' show CreateUserWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -29,6 +30,10 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  // State field(s) for contact_num widget.
+  FocusNode? contactNumFocusNode;
+  TextEditingController? contactNumController;
+  String? Function(BuildContext, String?)? contactNumControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
@@ -61,6 +66,9 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
 
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
+
+    contactNumFocusNode?.dispose();
+    contactNumController?.dispose();
 
     passwordFocusNode?.dispose();
     passwordController?.dispose();

@@ -7,6 +7,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'create_user_model.dart';
@@ -70,6 +71,9 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
 
     _model.emailAddressController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
+
+    _model.contactNumController ??= TextEditingController();
+    _model.contactNumFocusNode ??= FocusNode();
 
     _model.passwordController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
@@ -345,6 +349,102 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                         validator: _model
                                             .emailAddressControllerValidator
                                             .asValidator(context),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 14.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: TextFormField(
+                                        controller: _model.contactNumController,
+                                        focusNode: _model.contactNumFocusNode,
+                                        textInputAction: TextInputAction.done,
+                                        obscureText: false,
+                                        decoration: InputDecoration(
+                                          isDense: false,
+                                          hintText: 'Contact No.',
+                                          hintStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0xFFB3B3B3),
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFFF2F2F2),
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0xFF4154F1),
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          errorBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          focusedErrorBorder:
+                                              OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: Color(0x00000000),
+                                              width: 2.0,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 24.0, 14.0),
+                                        ),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Poppins',
+                                              color: Color(0xFF2D2D2D),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                        maxLength: 10,
+                                        maxLengthEnforcement:
+                                            MaxLengthEnforcement.enforced,
+                                        buildCounter: (context,
+                                                {required currentLength,
+                                                required isFocused,
+                                                maxLength}) =>
+                                            null,
+                                        keyboardType: TextInputType.phone,
+                                        validator: _model
+                                            .contactNumControllerValidator
+                                            .asValidator(context),
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.allow(
+                                              RegExp('[0-9]'))
+                                        ],
                                       ),
                                     ),
                                   ],
@@ -668,16 +768,22 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                           0.0, 25.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if ((_model.fullnameController.text != null && _model.fullnameController.text != '') &&
-                                              (_model.emailAddressController
+                                          if ((_model.fullnameController
                                                           .text !=
+                                                      null &&
+                                                  _model.fullnameController
+                                                          .text !=
+                                                      '') &&
+                                              (_model
+                                                          .emailAddressController.text !=
                                                       null &&
                                                   _model.emailAddressController
                                                           .text !=
                                                       '') &&
-                                              (_model.passwordController.text !=
+                                              (_model
+                                                          .contactNumController.text !=
                                                       null &&
-                                                  _model.passwordController
+                                                  _model.contactNumController
                                                           .text !=
                                                       '') &&
                                               (_model.projectValue != null &&
@@ -694,7 +800,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               username: _model
                                                   .emailAddressController.text,
                                               password: _model
-                                                  .passwordController.text,
+                                                  .contactNumController.text,
                                               userRole: _model.roleValue,
                                               userOrg: _model.orgId,
                                               fullName: _model
@@ -702,6 +808,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               userProject: _model.projectValue,
                                               token: FFAppState().token,
                                               deviceId: FFAppState().deviceId,
+                                              contactNum: int.tryParse(_model
+                                                  .contactNumController.text),
                                             );
                                             if ((_model.addUserResponse
                                                     ?.succeeded ??
