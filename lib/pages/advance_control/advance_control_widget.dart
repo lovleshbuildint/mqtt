@@ -1002,7 +1002,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1113,7 +1112,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1224,7 +1222,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1335,7 +1332,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1446,7 +1442,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1557,7 +1552,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1668,7 +1662,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1779,7 +1772,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,
@@ -1890,7 +1882,6 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                           color: Color(0xFF4D4D4D),
                                           letterSpacing: 0.0,
                                         ),
-                                    minLines: null,
                                     maxLength: 4,
                                     maxLengthEnforcement:
                                         MaxLengthEnforcement.enforced,

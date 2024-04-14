@@ -248,36 +248,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                             ),
                           ],
                         ),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(
-                              'advanceControl',
-                              queryParameters: {
-                                'onlineOfflineStatus': serializeParam(
-                                  widget.onlineOfflineStatus,
-                                  ParamType.String,
-                                ),
-                                'deviceStatus': serializeParam(
-                                  controllingGetDeviceStatusResponse.jsonBody,
-                                  ParamType.JSON,
-                                ),
-                                'did': serializeParam(
-                                  widget.did,
-                                  ParamType.String,
-                                ),
-                              }.withoutNulls,
-                            );
-                          },
-                          child: Icon(
-                            Icons.settings_suggest_rounded,
-                            color: Color(0xE02D2D2D),
-                            size: 28.0,
-                          ),
-                        ),
                       ],
                     ),
                   ),

@@ -282,7 +282,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
-                                        minLines: null,
                                         validator: _model
                                             .fullnameControllerValidator
                                             .asValidator(context),
@@ -369,7 +368,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.normal,
                                             ),
-                                        minLines: null,
                                         validator: _model
                                             .emailAddressControllerValidator
                                             .asValidator(context),
@@ -472,7 +470,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               letterSpacing: 0.0,
                                               fontWeight: FontWeight.bold,
                                             ),
-                                        minLines: null,
                                         validator: _model
                                             .passwordControllerValidator
                                             .asValidator(context),
