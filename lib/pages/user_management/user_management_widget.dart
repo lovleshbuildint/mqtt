@@ -239,6 +239,14 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                   ).toString(),
                                                   ParamType.String,
                                                 ),
+                                                'userContactNum':
+                                                    serializeParam(
+                                                  getJsonField(
+                                                    userListItem,
+                                                    r'''$..contact_num''',
+                                                  ),
+                                                  ParamType.int,
+                                                ),
                                               }.withoutNulls,
                                             );
                                           },

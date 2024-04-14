@@ -141,6 +141,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'userRole',
               ParamType.String,
             ),
+            userContactNum: params.getParam(
+              'userContactNum',
+              ParamType.int,
+            ),
           ),
         ),
         FFRoute(

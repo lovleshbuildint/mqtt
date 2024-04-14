@@ -21,6 +21,7 @@ class UpdateUsersWidget extends StatefulWidget {
     required this.userProject,
     required this.userOrg,
     required this.userRole,
+    required this.userContactNum,
   }) : this.fullName = fullName ?? '';
 
   final String fullName;
@@ -28,6 +29,7 @@ class UpdateUsersWidget extends StatefulWidget {
   final String? userProject;
   final int? userOrg;
   final String? userRole;
+  final int? userContactNum;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -97,7 +99,11 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
         TextEditingController(text: widget.username);
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.contactNumController ??= TextEditingController();
+    _model.contactNumController ??= TextEditingController(
+        text: valueOrDefault<String>(
+      widget.userContactNum?.toString(),
+      '0',
+    ));
     _model.contactNumFocusNode ??= FocusNode();
 
     _model.passwordController ??= TextEditingController(text: '*****');
