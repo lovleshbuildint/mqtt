@@ -210,7 +210,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
-                                      'Edit Header 3',
+                                      'AC 1 Status',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
@@ -228,7 +228,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
-                                      'Edit Header 4',
+                                      'AC 2 Status',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
@@ -246,7 +246,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
-                                      'Edit Header 5',
+                                      'Lobby Status',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
@@ -264,7 +264,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
-                                      'Edit Header 6',
+                                      'Signage Status',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
@@ -314,7 +314,13 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Edit Column 3',
+                                    '${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..ac1''',
+                                    ).toString()} and ${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..ac1_remark''',
+                                    ).toString()}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -324,29 +330,50 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Edit Column 4',
+                                    '${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..ac2''',
+                                    ).toString()} and ${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..ac2_remark''',
+                                    ).toString()}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
                                   Text(
-                                    'Edit Column 5',
+                                    '${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..lobby''',
+                                    ).toString()} and ${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..lobby_remark''',
+                                    ).toString()}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
                                   Text(
-                                    'Edit Column 6',
+                                    '${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..signage''',
+                                    ).toString()} and ${getJsonField(
+                                      checkListResultItem,
+                                      r'''$..signage''',
+                                    ).toString()}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
                                           fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
                                           letterSpacing: 0.0,
                                         ),
                                   ),
@@ -355,8 +382,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                               paginated: false,
                               selectable: false,
                               headingRowHeight: 56.0,
-                              dataRowHeight: 48.0,
-                              columnSpacing: 20.0,
+                              columnSpacing: 15.0,
                               headingRowColor:
                                   FlutterFlowTheme.of(context).primary,
                               borderRadius: BorderRadius.circular(8.0),
