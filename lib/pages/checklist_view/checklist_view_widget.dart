@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -163,11 +164,33 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              FutureBuilder<ApiCallResponse>(
-                                future: MasterGroup.getChecklistOTPCall.call(
-                                  token: FFAppState().token,
-                                  deviceId: FFAppState().deviceId,
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(
+                                      () => _model.apiRequestCompleter = null);
+                                  await _model.waitForApiRequestCompleted(
+                                      minWait: 2000, maxWait: 5000);
+                                },
+                                child: Icon(
+                                  Icons.replay,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 24.0,
                                 ),
+                              ),
+                              FutureBuilder<ApiCallResponse>(
+                                future: (_model.apiRequestCompleter ??=
+                                        Completer<ApiCallResponse>()
+                                          ..complete(MasterGroup
+                                              .getChecklistOTPCall
+                                              .call(
+                                            token: FFAppState().token,
+                                            deviceId: FFAppState().deviceId,
+                                          )))
+                                    .future,
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -189,7 +212,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                       snapshot.data!;
                                   return Column(
                                     mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -203,13 +228,16 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                 color: Color(0xFF2D2D2D),
                                                 fontSize: 14.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
+                                                fontWeight: FontWeight.bold,
                                               ),
                                         ),
                                       ),
                                       Text(
-                                        columnGetChecklistOTPResponse.jsonBody
-                                            .toString(),
+                                        getJsonField(
+                                          columnGetChecklistOTPResponse
+                                              .jsonBody,
+                                          r'''$.result[0].otp''',
+                                        ).toString(),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
