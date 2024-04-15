@@ -174,6 +174,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ChecklistView',
           path: '/checklistView',
           builder: (context, params) => ChecklistViewWidget(),
+        ),
+        FFRoute(
+          name: 'AlertView',
+          path: '/alertView',
+          builder: (context, params) => AlertViewWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

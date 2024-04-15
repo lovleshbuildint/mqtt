@@ -22,6 +22,7 @@ class MasterGroup {
   static GetProjectCall getProjectCall = GetProjectCall();
   static GetChecklistViewCall getChecklistViewCall = GetChecklistViewCall();
   static GetChecklistOTPCall getChecklistOTPCall = GetChecklistOTPCall();
+  static GetAlertsCall getAlertsCall = GetAlertsCall();
   static CreateUserCall createUserCall = CreateUserCall();
   static UpdateUserCall updateUserCall = UpdateUserCall();
   static DeleteChecklistCall deleteChecklistCall = DeleteChecklistCall();
@@ -208,6 +209,30 @@ class GetChecklistOTPCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Checklist OTP',
       apiUrl: '${MasterGroup.baseUrl}/checklistOtp',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetAlertsCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Alerts',
+      apiUrl: '${MasterGroup.baseUrl}/getAlert',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
