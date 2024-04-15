@@ -268,10 +268,17 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                         ),
                                   ),
                                   Text(
-                                    getJsonField(
+                                    '${(String var1) {
+                                      return var1.split('T').first;
+                                    }(getJsonField(
                                       alertsItem,
                                       r'''$..raised_on''',
-                                    ).toString(),
+                                    ).toString())} ${(String var1) {
+                                      return var1.split('T').last;
+                                    }(getJsonField(
+                                      alertsItem,
+                                      r'''$..raised_on''',
+                                    ).toString())}',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
