@@ -217,7 +217,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                             fontFamily: 'Readex Pro',
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
-                                            fontSize: 15.0,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -233,6 +233,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -248,6 +251,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -263,6 +269,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           .labelLarge
                                           .override(
                                             fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
@@ -295,7 +304,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                         ),
                                   ),
                                   Text(
-                                    'Edit Column 2',
+                                    'Edit Column 2  nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn121212',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -351,13 +360,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                               headingRowColor:
                                   FlutterFlowTheme.of(context).primary,
                               borderRadius: BorderRadius.circular(8.0),
-                              addHorizontalDivider: true,
+                              addHorizontalDivider: false,
                               addTopAndBottomDivider: false,
                               hideDefaultHorizontalDivider: false,
-                              horizontalDividerColor:
-                                  FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                              horizontalDividerThickness: 1.0,
                               addVerticalDivider: true,
                               verticalDividerColor:
                                   FlutterFlowTheme.of(context).secondaryText,
