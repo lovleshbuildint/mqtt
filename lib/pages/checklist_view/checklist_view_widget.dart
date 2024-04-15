@@ -369,16 +369,6 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: Text(
-                        checklistViewGetChecklistViewResponse.jsonBody
-                            .toString(),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    ),
                   ],
                 ),
               ),
