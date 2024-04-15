@@ -20,6 +20,7 @@ class MasterGroup {
   static GetNotificationCall getNotificationCall = GetNotificationCall();
   static ChangeDeviceStateCall changeDeviceStateCall = ChangeDeviceStateCall();
   static GetProjectCall getProjectCall = GetProjectCall();
+  static GetChecklistViewCall getChecklistViewCall = GetChecklistViewCall();
   static CreateUserCall createUserCall = CreateUserCall();
   static UpdateUserCall updateUserCall = UpdateUserCall();
   static UserInfoCall userInfoCall = UserInfoCall();
@@ -157,6 +158,30 @@ class GetProjectCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Project',
       apiUrl: '${MasterGroup.baseUrl}/getProject',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetChecklistViewCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Checklist View',
+      apiUrl: '${MasterGroup.baseUrl}/checklistView',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',

@@ -30,10 +30,6 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
-  // State field(s) for contact_num widget.
-  FocusNode? contactNumFocusNode;
-  TextEditingController? contactNumController;
-  String? Function(BuildContext, String?)? contactNumControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
@@ -50,6 +46,10 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // State field(s) for contact_num widget.
+  FocusNode? contactNumFocusNode;
+  TextEditingController? contactNumController;
+  String? Function(BuildContext, String?)? contactNumControllerValidator;
   // Stores action output result for [Backend Call - API (Create User)] action in Button-Login widget.
   ApiCallResponse? addUserResponse;
 
@@ -67,10 +67,10 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
 
-    contactNumFocusNode?.dispose();
-    contactNumController?.dispose();
-
     passwordFocusNode?.dispose();
     passwordController?.dispose();
+
+    contactNumFocusNode?.dispose();
+    contactNumController?.dispose();
   }
 }

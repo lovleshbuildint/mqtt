@@ -30,6 +30,7 @@ dependencies:
   chewie: 1.7.1
   collection: 1.18.0
   csv: 5.0.1
+  data_table_2: 2.5.10
   dropdown_button2: 2.3.9
   easy_debounce: 2.0.1
   equatable: 2.0.5

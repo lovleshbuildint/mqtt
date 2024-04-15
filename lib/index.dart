@@ -13,3 +13,5 @@ export '/pages/update_users/update_users_widget.dart' show UpdateUsersWidget;
 export '/pages/splash_screen/splash_screen_widget.dart' show SplashScreenWidget;
 export '/pages/advance_control/advance_control_widget.dart'
     show AdvanceControlWidget;
+export '/pages/checklist_view/checklist_view_widget.dart'
+    show ChecklistViewWidget;

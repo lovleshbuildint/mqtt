@@ -36,10 +36,6 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   FocusNode? emailAddressFocusNode;
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
-  // State field(s) for contact_num widget.
-  FocusNode? contactNumFocusNode;
-  TextEditingController? contactNumController;
-  String? Function(BuildContext, String?)? contactNumControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordController;
@@ -58,6 +54,10 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // State field(s) for contact_num widget.
+  FocusNode? contactNumFocusNode;
+  TextEditingController? contactNumController;
+  String? Function(BuildContext, String?)? contactNumControllerValidator;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
   ApiCallResponse? updateUserResponse2;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
@@ -77,10 +77,10 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
     emailAddressFocusNode?.dispose();
     emailAddressController?.dispose();
 
-    contactNumFocusNode?.dispose();
-    contactNumController?.dispose();
-
     passwordFocusNode?.dispose();
     passwordController?.dispose();
+
+    contactNumFocusNode?.dispose();
+    contactNumController?.dispose();
   }
 }

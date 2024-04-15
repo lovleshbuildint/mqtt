@@ -174,19 +174,53 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if ((FFAppState().role == 'Super Admin') ||
-                                  (FFAppState().role == 'Admin') ||
-                                  (FFAppState().role == 'Project Manager'))
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 35.0, 0.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('Profile');
+                                  },
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Profile',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Color(0xE02D2D2D),
+                                              fontSize: 16.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      Icon(
+                                        Icons.person_outlined,
+                                        color: Color(0xE02D2D2D),
+                                        size: 20.0,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              if (FFAppState().role != 'ATMO')
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 35.0, 0.0, 0.0),
+                                      0.0, 20.0, 0.0, 0.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('Profile');
+                                      context.pushNamed('ChecklistView');
                                     },
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
@@ -194,7 +228,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Profile',
+                                          'Checklist',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -205,7 +239,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               ),
                                         ),
                                         Icon(
-                                          Icons.person_outlined,
+                                          Icons.playlist_add_check,
                                           color: Color(0xE02D2D2D),
                                           size: 20.0,
                                         ),
