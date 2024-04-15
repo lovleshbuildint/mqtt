@@ -456,7 +456,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           ),
                                     ),
                                   ),
-                                  fixedWidth: 120.0,
+                                  fixedWidth: 100.0,
                                 ),
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
@@ -474,7 +474,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           ),
                                     ),
                                   ),
-                                  fixedWidth: 120.0,
+                                  fixedWidth: 80.0,
                                 ),
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
@@ -492,7 +492,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           ),
                                     ),
                                   ),
-                                  fixedWidth: 120.0,
+                                  fixedWidth: 80.0,
                                 ),
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
@@ -565,6 +565,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           ),
                                     ),
                                   ),
+                                  fixedWidth: 80.0,
                                 ),
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
@@ -582,6 +583,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           ),
                                     ),
                                   ),
+                                  fixedWidth: 80.0,
                                 ),
                               ],
                               dataRowBuilder: (checkListResultItem,
