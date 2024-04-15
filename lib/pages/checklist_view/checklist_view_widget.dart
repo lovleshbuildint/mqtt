@@ -164,74 +164,80 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              FutureBuilder<ApiCallResponse>(
-                                future: (_model.apiRequestCompleter ??=
-                                        Completer<ApiCallResponse>()
-                                          ..complete(MasterGroup
-                                              .getChecklistOTPCall
-                                              .call(
-                                            token: FFAppState().token,
-                                            deviceId: FFAppState().deviceId,
-                                          )))
-                                    .future,
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                            FlutterFlowTheme.of(context)
-                                                .primary,
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 7.0, 0.0),
+                                child: FutureBuilder<ApiCallResponse>(
+                                  future: (_model.apiRequestCompleter ??=
+                                          Completer<ApiCallResponse>()
+                                            ..complete(MasterGroup
+                                                .getChecklistOTPCall
+                                                .call(
+                                              token: FFAppState().token,
+                                              deviceId: FFAppState().deviceId,
+                                            )))
+                                      .future,
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                              FlutterFlowTheme.of(context)
+                                                  .primary,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }
-                                  final columnGetChecklistOTPResponse =
-                                      snapshot.data!;
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            7.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'OTP',
+                                      );
+                                    }
+                                    final columnGetChecklistOTPResponse =
+                                        snapshot.data!;
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  7.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'OTP',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF2D2D2D),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        Text(
+                                          getJsonField(
+                                            columnGetChecklistOTPResponse
+                                                .jsonBody,
+                                            r'''$.result[0].otp''',
+                                          ).toString(),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
                                                 fontFamily: 'Readex Pro',
-                                                color: Color(0xFF2D2D2D),
-                                                fontSize: 14.0,
+                                                fontSize: 12.0,
                                                 letterSpacing: 0.0,
-                                                fontWeight: FontWeight.bold,
                                               ),
                                         ),
-                                      ),
-                                      Text(
-                                        getJsonField(
-                                          columnGetChecklistOTPResponse
-                                              .jsonBody,
-                                          r'''$.result[0].otp''',
-                                        ).toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 12.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                    ],
-                                  );
-                                },
+                                      ],
+                                    );
+                                  },
+                                ),
                               ),
                               InkWell(
                                 splashColor: Colors.transparent,
