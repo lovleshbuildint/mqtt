@@ -145,7 +145,8 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  'Alert View',
+                                  alertViewGetAlertsResponse.jsonBody
+                                      .toString(),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -168,13 +169,13 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: Builder(
                           builder: (context) {
-                            final checkListResult = getJsonField(
+                            final alerts = getJsonField(
                               alertViewGetAlertsResponse.jsonBody,
                               r'''$.result''',
                             ).toList();
                             return FlutterFlowDataTable<dynamic>(
                               controller: _model.paginatedDataTableController,
-                              data: checkListResult,
+                              data: alerts,
                               columnsBuilder: (onSortChanged) => [
                                 DataColumn2(
                                   label: DefaultTextStyle.merge(
@@ -231,20 +232,18 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   fixedWidth: 120.0,
                                 ),
                               ],
-                              dataRowBuilder: (checkListResultItem,
-                                      checkListResultIndex,
-                                      selected,
-                                      onSelectChanged) =>
+                              dataRowBuilder: (alertsItem, alertsIndex,
+                                      selected, onSelectChanged) =>
                                   DataRow(
                                 color: MaterialStateProperty.all(
-                                  checkListResultIndex % 2 == 0
+                                  alertsIndex % 2 == 0
                                       ? FlutterFlowTheme.of(context).accent4
                                       : FlutterFlowTheme.of(context).accent4,
                                 ),
                                 cells: [
                                   Text(
                                     getJsonField(
-                                      checkListResultItem,
+                                      alertsItem,
                                       r'''$..DID''',
                                     ).toString(),
                                     style: FlutterFlowTheme.of(context)
@@ -257,7 +256,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   ),
                                   Text(
                                     getJsonField(
-                                      checkListResultItem,
+                                      alertsItem,
                                       r'''$..issue''',
                                     ).toString(),
                                     style: FlutterFlowTheme.of(context)
@@ -270,7 +269,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   ),
                                   Text(
                                     getJsonField(
-                                      checkListResultItem,
+                                      alertsItem,
                                       r'''$..raised_on''',
                                     ).toString(),
                                     style: FlutterFlowTheme.of(context)
