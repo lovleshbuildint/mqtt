@@ -24,6 +24,7 @@ class MasterGroup {
   static GetChecklistOTPCall getChecklistOTPCall = GetChecklistOTPCall();
   static CreateUserCall createUserCall = CreateUserCall();
   static UpdateUserCall updateUserCall = UpdateUserCall();
+  static DeleteChecklistCall deleteChecklistCall = DeleteChecklistCall();
   static UserInfoCall userInfoCall = UserInfoCall();
   static GetUserListCall getUserListCall = GetUserListCall();
   static UpdateUserOrDeviceStateCall updateUserOrDeviceStateCall =
@@ -291,6 +292,36 @@ class UpdateUserCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Update User',
       apiUrl: '${MasterGroup.baseUrl}/updateUser',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class DeleteChecklistCall {
+  Future<ApiCallResponse> call({
+    int? cId,
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "deviceId": "${deviceId}",
+  "c_id": "${cId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete Checklist',
+      apiUrl: '${MasterGroup.baseUrl}/checklistDelete',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',

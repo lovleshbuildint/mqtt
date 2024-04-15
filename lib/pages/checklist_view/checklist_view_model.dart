@@ -20,6 +20,8 @@ class ChecklistViewModel extends FlutterFlowModel<ChecklistViewWidget> {
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
+  // Stores action output result for [Backend Call - API (Delete Checklist)] action in Icon widget.
+  ApiCallResponse? deleteChecklistResponse;
 
   @override
   void initState(BuildContext context) {}

@@ -690,6 +690,29 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   ),
                                   fixedWidth: 80.0,
                                 ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Text(
+                                        'Action',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              fontSize: 14.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  fixedWidth: 100.0,
+                                ),
                               ],
                               dataRowBuilder: (checkListResultItem,
                                       checkListResultIndex,
@@ -1030,6 +1053,60 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                         ),
+                                  ),
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await launchURL(
+                                                'https://api.app.master.buildint.co/checklist/generatepdfprojectengg?project_engg=${getJsonField(
+                                              checkListResultItem,
+                                              r'''$..c_id''',
+                                            ).toString()}');
+                                          },
+                                          child: Icon(
+                                            Icons.download_outlined,
+                                            color: Color(0xFF07D95A),
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            _model.deleteChecklistResponse =
+                                                await MasterGroup
+                                                    .deleteChecklistCall
+                                                    .call(
+                                              token: FFAppState().token,
+                                              cId: getJsonField(
+                                                checkListResultItem,
+                                                r'''$..c_id''',
+                                              ),
+                                              deviceId: FFAppState().deviceId,
+                                            );
+
+                                            setState(() {});
+                                          },
+                                          child: Icon(
+                                            Icons.delete_outlined,
+                                            color: Color(0xC4F71A1A),
+                                            size: 24.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ].map((c) => DataCell(c)).toList(),
                               ),
