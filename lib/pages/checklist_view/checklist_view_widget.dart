@@ -164,27 +164,6 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 5.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    setState(() =>
-                                        _model.apiRequestCompleter = null);
-                                    await _model.waitForApiRequestCompleted(
-                                        minWait: 2000, maxWait: 5000);
-                                  },
-                                  child: Icon(
-                                    Icons.replay,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 24.0,
-                                  ),
-                                ),
-                              ),
                               FutureBuilder<ApiCallResponse>(
                                 future: (_model.apiRequestCompleter ??=
                                         Completer<ApiCallResponse>()
@@ -253,6 +232,23 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                     ],
                                   );
                                 },
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  setState(
+                                      () => _model.apiRequestCompleter = null);
+                                  await _model.waitForApiRequestCompleted(
+                                      minWait: 2000, maxWait: 5000);
+                                },
+                                child: Icon(
+                                  Icons.replay,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 24.0,
+                                ),
                               ),
                             ],
                           ),
