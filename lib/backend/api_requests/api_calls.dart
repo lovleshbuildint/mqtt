@@ -22,7 +22,6 @@ class MasterGroup {
   static GetProjectCall getProjectCall = GetProjectCall();
   static GetChecklistViewCall getChecklistViewCall = GetChecklistViewCall();
   static GetChecklistOTPCall getChecklistOTPCall = GetChecklistOTPCall();
-  static GetAlertsCall getAlertsCall = GetAlertsCall();
   static CreateUserCall createUserCall = CreateUserCall();
   static UpdateUserCall updateUserCall = UpdateUserCall();
   static DeleteChecklistCall deleteChecklistCall = DeleteChecklistCall();
@@ -209,30 +208,6 @@ class GetChecklistOTPCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Checklist OTP',
       apiUrl: '${MasterGroup.baseUrl}/checklistOtp',
-      callType: ApiCallType.GET,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {
-        'deviceId': deviceId,
-      },
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class GetAlertsCall {
-  Future<ApiCallResponse> call({
-    String? token = '',
-    String? deviceId = '',
-  }) async {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Get Alerts',
-      apiUrl: '${MasterGroup.baseUrl}/getAlert',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -513,6 +488,67 @@ class DashboardCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Dashboard',
       apiUrl: 'https://api.app.${project}.buildint.co/api/dashboard/${orgId}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  static int? totalSites(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_total_sites''',
+      ));
+  static int? onlineSites(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_online_count''',
+      ));
+  static int? offlineSites(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails.out_offline_count''',
+      ));
+  static List? locationDetails(dynamic response) => getJsonField(
+        response,
+        r'''$.locationDetails''',
+        true,
+      ) as List?;
+  static List<String>? onlineStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$.locationDetails[:].OnlineStatus''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  static List<String>? orgLogo(dynamic response) => (getJsonField(
+        response,
+        r'''$.locationDetails[:].OrgLogo''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class GetAlertCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = '',
+    String? token = '',
+    String? project = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Alert',
+      apiUrl: 'https://api.app.${project}.buildint.co/api/getAlert',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',

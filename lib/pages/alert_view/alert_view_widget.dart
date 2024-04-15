@@ -78,9 +78,10 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: MasterGroup.getAlertsCall.call(
-        token: FFAppState().token,
+      future: GetAlertCall.call(
         deviceId: FFAppState().deviceId,
+        token: FFAppState().token,
+        project: FFAppState().userProject,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -100,7 +101,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
             ),
           );
         }
-        final alertViewGetAlertsResponse = snapshot.data!;
+        final alertViewGetAlertResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -145,8 +146,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  alertViewGetAlertsResponse.jsonBody
-                                      .toString(),
+                                  'Alert View',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -170,7 +170,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                         child: Builder(
                           builder: (context) {
                             final alerts = getJsonField(
-                              alertViewGetAlertsResponse.jsonBody,
+                              alertViewGetAlertResponse.jsonBody,
                               r'''$.result''',
                             ).toList();
                             return FlutterFlowDataTable<dynamic>(
