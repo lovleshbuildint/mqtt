@@ -282,8 +282,10 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   ),
                                 ].map((c) => DataCell(c)).toList(),
                               ),
-                              paginated: false,
+                              paginated: true,
                               selectable: false,
+                              hidePaginator: false,
+                              showFirstLastButtons: false,
                               headingRowHeight: 56.0,
                               columnSpacing: 15.0,
                               headingRowColor:

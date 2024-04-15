@@ -484,7 +484,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           child: Icon(
                             Icons.menu,
                             color: Colors.black,
-                            size: 25.0,
+                            size: 28.0,
                           ),
                         ),
                       ],
