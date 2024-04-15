@@ -277,10 +277,8 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   DataRow(
                                 color: MaterialStateProperty.all(
                                   checkListResultIndex % 2 == 0
-                                      ? FlutterFlowTheme.of(context)
-                                          .secondaryBackground
-                                      : FlutterFlowTheme.of(context)
-                                          .primaryBackground,
+                                      ? FlutterFlowTheme.of(context).accent4
+                                      : FlutterFlowTheme.of(context).accent4,
                                 ),
                                 cells: [
                                   Text(
@@ -354,7 +352,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   FlutterFlowTheme.of(context).primary,
                               borderRadius: BorderRadius.circular(8.0),
                               addHorizontalDivider: true,
-                              addTopAndBottomDivider: true,
+                              addTopAndBottomDivider: false,
                               hideDefaultHorizontalDivider: false,
                               horizontalDividerColor:
                                   FlutterFlowTheme.of(context)
