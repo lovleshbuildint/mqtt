@@ -35,10 +35,10 @@ class _LogInWidgetState extends State<LogInWidget> {
       }
     });
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -159,7 +159,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     Expanded(
                                       child: TextFormField(
                                         controller:
-                                            _model.emailAddressController,
+                                            _model.emailAddressTextController,
                                         focusNode: _model.emailAddressFocusNode,
                                         textCapitalization:
                                             TextCapitalization.none,
@@ -226,7 +226,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                               fontWeight: FontWeight.normal,
                                             ),
                                         validator: _model
-                                            .emailAddressControllerValidator
+                                            .emailAddressTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -242,7 +242,8 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   children: [
                                     Expanded(
                                       child: TextFormField(
-                                        controller: _model.passwordController,
+                                        controller:
+                                            _model.passwordTextController,
                                         focusNode: _model.passwordFocusNode,
                                         obscureText: !_model.passwordVisibility,
                                         decoration: InputDecoration(
@@ -324,7 +325,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                         validator: _model
-                                            .passwordControllerValidator
+                                            .passwordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -342,21 +343,22 @@ class _LogInWidgetState extends State<LogInWidget> {
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           var _shouldSetState = false;
-                                          if ((_model.emailAddressController
+                                          if ((_model.emailAddressTextController
                                                           .text !=
                                                       null &&
-                                                  _model.emailAddressController
+                                                  _model.emailAddressTextController
                                                           .text !=
                                                       '') &&
-                                              (_model.passwordController.text !=
+                                              (_model.passwordTextController
+                                                          .text !=
                                                       null &&
-                                                  _model.passwordController
+                                                  _model.passwordTextController
                                                           .text !=
                                                       '')) {
-                                            if ((_model.emailAddressController
+                                            if ((_model.emailAddressTextController
                                                         .text ==
                                                     'DemoMode') &&
-                                                (_model.passwordController
+                                                (_model.passwordTextController
                                                         .text ==
                                                     'testPa\$\$word')) {
                                               setState(() {
@@ -390,10 +392,11 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                   await MasterGroup.loginCall
                                                       .call(
                                                 username: _model
-                                                    .emailAddressController
+                                                    .emailAddressTextController
                                                     .text,
                                                 password: _model
-                                                    .passwordController.text,
+                                                    .passwordTextController
+                                                    .text,
                                                 deviceId: FFAppState().deviceId,
                                               );
                                               _shouldSetState = true;
@@ -486,7 +489,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                             .registerDeviceCall
                                                             .call(
                                                       username: _model
-                                                          .emailAddressController
+                                                          .emailAddressTextController
                                                           .text,
                                                       deviceId:
                                                           FFAppState().deviceId,
@@ -546,9 +549,10 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                   } else {
                                                     setState(() {
                                                       _model
-                                                          .emailAddressController
+                                                          .emailAddressTextController
                                                           ?.clear();
-                                                      _model.passwordController
+                                                      _model
+                                                          .passwordTextController
                                                           ?.clear();
                                                     });
                                                   }

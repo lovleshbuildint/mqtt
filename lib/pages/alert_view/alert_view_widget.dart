@@ -3,6 +3,8 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -62,6 +64,9 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
 
       return;
     });
+
+    _model.textController ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -163,16 +168,87 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 15.0, 0.0, 0.0),
+                      child: TextFormField(
+                        controller: _model.textController,
+                        focusNode: _model.textFieldFocusNode,
+                        onChanged: (_) => EasyDebounce.debounce(
+                          '_model.textController',
+                          Duration(milliseconds: 0),
+                          () async {
+                            setState(() {
+                              _model.searchValue = _model.textController.text;
+                            });
+                          },
+                        ),
+                        autofocus: false,
+                        textCapitalization: TextCapitalization.characters,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          hintText: 'Search Location',
+                          hintStyle:
+                              FlutterFlowTheme.of(context).labelMedium.override(
+                                    fontFamily: 'Readex Pro',
+                                    fontSize: 12.0,
+                                    letterSpacing: 0.0,
+                                  ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).alternate,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).primary,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: FlutterFlowTheme.of(context).error,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              fontSize: 12.0,
+                              letterSpacing: 0.0,
+                            ),
+                        validator:
+                            _model.textControllerValidator.asValidator(context),
+                      ),
+                    ),
                     Expanded(
                       child: Padding(
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: Builder(
                           builder: (context) {
-                            final alerts = getJsonField(
-                              alertViewGetAlertResponse.jsonBody,
-                              r'''$.result''',
-                            ).toList();
+                            final alerts = functions
+                                    .searchFilter(
+                                        getJsonField(
+                                          alertViewGetAlertResponse.jsonBody,
+                                          r'''$.result''',
+                                        ),
+                                        _model.searchValue,
+                                        'DID')
+                                    ?.toList() ??
+                                [];
                             return FlutterFlowDataTable<dynamic>(
                               controller: _model.paginatedDataTableController,
                               data: alerts,
@@ -181,7 +257,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
-                                      'ATM ID',
+                                      'Location ID',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(

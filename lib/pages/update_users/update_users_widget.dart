@@ -92,17 +92,18 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
       }
     });
 
-    _model.fullnameController ??= TextEditingController(text: widget.fullName);
+    _model.fullnameTextController ??=
+        TextEditingController(text: widget.fullName);
     _model.fullnameFocusNode ??= FocusNode();
 
-    _model.emailAddressController ??=
+    _model.emailAddressTextController ??=
         TextEditingController(text: widget.username);
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController(text: '*****');
+    _model.passwordTextController ??= TextEditingController(text: '*****');
     _model.passwordFocusNode ??= FocusNode();
 
-    _model.contactNumController ??= TextEditingController(
+    _model.contactNumTextController ??= TextEditingController(
         text: valueOrDefault<String>(
       widget.userContactNum?.toString(),
       '0',
@@ -225,7 +226,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   children: [
                                     Expanded(
                                       child: TextFormField(
-                                        controller: _model.fullnameController,
+                                        controller:
+                                            _model.fullnameTextController,
                                         focusNode: _model.fullnameFocusNode,
                                         textCapitalization:
                                             TextCapitalization.words,
@@ -293,7 +295,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               fontWeight: FontWeight.normal,
                                             ),
                                         validator: _model
-                                            .fullnameControllerValidator
+                                            .fullnameTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -310,7 +312,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                     Expanded(
                                       child: TextFormField(
                                         controller:
-                                            _model.emailAddressController,
+                                            _model.emailAddressTextController,
                                         focusNode: _model.emailAddressFocusNode,
                                         textCapitalization:
                                             TextCapitalization.none,
@@ -379,7 +381,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               fontWeight: FontWeight.normal,
                                             ),
                                         validator: _model
-                                            .emailAddressControllerValidator
+                                            .emailAddressTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -395,7 +397,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   children: [
                                     Expanded(
                                       child: TextFormField(
-                                        controller: _model.passwordController,
+                                        controller:
+                                            _model.passwordTextController,
                                         focusNode: _model.passwordFocusNode,
                                         textInputAction: TextInputAction.done,
                                         readOnly: _model
@@ -481,7 +484,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                         validator: _model
-                                            .passwordControllerValidator
+                                            .passwordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -511,7 +514,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               newValue!);
                                       if (newValue!) {
                                         setState(() {
-                                          _model.passwordController?.text =
+                                          _model.passwordTextController?.text =
                                               '*****';
                                         });
                                       }
@@ -779,7 +782,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                       Expanded(
                                         child: TextFormField(
                                           controller:
-                                              _model.contactNumController,
+                                              _model.contactNumTextController,
                                           focusNode: _model.contactNumFocusNode,
                                           textInputAction: TextInputAction.done,
                                           obscureText: false,
@@ -855,7 +858,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               null,
                                           keyboardType: TextInputType.phone,
                                           validator: _model
-                                              .contactNumControllerValidator
+                                              .contactNumTextControllerValidator
                                               .asValidator(context),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
@@ -877,16 +880,17 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                       child: FFButtonWidget(
                                         onPressed: () async {
                                           var _shouldSetState = false;
-                                          if ((_model.fullnameController.text != null && _model.fullnameController.text != '') &&
-                                              (_model.emailAddressController
+                                          if ((_model.fullnameTextController.text != null && _model.fullnameTextController.text != '') &&
+                                              (_model.emailAddressTextController
                                                           .text !=
                                                       null &&
-                                                  _model.emailAddressController
+                                                  _model.emailAddressTextController
                                                           .text !=
                                                       '') &&
-                                              (_model.passwordController.text !=
+                                              (_model.passwordTextController
+                                                          .text !=
                                                       null &&
-                                                  _model.passwordController
+                                                  _model.passwordTextController
                                                           .text !=
                                                       '') &&
                                               (_model.projectValue != null &&
@@ -938,10 +942,11 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                         .updateUserCall
                                                         .call(
                                                   username: _model
-                                                      .emailAddressController
+                                                      .emailAddressTextController
                                                       .text,
                                                   password: _model
-                                                      .passwordController.text,
+                                                      .passwordTextController
+                                                      .text,
                                                   userRole: _model.roleValue,
                                                   userOrg: functions.checkIndex(
                                                       _model.orgList!,
@@ -949,16 +954,16 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       'org_name',
                                                       'org_id'),
                                                   fullName: _model
-                                                      .fullnameController.text,
+                                                      .fullnameTextController
+                                                      .text,
                                                   userProject:
                                                       _model.projectValue,
                                                   token: FFAppState().token,
                                                   deviceId:
                                                       FFAppState().deviceId,
-                                                  contactNum: int.tryParse(
-                                                      _model
-                                                          .contactNumController
-                                                          .text),
+                                                  contactNum: int.tryParse(_model
+                                                      .contactNumTextController
+                                                      .text),
                                                 );
                                                 _shouldSetState = true;
                                                 if ((_model.updateUserResponse2
@@ -1022,7 +1027,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       .updateUserCall
                                                       .call(
                                                 username: _model
-                                                    .emailAddressController
+                                                    .emailAddressTextController
                                                     .text,
                                                 userRole: _model.roleValue,
                                                 userOrg: functions.checkIndex(
@@ -1031,13 +1036,15 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                     'org_name',
                                                     'org_id'),
                                                 fullName: _model
-                                                    .fullnameController.text,
+                                                    .fullnameTextController
+                                                    .text,
                                                 userProject:
                                                     _model.projectValue,
                                                 token: FFAppState().token,
                                                 deviceId: FFAppState().deviceId,
                                                 contactNum: int.tryParse(_model
-                                                    .contactNumController.text),
+                                                    .contactNumTextController
+                                                    .text),
                                               );
                                               _shouldSetState = true;
                                               if ((_model.updateUserResponse

@@ -40,7 +40,7 @@ String? editUserOrg(
   }
 }
 
-dynamic filter(
+dynamic filterDashboard(
   dynamic mainData,
   String? searchValue,
   int? status,
@@ -108,4 +108,24 @@ String? decimalToBinary(int decimal) {
   binary = binary.split('').reversed.join();
 
   return binary;
+}
+
+dynamic searchFilter(
+  dynamic mainData,
+  String? searchValue,
+  String? mainKey,
+) {
+  if (searchValue == null || searchValue.isEmpty) {
+    return mainData;
+  }
+
+  List<dynamic> filteredData = [];
+  String searchValueLowerCase = searchValue.toLowerCase();
+  for (dynamic data in mainData) {
+    if (data[mainKey].toLowerCase().contains(searchValueLowerCase)) {
+      filteredData.add(data);
+    }
+  }
+
+  return filteredData;
 }

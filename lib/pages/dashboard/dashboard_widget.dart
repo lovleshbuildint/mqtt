@@ -249,7 +249,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 35.0, 0.0, 0.0),
+                                    0.0, 20.0, 0.0, 0.0),
                                 child: InkWell(
                                   splashColor: Colors.transparent,
                                   focusColor: Colors.transparent,
@@ -275,7 +275,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                       ),
                                       Icon(
-                                        Icons.assignment_late_outlined,
+                                        Icons.report_problem_outlined,
                                         color: Color(0xE02D2D2D),
                                         size: 20.0,
                                       ),
@@ -1130,8 +1130,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       child: Builder(
                         builder: (context) {
                           final locationDetails = functions
-                                  .filter(dashboardDashboardResponse.jsonBody,
-                                      _model.textController.text, _model.fliter)
+                                  .filterDashboard(
+                                      dashboardDashboardResponse.jsonBody,
+                                      _model.textController.text,
+                                      _model.fliter)
                                   ?.toList() ??
                               [];
                           return RefreshIndicator(

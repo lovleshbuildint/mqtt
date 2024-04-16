@@ -24,17 +24,17 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   ApiCallResponse? userInfoRespnse;
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
-  TextEditingController? fullnameController;
-  String? Function(BuildContext, String?)? fullnameControllerValidator;
+  TextEditingController? fullnameTextController;
+  String? Function(BuildContext, String?)? fullnameTextControllerValidator;
   // State field(s) for emailAddress widget.
   FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressController;
-  String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  TextEditingController? emailAddressTextController;
+  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
-  TextEditingController? passwordController;
+  TextEditingController? passwordTextController;
   late bool passwordVisibility;
-  String? Function(BuildContext, String?)? passwordControllerValidator;
+  String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // State field(s) for project widget.
   String? projectValue;
   FormFieldController<String>? projectValueController;
@@ -48,8 +48,8 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   FormFieldController<String>? roleValueController;
   // State field(s) for contact_num widget.
   FocusNode? contactNumFocusNode;
-  TextEditingController? contactNumController;
-  String? Function(BuildContext, String?)? contactNumControllerValidator;
+  TextEditingController? contactNumTextController;
+  String? Function(BuildContext, String?)? contactNumTextControllerValidator;
   // Stores action output result for [Backend Call - API (Create User)] action in Button-Login widget.
   ApiCallResponse? addUserResponse;
 
@@ -62,15 +62,15 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   void dispose() {
     unfocusNode.dispose();
     fullnameFocusNode?.dispose();
-    fullnameController?.dispose();
+    fullnameTextController?.dispose();
 
     emailAddressFocusNode?.dispose();
-    emailAddressController?.dispose();
+    emailAddressTextController?.dispose();
 
     passwordFocusNode?.dispose();
-    passwordController?.dispose();
+    passwordTextController?.dispose();
 
     contactNumFocusNode?.dispose();
-    contactNumController?.dispose();
+    contactNumTextController?.dispose();
   }
 }

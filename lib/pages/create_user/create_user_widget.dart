@@ -66,16 +66,16 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
       return;
     });
 
-    _model.fullnameController ??= TextEditingController();
+    _model.fullnameTextController ??= TextEditingController();
     _model.fullnameFocusNode ??= FocusNode();
 
-    _model.emailAddressController ??= TextEditingController();
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    _model.contactNumController ??= TextEditingController();
+    _model.contactNumTextController ??= TextEditingController();
     _model.contactNumFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -194,7 +194,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                   children: [
                                     Expanded(
                                       child: TextFormField(
-                                        controller: _model.fullnameController,
+                                        controller:
+                                            _model.fullnameTextController,
                                         focusNode: _model.fullnameFocusNode,
                                         textCapitalization:
                                             TextCapitalization.words,
@@ -262,7 +263,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontWeight: FontWeight.normal,
                                             ),
                                         validator: _model
-                                            .fullnameControllerValidator
+                                            .fullnameTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -279,7 +280,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                     Expanded(
                                       child: TextFormField(
                                         controller:
-                                            _model.emailAddressController,
+                                            _model.emailAddressTextController,
                                         focusNode: _model.emailAddressFocusNode,
                                         textCapitalization:
                                             TextCapitalization.none,
@@ -347,7 +348,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontWeight: FontWeight.normal,
                                             ),
                                         validator: _model
-                                            .emailAddressControllerValidator
+                                            .emailAddressTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -363,7 +364,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                   children: [
                                     Expanded(
                                       child: TextFormField(
-                                        controller: _model.passwordController,
+                                        controller:
+                                            _model.passwordTextController,
                                         focusNode: _model.passwordFocusNode,
                                         textInputAction: TextInputAction.done,
                                         obscureText: !_model.passwordVisibility,
@@ -446,7 +448,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontWeight: FontWeight.bold,
                                             ),
                                         validator: _model
-                                            .passwordControllerValidator
+                                            .passwordTextControllerValidator
                                             .asValidator(context),
                                       ),
                                     ),
@@ -675,7 +677,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                       Expanded(
                                         child: TextFormField(
                                           controller:
-                                              _model.contactNumController,
+                                              _model.contactNumTextController,
                                           focusNode: _model.contactNumFocusNode,
                                           textInputAction: TextInputAction.done,
                                           obscureText: false,
@@ -751,7 +753,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               null,
                                           keyboardType: TextInputType.phone,
                                           validator: _model
-                                              .contactNumControllerValidator
+                                              .contactNumTextControllerValidator
                                               .asValidator(context),
                                           inputFormatters: [
                                             FilteringTextInputFormatter.allow(
@@ -772,22 +774,17 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                           0.0, 25.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if ((_model.fullnameController
-                                                          .text !=
-                                                      null &&
-                                                  _model.fullnameController
+                                          if ((_model.fullnameTextController.text != null &&
+                                                  _model.fullnameTextController
                                                           .text !=
                                                       '') &&
-                                              (_model
-                                                          .emailAddressController.text !=
-                                                      null &&
-                                                  _model.emailAddressController
+                                              (_model.emailAddressTextController.text != null &&
+                                                  _model.emailAddressTextController
                                                           .text !=
                                                       '') &&
-                                              (_model
-                                                          .contactNumController.text !=
+                                              (_model.contactNumTextController.text !=
                                                       null &&
-                                                  _model.contactNumController
+                                                  _model.contactNumTextController
                                                           .text !=
                                                       '') &&
                                               (_model.projectValue != null &&
@@ -802,18 +799,21 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                 await MasterGroup.createUserCall
                                                     .call(
                                               username: _model
-                                                  .emailAddressController.text,
+                                                  .emailAddressTextController
+                                                  .text,
                                               password: _model
-                                                  .contactNumController.text,
+                                                  .contactNumTextController
+                                                  .text,
                                               userRole: _model.roleValue,
                                               userOrg: _model.orgId,
                                               fullName: _model
-                                                  .fullnameController.text,
+                                                  .fullnameTextController.text,
                                               userProject: _model.projectValue,
                                               token: FFAppState().token,
                                               deviceId: FFAppState().deviceId,
                                               contactNum: int.tryParse(_model
-                                                  .contactNumController.text),
+                                                  .contactNumTextController
+                                                  .text),
                                             );
                                             if ((_model.addUserResponse
                                                     ?.succeeded ??
