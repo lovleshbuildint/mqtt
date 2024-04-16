@@ -1162,19 +1162,91 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            _model.deleteChecklistResponse =
-                                                await MasterGroup
-                                                    .deleteChecklistCall
-                                                    .call(
-                                              token: FFAppState().token,
-                                              cId: getJsonField(
-                                                checkListResultItem,
-                                                r'''$..c_id''',
-                                              ),
-                                              deviceId: FFAppState().deviceId,
-                                            );
+                                            var _shouldSetState = false;
+                                            var confirmDialogResponse =
+                                                await showDialog<bool>(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text(
+                                                              'Delete Checklist'),
+                                                          content: Text(
+                                                              'Are you sure you want delete this checklist'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      false),
+                                                              child: Text(
+                                                                  'Cancel'),
+                                                            ),
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext,
+                                                                      true),
+                                                              child: Text(
+                                                                  'Delete'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    ) ??
+                                                    false;
+                                            if (confirmDialogResponse) {
+                                              _model.deleteChecklistResponse =
+                                                  await MasterGroup
+                                                      .deleteChecklistCall
+                                                      .call(
+                                                token: FFAppState().token,
+                                                cId: getJsonField(
+                                                  checkListResultItem,
+                                                  r'''$..c_id''',
+                                                ),
+                                                deviceId: FFAppState().deviceId,
+                                              );
+                                              _shouldSetState = true;
+                                              if ((_model
+                                                      .deleteChecklistResponse
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                if (_shouldSetState)
+                                                  setState(() {});
+                                                return;
+                                              }
 
-                                            setState(() {});
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text(
+                                                        'Delete Checklist'),
+                                                    content: Text(
+                                                        'Please try again'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                              if (_shouldSetState)
+                                                setState(() {});
+                                              return;
+                                            } else {
+                                              if (_shouldSetState)
+                                                setState(() {});
+                                              return;
+                                            }
+
+                                            if (_shouldSetState)
+                                              setState(() {});
                                           },
                                           child: Icon(
                                             Icons.delete_outlined,
