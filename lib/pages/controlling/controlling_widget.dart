@@ -416,11 +416,12 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           r'''$.TM''',
                                                         ) !=
                                                         null
-                                                    ? getJsonField(
+                                                    ? (double.parse(
+                                                        getJsonField(
                                                         FFAppState()
                                                             .deviceStatusDIDJson,
                                                         r'''$.TM''',
-                                                      )
+                                                      ).toString()))
                                                     : (double.parse(
                                                         getJsonField(
                                                         controllingGetDeviceStatusResponse
