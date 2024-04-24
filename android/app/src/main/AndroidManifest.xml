@@ -45,7 +45,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="syncatm" android:host="syncatm.com" />
+                <data android:scheme="synciot" android:host="synciot.com" />
             </intent-filter>
 
         </activity>

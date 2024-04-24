@@ -1,4 +1,4 @@
-# SyncATM
+# SyncIoT
 
 A new Flutter project.
 

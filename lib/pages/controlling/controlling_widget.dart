@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import '/backend/schema/structs/index.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -416,16 +417,22 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                           r'''$.TM''',
                                                         ) !=
                                                         null
-                                                    ? getJsonField(
+                                                    ? IntegerStruct
+                                                            .maybeFromMap(
+                                                                getJsonField(
                                                         FFAppState()
                                                             .deviceStatusDIDJson,
                                                         r'''$.TM''',
-                                                      )
-                                                    : getJsonField(
+                                                      ))!
+                                                        .temperature
+                                                    : IntegerStruct
+                                                            .maybeFromMap(
+                                                                getJsonField(
                                                         controllingGetDeviceStatusResponse
                                                             .jsonBody,
                                                         r'''$.deviceStatus.TM''',
-                                                      )) <=
+                                                      ))!
+                                                        .temperature) <=
                                                 24.0
                                             ? Color(0x8007D95A)
                                             : Color(0x80F71A1A),
