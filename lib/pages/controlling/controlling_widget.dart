@@ -360,94 +360,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              height: 46.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF4154F1),
-                                borderRadius: BorderRadius.circular(4.0),
-                              ),
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    6.0, 0.0, 6.0, 0.0),
-                                child: Text(
-                                  () {
-                                    if (((String var1) {
-                                          return var1[0] == "1";
-                                        }((_model.relayStatus != null &&
-                                                _model.relayStatus != ''
-                                            ? _model.relayStatus!
-                                            : getJsonField(
-                                                controllingGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.RS''',
-                                              ).toString()))) &&
-                                        ((String var1) {
-                                          return var1[1] == "1";
-                                        }((_model.relayStatus != null &&
-                                                _model.relayStatus != ''
-                                            ? _model.relayStatus!
-                                            : getJsonField(
-                                                controllingGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.RS''',
-                                              ).toString())))) {
-                                      return 'Both AC ON';
-                                    } else if (((String var1) {
-                                          return var1[0] == "0";
-                                        }((_model.relayStatus != null &&
-                                                _model.relayStatus != ''
-                                            ? _model.relayStatus!
-                                            : getJsonField(
-                                                controllingGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.RS''',
-                                              ).toString()))) &&
-                                        ((String var1) {
-                                          return var1[1] == "0";
-                                        }((_model.relayStatus != null &&
-                                                _model.relayStatus != ''
-                                            ? _model.relayStatus!
-                                            : getJsonField(
-                                                controllingGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.RS''',
-                                              ).toString())))) {
-                                      return 'Both AC OFF';
-                                    } else if ((String var1) {
-                                      return var1[0] == "1";
-                                    }((_model.relayStatus != null &&
-                                            _model.relayStatus != ''
-                                        ? _model.relayStatus!
-                                        : getJsonField(
-                                            controllingGetDeviceStatusResponse
-                                                .jsonBody,
-                                            r'''$.deviceStatus.RS''',
-                                          ).toString()))) {
-                                      return 'AC 1 ON';
-                                    } else {
-                                      return 'AC 2 ON';
-                                    }
-                                  }(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                         Expanded(
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -475,10 +387,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                   children: [
                                     Text(
                                       '${getJsonField(
-                                        controllingGetDeviceStatusResponse
-                                            .jsonBody,
-                                        r'''$.deviceStatus.TM''',
-                                      ).toString()} C',
+                                            FFAppState().deviceStatusDIDJson,
+                                            r'''$.TM''',
+                                          ) != null ? getJsonField(
+                                          FFAppState().deviceStatusDIDJson,
+                                          r'''$.TM''',
+                                        ).toString() : getJsonField(
+                                          controllingGetDeviceStatusResponse
+                                              .jsonBody,
+                                          r'''$.deviceStatus.TM''',
+                                        ).toString()} C',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -492,7 +410,25 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                       width: 30.0,
                                       height: 30.0,
                                       decoration: BoxDecoration(
-                                        color: Color(0x8007D95A),
+                                        color: (getJsonField(
+                                                          FFAppState()
+                                                              .deviceStatusDIDJson,
+                                                          r'''$.TM''',
+                                                        ) !=
+                                                        null
+                                                    ? getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.TM''',
+                                                      )
+                                                    : getJsonField(
+                                                        controllingGetDeviceStatusResponse
+                                                            .jsonBody,
+                                                        r'''$.deviceStatus.TM''',
+                                                      )) <=
+                                                24.0
+                                            ? Color(0x8007D95A)
+                                            : Color(0x80F71A1A),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
@@ -524,38 +460,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                         ),
                       ],
                     ),
-                  ),
-                  Text(
-                    getJsonField(
-                      FFAppState().deviceStatusDIDJson,
-                      r'''$.RS[0]''',
-                    ).toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    getJsonField(
-                      FFAppState().deviceStatusDIDJson,
-                      r'''$.RS[1]''',
-                    ).toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    (String var1) {
-                      return var1[0];
-                    }(getJsonField(
-                      FFAppState().deviceStatusDIDJson,
-                      r'''$.RS''',
-                    ).toString()),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
                   ),
                   Expanded(
                     child: Align(
