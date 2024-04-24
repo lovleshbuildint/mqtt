@@ -410,6 +410,10 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
 
                                         FFAppState().deleteMqttTime();
                                         FFAppState().mqttTime = '';
+
+                                        FFAppState()
+                                            .deleteDeviceStatusDIDJson();
+                                        FFAppState().deviceStatusDIDJson = null;
                                       });
                                     },
                                     child: Container(
