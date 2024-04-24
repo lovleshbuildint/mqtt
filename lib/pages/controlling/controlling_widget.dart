@@ -548,7 +548,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                   Text(
                     getJsonField(
                       FFAppState().deviceStatusDIDJson,
-                      r'''$.RS[2]''',
+                      r'''$.RS''',
                     ).toString(),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
