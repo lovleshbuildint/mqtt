@@ -429,27 +429,13 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                         r'''$.deviceStatus.TM''',
                                                       ).toString()))) <=
                                                 24.0
-                                            ? Color(0x8007D95A)
-                                            : Color(0x80F71A1A),
+                                            ? Color(0x80F71A1A)
+                                            : Color(0x8007D95A),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
                                       child: Icon(
                                         Icons.ac_unit,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 30.0,
-                                      height: 30.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x80F71A1A),
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
-                                      ),
-                                      child: Icon(
-                                        Icons.air,
                                         color: FlutterFlowTheme.of(context)
                                             .secondaryBackground,
                                       ),
