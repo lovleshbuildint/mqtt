@@ -57,7 +57,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
           }(),
         );
         _model.instantTimer = InstantTimer.periodic(
-          duration: Duration(milliseconds: 5000),
+          duration: Duration(milliseconds: 15000),
           callback: (timer) async {
             unawaited(
               () async {
@@ -528,7 +528,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                   Text(
                     getJsonField(
                       FFAppState().deviceStatusDIDJson,
-                      r'''$.IM''',
+                      r'''$.RS[0]''',
                     ).toString(),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',

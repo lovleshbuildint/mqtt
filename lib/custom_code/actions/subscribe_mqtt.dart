@@ -53,7 +53,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
 
       client.updates?.timeout(timeoutDuration, onTimeout: (sink) {
         FFAppState().update(() {
-          FFAppState().deviceStateDid = "";
+          FFAppState().deviceStatusDIDJson = "";
           FFAppState().mqttTime = "";
         });
       }).listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
