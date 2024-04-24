@@ -16,6 +16,20 @@ import 'package:mqtt_client/mqtt_server_client.dart';
 
 Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
     String? deviceId, String? did, String ip, String pass) async {
+  Map<String, dynamic> parseStringToJSON(String pt) {
+    List<String> pairs = pt.split(',');
+    Map<String, dynamic> jsonMap = {};
+
+    for (String pair in pairs) {
+      List<String> keyValue = pair.split(':');
+      if (keyValue.length == 2) {
+        jsonMap[keyValue[0]] = keyValue[1];
+      }
+    }
+
+    return jsonMap;
+  }
+
   final MqttServerClient client = MqttServerClient(ip, '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
@@ -46,15 +60,18 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         final recMess = c![0].payload as MqttPublishMessage;
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+        Map<String, dynamic> jsonData = parseStringToJSON(pt);
+        print(jsonData);
         if (pt.split(',').first == did) {
-          if (pt.split(',')[2] == '\$GRES') {
+          if (pt.split(',')[2] == '\$GALL') {
             print('$pt');
             DateTime now = DateTime.now();
             String timestamp = now.toLocal().toString();
             FFAppState().update(() {
               FFAppState().mqttTime = timestamp;
-              FFAppState().deviceStateDid =
-                  pt.split(',')[3] + ',' + pt.split(',').last;
+
+              // FFAppState().deviceStateDid =
+              //     pt.split(',')[3] + ',' + pt.split(',').last;
             });
           }
         }

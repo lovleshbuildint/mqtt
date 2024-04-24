@@ -494,7 +494,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               fontFamily: 'Readex Pro',
                                               letterSpacing: 0.0,
                                             ),
-                                        hintText: 'Select Project',
+                                        hintText: 'Select Database',
                                         icon: Icon(
                                           Icons.keyboard_arrow_down_rounded,
                                           color: FlutterFlowTheme.of(context)

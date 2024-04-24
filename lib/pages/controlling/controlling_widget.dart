@@ -64,7 +64,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 await actions.publishMqtt(
                   context,
                   'Settings',
-                  '${widget.did}\$GRES,',
+                  '${widget.did}\$GALL,',
                   FFAppState().deviceId,
                   '15.206.230.32',
                   'mqtt_buildint_\$\$2023',

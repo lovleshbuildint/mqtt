@@ -4,6 +4,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:csv/csv.dart';
 import 'package:synchronized/synchronized.dart';
 import 'flutter_flow/flutter_flow_util.dart';
+import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -45,6 +46,16 @@ class FFAppState extends ChangeNotifier {
     });
     await _safeInitAsync(() async {
       _mqttTime = await secureStorage.getString('ff_mqttTime') ?? _mqttTime;
+    });
+    await _safeInitAsync(() async {
+      if (await secureStorage.read(key: 'ff_deviceStatusDIDJson') != null) {
+        try {
+          _deviceStatusDIDJson = jsonDecode(
+              await secureStorage.getString('ff_deviceStatusDIDJson') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
     });
   }
 
@@ -141,6 +152,17 @@ class FFAppState extends ChangeNotifier {
 
   void deleteMqttTime() {
     secureStorage.delete(key: 'ff_mqttTime');
+  }
+
+  dynamic _deviceStatusDIDJson;
+  dynamic get deviceStatusDIDJson => _deviceStatusDIDJson;
+  set deviceStatusDIDJson(dynamic _value) {
+    _deviceStatusDIDJson = _value;
+    secureStorage.setString('ff_deviceStatusDIDJson', jsonEncode(_value));
+  }
+
+  void deleteDeviceStatusDIDJson() {
+    secureStorage.delete(key: 'ff_deviceStatusDIDJson');
   }
 }
 

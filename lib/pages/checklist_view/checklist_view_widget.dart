@@ -1172,7 +1172,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                           title: Text(
                                                               'Delete Checklist'),
                                                           content: Text(
-                                                              'Are you sure you want delete this checklist'),
+                                                              'Are you sure you want to delete this checklist?'),
                                                           actions: [
                                                             TextButton(
                                                               onPressed: () =>
