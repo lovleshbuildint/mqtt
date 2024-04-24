@@ -525,6 +525,16 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    getJsonField(
+                      FFAppState().deviceStatusDIDJson,
+                      r'''$.IM''',
+                    ).toString(),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),

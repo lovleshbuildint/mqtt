@@ -69,7 +69,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
             String timestamp = now.toLocal().toString();
             FFAppState().update(() {
               FFAppState().mqttTime = timestamp;
-
+              FFAppState().deviceStatusDIDJson = jsonData;
               // FFAppState().deviceStateDid =
               //     pt.split(',')[3] + ',' + pt.split(',').last;
             });
