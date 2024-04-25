@@ -151,7 +151,10 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  'Alert View',
+                                  valueOrDefault<String>(
+                                    _model.alertID?.toString(),
+                                    '0',
+                                  ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -307,6 +310,24 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   ),
                                   fixedWidth: 120.0,
                                 ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Text(
+                                      'Action',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                  fixedWidth: 100.0,
+                                ),
                               ],
                               dataRowBuilder: (alertsItem, alertsIndex,
                                       selected, onSelectChanged) =>
@@ -364,6 +385,66 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                           fontSize: 12.0,
                                           letterSpacing: 0.0,
                                         ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      if (getJsonField(
+                                            alertsItem,
+                                            r'''$..issue''',
+                                          ) ==
+                                          1)
+                                        Expanded(
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              setState(() {
+                                                _model.alertID = getJsonField(
+                                                  alertsItem,
+                                                  r'''$..id''',
+                                                );
+                                              });
+                                            },
+                                            child: Text(
+                                              'Assign To',
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xCD4154F1),
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                      if (getJsonField(
+                                            alertsItem,
+                                            r'''$..issue''',
+                                          ) ==
+                                          2)
+                                        Expanded(
+                                          child: Text(
+                                            'Share Checklist Link',
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xCD4154F1),
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
+                                        ),
+                                    ],
                                   ),
                                 ].map((c) => DataCell(c)).toList(),
                               ),

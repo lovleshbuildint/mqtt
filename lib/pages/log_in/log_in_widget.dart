@@ -439,6 +439,13 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                         ''),
                                                     r'''$.user_data.user_project''',
                                                   ).toString();
+                                                  FFAppState().contactNum =
+                                                      getJsonField(
+                                                    (_model.loginResponce
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.user_data.contact_num''',
+                                                  );
                                                 });
 
                                                 context.goNamed('Dashboard');

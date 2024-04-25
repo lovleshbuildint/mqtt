@@ -16,6 +16,8 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
 
   String? searchValue;
 
+  int? alertID;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

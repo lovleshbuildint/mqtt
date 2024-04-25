@@ -58,6 +58,9 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    await _safeInitAsync(() async {
+      _contactNum = await secureStorage.getInt('ff_contactNum') ?? _contactNum;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -164,6 +167,17 @@ class FFAppState extends ChangeNotifier {
 
   void deleteDeviceStatusDIDJson() {
     secureStorage.delete(key: 'ff_deviceStatusDIDJson');
+  }
+
+  int _contactNum = 0;
+  int get contactNum => _contactNum;
+  set contactNum(int _value) {
+    _contactNum = _value;
+    secureStorage.setInt('ff_contactNum', _value);
+  }
+
+  void deleteContactNum() {
+    secureStorage.delete(key: 'ff_contactNum');
   }
 }
 

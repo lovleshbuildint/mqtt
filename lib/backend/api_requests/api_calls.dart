@@ -680,6 +680,45 @@ class GetDeviceStatusCall {
   }
 }
 
+class UpdateAlertsCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = '',
+    String? token = '',
+    String? project = '',
+    int? alertID,
+    String? assignTo = '',
+    int? assignToNum,
+    int? isActive,
+    String? closedOn = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "deviceId": "${deviceId}",
+  "alertID": "${alertID}",
+  "assign_to": "${assignTo}",
+  "assign_to_num": "${assignToNum}",
+  "is_active": "${isActive}",
+  "closed_on": "${closedOn}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Update Alerts',
+      apiUrl: 'https://api.app.${project}.buildint.co/api/updateAlerts',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
