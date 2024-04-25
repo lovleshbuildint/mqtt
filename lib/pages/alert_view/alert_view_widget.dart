@@ -151,10 +151,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     7.0, 0.0, 0.0, 0.0),
                                 child: Text(
-                                  valueOrDefault<String>(
-                                    _model.alertID?.toString(),
-                                    '0',
-                                  ),
+                                  'Alert View',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
