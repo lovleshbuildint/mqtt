@@ -393,7 +393,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                     children: [
                                       if (getJsonField(
                                             alertsItem,
-                                            r'''$..issue''',
+                                            r'''$..is_active''',
                                           ) ==
                                           1)
                                         Expanded(
