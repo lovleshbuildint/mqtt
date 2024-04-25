@@ -30,6 +30,8 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
+  // Stores action output result for [Backend Call - API (Update Alerts)] action in Text widget.
+  ApiCallResponse? updateAlertsResponse;
 
   @override
   void initState(BuildContext context) {}

@@ -403,12 +403,103 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
-                                              setState(() {
-                                                _model.alertID = getJsonField(
-                                                  alertsItem,
-                                                  r'''$..id''',
+                                              var confirmDialogResponse =
+                                                  await showDialog<bool>(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Assign To'),
+                                                            content: Text(
+                                                                'Self Assign (${FFAppState().fullName})'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        false),
+                                                                child: Text(
+                                                                    'Site Technician'),
+                                                              ),
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext,
+                                                                        true),
+                                                                child:
+                                                                    Text('Yes'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      ) ??
+                                                      false;
+                                              if (confirmDialogResponse) {
+                                                _model.updateAlertsResponse =
+                                                    await UpdateAlertsCall.call(
+                                                  deviceId:
+                                                      FFAppState().deviceId,
+                                                  token: FFAppState().token,
+                                                  project:
+                                                      FFAppState().userProject,
+                                                  alertID: getJsonField(
+                                                    alertsItem,
+                                                    r'''$..id''',
+                                                  ),
+                                                  assignTo:
+                                                      FFAppState().fullName,
+                                                  assignToNum:
+                                                      FFAppState().contactNum,
                                                 );
-                                              });
+                                                if ((_model.updateAlertsResponse
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('Info'),
+                                                        content: Text(
+                                                            'Alert Assigned'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('Alert'),
+                                                        content: Text((_model
+                                                                .updateAlertsResponse
+                                                                ?.bodyText ??
+                                                            '')),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              }
+
+                                              setState(() {});
                                             },
                                             child: Text(
                                               'Assign To',
@@ -427,7 +518,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                         ),
                                       if (getJsonField(
                                             alertsItem,
-                                            r'''$..issue''',
+                                            r'''$..is_active''',
                                           ) ==
                                           2)
                                         Expanded(
