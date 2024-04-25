@@ -448,6 +448,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                       FFAppState().fullName,
                                                   assignToNum:
                                                       FFAppState().contactNum,
+                                                  isActive: 2,
                                                 );
                                                 if ((_model.updateAlertsResponse
                                                         ?.succeeded ??
