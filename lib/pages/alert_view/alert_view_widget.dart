@@ -526,6 +526,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                             hoverColor: Colors.transparent,
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
+                                              var _shouldSetState = false;
                                               if (FFAppState().contactNum !=
                                                   null) {
                                                 _model.checklistLoginResponse =
@@ -534,6 +535,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                   contactNum:
                                                       FFAppState().contactNum,
                                                 );
+                                                _shouldSetState = true;
                                                 if ((_model
                                                         .checklistLoginResponse
                                                         ?.succeeded ??
@@ -546,73 +548,38 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                     deviceId:
                                                         FFAppState().deviceId,
                                                   );
+                                                  _shouldSetState = true;
                                                   if ((_model
                                                           .checklistOTPResponse
                                                           ?.succeeded ??
                                                       true)) {
-                                                    _model.checklistGetTokenResponse =
-                                                        await PostChecklistVerifyTokensCall
-                                                            .call(
-                                                      contactNum: FFAppState()
-                                                          .contactNum,
-                                                      otp: getJsonField(
-                                                        (_model.checklistOTPResponse
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.result[0].otp''',
-                                                      ),
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text('Info'),
+                                                          content:
+                                                              Text(getJsonField(
+                                                            (_model.checklistOTPResponse
+                                                                    ?.jsonBody ??
+                                                                ''),
+                                                            r'''$.result[0].otp''',
+                                                          ).toString()),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
                                                     );
-                                                    if ((_model
-                                                            .checklistGetTokenResponse
-                                                            ?.succeeded ??
-                                                        true)) {
-                                                      await launchURL(
-                                                          'https://checklist.buildint.co/revisit/before-images?assignedToNum=${getJsonField(
-                                                        alertsItem,
-                                                        r'''$..assign_to_num''',
-                                                      ).toString()}&assignedTo=${getJsonField(
-                                                        alertsItem,
-                                                        r'''$..assign_to''',
-                                                      ).toString()}&token=${getJsonField(
-                                                        (_model.checklistGetTokenResponse
-                                                                ?.jsonBody ??
-                                                            ''),
-                                                        r'''$.token''',
-                                                      ).toString()}&alertID=${getJsonField(
-                                                        alertsItem,
-                                                        r'''$..id''',
-                                                      ).toString()}&deviceDID=${getJsonField(
-                                                        alertsItem,
-                                                        r'''$..DID''',
-                                                      ).toString()}&location=${getJsonField(
-                                                        alertsItem,
-                                                        r'''$..location''',
-                                                      ).toString()}&project=${FFAppState().userOrg}&database=${FFAppState().userProject}');
-                                                    } else {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title:
-                                                                Text('Alert'),
-                                                            content: Text((_model
-                                                                    .checklistGetTokenResponse
-                                                                    ?.bodyText ??
-                                                                '')),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                    }
+                                                    if (_shouldSetState)
+                                                      setState(() {});
+                                                    return;
                                                   } else {
                                                     await showDialog(
                                                       context: context,
@@ -635,6 +602,9 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                         );
                                                       },
                                                     );
+                                                    if (_shouldSetState)
+                                                      setState(() {});
+                                                    return;
                                                   }
                                                 } else {
                                                   await showDialog(
@@ -658,6 +628,9 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                       );
                                                     },
                                                   );
+                                                  if (_shouldSetState)
+                                                    setState(() {});
+                                                  return;
                                                 }
                                               } else {
                                                 await showDialog(
@@ -679,9 +652,13 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                     );
                                                   },
                                                 );
+                                                if (_shouldSetState)
+                                                  setState(() {});
+                                                return;
                                               }
 
-                                              setState(() {});
+                                              if (_shouldSetState)
+                                                setState(() {});
                                             },
                                             child: Text(
                                               'Share Checklist Link',
