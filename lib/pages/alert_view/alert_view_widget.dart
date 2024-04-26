@@ -520,17 +520,138 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                           ) ==
                                           2)
                                         Expanded(
-                                          child: Text(
-                                            'Share Checklist Link',
-                                            textAlign: TextAlign.center,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Color(0xCD4154F1),
-                                                  fontSize: 12.0,
-                                                  letterSpacing: 0.0,
-                                                ),
+                                          child: InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              if (FFAppState().contactNum !=
+                                                  null) {
+                                                _model.checklistLoginResponse =
+                                                    await MasterGroup
+                                                        .postChecklistLoginCall
+                                                        .call(
+                                                  contactNum:
+                                                      FFAppState().contactNum,
+                                                );
+                                                if ((_model
+                                                        .checklistLoginResponse
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  _model.checklistOTPResponse =
+                                                      await MasterGroup
+                                                          .getChecklistOTPCall
+                                                          .call(
+                                                    token: FFAppState().token,
+                                                    deviceId:
+                                                        FFAppState().deviceId,
+                                                  );
+                                                  if ((_model
+                                                          .checklistOTPResponse
+                                                          ?.succeeded ??
+                                                      true)) {
+                                                    _model.checklistGetTokenResponse =
+                                                        await MasterGroup
+                                                            .postChecklistVerifyTokenCall
+                                                            .call(
+                                                      contactNum: FFAppState()
+                                                          .contactNum,
+                                                      otp: getJsonField(
+                                                        (_model.checklistOTPResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.result[0].otp''',
+                                                      ),
+                                                    );
+                                                    if ((_model
+                                                            .checklistGetTokenResponse
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      await launchURL(
+                                                          'https://checklist.buildint.co/revisit/before-images?assignedToNum=${getJsonField(
+                                                        alertsItem,
+                                                        r'''$..assign_to_num''',
+                                                      ).toString()}&assignedTo=${getJsonField(
+                                                        alertsItem,
+                                                        r'''$..assign_to''',
+                                                      ).toString()}&token=${getJsonField(
+                                                        (_model.checklistGetTokenResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.token''',
+                                                      ).toString()}&alertID=${getJsonField(
+                                                        alertsItem,
+                                                        r'''$..id''',
+                                                      ).toString()}&deviceDID=${getJsonField(
+                                                        alertsItem,
+                                                        r'''$..DID''',
+                                                      ).toString()}&location=${getJsonField(
+                                                        alertsItem,
+                                                        r'''$..location''',
+                                                      ).toString()}&project=${FFAppState().userOrg}&database=${FFAppState().userProject}');
+                                                    }
+                                                  }
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('Alert'),
+                                                        content: Text((_model
+                                                                .checklistLoginResponse
+                                                                ?.bodyText ??
+                                                            '')),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('Info'),
+                                                      content: Text(
+                                                          'Contact Number Not set Login Again or Contact Administrator'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
+
+                                              setState(() {});
+                                            },
+                                            child: Text(
+                                              'Share Checklist Link',
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xCD4154F1),
+                                                    fontSize: 12.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
                                           ),
                                         ),
                                     ],
