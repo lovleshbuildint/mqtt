@@ -32,11 +32,11 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
       FlutterFlowDataTableController<dynamic>();
   // Stores action output result for [Backend Call - API (Update Alerts)] action in Text widget.
   ApiCallResponse? updateAlertsResponse;
-  // Stores action output result for [Backend Call - API (Post Checklist Login)] action in Text widget.
+  // Stores action output result for [Backend Call - API (Post Checklst Login)] action in Text widget.
   ApiCallResponse? checklistLoginResponse;
   // Stores action output result for [Backend Call - API (Get Checklist OTP)] action in Text widget.
   ApiCallResponse? checklistOTPResponse;
-  // Stores action output result for [Backend Call - API (Post Checklist Verify Token)] action in Text widget.
+  // Stores action output result for [Backend Call - API (Post Checklist Verify Tokens)] action in Text widget.
   ApiCallResponse? checklistGetTokenResponse;
 
   @override

@@ -33,10 +33,6 @@ class MasterGroup {
   static DeleteUserOrDeviceCall deleteUserOrDeviceCall =
       DeleteUserOrDeviceCall();
   static AppVersionCheckCall appVersionCheckCall = AppVersionCheckCall();
-  static PostChecklistVerifyTokenCall postChecklistVerifyTokenCall =
-      PostChecklistVerifyTokenCall();
-  static PostChecklistLoginCall postChecklistLoginCall =
-      PostChecklistLoginCall();
 }
 
 class LoginCall {
@@ -481,64 +477,6 @@ class AppVersionCheckCall {
   }
 }
 
-class PostChecklistVerifyTokenCall {
-  Future<ApiCallResponse> call({
-    int? otp,
-    int? contactNum,
-    String? token = '',
-    String? deviceId = '',
-  }) async {
-    final ffApiRequestBody = '''
-{
-  "contact_num": "${contactNum}",
-  "otp": "${otp}"
-}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Post Checklist Verify Token',
-      apiUrl: '${MasterGroup.baseUrl}/checklist/verify',
-      callType: ApiCallType.POST,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
-class PostChecklistLoginCall {
-  Future<ApiCallResponse> call({
-    int? contactNum,
-    String? token = '',
-    String? deviceId = '',
-  }) async {
-    final ffApiRequestBody = '''
-{"contact_num": "${contactNum}"}''';
-    return ApiManager.instance.makeApiCall(
-      callName: 'Post Checklist Login',
-      apiUrl: '${MasterGroup.baseUrl}/checklist/login',
-      callType: ApiCallType.POST,
-      headers: {
-        'Authorization': '${token}',
-      },
-      params: {},
-      body: ffApiRequestBody,
-      bodyType: BodyType.JSON,
-      returnBody: true,
-      encodeBodyUtf8: false,
-      decodeUtf8: false,
-      cache: false,
-      alwaysAllowBody: false,
-    );
-  }
-}
-
 /// End Master Group Code
 
 class DashboardCall {
@@ -769,6 +707,56 @@ class UpdateAlertsCall {
       headers: {
         'Authorization': '${token}',
       },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class PostChecklstLoginCall {
+  static Future<ApiCallResponse> call({
+    int? contactNum,
+  }) async {
+    final ffApiRequestBody = '''
+{"contact_num": "${contactNum}"}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Post Checklst Login',
+      apiUrl: 'https://api.app.master.buildint.co/checklist/login',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class PostChecklistVerifyTokensCall {
+  static Future<ApiCallResponse> call({
+    int? contactNum,
+    int? otp,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "contact_num": "${contactNum}",
+  "otp": "${otp}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Post Checklist Verify Tokens',
+      apiUrl: 'https://api.app.master.buildint.co/checklist/verify',
+      callType: ApiCallType.POST,
+      headers: {},
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,

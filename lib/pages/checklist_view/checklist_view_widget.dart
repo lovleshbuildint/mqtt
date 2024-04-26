@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'checklist_view_model.dart';
@@ -225,19 +226,34 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                 ),
                                           ),
                                         ),
-                                        Text(
-                                          getJsonField(
-                                            columnGetChecklistOTPResponse
-                                                .jsonBody,
-                                            r'''$.result[0].otp''',
-                                          ).toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                              ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            await Clipboard.setData(
+                                                ClipboardData(
+                                                    text: getJsonField(
+                                              columnGetChecklistOTPResponse
+                                                  .jsonBody,
+                                              r'''$.result[0].otp''',
+                                            ).toString()));
+                                          },
+                                          child: Text(
+                                            getJsonField(
+                                              columnGetChecklistOTPResponse
+                                                  .jsonBody,
+                                              r'''$.result[0].otp''',
+                                            ).toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
+                                                ),
+                                          ),
                                         ),
                                       ],
                                     );

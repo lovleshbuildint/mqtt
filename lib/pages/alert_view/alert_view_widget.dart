@@ -529,8 +529,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                               if (FFAppState().contactNum !=
                                                   null) {
                                                 _model.checklistLoginResponse =
-                                                    await MasterGroup
-                                                        .postChecklistLoginCall
+                                                    await PostChecklstLoginCall
                                                         .call(
                                                   contactNum:
                                                       FFAppState().contactNum,
@@ -552,8 +551,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                           ?.succeeded ??
                                                       true)) {
                                                     _model.checklistGetTokenResponse =
-                                                        await MasterGroup
-                                                            .postChecklistVerifyTokenCall
+                                                        await PostChecklistVerifyTokensCall
                                                             .call(
                                                       contactNum: FFAppState()
                                                           .contactNum,
@@ -590,7 +588,53 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                         alertsItem,
                                                         r'''$..location''',
                                                       ).toString()}&project=${FFAppState().userOrg}&database=${FFAppState().userProject}');
+                                                    } else {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title:
+                                                                Text('Alert'),
+                                                            content: Text((_model
+                                                                    .checklistGetTokenResponse
+                                                                    ?.bodyText ??
+                                                                '')),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
                                                     }
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text('Alert'),
+                                                          content: Text((_model
+                                                                  .checklistOTPResponse
+                                                                  ?.bodyText ??
+                                                              '')),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
                                                   }
                                                 } else {
                                                   await showDialog(
