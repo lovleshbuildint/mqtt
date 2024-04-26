@@ -745,7 +745,7 @@ class PostChecklstLoginCall {
 class PostChecklistVerifyTokensCall {
   static Future<ApiCallResponse> call({
     int? contactNum,
-    int? otp,
+    String? otp = '',
   }) async {
     final ffApiRequestBody = '''
 {

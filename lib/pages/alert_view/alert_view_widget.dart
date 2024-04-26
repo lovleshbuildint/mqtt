@@ -587,7 +587,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                                 ?.jsonBody ??
                                                             ''),
                                                         r'''$.result[0].otp''',
-                                                      ),
+                                                      ).toString(),
                                                     );
                                                     _shouldSetState = true;
                                                     await showDialog(
