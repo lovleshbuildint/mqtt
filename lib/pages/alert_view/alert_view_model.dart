@@ -36,6 +36,8 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
   ApiCallResponse? checklistLoginResponse;
   // Stores action output result for [Backend Call - API (Get Checklist OTP)] action in Text widget.
   ApiCallResponse? checklistOTPResponse;
+  // Stores action output result for [Backend Call - API (Post Checklist Verify Tokens)] action in Text widget.
+  ApiCallResponse? checklistGetTokenResponse;
 
   @override
   void initState(BuildContext context) {}

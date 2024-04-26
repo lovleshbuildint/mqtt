@@ -577,6 +577,41 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                         );
                                                       },
                                                     );
+                                                    _model.checklistGetTokenResponse =
+                                                        await PostChecklistVerifyTokensCall
+                                                            .call(
+                                                      contactNum: FFAppState()
+                                                          .contactNum,
+                                                      otp: getJsonField(
+                                                        (_model.checklistOTPResponse
+                                                                ?.jsonBody ??
+                                                            ''),
+                                                        r'''$.result[0].otp''',
+                                                      ),
+                                                    );
+                                                    _shouldSetState = true;
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text('Info'),
+                                                          content: Text((_model
+                                                                      .checklistGetTokenResponse
+                                                                      ?.jsonBody ??
+                                                                  '')
+                                                              .toString()),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
                                                     if (_shouldSetState)
                                                       setState(() {});
                                                     return;
