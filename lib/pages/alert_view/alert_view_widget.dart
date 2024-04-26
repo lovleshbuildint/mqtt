@@ -311,6 +311,24 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
+                                      'Edit Header 5',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                  fixedWidth: 120.0,
+                                ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Text(
                                       'Action',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
@@ -375,6 +393,37 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                       alertsItem,
                                       r'''$..raised_on''',
                                     ).toString())))}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  Text(
+                                    valueOrDefault<String>(
+                                      getJsonField(
+                                                alertsItem,
+                                                r'''$..assined_on''',
+                                              ) !=
+                                              null
+                                          ? '${(String var1) {
+                                              return var1.split('T').first;
+                                            }(getJsonField(
+                                              alertsItem,
+                                              r'''$..assined_on''',
+                                            ).toString())} ${(String var1) {
+                                              return var1.split('.').first;
+                                            }(((String var1) {
+                                              return var1.split('T').last;
+                                            }(getJsonField(
+                                              alertsItem,
+                                              r'''$..assined_on''',
+                                            ).toString())))}'
+                                          : null,
+                                      'Null',
+                                    ),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -702,7 +751,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                 setState(() {});
                                             },
                                             child: Text(
-                                              'Share Checklist Link',
+                                              'Fill Checklist',
                                               textAlign: TextAlign.center,
                                               style: FlutterFlowTheme.of(
                                                       context)
