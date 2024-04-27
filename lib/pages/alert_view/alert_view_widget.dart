@@ -584,11 +584,6 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                                       context)
                                                                   .unfocus(),
                                                           child: Container(
-                                                            height: MediaQuery
-                                                                        .sizeOf(
-                                                                            context)
-                                                                    .height *
-                                                                0.4,
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)

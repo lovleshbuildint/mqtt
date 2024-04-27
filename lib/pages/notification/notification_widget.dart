@@ -167,7 +167,6 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                           ).toList();
                           return ListView.builder(
                             padding: EdgeInsets.zero,
-                            shrinkWrap: true,
                             scrollDirection: Axis.vertical,
                             itemCount: notiData.length,
                             itemBuilder: (context, notiDataIndex) {

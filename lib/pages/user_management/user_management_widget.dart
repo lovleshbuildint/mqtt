@@ -181,7 +181,6 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                             },
                             child: ListView.builder(
                               padding: EdgeInsets.zero,
-                              shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               itemCount: userList.length,
                               itemBuilder: (context, userListIndex) {

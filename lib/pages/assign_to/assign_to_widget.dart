@@ -60,17 +60,13 @@ class _AssignToWidgetState extends State<AssignToWidget> {
       child: SafeArea(
         child: Container(
           width: MediaQuery.sizeOf(context).width * 1.0,
+          height: 260.0,
           decoration: BoxDecoration(
             color: FlutterFlowTheme.of(context).secondaryBackground,
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(0.0),
-              bottomRight: Radius.circular(0.0),
-              topLeft: Radius.circular(24.0),
-              topRight: Radius.circular(24.0),
-            ),
+            borderRadius: BorderRadius.circular(14.0),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 30.0, 20.0, 20.0),
+            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
