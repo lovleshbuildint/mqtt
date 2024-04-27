@@ -589,7 +589,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                                         .sizeOf(
                                                                             context)
                                                                     .width *
-                                                                0.75,
+                                                                0.8,
                                                             child:
                                                                 AssignToWidget(
                                                               alertID:
