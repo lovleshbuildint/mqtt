@@ -469,6 +469,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    'Hello World',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -747,11 +754,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                     r'''$.RM''',
                                                                   ) !=
                                                                   null
-                                                              ? getJsonField(
-                                                                  FFAppState()
-                                                                      .deviceStatusDIDJson,
-                                                                  r'''$.RM''',
-                                                                ).toString()
+                                                              ? '00000000'
                                                               : '11111111'))
                                                           ? 'Auto'
                                                           : 'Manual',
