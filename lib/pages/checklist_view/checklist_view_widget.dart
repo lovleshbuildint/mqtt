@@ -1273,8 +1273,8 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                         if ((getJsonField(
                                                   checkListResultItem,
                                                   r'''$..alertID''',
-                                                ) !=
-                                                null) &&
+                                                ) >
+                                                0) &&
                                             (getJsonField(
                                                   checkListResultItem,
                                                   r'''$..checklist_status''',
@@ -1309,10 +1309,8 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                       (alertDialogContext) {
                                                     return AlertDialog(
                                                       title: Text('Alert'),
-                                                      content: Text((_model
-                                                              .updateAlertResponse
-                                                              ?.bodyText ??
-                                                          '')),
+                                                      content:
+                                                          Text('Alert Closed'),
                                                       actions: [
                                                         TextButton(
                                                           onPressed: () =>
