@@ -143,7 +143,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
             color: Color(0xFF0C172A),
           ),
           child: FlutterFlowVideoPlayer(
-            path: 'assets/videos/VID-20240202-WA0031.mp4',
+            path: 'assets/videos/VN20240425_110707.mp4',
             videoType: VideoType.asset,
             width: double.infinity,
             height: MediaQuery.sizeOf(context).height * 1.0,
