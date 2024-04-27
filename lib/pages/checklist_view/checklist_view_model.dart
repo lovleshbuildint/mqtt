@@ -35,6 +35,8 @@ class ChecklistViewModel extends FlutterFlowModel<ChecklistViewWidget> {
   ApiCallResponse? deleteChecklistResponse;
   // Stores action output result for [Backend Call - API (Update Alerts)] action in Icon widget.
   ApiCallResponse? updateAlertResponse;
+  // Stores action output result for [Backend Call - API (Post Revisit Checklist Main)] action in Icon widget.
+  ApiCallResponse? checkListResponse;
 
   @override
   void initState(BuildContext context) {}

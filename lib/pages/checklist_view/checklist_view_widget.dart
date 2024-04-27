@@ -1304,25 +1304,61 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                               if ((_model.updateAlertResponse
                                                       ?.succeeded ??
                                                   true)) {
-                                                await showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text('Alert'),
-                                                      content:
-                                                          Text('Alert Closed'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  },
+                                                _model.checkListResponse =
+                                                    await PostRevisitChecklistMainCall
+                                                        .call(
+                                                  cId: getJsonField(
+                                                    checkListResultItem,
+                                                    r'''$..c_id''',
+                                                  ),
+                                                  token: FFAppState().token,
+                                                  checklistStatus: 3,
                                                 );
+                                                if ((_model.checkListResponse
+                                                        ?.succeeded ??
+                                                    true)) {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('Info'),
+                                                        content: Text(
+                                                            'Alert Closed'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                } else {
+                                                  await showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        (alertDialogContext) {
+                                                      return AlertDialog(
+                                                        title: Text('Alert'),
+                                                        content: Text((_model
+                                                                .checkListResponse
+                                                                ?.bodyText ??
+                                                            '')),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  );
+                                                }
                                               } else {
                                                 await showDialog(
                                                   context: context,

@@ -769,6 +769,36 @@ class PostChecklistVerifyTokensCall {
   }
 }
 
+class PostRevisitChecklistMainCall {
+  static Future<ApiCallResponse> call({
+    String? token = '',
+    int? cId,
+    int? checklistStatus,
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "c_id": "${cId}",
+  "checklist_status": "${checklistStatus}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Post Revisit Checklist Main',
+      apiUrl: 'https://api.app.master.buildint.co/checklist/project',
+      callType: ApiCallType.POST,
+      headers: {
+        'authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
