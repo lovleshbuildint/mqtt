@@ -199,6 +199,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           children: [
                             Text(
                               '${widget.locName} - ${widget.branchCode}',
+                              textAlign: TextAlign.center,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
