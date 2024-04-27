@@ -469,6 +469,19 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    valueOrDefault<String>(
+                      getJsonField(
+                        FFAppState().deviceStatusDIDJson,
+                        r'''$.RM''',
+                      )?.toString(),
+                      'No Data',
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -558,7 +571,19 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               var1[3] +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }((getJsonField(
+                                                              FFAppState()
+                                                                  .deviceStatusDIDJson,
+                                                              r'''$.RS''',
+                                                            ) != null ? getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RS''',
+                                                          ).toString() : getJsonField(
+                                                            controllingCopyGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.RS''',
+                                                          ).toString()))},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
@@ -1254,9 +1279,17 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[2] == "1";
-                                              }((_model.relayStatus != null &&
-                                                      _model.relayStatus != ''
-                                                  ? _model.relayStatus!
+                                              }((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RS''',
+                                                      ) !=
+                                                      null
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.RS''',
+                                                    ).toString()
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
@@ -1617,9 +1650,17 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[3] == "1";
-                                              }((_model.relayStatus != null &&
-                                                      _model.relayStatus != ''
-                                                  ? _model.relayStatus!
+                                              }((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RS''',
+                                                      ) !=
+                                                      null
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.RS''',
+                                                    ).toString()
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
