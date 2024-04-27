@@ -469,22 +469,19 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                       ],
                     ),
                   ),
-                  Text(
-                    getJsonField(
-                              FFAppState().deviceStatusDIDJson,
-                              r'''$.RM''',
-                            ) !=
-                            null
-                        ? getJsonField(
-                            FFAppState().deviceStatusDIDJson,
-                            r'''$.RM''',
-                          ).toString()
-                        : '11111111',
+                  SelectionArea(
+                      child: Text(
+                    (String var1) {
+                      return var1 == '' ? "Yes" : var1;
+                    }(getJsonField(
+                      FFAppState().deviceStatusDIDJson,
+                      r'''$.RM''',
+                    ).toString()),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
                         ),
-                  ),
+                  )),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
