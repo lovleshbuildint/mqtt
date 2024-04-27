@@ -410,27 +410,47 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                       width: 30.0,
                                       height: 30.0,
                                       decoration: BoxDecoration(
-                                        color: (getJsonField(
-                                                          FFAppState()
-                                                              .deviceStatusDIDJson,
-                                                          r'''$.TM''',
-                                                        ) !=
-                                                        null
-                                                    ? (double.parse(
-                                                        getJsonField(
+                                        color: () {
+                                          if ((getJsonField(
                                                         FFAppState()
                                                             .deviceStatusDIDJson,
                                                         r'''$.TM''',
-                                                      ).toString()))
-                                                    : (double.parse(
-                                                        getJsonField(
-                                                        controllingCopyGetDeviceStatusResponse
-                                                            .jsonBody,
-                                                        r'''$.deviceStatus.TM''',
-                                                      ).toString()))) >=
-                                                30.0
-                                            ? Color(0x80F71A1A)
-                                            : Color(0x8007D95A),
+                                                      ) !=
+                                                      null
+                                                  ? (double.parse(getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.TM''',
+                                                    ).toString()))
+                                                  : (double.parse(getJsonField(
+                                                      controllingCopyGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.TM''',
+                                                    ).toString()))) >=
+                                              30.0) {
+                                            return Color(0x80F71A1A);
+                                          } else if ((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.TM''',
+                                                      ) !=
+                                                      null
+                                                  ? (double.parse(getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.TM''',
+                                                    ).toString()))
+                                                  : (double.parse(getJsonField(
+                                                      controllingCopyGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.TM''',
+                                                    ).toString()))) ==
+                                              0.00) {
+                                            return Color(0x80F71A1A);
+                                          } else {
+                                            return Color(0x8007D95A);
+                                          }
+                                        }(),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
@@ -472,6 +492,14 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                 children: [
                                   Container(
                                     width: 95.0,
+                                    height: (_model.relayStatus != null &&
+                                                _model.relayStatus != '') &&
+                                            ((FFAppState().role ==
+                                                    'Engineer') ||
+                                                (FFAppState().role ==
+                                                    'Super Admin'))
+                                        ? 130.0
+                                        : 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
@@ -488,9 +516,17 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[0] == "1";
-                                              }((_model.relayStatus != null &&
-                                                      _model.relayStatus != ''
-                                                  ? _model.relayStatus!
+                                              }((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RS''',
+                                                      ) !=
+                                                      null
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.RS''',
+                                                    ).toString()
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
@@ -849,9 +885,17 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[1] == "1";
-                                              }((_model.relayStatus != null &&
-                                                      _model.relayStatus != ''
-                                                  ? _model.relayStatus!
+                                              }((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RS''',
+                                                      ) !=
+                                                      null
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.RS''',
+                                                    ).toString()
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
