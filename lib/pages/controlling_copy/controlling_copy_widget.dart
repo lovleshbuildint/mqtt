@@ -740,11 +740,19 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   children: [
                                                     Text(
                                                       (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][7] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
+                                                        return var1[7] == "1";
+                                                      }((getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ) !=
+                                                                  null
+                                                              ? getJsonField(
+                                                                  FFAppState()
+                                                                      .deviceStatusDIDJson,
+                                                                  r'''$.RM''',
+                                                                ).toString()
+                                                              : '11111111'))
                                                           ? 'Auto'
                                                           : 'Manual',
                                                       style: FlutterFlowTheme
@@ -1123,11 +1131,19 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   children: [
                                                     Text(
                                                       (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][7] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
+                                                        return var1[7] == "1";
+                                                      }((getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ) !=
+                                                                  null
+                                                              ? getJsonField(
+                                                                  FFAppState()
+                                                                      .deviceStatusDIDJson,
+                                                                  r'''$.RM''',
+                                                                ).toString()
+                                                              : '11111111'))
                                                           ? 'Auto'
                                                           : 'Manual',
                                                       style: FlutterFlowTheme
