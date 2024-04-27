@@ -33,6 +33,8 @@ class ChecklistViewModel extends FlutterFlowModel<ChecklistViewWidget> {
       FlutterFlowDataTableController<dynamic>();
   // Stores action output result for [Backend Call - API (Delete Checklist)] action in Icon widget.
   ApiCallResponse? deleteChecklistResponse;
+  // Stores action output result for [Backend Call - API (Update Alerts)] action in Icon widget.
+  ApiCallResponse? updateAlertResponse;
 
   @override
   void initState(BuildContext context) {}

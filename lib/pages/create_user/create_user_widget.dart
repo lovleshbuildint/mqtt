@@ -802,8 +802,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                   .emailAddressTextController
                                                   .text,
                                               password: _model
-                                                  .contactNumTextController
-                                                  .text,
+                                                  .passwordTextController.text,
                                               userRole: _model.roleValue,
                                               userOrg: _model.orgId,
                                               fullName: _model

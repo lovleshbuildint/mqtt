@@ -311,7 +311,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
-                                      'Edit Header 5',
+                                      'Assigned On',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
@@ -405,21 +405,21 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                     valueOrDefault<String>(
                                       getJsonField(
                                                 alertsItem,
-                                                r'''$..assined_on''',
+                                                r'''$..assigned_on''',
                                               ) !=
                                               null
                                           ? '${(String var1) {
                                               return var1.split('T').first;
                                             }(getJsonField(
                                               alertsItem,
-                                              r'''$..assined_on''',
+                                              r'''$..assigned_on''',
                                             ).toString())} ${(String var1) {
                                               return var1.split('.').first;
                                             }(((String var1) {
                                               return var1.split('T').last;
                                             }(getJsonField(
                                               alertsItem,
-                                              r'''$..assined_on''',
+                                              r'''$..assigned_on''',
                                             ).toString())))}'
                                           : null,
                                       'Null',

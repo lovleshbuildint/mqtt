@@ -1270,6 +1270,94 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                             size: 24.0,
                                           ),
                                         ),
+                                        if ((getJsonField(
+                                                  checkListResultItem,
+                                                  r'''$..alertID''',
+                                                ) !=
+                                                null) &&
+                                            (getJsonField(
+                                                  checkListResultItem,
+                                                  r'''$..checklist_status''',
+                                                ) ==
+                                                2))
+                                          InkWell(
+                                            splashColor: Colors.transparent,
+                                            focusColor: Colors.transparent,
+                                            hoverColor: Colors.transparent,
+                                            highlightColor: Colors.transparent,
+                                            onTap: () async {
+                                              _model.updateAlertResponse =
+                                                  await UpdateAlertsCall.call(
+                                                deviceId: FFAppState().deviceId,
+                                                token: FFAppState().token,
+                                                project: getJsonField(
+                                                  checkListResultItem,
+                                                  r'''$..db_name''',
+                                                ).toString(),
+                                                alertID: getJsonField(
+                                                  checkListResultItem,
+                                                  r'''$..alertID''',
+                                                ),
+                                                isActive: 3,
+                                              );
+                                              if ((_model.updateAlertResponse
+                                                      ?.succeeded ??
+                                                  true)) {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('Alert'),
+                                                      content: Text((_model
+                                                              .updateAlertResponse
+                                                              ?.bodyText ??
+                                                          '')),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              } else {
+                                                await showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (alertDialogContext) {
+                                                    return AlertDialog(
+                                                      title: Text('Alert'),
+                                                      content: Text((_model
+                                                              .updateAlertResponse
+                                                              ?.bodyText ??
+                                                          '')),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () =>
+                                                              Navigator.pop(
+                                                                  alertDialogContext),
+                                                          child: Text('Ok'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              }
+
+                                              setState(() {});
+                                            },
+                                            child: Icon(
+                                              Icons.checklist,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .success,
+                                              size: 24.0,
+                                            ),
+                                          ),
                                       ],
                                     ),
                                   ),
