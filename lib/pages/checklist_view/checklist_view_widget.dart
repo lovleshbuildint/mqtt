@@ -1270,11 +1270,12 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                             size: 24.0,
                                           ),
                                         ),
-                                        if ((getJsonField(
-                                                  checkListResultItem,
-                                                  r'''$..alertID''',
-                                                ) >
-                                                0) &&
+                                        if (((int? var1) {
+                                              return var1 != null && var1 > 0;
+                                            }(getJsonField(
+                                              checkListResultItem,
+                                              r'''$..alertID''',
+                                            ))) &&
                                             (getJsonField(
                                                   checkListResultItem,
                                                   r'''$..checklist_status''',
