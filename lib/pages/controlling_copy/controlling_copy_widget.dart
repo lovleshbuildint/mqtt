@@ -469,13 +469,6 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                       ],
                     ),
                   ),
-                  Text(
-                    FFAppState().deviceStatusDIDJson.toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -720,8 +713,9 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
+                                          if ((FFAppState()
+                                                      .deviceStatusDIDJson !=
+                                                  null) &&
                                               ((FFAppState().role ==
                                                       'Engineer') ||
                                                   (FFAppState().role ==
@@ -790,27 +784,30 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   context,
                                                                   'Settings',
                                                                   '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                    return var1[
+                                                                            0] +
+                                                                        var1[
                                                                             1] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             2] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             3] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             4] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             5] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             6] +
                                                                         '1';
-                                                                  }(FFAppState().deviceStateDid)},',
+                                                                  }((getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.RM''',
+                                                                      ) != null ? getJsonField(
+                                                                      FFAppState()
+                                                                          .deviceStatusDIDJson,
+                                                                      r'''$.RM''',
+                                                                    ).toString() : '11111111'))},',
                                                                   FFAppState()
                                                                       .deviceId,
                                                                   '15.206.230.32',
@@ -818,37 +815,47 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 );
                                                               }
                                                             } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [2] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [3] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [4] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [5] +
-                                                                      var1.split(
-                                                                          ',')[0][6] +
-                                                                      '0';
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1[
+                                                                            0] +
+                                                                        var1[
+                                                                            1] +
+                                                                        var1[
+                                                                            2] +
+                                                                        var1[
+                                                                            3] +
+                                                                        var1[
+                                                                            4] +
+                                                                        var1[
+                                                                            5] +
+                                                                        var1[
+                                                                            6] +
+                                                                        '0';
+                                                                  }((getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.RM''',
+                                                                      ) != null ? getJsonField(
+                                                                      FFAppState()
+                                                                          .deviceStatusDIDJson,
+                                                                      r'''$.RM''',
+                                                                    ).toString() : '11111111'))},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
                                                             }
                                                           },
                                                           activeColor:
@@ -1089,8 +1096,9 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
+                                          if ((FFAppState()
+                                                      .deviceStatusDIDJson !=
+                                                  null) &&
                                               ((FFAppState().role ==
                                                       'Engineer') ||
                                                   (FFAppState().role ==
@@ -1159,27 +1167,30 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   context,
                                                                   'Settings',
                                                                   '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                    return var1[
+                                                                            0] +
+                                                                        var1[
                                                                             1] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             2] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             3] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             4] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             5] +
-                                                                        var1.split(',')[0]
-                                                                            [
+                                                                        var1[
                                                                             6] +
                                                                         '1';
-                                                                  }(FFAppState().deviceStateDid)},',
+                                                                  }((getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.RM''',
+                                                                      ) != null ? getJsonField(
+                                                                      FFAppState()
+                                                                          .deviceStatusDIDJson,
+                                                                      r'''$.RM''',
+                                                                    ).toString() : '11111111'))},',
                                                                   FFAppState()
                                                                       .deviceId,
                                                                   '15.206.230.32',
@@ -1187,37 +1198,47 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 );
                                                               }
                                                             } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [2] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [3] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [4] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [5] +
-                                                                      var1.split(
-                                                                          ',')[0][6] +
-                                                                      '0';
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1[
+                                                                            0] +
+                                                                        var1[
+                                                                            1] +
+                                                                        var1[
+                                                                            2] +
+                                                                        var1[
+                                                                            3] +
+                                                                        var1[
+                                                                            4] +
+                                                                        var1[
+                                                                            5] +
+                                                                        var1[
+                                                                            6] +
+                                                                        '0';
+                                                                  }((getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.RM''',
+                                                                      ) != null ? getJsonField(
+                                                                      FFAppState()
+                                                                          .deviceStatusDIDJson,
+                                                                      r'''$.RM''',
+                                                                    ).toString() : '11111111'))},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
                                                             }
                                                           },
                                                           activeColor:
