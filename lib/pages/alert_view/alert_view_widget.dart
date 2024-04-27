@@ -557,10 +557,6 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                   return;
                                                 } else {
                                                   await showDialog(
-                                                    barrierColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primary,
                                                     context: context,
                                                     builder: (dialogContext) {
                                                       return Dialog(
@@ -588,7 +584,11 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                                       context)
                                                                   .unfocus(),
                                                           child: Container(
-                                                            height: 80.0,
+                                                            height: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .height *
+                                                                0.4,
                                                             width: MediaQuery
                                                                         .sizeOf(
                                                                             context)
