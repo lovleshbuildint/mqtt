@@ -470,7 +470,16 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                     ),
                   ),
                   Text(
-                    'Hello World',
+                    getJsonField(
+                              FFAppState().deviceStatusDIDJson,
+                              r'''$.RM''',
+                            ) !=
+                            null
+                        ? getJsonField(
+                            FFAppState().deviceStatusDIDJson,
+                            r'''$.RM''',
+                          ).toString()
+                        : '11111111',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
