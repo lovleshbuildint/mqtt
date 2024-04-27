@@ -1138,11 +1138,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                     r'''$.RM''',
                                                                   ) !=
                                                                   null
-                                                              ? getJsonField(
-                                                                  FFAppState()
-                                                                      .deviceStatusDIDJson,
-                                                                  r'''$.RM''',
-                                                                ).toString()
+                                                              ? '00000000'
                                                               : '11111111'))
                                                           ? 'Auto'
                                                           : 'Manual',
