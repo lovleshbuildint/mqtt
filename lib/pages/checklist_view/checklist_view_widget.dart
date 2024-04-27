@@ -605,6 +605,23 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   label: DefaultTextStyle.merge(
                                     softWrap: true,
                                     child: Text(
+                                      'Internal Remarks',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Text(
                                       'Site Person Name',
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
@@ -1007,6 +1024,19 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                     getJsonField(
                                       checkListResultItem,
                                       r'''$..remark''',
+                                    ).toString(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  Text(
+                                    getJsonField(
+                                      checkListResultItem,
+                                      r'''$..internal_remarks''',
                                     ).toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium

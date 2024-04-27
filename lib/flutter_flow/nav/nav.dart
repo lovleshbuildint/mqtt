@@ -181,6 +181,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'AlertView',
           path: '/alertView',
           builder: (context, params) => AlertViewWidget(),
+        ),
+        FFRoute(
+          name: 'ControllingCopy',
+          path: '/controllingCopy',
+          builder: (context, params) => ControllingCopyWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+            onlineOfflineStatus: params.getParam(
+              'onlineOfflineStatus',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

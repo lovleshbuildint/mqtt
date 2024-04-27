@@ -16,3 +16,5 @@ export '/pages/advance_control/advance_control_widget.dart'
 export '/pages/checklist_view/checklist_view_widget.dart'
     show ChecklistViewWidget;
 export '/pages/alert_view/alert_view_widget.dart' show AlertViewWidget;
+export '/pages/controlling_copy/controlling_copy_widget.dart'
+    show ControllingCopyWidget;

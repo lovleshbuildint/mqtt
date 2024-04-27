@@ -5,13 +5,13 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
-import 'controlling_widget.dart' show ControllingWidget;
+import 'controlling_copy_widget.dart' show ControllingCopyWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class ControllingModel extends FlutterFlowModel<ControllingWidget> {
+class ControllingCopyModel extends FlutterFlowModel<ControllingCopyWidget> {
   ///  Local state fields for this page.
 
   String? relayStatus;
@@ -21,7 +21,7 @@ class ControllingModel extends FlutterFlowModel<ControllingWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in Controlling widget.
+  // Stores action output result for [Backend Call - API (User Info)] action in ControllingCopy widget.
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   // State field(s) for AC1 widget.

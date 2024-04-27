@@ -62,19 +62,23 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         Map<String, dynamic> jsonData = parseStringToJSON(pt);
-        print(jsonData);
         if (pt.split(',').first == did) {
           if (pt.split(',')[2] == '\$GALL') {
-            print('$pt');
             DateTime now = DateTime.now();
             String timestamp = now.toLocal().toString();
             FFAppState().update(() {
               FFAppState().mqttTime = timestamp;
               FFAppState().deviceStatusDIDJson = jsonData;
-              // FFAppState().deviceStateDid =
-              //     pt.split(',')[3] + ',' + pt.split(',').last;
             });
           }
+        } else if (pt.split(',')[2] == '\$GRES') {
+          DateTime now = DateTime.now();
+          String timestamp = now.toLocal().toString();
+          FFAppState().update(() {
+            FFAppState().mqttTime = timestamp;
+            FFAppState().deviceStateDid =
+                pt.split(',')[3] + ',' + pt.split(',').last;
+          });
         }
       });
 

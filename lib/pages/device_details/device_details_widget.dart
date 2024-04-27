@@ -566,28 +566,100 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   ),
                                                               minFontSize: 10.0,
                                                             ),
-                                                            AutoSizeText(
-                                                              getJsonField(
-                                                                dataItem,
-                                                                r'''$..DeviceStatus''',
-                                                              ).toString(),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Color(
-                                                                        0xFF2D2D2D),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                              minFontSize: 10.0,
+                                                            InkWell(
+                                                              splashColor: Colors
+                                                                  .transparent,
+                                                              focusColor: Colors
+                                                                  .transparent,
+                                                              hoverColor: Colors
+                                                                  .transparent,
+                                                              highlightColor:
+                                                                  Colors
+                                                                      .transparent,
+                                                              onTap: () async {
+                                                                context
+                                                                    .pushNamed(
+                                                                  'ControllingCopy',
+                                                                  queryParameters:
+                                                                      {
+                                                                    'did':
+                                                                        serializeParam(
+                                                                      getJsonField(
+                                                                        dataItem,
+                                                                        r'''$..DID''',
+                                                                      ).toString(),
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                    'onlineOfflineStatus':
+                                                                        serializeParam(
+                                                                      getJsonField(
+                                                                        dataItem,
+                                                                        r'''$..DeviceStatus''',
+                                                                      ).toString(),
+                                                                      ParamType
+                                                                          .String,
+                                                                    ),
+                                                                  }.withoutNulls,
+                                                                  extra: <String,
+                                                                      dynamic>{
+                                                                    kTransitionInfoKey:
+                                                                        TransitionInfo(
+                                                                      hasTransition:
+                                                                          true,
+                                                                      transitionType:
+                                                                          PageTransitionType
+                                                                              .fade,
+                                                                      duration: Duration(
+                                                                          milliseconds:
+                                                                              0),
+                                                                    ),
+                                                                  },
+                                                                );
+
+                                                                setState(() {
+                                                                  FFAppState()
+                                                                      .deleteDeviceStateDid();
+                                                                  FFAppState()
+                                                                      .deviceStateDid = '';
+
+                                                                  FFAppState()
+                                                                      .deleteMqttTime();
+                                                                  FFAppState()
+                                                                      .mqttTime = '';
+
+                                                                  FFAppState()
+                                                                      .deleteDeviceStatusDIDJson();
+                                                                  FFAppState()
+                                                                          .deviceStatusDIDJson =
+                                                                      null;
+                                                                });
+                                                              },
+                                                              child:
+                                                                  AutoSizeText(
+                                                                getJsonField(
+                                                                  dataItem,
+                                                                  r'''$..DeviceStatus''',
+                                                                ).toString(),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      color: Color(
+                                                                          0xFF2D2D2D),
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                minFontSize:
+                                                                    10.0,
+                                                              ),
                                                             ),
                                                           ],
                                                         ),

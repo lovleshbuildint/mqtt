@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'controlling_model.dart';
-export 'controlling_model.dart';
+import 'controlling_copy_model.dart';
+export 'controlling_copy_model.dart';
 
-class ControllingWidget extends StatefulWidget {
-  const ControllingWidget({
+class ControllingCopyWidget extends StatefulWidget {
+  const ControllingCopyWidget({
     super.key,
     required this.did,
     required this.onlineOfflineStatus,
@@ -23,18 +23,18 @@ class ControllingWidget extends StatefulWidget {
   final String? onlineOfflineStatus;
 
   @override
-  State<ControllingWidget> createState() => _ControllingWidgetState();
+  State<ControllingCopyWidget> createState() => _ControllingCopyWidgetState();
 }
 
-class _ControllingWidgetState extends State<ControllingWidget> {
-  late ControllingModel _model;
+class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
+  late ControllingCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ControllingModel());
+    _model = createModel(context, () => ControllingCopyModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -63,7 +63,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                 await actions.publishMqtt(
                   context,
                   'Settings',
-                  '${widget.did}\$GRES,',
+                  '${widget.did}\$GALL,',
                   FFAppState().deviceId,
                   '15.206.230.32',
                   'mqtt_buildint_\$\$2023',
@@ -192,7 +192,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
             ),
           );
         }
-        final controllingGetDeviceStatusResponse = snapshot.data!;
+        final controllingCopyGetDeviceStatusResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -234,7 +234,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   7.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Controlling',
+                                'Controlling Copy',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -326,7 +326,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                         : '${(String var1) {
                                             return var1.split('T').first;
                                           }(getJsonField(
-                                            controllingGetDeviceStatusResponse
+                                            controllingCopyGetDeviceStatusResponse
                                                 .jsonBody,
                                             r'''$.deviceStatus.evt_dt''',
                                           ).toString())} ${(String var1) {
@@ -334,7 +334,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                           }(((String var1) {
                                             return var1.split('T').last;
                                           }(getJsonField(
-                                            controllingGetDeviceStatusResponse
+                                            controllingCopyGetDeviceStatusResponse
                                                 .jsonBody,
                                             r'''$.deviceStatus.evt_dt''',
                                           ).toString())))}',
@@ -393,7 +393,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                           FFAppState().deviceStatusDIDJson,
                                           r'''$.TM''',
                                         ).toString() : getJsonField(
-                                          controllingGetDeviceStatusResponse
+                                          controllingCopyGetDeviceStatusResponse
                                               .jsonBody,
                                           r'''$.deviceStatus.TM''',
                                         ).toString()} C',
@@ -424,7 +424,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       ).toString()))
                                                     : (double.parse(
                                                         getJsonField(
-                                                        controllingGetDeviceStatusResponse
+                                                        controllingCopyGetDeviceStatusResponse
                                                             .jsonBody,
                                                         r'''$.deviceStatus.TM''',
                                                       ).toString()))) >=
@@ -472,14 +472,6 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                 children: [
                                   Container(
                                     width: 95.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
@@ -500,7 +492,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       _model.relayStatus != ''
                                                   ? _model.relayStatus!
                                                   : getJsonField(
-                                                      controllingGetDeviceStatusResponse
+                                                      controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
                                                       r'''$.deviceStatus.RS''',
                                                     ).toString()))) {
@@ -861,7 +853,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       _model.relayStatus != ''
                                                   ? _model.relayStatus!
                                                   : getJsonField(
-                                                      controllingGetDeviceStatusResponse
+                                                      controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
                                                       r'''$.deviceStatus.RS''',
                                                     ).toString()))) {
@@ -1222,7 +1214,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       _model.relayStatus != ''
                                                   ? _model.relayStatus!
                                                   : getJsonField(
-                                                      controllingGetDeviceStatusResponse
+                                                      controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
                                                       r'''$.deviceStatus.RS''',
                                                     ).toString()))) {
@@ -1585,7 +1577,7 @@ class _ControllingWidgetState extends State<ControllingWidget> {
                                                       _model.relayStatus != ''
                                                   ? _model.relayStatus!
                                                   : getJsonField(
-                                                      controllingGetDeviceStatusResponse
+                                                      controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
                                                       r'''$.deviceStatus.RS''',
                                                     ).toString()))) {
