@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/assign_to/assign_to_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -443,123 +444,188 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                           ) ==
                                           1)
                                         Expanded(
-                                          child: InkWell(
-                                            splashColor: Colors.transparent,
-                                            focusColor: Colors.transparent,
-                                            hoverColor: Colors.transparent,
-                                            highlightColor: Colors.transparent,
-                                            onTap: () async {
-                                              var confirmDialogResponse =
-                                                  await showDialog<bool>(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Assign To'),
-                                                            content: Text(
-                                                                'Self Assign (${FFAppState().fullName})'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        false),
-                                                                child: Text(
-                                                                    'Site Technician'),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        true),
-                                                                child:
-                                                                    Text('Yes'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      ) ??
-                                                      false;
-                                              if (confirmDialogResponse) {
-                                                _model.updateAlertsResponse =
-                                                    await UpdateAlertsCall.call(
-                                                  deviceId:
-                                                      FFAppState().deviceId,
-                                                  token: FFAppState().token,
-                                                  project:
-                                                      FFAppState().userProject,
-                                                  alertID: getJsonField(
-                                                    alertsItem,
-                                                    r'''$..id''',
-                                                  ),
-                                                  assignTo:
-                                                      FFAppState().fullName,
-                                                  assignToNum:
-                                                      FFAppState().contactNum,
-                                                  isActive: 2,
-                                                );
-                                                if ((_model.updateAlertsResponse
-                                                        ?.succeeded ??
-                                                    true)) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Info'),
-                                                        content: Text(
-                                                            'Alert Assigned'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
+                                          child: Builder(
+                                            builder: (context) => InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                var _shouldSetState = false;
+                                                var confirmDialogResponse =
+                                                    await showDialog<bool>(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Assign To'),
+                                                              content: Text(
+                                                                  'Self Assign (${FFAppState().fullName})'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                  child: Text(
+                                                                      'Site Technician'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                  child: Text(
+                                                                      'Yes'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        ) ??
+                                                        false;
+                                                if (confirmDialogResponse) {
+                                                  _model.updateAlertsResponse =
+                                                      await UpdateAlertsCall
+                                                          .call(
+                                                    deviceId:
+                                                        FFAppState().deviceId,
+                                                    token: FFAppState().token,
+                                                    project: FFAppState()
+                                                        .userProject,
+                                                    alertID: getJsonField(
+                                                      alertsItem,
+                                                      r'''$..id''',
+                                                    ),
+                                                    assignTo:
+                                                        FFAppState().fullName,
+                                                    assignToNum:
+                                                        FFAppState().contactNum,
+                                                    isActive: 2,
                                                   );
+                                                  _shouldSetState = true;
+                                                  if ((_model
+                                                          .updateAlertsResponse
+                                                          ?.succeeded ??
+                                                      true)) {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text('Info'),
+                                                          content: Text(
+                                                              'Alert Assigned'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title: Text('Alert'),
+                                                          content: Text((_model
+                                                                  .updateAlertsResponse
+                                                                  ?.bodyText ??
+                                                              '')),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  }
+
+                                                  if (_shouldSetState)
+                                                    setState(() {});
+                                                  return;
                                                 } else {
                                                   await showDialog(
+                                                    barrierColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
                                                     context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Alert'),
-                                                        content: Text((_model
-                                                                .updateAlertsResponse
-                                                                ?.bodyText ??
-                                                            '')),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
+                                                    builder: (dialogContext) {
+                                                      return Dialog(
+                                                        elevation: 0,
+                                                        insetPadding:
+                                                            EdgeInsets.zero,
+                                                        backgroundColor:
+                                                            Colors.transparent,
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                    0.0, 0.0)
+                                                                .resolve(
+                                                                    Directionality.of(
+                                                                        context)),
+                                                        child: GestureDetector(
+                                                          onTap: () => _model
+                                                                  .unfocusNode
+                                                                  .canRequestFocus
+                                                              ? FocusScope.of(
+                                                                      context)
+                                                                  .requestFocus(
+                                                                      _model
+                                                                          .unfocusNode)
+                                                              : FocusScope.of(
+                                                                      context)
+                                                                  .unfocus(),
+                                                          child: Container(
+                                                            height: 80.0,
+                                                            width: MediaQuery
+                                                                        .sizeOf(
+                                                                            context)
+                                                                    .width *
+                                                                0.8,
+                                                            child:
+                                                                AssignToWidget(
+                                                              alertID:
+                                                                  getJsonField(
+                                                                alertsItem,
+                                                                r'''$..id''',
+                                                              ),
+                                                            ),
                                                           ),
-                                                        ],
+                                                        ),
                                                       );
                                                     },
-                                                  );
+                                                  ).then((value) =>
+                                                      setState(() {}));
                                                 }
-                                              }
 
-                                              setState(() {});
-                                            },
-                                            child: Text(
-                                              'Assign To',
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xCD4154F1),
-                                                    fontSize: 12.0,
-                                                    letterSpacing: 0.0,
-                                                  ),
+                                                if (_shouldSetState)
+                                                  setState(() {});
+                                              },
+                                              child: Text(
+                                                'Assign To',
+                                                textAlign: TextAlign.center,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Readex Pro',
+                                                      color: Color(0xCD4154F1),
+                                                      fontSize: 12.0,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -576,8 +642,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                             highlightColor: Colors.transparent,
                                             onTap: () async {
                                               var _shouldSetState = false;
-                                              if (FFAppState().contactNum !=
-                                                  null) {
+                                              if (FFAppState().contactNum > 0) {
                                                 _model.checklistLoginResponse =
                                                     await PostChecklstLoginCall
                                                         .call(
