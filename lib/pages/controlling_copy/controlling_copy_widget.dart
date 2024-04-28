@@ -759,7 +759,8 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               (String var1) {
                                                             return var1 == ''
                                                                 ? true
-                                                                : (var1[7] == 1
+                                                                : (var1[7] ==
+                                                                        '1'
                                                                     ? true
                                                                     : false);
                                                           }(getJsonField(
