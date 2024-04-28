@@ -56,7 +56,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
           }(),
         );
         _model.instantTimer = InstantTimer.periodic(
-          duration: Duration(milliseconds: 15000),
+          duration: Duration(milliseconds: 25000),
           callback: (timer) async {
             unawaited(
               () async {
