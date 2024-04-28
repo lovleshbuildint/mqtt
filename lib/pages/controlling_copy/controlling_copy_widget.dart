@@ -469,19 +469,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                       ],
                     ),
                   ),
-                  SelectionArea(
-                      child: Text(
-                    (String var1) {
-                      return var1 == '' ? "Yes" : var1;
-                    }(getJsonField(
-                      FFAppState().deviceStatusDIDJson,
-                      r'''$.RM''',
-                    ).toString()),
+                  Text(
+                    'Hello World',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
                         ),
-                  )),
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -505,8 +499,8 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                 children: [
                                   Container(
                                     width: 95.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
+                                    height: (FFAppState().deviceStatusDIDJson !=
+                                                null) &&
                                             ((FFAppState().role ==
                                                     'Engineer') ||
                                                 (FFAppState().role ==
@@ -561,32 +555,41 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
-                                                      await actions.publishMqtt(
-                                                        context,
-                                                        'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
-                                                          return '0' +
-                                                              var1[1] +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
-                                                        }((getJsonField(
-                                                              FFAppState()
-                                                                  .deviceStatusDIDJson,
-                                                              r'''$.RS''',
-                                                            ) != null ? getJsonField(
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                .deviceStatusDIDJson !=
+                                                            null)) {
+                                                      unawaited(
+                                                        () async {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SREL${(String var1) {
+                                                              return '0' +
+                                                                  var1[1] +
+                                                                  var1[2] +
+                                                                  var1[3] +
+                                                                  '0000';
+                                                            }((getJsonField(
+                                                                  FFAppState()
+                                                                      .deviceStatusDIDJson,
+                                                                  r'''$.RS''',
+                                                                ) != null ? getJsonField(
+                                                                FFAppState()
+                                                                    .deviceStatusDIDJson,
+                                                                r'''$.RS''',
+                                                              ).toString() : getJsonField(
+                                                                controllingCopyGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.RS''',
+                                                              ).toString()))},',
                                                             FFAppState()
-                                                                .deviceStatusDIDJson,
-                                                            r'''$.RS''',
-                                                          ).toString() : getJsonField(
-                                                            controllingCopyGetDeviceStatusResponse
-                                                                .jsonBody,
-                                                            r'''$.deviceStatus.RS''',
-                                                          ).toString()))},',
-                                                        FFAppState().deviceId,
-                                                        '15.206.230.32',
-                                                        'mqtt_buildint_\$\$2023',
+                                                                .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
+                                                          );
+                                                        }(),
                                                       );
                                                       setState(() {
                                                         _model.relayStatus =
@@ -753,15 +756,16 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   children: [
                                                     Text(
                                                       (String var1) {
-                                                        return var1[7] == "1";
-                                                      }((getJsonField(
-                                                                    FFAppState()
-                                                                        .deviceStatusDIDJson,
-                                                                    r'''$.RM''',
-                                                                  ) !=
-                                                                  null
-                                                              ? '00000000'
-                                                              : '11111111'))
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[7] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
                                                           ? 'Auto'
                                                           : 'Manual',
                                                       style: FlutterFlowTheme
@@ -904,8 +908,8 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                   ),
                                   Container(
                                     width: 95.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
+                                    height: (FFAppState().deviceStatusDIDJson !=
+                                                null) &&
                                             ((FFAppState().role ==
                                                     'Engineer') ||
                                                 (FFAppState().role ==
@@ -1140,15 +1144,16 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   children: [
                                                     Text(
                                                       (String var1) {
-                                                        return var1[7] == "1";
-                                                      }((getJsonField(
-                                                                    FFAppState()
-                                                                        .deviceStatusDIDJson,
-                                                                    r'''$.RM''',
-                                                                  ) !=
-                                                                  null
-                                                              ? '00000000'
-                                                              : '11111111'))
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[7] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
                                                           ? 'Auto'
                                                           : 'Manual',
                                                       style: FlutterFlowTheme

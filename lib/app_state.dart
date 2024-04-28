@@ -61,6 +61,10 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _contactNum = await secureStorage.getInt('ff_contactNum') ?? _contactNum;
     });
+    await _safeInitAsync(() async {
+      _relayStatusiATM = await secureStorage.getString('ff_relayStatusiATM') ??
+          _relayStatusiATM;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -178,6 +182,17 @@ class FFAppState extends ChangeNotifier {
 
   void deleteContactNum() {
     secureStorage.delete(key: 'ff_contactNum');
+  }
+
+  String _relayStatusiATM = '';
+  String get relayStatusiATM => _relayStatusiATM;
+  set relayStatusiATM(String _value) {
+    _relayStatusiATM = _value;
+    secureStorage.setString('ff_relayStatusiATM', _value);
+  }
+
+  void deleteRelayStatusiATM() {
+    secureStorage.delete(key: 'ff_relayStatusiATM');
   }
 }
 

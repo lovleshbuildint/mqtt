@@ -69,6 +69,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
             FFAppState().update(() {
               FFAppState().mqttTime = timestamp;
               FFAppState().deviceStatusDIDJson = jsonData;
+              FFAppState().relayStatusiATM = jsonData['RS'];
             });
           }
         } else if (pt.split(',')[2] == '\$GRES') {
