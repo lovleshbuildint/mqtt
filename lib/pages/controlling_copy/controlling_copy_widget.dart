@@ -470,7 +470,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                     ),
                   ),
                   Text(
-                    'Hello World',
+                    FFAppState().relayStatusiATM,
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           letterSpacing: 0.0,
