@@ -70,58 +70,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 );
               }(),
             );
-            if ((FFAppState().deviceStateDid != null &&
-                    FFAppState().deviceStateDid != '') &&
-                (FFAppState().deviceStateDid != _model.maskStatus)) {
-              setState(() {
-                _model.relayStatus = getJsonField(
-                  FFAppState().deviceStatusDIDJson,
-                  r'''$.RS''',
-                ).toString().toString();
-                _model.maskStatus = FFAppState().deviceStateDid;
-              });
-              setState(() {
-                _model.ac1Value = ((String var1) {
-                  return var1.split(',')[0][7] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-              setState(() {
-                _model.ac2Value = ((String var1) {
-                  return var1.split(',')[0][7] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-              setState(() {
-                _model.lobbyLightValue = ((String var1) {
-                  return var1.split(',')[0][2] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-              setState(() {
-                _model.signageValue = ((String var1) {
-                  return var1.split(',')[0][3] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-              setState(() {
-                _model.routerValue = ((String var1) {
-                  return var1.split(',')[0][4] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-              setState(() {
-                _model.vsatValue = ((String var1) {
-                  return var1.split(',')[0][5] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-              setState(() {
-                _model.dvrValue = ((String var1) {
-                  return var1.split(',')[0][6] == "1";
-                }(FFAppState().deviceStateDid));
-              });
-            } else if (FFAppState().deviceStateDid == null ||
-                FFAppState().deviceStateDid == '') {
-              setState(() {
-                _model.relayStatus = null;
-                _model.maskStatus = null;
-              });
-            }
+            return;
           },
           startImmediately: true,
         );
