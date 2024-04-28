@@ -56,6 +56,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         FFAppState().update(() {
           FFAppState().deviceStatusDIDJson = "";
           FFAppState().mqttTime = "";
+          FFAppState().relayStatusiATM = "";
         });
       }).listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
         final recMess = c![0].payload as MqttPublishMessage;
@@ -72,14 +73,6 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
               FFAppState().relayStatusiATM = jsonData['RS'];
             });
           }
-        } else if (pt.split(',')[2] == '\$GRES') {
-          DateTime now = DateTime.now();
-          String timestamp = now.toLocal().toString();
-          FFAppState().update(() {
-            FFAppState().mqttTime = timestamp;
-            FFAppState().deviceStateDid =
-                pt.split(',')[3] + ',' + pt.split(',').last;
-          });
         }
       });
 
