@@ -634,6 +634,11 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   FFAppState()
                                                                           .deviceStatusDIDJson =
                                                                       null;
+
+                                                                  FFAppState()
+                                                                      .deleteRelayStatusiATM();
+                                                                  FFAppState()
+                                                                      .relayStatusiATM = '';
                                                                 });
                                                               },
                                                               child:
