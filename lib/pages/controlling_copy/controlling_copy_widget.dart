@@ -100,7 +100,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 _model.lobbyLightValue = ((String var1) {
                   return var1 == ''
                       ? true
-                      : var1[1] == '1'
+                      : var1[2] == '1'
                           ? true
                           : false;
                 }(getJsonField(
@@ -112,7 +112,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 _model.signageValue = ((String var1) {
                   return var1 == ''
                       ? true
-                      : var1[2] == '1'
+                      : var1[3] == '1'
                           ? true
                           : false;
                 }(getJsonField(
