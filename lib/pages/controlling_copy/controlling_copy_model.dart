@@ -32,12 +32,6 @@ class ControllingCopyModel extends FlutterFlowModel<ControllingCopyWidget> {
   bool? lobbyLightValue;
   // State field(s) for Signage widget.
   bool? signageValue;
-  // State field(s) for DVR widget.
-  bool? dvrValue;
-  // State field(s) for Router widget.
-  bool? routerValue;
-  // State field(s) for VSAT widget.
-  bool? vsatValue;
 
   @override
   void initState(BuildContext context) {}

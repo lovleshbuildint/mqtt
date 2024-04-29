@@ -1680,17 +1680,12 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[3] == "1";
-                                              }((getJsonField(
-                                                        FFAppState()
-                                                            .deviceStatusDIDJson,
-                                                        r'''$.RS''',
-                                                      ) !=
-                                                      null
-                                                  ? getJsonField(
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
                                                       FFAppState()
-                                                          .deviceStatusDIDJson,
-                                                      r'''$.RS''',
-                                                    ).toString()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
@@ -1712,7 +1707,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1722,19 +1723,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               '0' +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return var1[0] +
                                                               var1[1] +
                                                               var1[2] +
-                                                              '0';
-                                                        }(_model.relayStatus!);
+                                                              '0' +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -1790,7 +1794,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1800,19 +1810,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               '1' +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return var1[0] +
                                                               var1[1] +
                                                               var1[2] +
-                                                              '1';
-                                                        }(_model.relayStatus!);
+                                                              '1' +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -1865,8 +1878,11 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
                                               ((FFAppState().role ==
                                                       'Engineer') ||
                                                   (FFAppState().role ==
@@ -1891,11 +1907,16 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   children: [
                                                     Text(
                                                       (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][3] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[3] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
                                                           ? 'Auto'
                                                           : 'Manual',
                                                       style: FlutterFlowTheme
@@ -1935,26 +1956,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   context,
                                                                   'Settings',
                                                                   '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            1] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            2] +
-                                                                        '1' +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            4] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            5] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            6] +
-                                                                        var1.split(',')[0]
-                                                                            [7];
-                                                                  }(FFAppState().deviceStateDid)},',
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            '1' +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
                                                                   FFAppState()
                                                                       .deviceId,
                                                                   '15.206.230.32',
@@ -1962,37 +1979,39 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 );
                                                               }
                                                             } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [2] +
-                                                                      '0' +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [4] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [5] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [6] +
-                                                                      var1.split(
-                                                                          ',')[0][7];
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11101111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            '0' +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
                                                             }
                                                           },
                                                           activeColor:
@@ -2099,14 +2118,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                   ),
                                   Container(
                                     width: 89.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
+                                    height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
@@ -2175,173 +2187,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
-                                              ((FFAppState().role ==
-                                                      'Engineer') ||
-                                                  (FFAppState().role ==
-                                                      'Super Admin')))
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                              child: Container(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        1.0,
-                                                height: 30.0,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0x00FFFFFF),
-                                                ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][6] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
-                                                          ? 'Auto'
-                                                          : 'Manual',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Color(
-                                                                0xFF929395),
-                                                            fontSize: 10.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    Flexible(
-                                                      child: Transform.scale(
-                                                        scaleX: 0.7,
-                                                        scaleY: 0.7,
-                                                        child: Switch(
-                                                          value: _model
-                                                                  .dvrValue ??=
-                                                              true,
-                                                          onChanged:
-                                                              (newValue) async {
-                                                            setState(() =>
-                                                                _model.dvrValue =
-                                                                    newValue!);
-                                                            if (newValue!) {
-                                                              if ((FFAppState()
-                                                                          .role ==
-                                                                      'Engineer') ||
-                                                                  (FFAppState()
-                                                                          .role ==
-                                                                      'Super Admin')) {
-                                                                await actions
-                                                                    .publishMqtt(
-                                                                  context,
-                                                                  'Settings',
-                                                                  '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            1] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            2] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            3] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            4] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            5] +
-                                                                        '1' +
-                                                                        var1.split(',')[0]
-                                                                            [7];
-                                                                  }(FFAppState().deviceStateDid)},',
-                                                                  FFAppState()
-                                                                      .deviceId,
-                                                                  '15.206.230.32',
-                                                                  'mqtt_buildint_\$\$2023',
-                                                                );
-                                                              }
-                                                            } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [2] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [3] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [4] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [5] +
-                                                                      '0' +
-                                                                      var1.split(
-                                                                          ',')[0][7];
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
-                                                            }
-                                                          },
-                                                          activeColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          activeTrackColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .accent1,
-                                                          inactiveTrackColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          inactiveThumbColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryText,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
                                         ],
                                       ),
                                     ),
                                   ),
                                   Container(
                                     width: 89.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
+                                    height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
@@ -2410,173 +2262,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
-                                              ((FFAppState().role ==
-                                                      'Engineer') ||
-                                                  (FFAppState().role ==
-                                                      'Super Admin')))
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                              child: Container(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        1.0,
-                                                height: 30.0,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0x00FFFFFF),
-                                                ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][4] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
-                                                          ? 'Auto'
-                                                          : 'Manual',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Color(
-                                                                0xFF929395),
-                                                            fontSize: 10.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    Flexible(
-                                                      child: Transform.scale(
-                                                        scaleX: 0.7,
-                                                        scaleY: 0.7,
-                                                        child: Switch(
-                                                          value: _model
-                                                                  .routerValue ??=
-                                                              true,
-                                                          onChanged:
-                                                              (newValue) async {
-                                                            setState(() => _model
-                                                                    .routerValue =
-                                                                newValue!);
-                                                            if (newValue!) {
-                                                              if ((FFAppState()
-                                                                          .role ==
-                                                                      'Engineer') ||
-                                                                  (FFAppState()
-                                                                          .role ==
-                                                                      'Super Admin')) {
-                                                                await actions
-                                                                    .publishMqtt(
-                                                                  context,
-                                                                  'Settings',
-                                                                  '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            1] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            2] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            3] +
-                                                                        '1' +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            5] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            6] +
-                                                                        var1.split(',')[0]
-                                                                            [7];
-                                                                  }(FFAppState().deviceStateDid)},',
-                                                                  FFAppState()
-                                                                      .deviceId,
-                                                                  '15.206.230.32',
-                                                                  'mqtt_buildint_\$\$2023',
-                                                                );
-                                                              }
-                                                            } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [2] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [3] +
-                                                                      '0' +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [5] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [6] +
-                                                                      var1.split(
-                                                                          ',')[0][7];
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
-                                                            }
-                                                          },
-                                                          activeColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          activeTrackColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .accent1,
-                                                          inactiveTrackColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          inactiveThumbColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryText,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
                                         ],
                                       ),
                                     ),
                                   ),
                                   Container(
                                     width: 89.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
+                                    height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
@@ -2645,159 +2337,6 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
-                                              ((FFAppState().role ==
-                                                      'Engineer') ||
-                                                  (FFAppState().role ==
-                                                      'Super Admin')))
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
-                                              child: Container(
-                                                width:
-                                                    MediaQuery.sizeOf(context)
-                                                            .width *
-                                                        1.0,
-                                                height: 30.0,
-                                                decoration: BoxDecoration(
-                                                  color: Color(0x00FFFFFF),
-                                                ),
-                                                child: Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Text(
-                                                      (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][5] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
-                                                          ? 'Auto'
-                                                          : 'Manual',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily:
-                                                                'Readex Pro',
-                                                            color: Color(
-                                                                0xFF929395),
-                                                            fontSize: 10.0,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                    Flexible(
-                                                      child: Transform.scale(
-                                                        scaleX: 0.7,
-                                                        scaleY: 0.7,
-                                                        child: Switch(
-                                                          value: _model
-                                                                  .vsatValue ??=
-                                                              true,
-                                                          onChanged:
-                                                              (newValue) async {
-                                                            setState(() => _model
-                                                                    .vsatValue =
-                                                                newValue!);
-                                                            if (newValue!) {
-                                                              if ((FFAppState()
-                                                                          .role ==
-                                                                      'Engineer') ||
-                                                                  (FFAppState()
-                                                                          .role ==
-                                                                      'Super Admin')) {
-                                                                await actions
-                                                                    .publishMqtt(
-                                                                  context,
-                                                                  'Settings',
-                                                                  '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            1] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            2] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            3] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            4] +
-                                                                        '1' +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            6] +
-                                                                        var1.split(',')[0]
-                                                                            [7];
-                                                                  }(FFAppState().deviceStateDid)},',
-                                                                  FFAppState()
-                                                                      .deviceId,
-                                                                  '15.206.230.32',
-                                                                  'mqtt_buildint_\$\$2023',
-                                                                );
-                                                              }
-                                                            } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [2] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [3] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [4] +
-                                                                      '0' +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [6] +
-                                                                      var1.split(
-                                                                          ',')[0][7];
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
-                                                            }
-                                                          },
-                                                          activeColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .primary,
-                                                          activeTrackColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .accent1,
-                                                          inactiveTrackColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .alternate,
-                                                          inactiveThumbColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondaryText,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
                                         ],
                                       ),
                                     ),
