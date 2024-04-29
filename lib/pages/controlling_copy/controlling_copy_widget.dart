@@ -56,7 +56,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
           }(),
         );
         _model.instantTimer = InstantTimer.periodic(
-          duration: Duration(milliseconds: 25000),
+          duration: Duration(milliseconds: 15000),
           callback: (timer) async {
             unawaited(
               () async {
@@ -1249,8 +1249,10 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                   ),
                                   Container(
                                     width: 95.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
                                             ((FFAppState().role ==
                                                     'Engineer') ||
                                                 (FFAppState().role ==
@@ -1273,17 +1275,12 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[2] == "1";
-                                              }((getJsonField(
-                                                        FFAppState()
-                                                            .deviceStatusDIDJson,
-                                                        r'''$.RS''',
-                                                      ) !=
-                                                      null
-                                                  ? getJsonField(
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
                                                       FFAppState()
-                                                          .deviceStatusDIDJson,
-                                                      r'''$.RS''',
-                                                    ).toString()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
@@ -1305,7 +1302,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1315,19 +1318,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               '0' +
                                                               var1[3] +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return var1[0] +
                                                               var1[1] +
                                                               '0' +
-                                                              var1[3];
-                                                        }(_model.relayStatus!);
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -1384,7 +1390,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1394,19 +1406,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               '1' +
                                                               var1[3] +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return var1[0] +
                                                               var1[1] +
                                                               '1' +
-                                                              var1[3];
-                                                        }(_model.relayStatus!);
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -1461,8 +1476,11 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((_model.relayStatus != null &&
-                                                  _model.relayStatus != '') &&
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
                                               ((FFAppState().role ==
                                                       'Engineer') ||
                                                   (FFAppState().role ==
@@ -1487,11 +1505,16 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   children: [
                                                     Text(
                                                       (String var1) {
-                                                        return var1.split(
-                                                                ',')[0][2] ==
-                                                            "1";
-                                                      }(FFAppState()
-                                                              .deviceStateDid)
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[2] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
                                                           ? 'Auto'
                                                           : 'Manual',
                                                       style: FlutterFlowTheme
@@ -1513,7 +1536,20 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                         child: Switch(
                                                           value: _model
                                                                   .lobbyLightValue ??=
-                                                              true,
+                                                              (String var1) {
+                                                            return var1 == '' &&
+                                                                    var1
+                                                                        .isNotEmpty
+                                                                ? true
+                                                                : (var1[2] ==
+                                                                        '1'
+                                                                    ? true
+                                                                    : false);
+                                                          }(getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RM''',
+                                                          ).toString()),
                                                           onChanged:
                                                               (newValue) async {
                                                             setState(() => _model
@@ -1531,26 +1567,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   context,
                                                                   'Settings',
                                                                   '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1.split(',')[0][0] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            1] +
-                                                                        '1' +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            3] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            4] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            5] +
-                                                                        var1.split(',')[0]
-                                                                            [
-                                                                            6] +
-                                                                        var1.split(',')[0]
-                                                                            [7];
-                                                                  }(FFAppState().deviceStateDid)},',
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            '1' +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
                                                                   FFAppState()
                                                                       .deviceId,
                                                                   '15.206.230.32',
@@ -1558,37 +1590,39 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 );
                                                               }
                                                             } else {
-                                                              await actions
-                                                                  .publishMqtt(
-                                                                context,
-                                                                'Settings',
-                                                                '${widget.did}\$SRMK${(String var1) {
-                                                                  return var1.split(',')[0]
-                                                                          [0] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [1] +
-                                                                      '0' +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [3] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [4] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [5] +
-                                                                      var1.split(
-                                                                              ',')[0]
-                                                                          [6] +
-                                                                      var1.split(
-                                                                          ',')[0][7];
-                                                                }(FFAppState().deviceStateDid)},',
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                                '15.206.230.32',
-                                                                'mqtt_buildint_\$\$2023',
-                                                              );
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11011111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            '0' +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
                                                             }
                                                           },
                                                           activeColor:
@@ -1620,8 +1654,10 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                   ),
                                   Container(
                                     width: 89.0,
-                                    height: (_model.relayStatus != null &&
-                                                _model.relayStatus != '') &&
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
                                             ((FFAppState().role ==
                                                     'Engineer') ||
                                                 (FFAppState().role ==
