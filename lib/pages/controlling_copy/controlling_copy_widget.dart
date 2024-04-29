@@ -76,7 +76,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 _model.ac1Value = ((String var1) {
                   return var1 == ''
                       ? true
-                      : var1[7] == 1
+                      : var1[7] == '1'
                           ? true
                           : false;
                 }(getJsonField(
@@ -88,7 +88,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 _model.ac2Value = ((String var1) {
                   return var1 == ''
                       ? true
-                      : var1[7] == 1
+                      : var1[7] == '1'
                           ? true
                           : false;
                 }(getJsonField(
@@ -100,7 +100,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 _model.lobbyLightValue = ((String var1) {
                   return var1 == ''
                       ? true
-                      : var1[1] == 1
+                      : var1[1] == '1'
                           ? true
                           : false;
                 }(getJsonField(
@@ -112,7 +112,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 _model.signageValue = ((String var1) {
                   return var1 == ''
                       ? true
-                      : var1[2] == 1
+                      : var1[2] == '1'
                           ? true
                           : false;
                 }(getJsonField(
@@ -716,7 +716,23 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF929395),
+                                                  color: (String var1,
+                                                              String var2) {
+                                                    return var1 == 0.00 &&
+                                                        var2[0] == '1';
+                                                  }(
+                                                          getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.CA1''',
+                                                          ).toString(),
+                                                          getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RS''',
+                                                          ).toString())
+                                                      ? Color(0x80F71A1A)
+                                                      : Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
