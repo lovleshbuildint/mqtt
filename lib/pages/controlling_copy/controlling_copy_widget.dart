@@ -716,23 +716,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: (String var1,
-                                                              String var2) {
-                                                    return var1 == 0.00 &&
-                                                        var2[0] == '1';
-                                                  }(
-                                                          getJsonField(
-                                                            FFAppState()
-                                                                .deviceStatusDIDJson,
-                                                            r'''$.CA1''',
-                                                          ).toString(),
-                                                          getJsonField(
-                                                            FFAppState()
-                                                                .deviceStatusDIDJson,
-                                                            r'''$.RS''',
-                                                          ).toString())
-                                                      ? Color(0x80F71A1A)
-                                                      : Color(0xFF929395),
+                                                  color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
