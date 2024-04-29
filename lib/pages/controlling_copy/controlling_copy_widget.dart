@@ -70,6 +70,57 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                 );
               }(),
             );
+            if (FFAppState().relayStatusiATM != null &&
+                FFAppState().relayStatusiATM != '') {
+              setState(() {
+                _model.ac1Value = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[7] == 1
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+              setState(() {
+                _model.ac2Value = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[7] == 1
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+              setState(() {
+                _model.lobbyLightValue = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[1] == 1
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+              setState(() {
+                _model.signageValue = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[2] == 1
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+            }
             return;
           },
           startImmediately: true,
