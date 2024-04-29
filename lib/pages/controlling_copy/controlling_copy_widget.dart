@@ -441,8 +441,10 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                 children: [
                                   Container(
                                     width: 95.0,
-                                    height: (FFAppState().deviceStatusDIDJson !=
-                                                null) &&
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
                                             ((FFAppState().role ==
                                                     'Engineer') ||
                                                 (FFAppState().role ==
@@ -511,11 +513,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   var1[2] +
                                                                   var1[3] +
                                                                   '0000';
-                                                            }((FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? FFAppState().relayStatusiATM : getJsonField(
-                                                                controllingCopyGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.RS''',
-                                                              ).toString()))},',
+                                                            }(FFAppState().relayStatusiATM)},',
                                                             FFAppState()
                                                                 .deviceId,
                                                             '15.206.230.32',
@@ -532,18 +530,8 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               var1[3] +
                                                               '0000';
-                                                        }((FFAppState().relayStatusiATM !=
-                                                                        null &&
-                                                                    FFAppState()
-                                                                            .relayStatusiATM !=
-                                                                        ''
-                                                                ? FFAppState()
-                                                                    .relayStatusiATM
-                                                                : getJsonField(
-                                                                    controllingCopyGetDeviceStatusResponse
-                                                                        .jsonBody,
-                                                                    r'''$.deviceStatus.RS''',
-                                                                  ).toString()));
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -615,35 +603,21 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               var1[3] +
                                                               '0000';
-                                                        }((FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? FFAppState().relayStatusiATM : getJsonField(
-                                                            controllingCopyGetDeviceStatusResponse
-                                                                .jsonBody,
-                                                            r'''$.deviceStatus.RS''',
-                                                          ).toString()))},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus = (String
-                                                            var1) {
+                                                        _model.relayStatus =
+                                                            (String var1) {
                                                           return '1' +
                                                               var1[1] +
                                                               var1[2] +
                                                               var1[3] +
                                                               '0000';
-                                                        }((FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? FFAppState()
-                                                                .relayStatusiATM
-                                                            : getJsonField(
-                                                                controllingCopyGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.RS''',
-                                                              ).toString()));
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -874,8 +848,10 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                   ),
                                   Container(
                                     width: 95.0,
-                                    height: (FFAppState().deviceStatusDIDJson !=
-                                                null) &&
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
                                             ((FFAppState().role ==
                                                     'Engineer') ||
                                                 (FFAppState().role ==
@@ -898,17 +874,12 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                             builder: (context) {
                                               if ((String var1) {
                                                 return var1[1] == "1";
-                                              }((getJsonField(
-                                                        FFAppState()
-                                                            .deviceStatusDIDJson,
-                                                        r'''$.RS''',
-                                                      ) !=
-                                                      null
-                                                  ? getJsonField(
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
                                                       FFAppState()
-                                                          .deviceStatusDIDJson,
-                                                      r'''$.RS''',
-                                                    ).toString()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
                                                   : getJsonField(
                                                       controllingCopyGetDeviceStatusResponse
                                                           .jsonBody,
@@ -930,7 +901,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -940,19 +917,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               var1[3] +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return var1[0] +
                                                               '0' +
                                                               var1[2] +
-                                                              var1[3];
-                                                        }(_model.relayStatus!);
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -1008,7 +988,13 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
-                                                                'Super Admin'))) {
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1018,7 +1004,7 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                               var1[2] +
                                                               var1[3] +
                                                               '0000';
-                                                        }(_model.relayStatus!)},',
+                                                        }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
@@ -1029,8 +1015,10 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                           return var1[0] +
                                                               '1' +
                                                               var1[2] +
-                                                              var1[3];
-                                                        }(_model.relayStatus!);
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
                                                       });
                                                     }
                                                   },
@@ -1143,7 +1131,20 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                         child: Switch(
                                                           value: _model
                                                                   .ac2Value ??=
-                                                              true,
+                                                              (String var1) {
+                                                            return var1 == '' &&
+                                                                    var1
+                                                                        .isNotEmpty
+                                                                ? true
+                                                                : (var1[7] ==
+                                                                        '1'
+                                                                    ? true
+                                                                    : false);
+                                                          }(getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RM''',
+                                                          ).toString()),
                                                           onChanged:
                                                               (newValue) async {
                                                             setState(() =>
@@ -1161,30 +1162,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   context,
                                                                   'Settings',
                                                                   '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1[
-                                                                            0] +
-                                                                        var1[
-                                                                            1] +
-                                                                        var1[
-                                                                            2] +
-                                                                        var1[
-                                                                            3] +
-                                                                        var1[
-                                                                            4] +
-                                                                        var1[
-                                                                            5] +
-                                                                        var1[
-                                                                            6] +
-                                                                        '1';
-                                                                  }((getJsonField(
-                                                                        FFAppState()
-                                                                            .deviceStatusDIDJson,
-                                                                        r'''$.RM''',
-                                                                      ) != null ? getJsonField(
-                                                                      FFAppState()
-                                                                          .deviceStatusDIDJson,
-                                                                      r'''$.RM''',
-                                                                    ).toString() : '11111111'))},',
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            '1');
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
                                                                   FFAppState()
                                                                       .deviceId,
                                                                   '15.206.230.32',
@@ -1203,30 +1196,22 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                                   context,
                                                                   'Settings',
                                                                   '${widget.did}\$SRMK${(String var1) {
-                                                                    return var1[
-                                                                            0] +
-                                                                        var1[
-                                                                            1] +
-                                                                        var1[
-                                                                            2] +
-                                                                        var1[
-                                                                            3] +
-                                                                        var1[
-                                                                            4] +
-                                                                        var1[
-                                                                            5] +
-                                                                        var1[
-                                                                            6] +
-                                                                        '0';
-                                                                  }((getJsonField(
-                                                                        FFAppState()
-                                                                            .deviceStatusDIDJson,
-                                                                        r'''$.RM''',
-                                                                      ) != null ? getJsonField(
-                                                                      FFAppState()
-                                                                          .deviceStatusDIDJson,
-                                                                      r'''$.RM''',
-                                                                    ).toString() : '11111111'))},',
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111110'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            '0');
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
                                                                   FFAppState()
                                                                       .deviceId,
                                                                   '15.206.230.32',
