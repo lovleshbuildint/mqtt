@@ -1083,9 +1083,11 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                           ),
-                                          if ((FFAppState()
-                                                      .deviceStatusDIDJson !=
-                                                  null) &&
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
                                               ((FFAppState().role ==
                                                       'Engineer') ||
                                                   (FFAppState().role ==
