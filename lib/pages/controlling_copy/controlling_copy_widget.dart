@@ -757,7 +757,9 @@ class _ControllingCopyWidgetState extends State<ControllingCopyWidget> {
                                                           value: _model
                                                                   .ac1Value ??=
                                                               (String var1) {
-                                                            return var1 == ''
+                                                            return var1 == '' &&
+                                                                    var1
+                                                                        .isNotEmpty
                                                                 ? true
                                                                 : (var1[7] ==
                                                                         '1'
