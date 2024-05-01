@@ -730,20 +730,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 FFAppState()
                                                                         .relayStatusiATM !=
                                                                     ''
-                                                            ? (int.parse(
-                                                                    getJsonField(
+                                                            ? getJsonField(
                                                                 FFAppState()
                                                                     .deviceStatusDIDJson,
                                                                 r'''$.CA1''',
-                                                              ).toString())
-                                                                .toDouble())
-                                                            : (int.parse(
-                                                                    getJsonField(
+                                                              )
+                                                            : getJsonField(
                                                                 deviceDetailsGetDeviceStatusResponse
                                                                     .jsonBody,
                                                                 r'''$.deviceStatus.CAone''',
-                                                              ).toString())
-                                                                .toDouble())),
+                                                              )),
                                                         (FFAppState().relayStatusiATM !=
                                                                     null &&
                                                                 FFAppState()
@@ -772,20 +768,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 FFAppState()
                                                                         .relayStatusiATM !=
                                                                     ''
-                                                            ? (int.parse(
-                                                                    getJsonField(
+                                                            ? getJsonField(
                                                                 FFAppState()
                                                                     .deviceStatusDIDJson,
                                                                 r'''$.CA1''',
-                                                              ).toString())
-                                                                .toDouble())
-                                                            : (int.parse(
-                                                                    getJsonField(
+                                                              )
+                                                            : getJsonField(
                                                                 deviceDetailsGetDeviceStatusResponse
                                                                     .jsonBody,
                                                                 r'''$.deviceStatus.CAone''',
-                                                              ).toString())
-                                                                .toDouble())),
+                                                              )),
                                                         (FFAppState().relayStatusiATM !=
                                                                     null &&
                                                                 FFAppState()
