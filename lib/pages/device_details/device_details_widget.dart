@@ -730,16 +730,20 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 FFAppState()
                                                                         .relayStatusiATM !=
                                                                     ''
-                                                            ? getJsonField(
+                                                            ? (int.parse(
+                                                                    getJsonField(
                                                                 FFAppState()
                                                                     .deviceStatusDIDJson,
                                                                 r'''$.CA1''',
-                                                              )
-                                                            : getJsonField(
+                                                              ).toString())
+                                                                .toDouble())
+                                                            : (int.parse(
+                                                                    getJsonField(
                                                                 deviceDetailsGetDeviceStatusResponse
                                                                     .jsonBody,
                                                                 r'''$.deviceStatus.CAone''',
-                                                              )),
+                                                              ).toString())
+                                                                .toDouble())),
                                                         (FFAppState().relayStatusiATM !=
                                                                     null &&
                                                                 FFAppState()
@@ -763,11 +767,25 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? true
                                                           : false;
                                                     }(
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.CAone''',
-                                                        ),
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? (int.parse(
+                                                                    getJsonField(
+                                                                FFAppState()
+                                                                    .deviceStatusDIDJson,
+                                                                r'''$.CA1''',
+                                                              ).toString())
+                                                                .toDouble())
+                                                            : (int.parse(
+                                                                    getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.CAone''',
+                                                              ).toString())
+                                                                .toDouble())),
                                                         (FFAppState().relayStatusiATM !=
                                                                     null &&
                                                                 FFAppState()
