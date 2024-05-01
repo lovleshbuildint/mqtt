@@ -469,6 +469,30 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                       ],
                     ),
                   ),
+                  Text(
+                    (String var1) {
+                      return var1 + ' ' + var1.runtimeType.toString();
+                    }(getJsonField(
+                      FFAppState().deviceStatusDIDJson,
+                      r'''$.CA1''',
+                    ).toString()),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
+                  Text(
+                    (String var1) {
+                      return var1 + ' ' + var1.runtimeType.toString();
+                    }(getJsonField(
+                      deviceDetailsGetDeviceStatusResponse.jsonBody,
+                      r'''$.deviceStatus.CAone''',
+                    ).toString()),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -716,85 +740,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: () {
-                                                    if ((double var1,
-                                                            String var2) {
-                                                      return var1.toDouble() >
-                                                                  1.00 &&
-                                                              var2[0] == '1'
-                                                          ? true
-                                                          : false;
-                                                    }(
-                                                        (FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? getJsonField(
-                                                                FFAppState()
-                                                                    .deviceStatusDIDJson,
-                                                                r'''$.CA1''',
-                                                              )
-                                                            : getJsonField(
-                                                                deviceDetailsGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.CAone''',
-                                                              )),
-                                                        (FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? FFAppState()
-                                                                .relayStatusiATM
-                                                            : getJsonField(
-                                                                deviceDetailsGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.RS''',
-                                                              ).toString()))) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryText;
-                                                    } else if ((double var1,
-                                                            String var2) {
-                                                      return var1.toDouble() <
-                                                                  1.00 &&
-                                                              var2[0] == '1'
-                                                          ? true
-                                                          : false;
-                                                    }(
-                                                        (FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? getJsonField(
-                                                                FFAppState()
-                                                                    .deviceStatusDIDJson,
-                                                                r'''$.CA1''',
-                                                              )
-                                                            : getJsonField(
-                                                                deviceDetailsGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.CAone''',
-                                                              )),
-                                                        (FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? FFAppState()
-                                                                .relayStatusiATM
-                                                            : getJsonField(
-                                                                deviceDetailsGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.RS''',
-                                                              ).toString()))) {
-                                                      return Color(0x80F71A1A);
-                                                    } else {
-                                                      return Color(0xFF929395);
-                                                    }
-                                                  }(),
+                                                  color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                 ),
