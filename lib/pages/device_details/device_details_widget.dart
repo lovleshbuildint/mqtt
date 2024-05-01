@@ -582,7 +582,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     r'''$.deviceStatus.RS''',
                                                                   ).toString()))
                                                         ? 'AC 1 is not Working'
-                                                        : 'AC 1 is running but compressor is consuming minimal power. Since the current is ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                                        : 'AC 1 is running but compressor is consuming minimal power. Current: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                                             FFAppState()
                                                                 .deviceStatusDIDJson,
                                                             r'''$.CA1''',
@@ -590,7 +590,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                             deviceDetailsGetDeviceStatusResponse
                                                                 .jsonBody,
                                                             r'''$.deviceStatus.CAone''',
-                                                          ).toString()}',
+                                                          ).toString()}A',
                                                     textAlign:
                                                         TextAlign.justify,
                                                     style: FlutterFlowTheme.of(
