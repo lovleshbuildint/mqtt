@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -514,6 +515,60 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional(1.0, -1.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 0.0, 5.0),
+                                              child: AlignedTooltip(
+                                                content: Padding(
+                                                  padding: EdgeInsets.all(4.0),
+                                                  child: Text(
+                                                    'Message...',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                offset: 4.0,
+                                                preferredDirection:
+                                                    AxisDirection.up,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                elevation: 4.0,
+                                                tailBaseWidth: 24.0,
+                                                tailLength: 12.0,
+                                                waitDuration:
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
+                                                    milliseconds: 1500),
+                                                triggerMode:
+                                                    TooltipTriggerMode.tap,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .report_problem_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    size: 20.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                           Builder(
                                             builder: (context) {
                                               if ((String var1) {
@@ -724,11 +779,21 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               1.00 &&
                                                           var2[0] == '1';
                                                     }(
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.CAone''',
-                                                        ).toString(),
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? getJsonField(
+                                                                FFAppState()
+                                                                    .deviceStatusDIDJson,
+                                                                r'''$.CA1''',
+                                                              ).toString()
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.CAone''',
+                                                              ).toString()),
                                                         getJsonField(
                                                           deviceDetailsGetDeviceStatusResponse
                                                               .jsonBody,
@@ -742,11 +807,21 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               1.00 &&
                                                           var2[0] == '1';
                                                     }(
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.CAone''',
-                                                        ).toString(),
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? getJsonField(
+                                                                FFAppState()
+                                                                    .deviceStatusDIDJson,
+                                                                r'''$.CA1''',
+                                                              ).toString()
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.CAone''',
+                                                              ).toString()),
                                                         getJsonField(
                                                           deviceDetailsGetDeviceStatusResponse
                                                               .jsonBody,
