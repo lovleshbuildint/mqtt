@@ -725,11 +725,21 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? true
                                                           : false;
                                                     }(
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.CAone''',
-                                                        ),
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? getJsonField(
+                                                                FFAppState()
+                                                                    .deviceStatusDIDJson,
+                                                                r'''$.CA1''',
+                                                              )
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.CAone''',
+                                                              )),
                                                         (FFAppState().relayStatusiATM !=
                                                                     null &&
                                                                 FFAppState()
