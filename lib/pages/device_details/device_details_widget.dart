@@ -493,16 +493,6 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                 children: [
                                   Container(
                                     width: 95.0,
-                                    height: (FFAppState().relayStatusiATM !=
-                                                    null &&
-                                                FFAppState().relayStatusiATM !=
-                                                    '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
