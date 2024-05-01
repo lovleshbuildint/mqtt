@@ -507,59 +507,137 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.center,
                                         children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 5.0, 5.0, 5.0),
-                                            child: AlignedTooltip(
-                                              content: Padding(
-                                                padding: EdgeInsets.all(16.0),
-                                                child: Text(
-                                                  'Message...sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss123',
-                                                  textAlign: TextAlign.justify,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        fontSize: 12.0,
-                                                        letterSpacing: 0.0,
-                                                      ),
+                                          if ((String var1, String var2) {
+                                            return (double.parse(var1) < 1.00 &&
+                                                    var2[0] == '1')
+                                                ? true
+                                                : false;
+                                          }(
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.CA1''',
+                                                    ).toString()
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.CAone''',
+                                                    ).toString()),
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString())))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 5.0, 5.0, 5.0),
+                                              child: AlignedTooltip(
+                                                content: Padding(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  child: Text(
+                                                    (String var1, String var2) {
+                                                      return double.parse(
+                                                                      var1) ==
+                                                                  0.00 &&
+                                                              var2[0] == '1'
+                                                          ? true
+                                                          : false;
+                                                    }(
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.CA1''',
+                                                                  ).toString()
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.CAone''',
+                                                                  ).toString()),
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? FFAppState()
+                                                                    .relayStatusiATM
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.RS''',
+                                                                  ).toString()))
+                                                        ? 'AC 1 is not Working'
+                                                        : 'AC 1 is running but compressor is consuming minimal power. Since the current is ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.CA1''',
+                                                          ).toString() : getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.CAone''',
+                                                          ).toString()}',
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
                                                 ),
-                                              ),
-                                              offset: 4.0,
-                                              preferredDirection:
-                                                  AxisDirection.up,
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0),
-                                              backgroundColor:
-                                                  Color(0xFF4D4D4D),
-                                              elevation: 4.0,
-                                              tailBaseWidth: 20.0,
-                                              tailLength: 18.0,
-                                              waitDuration:
-                                                  Duration(milliseconds: 100),
-                                              showDuration:
-                                                  Duration(milliseconds: 1500),
-                                              triggerMode:
-                                                  TooltipTriggerMode.tap,
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    1.0, -1.0),
-                                                child: Icon(
-                                                  Icons.report_problem_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  size: 20.0,
+                                                offset: 4.0,
+                                                preferredDirection:
+                                                    AxisDirection.up,
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                                backgroundColor:
+                                                    Color(0xFF4D4D4D),
+                                                elevation: 4.0,
+                                                tailBaseWidth: 20.0,
+                                                tailLength: 18.0,
+                                                waitDuration:
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
+                                                    milliseconds: 1500),
+                                                triggerMode:
+                                                    TooltipTriggerMode.tap,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .report_problem_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    size: 20.0,
+                                                  ),
                                                 ),
                                               ),
                                             ),
-                                          ),
                                           Builder(
                                             builder: (context) {
                                               if ((String var1) {
@@ -786,11 +864,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     .jsonBody,
                                                                 r'''$.deviceStatus.CAone''',
                                                               ).toString()),
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.RS''',
-                                                        ).toString())) {
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? FFAppState()
+                                                                .relayStatusiATM
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.RS''',
+                                                              ).toString()))) {
                                                       return Color(0x80F71A1A);
                                                     } else if ((String var1,
                                                             String var2) {
@@ -814,11 +899,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     .jsonBody,
                                                                 r'''$.deviceStatus.CAone''',
                                                               ).toString()),
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.RS''',
-                                                        ).toString())) {
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? FFAppState()
+                                                                .relayStatusiATM
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.RS''',
+                                                              ).toString()))) {
                                                       return FlutterFlowTheme
                                                               .of(context)
                                                           .primaryText;
