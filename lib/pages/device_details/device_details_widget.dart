@@ -719,7 +719,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   color: () {
                                                     if ((double var1,
                                                             String var2) {
-                                                      return var1 > 1.00 &&
+                                                      return var1.toDouble() >
+                                                                  1.00 &&
                                                               var2[0] == '1'
                                                           ? true
                                                           : false;
@@ -746,7 +747,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           .primaryText;
                                                     } else if ((double var1,
                                                             String var2) {
-                                                      return var1 < 1.00 &&
+                                                      return var1.toDouble() <
+                                                                  1.00 &&
                                                               var2[0] == '1'
                                                           ? true
                                                           : false;
@@ -774,7 +776,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   }(),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
@@ -1175,7 +1177,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
@@ -1580,7 +1582,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   color: Color(0xFF929395),
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
@@ -1982,7 +1984,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
@@ -2216,7 +2218,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                         ],
@@ -2291,7 +2293,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   fontFamily: 'Readex Pro',
                                                   color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.normal,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                         ],
