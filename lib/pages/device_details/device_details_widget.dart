@@ -828,6 +828,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
                                                   1.0,
+                                              height: 30.0,
                                               decoration: BoxDecoration(
                                                 color: Color(0x00FFFFFF),
                                               ),
