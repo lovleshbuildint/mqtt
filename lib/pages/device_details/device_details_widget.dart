@@ -744,7 +744,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    13.0, 0.0, 13.0, 0.0),
+                                                    13.0, 10.0, 13.0, 10.0),
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -755,78 +755,86 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               ),
                                             ),
                                           ),
-                                          Text(
-                                            'AC 1',
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: () {
-                                                    if ((String var1,
-                                                            String var2) {
-                                                      return double.parse(
-                                                                  var1) <
-                                                              1.00 &&
-                                                          var2[0] == '1';
-                                                    }(
-                                                        (FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? getJsonField(
-                                                                FFAppState()
-                                                                    .deviceStatusDIDJson,
-                                                                r'''$.CA1''',
-                                                              ).toString()
-                                                            : getJsonField(
-                                                                deviceDetailsGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.CAone''',
-                                                              ).toString()),
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.RS''',
-                                                        ).toString())) {
-                                                      return Color(0x80F71A1A);
-                                                    } else if ((String var1,
-                                                            String var2) {
-                                                      return double.parse(
-                                                                  var1) >
-                                                              1.00 &&
-                                                          var2[0] == '1';
-                                                    }(
-                                                        (FFAppState().relayStatusiATM !=
-                                                                    null &&
-                                                                FFAppState()
-                                                                        .relayStatusiATM !=
-                                                                    ''
-                                                            ? getJsonField(
-                                                                FFAppState()
-                                                                    .deviceStatusDIDJson,
-                                                                r'''$.CA1''',
-                                                              ).toString()
-                                                            : getJsonField(
-                                                                deviceDetailsGetDeviceStatusResponse
-                                                                    .jsonBody,
-                                                                r'''$.deviceStatus.CAone''',
-                                                              ).toString()),
-                                                        getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.RS''',
-                                                        ).toString())) {
-                                                      return FlutterFlowTheme
-                                                              .of(context)
-                                                          .primaryText;
-                                                    } else {
-                                                      return Color(0xFF929395);
-                                                    }
-                                                  }(),
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 5.0),
+                                            child: Text(
+                                              'AC 1',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: () {
+                                                      if ((String var1,
+                                                              String var2) {
+                                                        return double.parse(
+                                                                    var1) <
+                                                                1.00 &&
+                                                            var2[0] == '1';
+                                                      }(
+                                                          (FFAppState().relayStatusiATM !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .relayStatusiATM !=
+                                                                      ''
+                                                              ? getJsonField(
+                                                                  FFAppState()
+                                                                      .deviceStatusDIDJson,
+                                                                  r'''$.CA1''',
+                                                                ).toString()
+                                                              : getJsonField(
+                                                                  deviceDetailsGetDeviceStatusResponse
+                                                                      .jsonBody,
+                                                                  r'''$.deviceStatus.CAone''',
+                                                                ).toString()),
+                                                          getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.RS''',
+                                                          ).toString())) {
+                                                        return Color(
+                                                            0x80F71A1A);
+                                                      } else if ((String var1,
+                                                              String var2) {
+                                                        return double.parse(
+                                                                    var1) >
+                                                                1.00 &&
+                                                            var2[0] == '1';
+                                                      }(
+                                                          (FFAppState().relayStatusiATM !=
+                                                                      null &&
+                                                                  FFAppState()
+                                                                          .relayStatusiATM !=
+                                                                      ''
+                                                              ? getJsonField(
+                                                                  FFAppState()
+                                                                      .deviceStatusDIDJson,
+                                                                  r'''$.CA1''',
+                                                                ).toString()
+                                                              : getJsonField(
+                                                                  deviceDetailsGetDeviceStatusResponse
+                                                                      .jsonBody,
+                                                                  r'''$.deviceStatus.CAone''',
+                                                                ).toString()),
+                                                          getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.RS''',
+                                                          ).toString())) {
+                                                        return FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryText;
+                                                      } else {
+                                                        return Color(
+                                                            0xFF929395);
+                                                      }
+                                                    }(),
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                            ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
                                                       null &&
