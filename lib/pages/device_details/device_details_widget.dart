@@ -499,7 +499,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 8.0),
+                                          0.0, 8.0, 0.0, 8.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
@@ -541,7 +541,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     ).toString())))
                                             Padding(
                                               padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 5.0, 5.0, 5.0),
+                                                  .fromSTEB(0.0, 0.0, 5.0, 5.0),
                                               child: AlignedTooltip(
                                                 content: Padding(
                                                   padding: EdgeInsets.all(16.0),
@@ -785,7 +785,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return '1' +
                                                               var1[1] +
