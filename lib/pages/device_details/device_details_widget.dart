@@ -2,7 +2,9 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,20 +15,12 @@ export 'device_details_model.dart';
 class DeviceDetailsWidget extends StatefulWidget {
   const DeviceDetailsWidget({
     super.key,
-    required this.locName,
-    required this.locStatus,
-    required this.locDevices,
-    required this.locId,
-    required this.locImage,
-    required this.branchCode,
+    required this.did,
+    required this.onlineOfflineStatus,
   });
 
-  final String? locName;
-  final String? locStatus;
-  final String? locDevices;
-  final int? locId;
-  final String? locImage;
-  final String? branchCode;
+  final String? did;
+  final String? onlineOfflineStatus;
 
   @override
   State<DeviceDetailsWidget> createState() => _DeviceDetailsWidgetState();
@@ -49,33 +43,114 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
         deviceId: FFAppState().deviceId,
       );
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        unawaited(
+          () async {
+            await actions.subscribeMqtt(
+              context,
+              'Response',
+              FFAppState().deviceId,
+              widget.did,
+              '15.206.230.32',
+              'mqtt_buildint_\$\$2023',
+            );
+          }(),
+        );
+        _model.instantTimer = InstantTimer.periodic(
+          duration: Duration(milliseconds: 15000),
+          callback: (timer) async {
+            unawaited(
+              () async {
+                await actions.publishMqtt(
+                  context,
+                  'Settings',
+                  '${widget.did}\$GALL,',
+                  FFAppState().deviceId,
+                  '15.206.230.32',
+                  'mqtt_buildint_\$\$2023',
+                );
+              }(),
+            );
+            if (FFAppState().relayStatusiATM != null &&
+                FFAppState().relayStatusiATM != '') {
+              setState(() {
+                _model.ac1Value = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[7] == '1'
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+              setState(() {
+                _model.ac2Value = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[7] == '1'
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+              setState(() {
+                _model.lobbyLightValue = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[2] == '1'
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+              setState(() {
+                _model.signageValue = ((String var1) {
+                  return var1 == ''
+                      ? true
+                      : var1[3] == '1'
+                          ? true
+                          : false;
+                }(getJsonField(
+                  FFAppState().deviceStatusDIDJson,
+                  r'''$.RM''',
+                ).toString().toString()));
+              });
+            }
+            return;
+          },
+          startImmediately: true,
+        );
+      } else {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('Alert'),
+              content: Text(
+                  'Unauthorized access or your device is not registered. Try login again'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+        setState(() {
+          FFAppState().deleteToken();
+          FFAppState().token = '';
+        });
+
+        context.goNamed('LogIn');
+
         return;
       }
-
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Alert'),
-            content: Text(
-                'Unauthorized access or your device is not registered. Try login again'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-      setState(() {
-        FFAppState().deleteToken();
-        FFAppState().token = '';
-      });
-
-      context.goNamed('LogIn');
-
-      return;
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -93,11 +168,11 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: GetDeviceDetailsCall.call(
+      future: GetDeviceStatusCall.call(
         deviceId: FFAppState().deviceId,
-        project: FFAppState().userProject,
-        locId: widget.locId,
         token: FFAppState().token,
+        did: widget.did,
+        project: FFAppState().userProject,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -117,7 +192,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
             ),
           );
         }
-        final deviceDetailsGetDeviceDetailsResponse = snapshot.data!;
+        final deviceDetailsGetDeviceStatusResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -129,6 +204,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
               top: true,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Padding(
                     padding:
@@ -158,7 +234,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   7.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Devices',
+                                'Device Details',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -177,150 +253,2198 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                   ),
                   Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 16.0, 13.0, 0.0),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      constraints: BoxConstraints(
-                        minHeight: 113.0,
-                      ),
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(
-                          color: Color(0x27404042),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 12.0, 20.0, 12.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              '${widget.locName} - ${widget.branchCode}',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
+                        EdgeInsetsDirectional.fromSTEB(13.0, 10.0, 13.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          valueOrDefault<String>(
+                            widget.did,
+                            'Device ID',
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
                                     color: Color(0xFF4D4D4D),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
                                   ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 2.0, 7.0, 0.0),
+                                      child: Container(
+                                        width: 10.0,
+                                        height: 10.0,
+                                        decoration: BoxDecoration(
+                                          color: widget.onlineOfflineStatus ==
+                                                  'Online'
+                                              ? Color(0xFF07D95A)
+                                              : FlutterFlowTheme.of(context)
+                                                  .error,
+                                          shape: BoxShape.circle,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      valueOrDefault<String>(
+                                        widget.onlineOfflineStatus,
+                                        'Offline',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF2D2D2D),
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 4.0, 0.0, 0.0),
+                                  child: Text(
+                                    FFAppState().mqttTime != null &&
+                                            FFAppState().mqttTime != ''
+                                        ? ((String var1) {
+                                            return var1.split('.')[0];
+                                          }(FFAppState().mqttTime))
+                                        : '${(String var1) {
+                                            return var1.split('T').first;
+                                          }(getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.evt_dt''',
+                                          ).toString())} ${(String var1) {
+                                            return var1.split('.').first;
+                                          }(((String var1) {
+                                            return var1.split('T').last;
+                                          }(getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.evt_dt''',
+                                          ).toString())))}',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 0.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 0.0, 0.0),
+                            child: Container(
+                              width: MediaQuery.sizeOf(context).width * 1.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                image: DecorationImage(
+                                  fit: BoxFit.fitWidth,
+                                  image: Image.asset(
+                                    'assets/images/Asset_1@1x.png',
+                                  ).image,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 13.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      '${getJsonField(
+                                            FFAppState().deviceStatusDIDJson,
+                                            r'''$.TM''',
+                                          ) != null ? getJsonField(
+                                          FFAppState().deviceStatusDIDJson,
+                                          r'''$.TM''',
+                                        ).toString() : getJsonField(
+                                          deviceDetailsGetDeviceStatusResponse
+                                              .jsonBody,
+                                          r'''$.deviceStatus.TM''',
+                                        ).toString()} C',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF808080),
+                                            fontSize: 26.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Container(
+                                      width: 30.0,
+                                      height: 30.0,
+                                      decoration: BoxDecoration(
+                                        color: () {
+                                          if ((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.TM''',
+                                                      ) !=
+                                                      null
+                                                  ? (double.parse(getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.TM''',
+                                                    ).toString()))
+                                                  : (double.parse(getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.TM''',
+                                                    ).toString()))) >=
+                                              30.0) {
+                                            return Color(0x80F71A1A);
+                                          } else if ((getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.TM''',
+                                                      ) !=
+                                                      null
+                                                  ? (double.parse(getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.TM''',
+                                                    ).toString()))
+                                                  : (double.parse(getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.TM''',
+                                                    ).toString()))) ==
+                                              0.00) {
+                                            return Color(0x80F71A1A);
+                                          } else {
+                                            return Color(0x8007D95A);
+                                          }
+                                        }(),
+                                        borderRadius:
+                                            BorderRadius.circular(4.0),
+                                      ),
+                                      child: Icon(
+                                        Icons.ac_unit,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: AlignmentDirectional(0.0, 1.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 9.0, 0.0, 0.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                  13.0, 0.0, 13.0, 20.0),
+                              child: Wrap(
+                                spacing: 32.0,
+                                runSpacing: 16.0,
+                                alignment: WrapAlignment.center,
+                                crossAxisAlignment: WrapCrossAlignment.start,
+                                direction: Axis.horizontal,
+                                runAlignment: WrapAlignment.start,
+                                verticalDirection: VerticalDirection.down,
+                                clipBehavior: Clip.none,
                                 children: [
                                   Container(
-                                    width: 52.0,
-                                    height: 52.0,
+                                    width: 95.0,
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
+                                            ((FFAppState().role ==
+                                                    'Engineer') ||
+                                                (FFAppState().role ==
+                                                    'Super Admin'))
+                                        ? 130.0
+                                        : 100.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      border: Border.all(
-                                        color: Color(0x58404042),
-                                        width: 2.0,
-                                      ),
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
                                     ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                        widget.locImage!,
-                                        width: 52.0,
-                                        height: 52.0,
-                                        fit: BoxFit.fitWidth,
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Builder(
+                                            builder: (context) {
+                                              if ((String var1) {
+                                                return var1[0] == "1";
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString()))) {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.ac1Value ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      unawaited(
+                                                        () async {
+                                                          await actions
+                                                              .publishMqtt(
+                                                            context,
+                                                            'Settings',
+                                                            '${widget.did}\$SREL${(String var1) {
+                                                              return '0' +
+                                                                  var1[1] +
+                                                                  var1[2] +
+                                                                  var1[3] +
+                                                                  '0000';
+                                                            }(FFAppState().relayStatusiATM)},',
+                                                            FFAppState()
+                                                                .deviceId,
+                                                            '15.206.230.32',
+                                                            'mqtt_buildint_\$\$2023',
+                                                          );
+                                                        }(),
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                                .relayStatusiATM =
+                                                            (String var1) {
+                                                          return '0' +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                          Color(0xFFC070C2)
+                                                        ],
+                                                        stops: [0.0, 1.0],
+                                                        begin:
+                                                            AlignmentDirectional(
+                                                                0.0, -1.0),
+                                                        end:
+                                                            AlignmentDirectional(
+                                                                0, 1.0),
+                                                      ),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.home_max,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.ac1Value ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return '1' +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        _model.relayStatus =
+                                                            (String var1) {
+                                                          return '1' +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFA9AAAC),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.home_max,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'AC 1',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: () {
+                                                    if ((int var1,
+                                                            String var2) {
+                                                      return var1 > 1.00 &&
+                                                              var2[0] == '1'
+                                                          ? true
+                                                          : false;
+                                                    }(
+                                                        getJsonField(
+                                                          deviceDetailsGetDeviceStatusResponse
+                                                              .jsonBody,
+                                                          r'''$.deviceStatus.CAone''',
+                                                        ),
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? FFAppState()
+                                                                .relayStatusiATM
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.RS''',
+                                                              ).toString()))) {
+                                                      return FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryText;
+                                                    } else if ((int var1,
+                                                            String var2) {
+                                                      return var1 < 1.00 &&
+                                                              var2[0] == '1'
+                                                          ? true
+                                                          : false;
+                                                    }(
+                                                        getJsonField(
+                                                          deviceDetailsGetDeviceStatusResponse
+                                                              .jsonBody,
+                                                          r'''$.deviceStatus.CAone''',
+                                                        ),
+                                                        (FFAppState().relayStatusiATM !=
+                                                                    null &&
+                                                                FFAppState()
+                                                                        .relayStatusiATM !=
+                                                                    ''
+                                                            ? FFAppState()
+                                                                .relayStatusiATM
+                                                            : getJsonField(
+                                                                deviceDetailsGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.RS''',
+                                                              ).toString()))) {
+                                                      return Color(0x80F71A1A);
+                                                    } else {
+                                                      return Color(0xFF929395);
+                                                    }
+                                                  }(),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
+                                              ((FFAppState().role ==
+                                                      'Engineer') ||
+                                                  (FFAppState().role ==
+                                                      'Super Admin')))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height: 30.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x00FFFFFF),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (String var1) {
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[7] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
+                                                          ? 'Auto'
+                                                          : 'Manual',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Transform.scale(
+                                                        scaleX: 0.7,
+                                                        scaleY: 0.7,
+                                                        child: Switch(
+                                                          value: _model
+                                                                  .ac1Value ??=
+                                                              (String var1) {
+                                                            return var1 == '' &&
+                                                                    var1
+                                                                        .isNotEmpty
+                                                                ? true
+                                                                : (var1[7] ==
+                                                                        '1'
+                                                                    ? true
+                                                                    : false);
+                                                          }(getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RM''',
+                                                          ).toString()),
+                                                          onChanged:
+                                                              (newValue) async {
+                                                            setState(() =>
+                                                                _model.ac1Value =
+                                                                    newValue!);
+                                                            if (newValue!) {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            '1');
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            } else {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111110'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            '0');
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            }
+                                                          },
+                                                          activeColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          activeTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .accent1,
+                                                          inactiveTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          inactiveThumbColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        11.0, 0.0, 0.0, 0.0),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Site Status',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color: Color(0xFF4D4D4D),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
+                                  Container(
+                                    width: 95.0,
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
+                                            ((FFAppState().role ==
+                                                    'Engineer') ||
+                                                (FFAppState().role ==
+                                                    'Super Admin'))
+                                        ? 130.0
+                                        : 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Builder(
+                                            builder: (context) {
+                                              if ((String var1) {
+                                                return var1[1] == "1";
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString()))) {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.ac2Value ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return var1[0] +
+                                                              '0' +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                                .relayStatusiATM =
+                                                            (String var1) {
+                                                          return var1[0] +
+                                                              '0' +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                          Color(0xFFC070C2)
+                                                        ],
+                                                        stops: [0.0, 1.0],
+                                                        begin:
+                                                            AlignmentDirectional(
+                                                                0.0, -1.0),
+                                                        end:
+                                                            AlignmentDirectional(
+                                                                0, 1.0),
+                                                      ),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.home_max,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.ac2Value ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return var1[0] +
+                                                              '1' +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        _model.relayStatus =
+                                                            (String var1) {
+                                                          return var1[0] +
+                                                              '1' +
+                                                              var1[2] +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFA9AAAC),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.home_max,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
                                               ),
-                                        ),
-                                        Text(
-                                          'Devices',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                color: Color(0xFF4D4D4D),
-                                                fontSize: 14.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                          Text(
+                                            'AC 2',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
+                                              ((FFAppState().role ==
+                                                      'Engineer') ||
+                                                  (FFAppState().role ==
+                                                      'Super Admin')))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height: 30.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x00FFFFFF),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (String var1) {
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[7] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
+                                                          ? 'Auto'
+                                                          : 'Manual',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Transform.scale(
+                                                        scaleX: 0.7,
+                                                        scaleY: 0.7,
+                                                        child: Switch(
+                                                          value: _model
+                                                                  .ac2Value ??=
+                                                              (String var1) {
+                                                            return var1 == '' &&
+                                                                    var1
+                                                                        .isNotEmpty
+                                                                ? true
+                                                                : (var1[7] ==
+                                                                        '1'
+                                                                    ? true
+                                                                    : false);
+                                                          }(getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RM''',
+                                                          ).toString()),
+                                                          onChanged:
+                                                              (newValue) async {
+                                                            setState(() =>
+                                                                _model.ac2Value =
+                                                                    newValue!);
+                                                            if (newValue!) {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            '1');
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            } else {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111110'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            '0');
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            }
+                                                          },
+                                                          activeColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          activeTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .accent1,
+                                                          inactiveTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          inactiveThumbColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                        ),
-                                      ],
+                                            ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment: AlignmentDirectional(1.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 0.0, 0.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            AutoSizeText(
-                                              valueOrDefault<String>(
-                                                widget.locStatus,
-                                                'Offline',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF2D2D2D),
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
+                                  Container(
+                                    width: 95.0,
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
+                                            ((FFAppState().role ==
+                                                    'Engineer') ||
+                                                (FFAppState().role ==
+                                                    'Super Admin'))
+                                        ? 130.0
+                                        : 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Builder(
+                                            builder: (context) {
+                                              if ((String var1) {
+                                                return var1[2] == "1";
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString()))) {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.lobbyLightValue ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              '0' +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                                .relayStatusiATM =
+                                                            (String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              '0' +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                          Color(0xFFC070C2)
+                                                        ],
+                                                        stops: [0.0, 1.0],
+                                                        begin:
+                                                            AlignmentDirectional(
+                                                                0.0, -1.0),
+                                                        end:
+                                                            AlignmentDirectional(
+                                                                0, 1.0),
+                                                      ),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .lightbulb_outline_rounded,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
                                                   ),
-                                              minFontSize: 10.0,
-                                            ),
-                                            AutoSizeText(
-                                              valueOrDefault<String>(
-                                                widget.locDevices,
-                                                '1',
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF2D2D2D),
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
+                                                );
+                                              } else {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.lobbyLightValue ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              '1' +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                                .relayStatusiATM =
+                                                            (String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              '1' +
+                                                              var1[3] +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFA9AAAC),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .lightbulb_outline_rounded,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
                                                   ),
-                                              minFontSize: 10.0,
+                                                );
+                                              }
+                                            },
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                          Text(
+                                            'Lobby Light',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
+                                              ((FFAppState().role ==
+                                                      'Engineer') ||
+                                                  (FFAppState().role ==
+                                                      'Super Admin')))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height: 30.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x00FFFFFF),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (String var1) {
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[2] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
+                                                          ? 'Auto'
+                                                          : 'Manual',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Transform.scale(
+                                                        scaleX: 0.7,
+                                                        scaleY: 0.7,
+                                                        child: Switch(
+                                                          value: _model
+                                                                  .lobbyLightValue ??=
+                                                              (String var1) {
+                                                            return var1 == '' &&
+                                                                    var1
+                                                                        .isNotEmpty
+                                                                ? true
+                                                                : (var1[2] ==
+                                                                        '1'
+                                                                    ? true
+                                                                    : false);
+                                                          }(getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RM''',
+                                                          ).toString()),
+                                                          onChanged:
+                                                              (newValue) async {
+                                                            setState(() => _model
+                                                                    .lobbyLightValue =
+                                                                newValue!);
+                                                            if (newValue!) {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            '1' +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            } else {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11011111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            '0' +
+                                                                            var1[3] +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            }
+                                                          },
+                                                          activeColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          activeTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .accent1,
+                                                          inactiveTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          inactiveThumbColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 89.0,
+                                    height: (FFAppState().relayStatusiATM !=
+                                                    null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    '') &&
+                                            ((FFAppState().role ==
+                                                    'Engineer') ||
+                                                (FFAppState().role ==
+                                                    'Super Admin'))
+                                        ? 130.0
+                                        : 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Builder(
+                                            builder: (context) {
+                                              if ((String var1) {
+                                                return var1[3] == "1";
+                                              }((FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString()))) {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.signageValue ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              '0' +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                                .relayStatusiATM =
+                                                            (String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              '0' +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                          Color(0xFFC070C2)
+                                                        ],
+                                                        stops: [0.0, 1.0],
+                                                        begin:
+                                                            AlignmentDirectional(
+                                                                0.0, -1.0),
+                                                        end:
+                                                            AlignmentDirectional(
+                                                                0, 1.0),
+                                                      ),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.light_outlined,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                  ),
+                                                );
+                                              } else {
+                                                return InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    if ((_model.signageValue ==
+                                                            false) &&
+                                                        ((FFAppState().role ==
+                                                                'Engineer') ||
+                                                            (FFAppState()
+                                                                    .role ==
+                                                                'Super Admin')) &&
+                                                        (FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                null &&
+                                                            FFAppState()
+                                                                    .relayStatusiATM !=
+                                                                '')) {
+                                                      await actions.publishMqtt(
+                                                        context,
+                                                        'Settings',
+                                                        '${widget.did}\$SREL${(String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              '1' +
+                                                              '0000';
+                                                        }(FFAppState().relayStatusiATM)},',
+                                                        FFAppState().deviceId,
+                                                        '15.206.230.32',
+                                                        'mqtt_buildint_\$\$2023',
+                                                      );
+                                                      setState(() {
+                                                        FFAppState()
+                                                                .relayStatusiATM =
+                                                            (String var1) {
+                                                          return var1[0] +
+                                                              var1[1] +
+                                                              var1[2] +
+                                                              '1' +
+                                                              '0000';
+                                                        }(FFAppState()
+                                                                .relayStatusiATM);
+                                                      });
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    width: 38.0,
+                                                    height: 38.0,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(0xFFA9AAAC),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                        width: 2.0,
+                                                      ),
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.light_outlined,
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'Signage',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                          if ((FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') &&
+                                              ((FFAppState().role ==
+                                                      'Engineer') ||
+                                                  (FFAppState().role ==
+                                                      'Super Admin')))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(5.0, 0.0, 5.0, 0.0),
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        1.0,
+                                                height: 30.0,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0x00FFFFFF),
+                                                ),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      (String var1) {
+                                                        return var1 == ''
+                                                            ? true
+                                                            : var1[3] == "1"
+                                                                ? true
+                                                                : false;
+                                                      }(getJsonField(
+                                                        FFAppState()
+                                                            .deviceStatusDIDJson,
+                                                        r'''$.RM''',
+                                                      ).toString())
+                                                          ? 'Auto'
+                                                          : 'Manual',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            fontFamily:
+                                                                'Readex Pro',
+                                                            color: Color(
+                                                                0xFF929395),
+                                                            fontSize: 10.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Flexible(
+                                                      child: Transform.scale(
+                                                        scaleX: 0.7,
+                                                        scaleY: 0.7,
+                                                        child: Switch(
+                                                          value: _model
+                                                                  .signageValue ??=
+                                                              true,
+                                                          onChanged:
+                                                              (newValue) async {
+                                                            setState(() => _model
+                                                                    .signageValue =
+                                                                newValue!);
+                                                            if (newValue!) {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11111111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            '1' +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            } else {
+                                                              if ((FFAppState()
+                                                                          .role ==
+                                                                      'Engineer') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin')) {
+                                                                await actions
+                                                                    .publishMqtt(
+                                                                  context,
+                                                                  'Settings',
+                                                                  '${widget.did}\$SRMK${(String var1) {
+                                                                    return var1 ==
+                                                                            ''
+                                                                        ? '11101111'
+                                                                        : (var1[0] +
+                                                                            var1[1] +
+                                                                            var1[2] +
+                                                                            '0' +
+                                                                            var1[4] +
+                                                                            var1[5] +
+                                                                            var1[6] +
+                                                                            var1[7]);
+                                                                  }(getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.RM''',
+                                                                  ).toString())},',
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                                  '15.206.230.32',
+                                                                  'mqtt_buildint_\$\$2023',
+                                                                );
+                                                              }
+                                                            }
+                                                          },
+                                                          activeColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                          activeTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .accent1,
+                                                          inactiveTrackColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .alternate,
+                                                          inactiveThumbColor:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .secondaryText,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 89.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.atm,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'ATM',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 89.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.fiber_dvr,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'DVR',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 89.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.router_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'Router',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 89.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFFEEEFF1),
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 10.0, 0.0, 10.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 38.0,
+                                            height: 38.0,
+                                            decoration: BoxDecoration(
+                                              gradient: LinearGradient(
+                                                colors: [
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                                  Color(0xFFC070C2)
+                                                ],
+                                                stops: [0.0, 1.0],
+                                                begin: AlignmentDirectional(
+                                                    0.0, -1.0),
+                                                end: AlignmentDirectional(
+                                                    0, 1.0),
+                                              ),
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                width: 2.0,
+                                              ),
+                                            ),
+                                            child: Icon(
+                                              Icons.router_outlined,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    13.0, 0.0, 13.0, 0.0),
+                                            child: Container(
+                                              width: MediaQuery.sizeOf(context)
+                                                      .width *
+                                                  1.0,
+                                              height: 2.0,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFF8B8C8E),
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            'VSAT',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Color(0xFF929395),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -329,362 +2453,6 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                             ),
                           ],
                         ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 13.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'Devices',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Color(0xFF2D2D2D),
-                                    fontSize: 20.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 0.0),
-                      child: Builder(
-                        builder: (context) {
-                          final data = getJsonField(
-                            deviceDetailsGetDeviceDetailsResponse.jsonBody,
-                            r'''$.deviceDetails''',
-                          ).toList();
-                          return SingleChildScrollView(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(data.length, (dataIndex) {
-                                final dataItem = data[dataIndex];
-                                return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 16.0, 0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      context.pushNamed(
-                                        'Controlling',
-                                        queryParameters: {
-                                          'did': serializeParam(
-                                            getJsonField(
-                                              dataItem,
-                                              r'''$..DID''',
-                                            ).toString(),
-                                            ParamType.String,
-                                          ),
-                                          'onlineOfflineStatus': serializeParam(
-                                            getJsonField(
-                                              dataItem,
-                                              r'''$..DeviceStatus''',
-                                            ).toString(),
-                                            ParamType.String,
-                                          ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-
-                                      setState(() {
-                                        FFAppState().deleteDeviceStateDid();
-                                        FFAppState().deviceStateDid = '';
-
-                                        FFAppState().deleteMqttTime();
-                                        FFAppState().mqttTime = '';
-
-                                        FFAppState()
-                                            .deleteDeviceStatusDIDJson();
-                                        FFAppState().deviceStatusDIDJson = null;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: MediaQuery.sizeOf(context).width *
-                                          1.0,
-                                      constraints: BoxConstraints(
-                                        minHeight: 95.0,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: Color(0x27404042),
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 12.0, 20.0, 12.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              '${getJsonField(
-                                                dataItem,
-                                                r'''$..DID''',
-                                              ).toString()} (${(String var1) {
-                                                return var1.split('T').first;
-                                              }(getJsonField(
-                                                dataItem,
-                                                r'''$..evt_dt''',
-                                              ).toString())} ${(String var1) {
-                                                return var1.split('.').first;
-                                              }(((String var1) {
-                                                return var1.split('T').last;
-                                              }(getJsonField(
-                                                dataItem,
-                                                r'''$..evt_dt''',
-                                              ).toString())))})',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xFF4D4D4D),
-                                                    fontSize: 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 9.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(11.0, 0.0,
-                                                                0.0, 0.0),
-                                                    child: Column(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          'Device Type',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF4D4D4D),
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
-                                                              ),
-                                                        ),
-                                                        Text(
-                                                          'Status',
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: Color(
-                                                                    0xFF4D4D4D),
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
-                                                              ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              1.0, 0.0),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    20.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            AutoSizeText(
-                                                              'iATM',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
-                                                                    color: Color(
-                                                                        0xFF2D2D2D),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                  ),
-                                                              minFontSize: 10.0,
-                                                            ),
-                                                            InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                context
-                                                                    .pushNamed(
-                                                                  'ControllingCopy',
-                                                                  queryParameters:
-                                                                      {
-                                                                    'did':
-                                                                        serializeParam(
-                                                                      getJsonField(
-                                                                        dataItem,
-                                                                        r'''$..DID''',
-                                                                      ).toString(),
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                    'onlineOfflineStatus':
-                                                                        serializeParam(
-                                                                      getJsonField(
-                                                                        dataItem,
-                                                                        r'''$..DeviceStatus''',
-                                                                      ).toString(),
-                                                                      ParamType
-                                                                          .String,
-                                                                    ),
-                                                                  }.withoutNulls,
-                                                                  extra: <String,
-                                                                      dynamic>{
-                                                                    kTransitionInfoKey:
-                                                                        TransitionInfo(
-                                                                      hasTransition:
-                                                                          true,
-                                                                      transitionType:
-                                                                          PageTransitionType
-                                                                              .fade,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                    ),
-                                                                  },
-                                                                );
-
-                                                                setState(() {
-                                                                  FFAppState()
-                                                                      .deleteDeviceStateDid();
-                                                                  FFAppState()
-                                                                      .deviceStateDid = '';
-
-                                                                  FFAppState()
-                                                                      .deleteMqttTime();
-                                                                  FFAppState()
-                                                                      .mqttTime = '';
-
-                                                                  FFAppState()
-                                                                      .deleteDeviceStatusDIDJson();
-                                                                  FFAppState()
-                                                                          .deviceStatusDIDJson =
-                                                                      null;
-
-                                                                  FFAppState()
-                                                                      .deleteRelayStatusiATM();
-                                                                  FFAppState()
-                                                                      .relayStatusiATM = '';
-                                                                });
-                                                              },
-                                                              child:
-                                                                  AutoSizeText(
-                                                                getJsonField(
-                                                                  dataItem,
-                                                                  r'''$..DeviceStatus''',
-                                                                ).toString(),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: Color(
-                                                                          0xFF2D2D2D),
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                    ),
-                                                                minFontSize:
-                                                                    10.0,
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              }),
-                            ),
-                          );
-                        },
                       ),
                     ),
                   ),

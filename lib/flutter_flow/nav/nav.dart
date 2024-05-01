@@ -56,9 +56,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => DashboardWidget(),
         ),
         FFRoute(
-          name: 'DeviceDetails',
-          path: '/deviceDetails',
-          builder: (context, params) => DeviceDetailsWidget(
+          name: 'LocationDetails',
+          path: '/locationDetails',
+          builder: (context, params) => LocationDetailsWidget(
             locName: params.getParam(
               'locName',
               ParamType.String,
@@ -81,20 +81,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             branchCode: params.getParam(
               'branchCode',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'Controlling',
-          path: '/controlling',
-          builder: (context, params) => ControllingWidget(
-            did: params.getParam(
-              'did',
-              ParamType.String,
-            ),
-            onlineOfflineStatus: params.getParam(
-              'onlineOfflineStatus',
               ParamType.String,
             ),
           ),
@@ -183,9 +169,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AlertViewWidget(),
         ),
         FFRoute(
-          name: 'ControllingCopy',
-          path: '/controllingCopy',
-          builder: (context, params) => ControllingCopyWidget(
+          name: 'DeviceDetails',
+          path: '/deviceDetails',
+          builder: (context, params) => DeviceDetailsWidget(
             did: params.getParam(
               'did',
               ParamType.String,

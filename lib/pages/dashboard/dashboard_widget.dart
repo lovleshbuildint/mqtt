@@ -1161,7 +1161,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         context.pushNamed(
-                                          'DeviceDetails',
+                                          'LocationDetails',
                                           queryParameters: {
                                             'locName': serializeParam(
                                               getJsonField(
