@@ -704,8 +704,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   }
                                                 },
                                                 child: Container(
-                                                  width: 38.0,
-                                                  height: 38.0,
+                                                  width: 45.0,
+                                                  height: 45.0,
                                                   decoration: BoxDecoration(
                                                     color: Color(0xFFA9AAAC),
                                                     shape: BoxShape.circle,
@@ -730,7 +730,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  13.0, 5.0, 13.0, 5.0),
+                                                  13.0, 8.0, 13.0, 8.0),
                                           child: Container(
                                             width: MediaQuery.sizeOf(context)
                                                     .width *
