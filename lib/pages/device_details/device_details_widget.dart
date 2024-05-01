@@ -902,7 +902,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           .primaryText
                                                       : Color(0xFF929395),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
