@@ -652,9 +652,10 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       ),
                                                       shape: BoxShape.circle,
                                                       border: Border.all(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .error,
                                                         width: 2.0,
                                                       ),
                                                     ),
