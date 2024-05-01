@@ -526,6 +526,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         color: FlutterFlowTheme
                                                                 .of(context)
                                                             .secondaryBackground,
+                                                        fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                       ),
                                                 ),
