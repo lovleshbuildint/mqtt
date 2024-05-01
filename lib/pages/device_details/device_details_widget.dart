@@ -717,7 +717,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 .override(
                                                   fontFamily: 'Readex Pro',
                                                   color: () {
-                                                    if ((int var1,
+                                                    if ((double var1,
                                                             String var2) {
                                                       return var1 > 1.00 &&
                                                               var2[0] == '1'
@@ -744,7 +744,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       return FlutterFlowTheme
                                                               .of(context)
                                                           .primaryText;
-                                                    } else if ((int var1,
+                                                    } else if ((double var1,
                                                             String var2) {
                                                       return var1 < 1.00 &&
                                                               var2[0] == '1'
