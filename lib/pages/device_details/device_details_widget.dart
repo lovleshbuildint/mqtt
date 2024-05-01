@@ -832,10 +832,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               decoration: BoxDecoration(
                                                 color: Color(0x00FFFFFF),
                                               ),
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.max,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text(
                                                     (String var1) {
