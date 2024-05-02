@@ -427,9 +427,14 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            Icon(
+                              Icons.report_problem_outlined,
+                              color: FlutterFlowTheme.of(context).error,
+                              size: 50.0,
+                            ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
-                                  13.0, 0.0, 13.0, 20.0),
+                                  13.0, 20.0, 13.0, 20.0),
                               child: Wrap(
                                 spacing: 32.0,
                                 runSpacing: 16.0,
@@ -916,9 +921,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           value: _model
                                                                   .ac1Value ??=
                                                               (String var1) {
-                                                            return var1 == '' &&
-                                                                    var1
-                                                                        .isNotEmpty
+                                                            return var1 == ''
                                                                 ? true
                                                                 : (var1[7] ==
                                                                         '1'
@@ -1499,9 +1502,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           value: _model
                                                                   .ac2Value ??=
                                                               (String var1) {
-                                                            return var1 == '' &&
-                                                                    var1
-                                                                        .isNotEmpty
+                                                            return var1 == ''
                                                                 ? true
                                                                 : (var1[7] ==
                                                                         '1'
