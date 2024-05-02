@@ -388,16 +388,10 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                   children: [
                                     Text(
                                       '${getJsonField(
-                                            FFAppState().deviceStatusDIDJson,
-                                            r'''$.TM''',
-                                          ) != null ? getJsonField(
-                                          FFAppState().deviceStatusDIDJson,
-                                          r'''$.TM''',
-                                        ).toString() : getJsonField(
-                                          deviceDetailsGetDeviceStatusResponse
-                                              .jsonBody,
-                                          r'''$.deviceStatus.TM''',
-                                        ).toString()} C',
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.TM''',
+                                      ).toString()} C',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -411,47 +405,14 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                       width: 30.0,
                                       height: 30.0,
                                       decoration: BoxDecoration(
-                                        color: () {
-                                          if ((getJsonField(
-                                                        FFAppState()
-                                                            .deviceStatusDIDJson,
-                                                        r'''$.TM''',
-                                                      ) !=
-                                                      null
-                                                  ? (double.parse(getJsonField(
-                                                      FFAppState()
-                                                          .deviceStatusDIDJson,
-                                                      r'''$.TM''',
-                                                    ).toString()))
-                                                  : (double.parse(getJsonField(
-                                                      deviceDetailsGetDeviceStatusResponse
-                                                          .jsonBody,
-                                                      r'''$.deviceStatus.TM''',
-                                                    ).toString()))) >=
-                                              30.0) {
-                                            return Color(0x80F71A1A);
-                                          } else if ((getJsonField(
-                                                        FFAppState()
-                                                            .deviceStatusDIDJson,
-                                                        r'''$.TM''',
-                                                      ) !=
-                                                      null
-                                                  ? (double.parse(getJsonField(
-                                                      FFAppState()
-                                                          .deviceStatusDIDJson,
-                                                      r'''$.TM''',
-                                                    ).toString()))
-                                                  : (double.parse(getJsonField(
-                                                      deviceDetailsGetDeviceStatusResponse
-                                                          .jsonBody,
-                                                      r'''$.deviceStatus.TM''',
-                                                    ).toString()))) ==
-                                              0.00) {
-                                            return Color(0x80F71A1A);
-                                          } else {
-                                            return Color(0x8007D95A);
-                                          }
-                                        }(),
+                                        color: (double.parse(getJsonField(
+                                                  deviceDetailsGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.TM''',
+                                                ).toString())) >=
+                                                30.0
+                                            ? Color(0x80F71A1A)
+                                            : Color(0x8007D95A),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
@@ -902,7 +863,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           .primaryText
                                                       : Color(0xFF929395),
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w500,
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                           ),
                                           if ((FFAppState().relayStatusiATM !=
@@ -926,8 +887,6 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 decoration: BoxDecoration(
                                                   color: Color(0x00FFFFFF),
                                                 ),
-                                                alignment: AlignmentDirectional(
-                                                    0.0, 0.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1085,29 +1044,150 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 95.0,
-                                    height: (FFAppState().relayStatusiATM !=
-                                                    null &&
-                                                FFAppState().relayStatusiATM !=
-                                                    '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
+                                    width: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 10.0),
+                                          0.0, 8.0, 0.0, 8.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          if ((String var1, String var2) {
+                                            return (double.parse(var1) < 1.00 &&
+                                                    var2[1] == '1')
+                                                ? true
+                                                : false;
+                                          }(
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.CA2''',
+                                                    ).toString()
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.CAtwo''',
+                                                    ).toString()),
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString())))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 5.0),
+                                              child: AlignedTooltip(
+                                                content: Padding(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  child: Text(
+                                                    (String var1, String var2) {
+                                                      return double.parse(
+                                                                      var1) ==
+                                                                  0.00 &&
+                                                              var2[1] == '1'
+                                                          ? true
+                                                          : false;
+                                                    }(
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.CA2''',
+                                                                  ).toString()
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.CAtwo''',
+                                                                  ).toString()),
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? FFAppState()
+                                                                    .relayStatusiATM
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.RS''',
+                                                                  ).toString()))
+                                                        ? 'AC 2 is not Working'
+                                                        : 'AC 2 is running but consuming minimal power. Current: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.CA2''',
+                                                          ).toString() : getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.CAtwo''',
+                                                          ).toString()}A',
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                offset: 4.0,
+                                                preferredDirection:
+                                                    AxisDirection.up,
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                                backgroundColor:
+                                                    Color(0xFF4D4D4D),
+                                                elevation: 4.0,
+                                                tailBaseWidth: 20.0,
+                                                tailLength: 18.0,
+                                                waitDuration:
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
+                                                    milliseconds: 1500),
+                                                triggerMode:
+                                                    TooltipTriggerMode.tap,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .report_problem_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    size: 20.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                           Builder(
                                             builder: (context) {
                                               if ((String var1) {
@@ -1175,8 +1255,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   },
                                                   child: Container(
-                                                    width: 38.0,
-                                                    height: 38.0,
+                                                    width: 45.0,
+                                                    height: 45.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
@@ -1195,9 +1275,51 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       ),
                                                       shape: BoxShape.circle,
                                                       border: Border.all(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
+                                                        color: (String var1,
+                                                                    String
+                                                                        var2) {
+                                                          return (double.parse(
+                                                                          var1) <
+                                                                      1.00 &&
+                                                                  var2[1] ==
+                                                                      '1')
+                                                              ? true
+                                                              : false;
+                                                        }(
+                                                                (FFAppState().relayStatusiATM !=
+                                                                            null &&
+                                                                        FFAppState().relayStatusiATM !=
+                                                                            ''
+                                                                    ? getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.CA2''',
+                                                                      )
+                                                                        .toString()
+                                                                    : getJsonField(
+                                                                        deviceDetailsGetDeviceStatusResponse
+                                                                            .jsonBody,
+                                                                        r'''$.deviceStatus.CAtwo''',
+                                                                      )
+                                                                        .toString()),
+                                                                (FFAppState().relayStatusiATM !=
+                                                                            null &&
+                                                                        FFAppState().relayStatusiATM !=
+                                                                            ''
+                                                                    ? FFAppState()
+                                                                        .relayStatusiATM
+                                                                    : getJsonField(
+                                                                        deviceDetailsGetDeviceStatusResponse
+                                                                            .jsonBody,
+                                                                        r'''$.deviceStatus.RS''',
+                                                                      )
+                                                                        .toString()))
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
                                                         width: 2.0,
                                                       ),
                                                     ),
@@ -1248,7 +1370,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         'mqtt_buildint_\$\$2023',
                                                       );
                                                       setState(() {
-                                                        _model.relayStatus =
+                                                        FFAppState()
+                                                                .relayStatusiATM =
                                                             (String var1) {
                                                           return var1[0] +
                                                               '1' +
@@ -1261,8 +1384,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   },
                                                   child: Container(
-                                                    width: 38.0,
-                                                    height: 38.0,
+                                                    width: 45.0,
+                                                    height: 45.0,
                                                     decoration: BoxDecoration(
                                                       color: Color(0xFFA9AAAC),
                                                       shape: BoxShape.circle,
@@ -1287,7 +1410,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    13.0, 0.0, 13.0, 0.0),
+                                                    13.0, 8.0, 13.0, 8.0),
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1304,7 +1427,24 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF929395),
+                                                  color: (String var2) {
+                                                    return var2[1] == '1';
+                                                  }((FFAppState().relayStatusiATM !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .relayStatusiATM !=
+                                                                  ''
+                                                          ? FFAppState()
+                                                              .relayStatusiATM
+                                                          : getJsonField(
+                                                              deviceDetailsGetDeviceStatusResponse
+                                                                  .jsonBody,
+                                                              r'''$.deviceStatus.RS''',
+                                                            ).toString()))
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText
+                                                      : Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -1334,7 +1474,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       (String var1) {
@@ -1486,29 +1627,151 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 95.0,
-                                    height: (FFAppState().relayStatusiATM !=
-                                                    null &&
-                                                FFAppState().relayStatusiATM !=
-                                                    '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
+                                    width: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 10.0),
+                                          0.0, 8.0, 0.0, 8.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          if ((String var1, String var2) {
+                                            return (double.parse(var1) ==
+                                                        0.00 &&
+                                                    var2[2] == '1')
+                                                ? true
+                                                : false;
+                                          }(
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.CL''',
+                                                    ).toString()
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.CL''',
+                                                    ).toString()),
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString())))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 5.0),
+                                              child: AlignedTooltip(
+                                                content: Padding(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  child: Text(
+                                                    (String var1, String var2) {
+                                                      return double.parse(
+                                                                      var1) ==
+                                                                  0.00 &&
+                                                              var2[3] == '1'
+                                                          ? true
+                                                          : false;
+                                                    }(
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.CL''',
+                                                                  ).toString()
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.CL''',
+                                                                  ).toString()),
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? FFAppState()
+                                                                    .relayStatusiATM
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.RS''',
+                                                                  ).toString()))
+                                                        ? 'Lobby light is not Working'
+                                                        : 'Lobby light is not working${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.CL''',
+                                                          ).toString() : getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.CL''',
+                                                          ).toString()}A',
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                offset: 4.0,
+                                                preferredDirection:
+                                                    AxisDirection.up,
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                                backgroundColor:
+                                                    Color(0xFF4D4D4D),
+                                                elevation: 4.0,
+                                                tailBaseWidth: 20.0,
+                                                tailLength: 18.0,
+                                                waitDuration:
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
+                                                    milliseconds: 1500),
+                                                triggerMode:
+                                                    TooltipTriggerMode.tap,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .report_problem_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    size: 20.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                           Builder(
                                             builder: (context) {
                                               if ((String var1) {
@@ -1576,8 +1839,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   },
                                                   child: Container(
-                                                    width: 38.0,
-                                                    height: 38.0,
+                                                    width: 45.0,
+                                                    height: 45.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
@@ -1596,9 +1859,51 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       ),
                                                       shape: BoxShape.circle,
                                                       border: Border.all(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
+                                                        color: (String var1,
+                                                                    String
+                                                                        var2) {
+                                                          return (double.parse(
+                                                                          var1) ==
+                                                                      0.00 &&
+                                                                  var2[2] ==
+                                                                      '1')
+                                                              ? true
+                                                              : false;
+                                                        }(
+                                                                (FFAppState().relayStatusiATM !=
+                                                                            null &&
+                                                                        FFAppState().relayStatusiATM !=
+                                                                            ''
+                                                                    ? getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.CL''',
+                                                                      )
+                                                                        .toString()
+                                                                    : getJsonField(
+                                                                        deviceDetailsGetDeviceStatusResponse
+                                                                            .jsonBody,
+                                                                        r'''$.deviceStatus.CL''',
+                                                                      )
+                                                                        .toString()),
+                                                                (FFAppState().relayStatusiATM !=
+                                                                            null &&
+                                                                        FFAppState().relayStatusiATM !=
+                                                                            ''
+                                                                    ? FFAppState()
+                                                                        .relayStatusiATM
+                                                                    : getJsonField(
+                                                                        deviceDetailsGetDeviceStatusResponse
+                                                                            .jsonBody,
+                                                                        r'''$.deviceStatus.RS''',
+                                                                      )
+                                                                        .toString()))
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
                                                         width: 2.0,
                                                       ),
                                                     ),
@@ -1664,8 +1969,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   },
                                                   child: Container(
-                                                    width: 38.0,
-                                                    height: 38.0,
+                                                    width: 45.0,
+                                                    height: 45.0,
                                                     decoration: BoxDecoration(
                                                       color: Color(0xFFA9AAAC),
                                                       shape: BoxShape.circle,
@@ -1691,7 +1996,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    13.0, 0.0, 13.0, 0.0),
+                                                    13.0, 8.0, 13.0, 8.0),
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -1708,7 +2013,24 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF929395),
+                                                  color: (String var2) {
+                                                    return var2[2] == '1';
+                                                  }((FFAppState().relayStatusiATM !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .relayStatusiATM !=
+                                                                  ''
+                                                          ? FFAppState()
+                                                              .relayStatusiATM
+                                                          : getJsonField(
+                                                              deviceDetailsGetDeviceStatusResponse
+                                                                  .jsonBody,
+                                                              r'''$.deviceStatus.RS''',
+                                                            ).toString()))
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText
+                                                      : Color(0xFF929395),
                                                   fontSize: 14.0,
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
@@ -1739,7 +2061,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       (String var1) {
@@ -1891,29 +2214,151 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 89.0,
-                                    height: (FFAppState().relayStatusiATM !=
-                                                    null &&
-                                                FFAppState().relayStatusiATM !=
-                                                    '') &&
-                                            ((FFAppState().role ==
-                                                    'Engineer') ||
-                                                (FFAppState().role ==
-                                                    'Super Admin'))
-                                        ? 130.0
-                                        : 100.0,
+                                    width: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 10.0, 0.0, 10.0),
+                                          0.0, 8.0, 0.0, 8.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
+                                          if ((String var1, String var2) {
+                                            return (double.parse(var1) ==
+                                                        0.00 &&
+                                                    var2[3] == '1')
+                                                ? true
+                                                : false;
+                                          }(
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? getJsonField(
+                                                      FFAppState()
+                                                          .deviceStatusDIDJson,
+                                                      r'''$.CS''',
+                                                    ).toString()
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.CS''',
+                                                    ).toString()),
+                                              (FFAppState().relayStatusiATM !=
+                                                          null &&
+                                                      FFAppState()
+                                                              .relayStatusiATM !=
+                                                          ''
+                                                  ? FFAppState().relayStatusiATM
+                                                  : getJsonField(
+                                                      deviceDetailsGetDeviceStatusResponse
+                                                          .jsonBody,
+                                                      r'''$.deviceStatus.RS''',
+                                                    ).toString())))
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(0.0, 0.0, 5.0, 5.0),
+                                              child: AlignedTooltip(
+                                                content: Padding(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  child: Text(
+                                                    (String var1, String var2) {
+                                                      return double.parse(
+                                                                      var1) ==
+                                                                  0.00 &&
+                                                              var2[3] == '1'
+                                                          ? true
+                                                          : false;
+                                                    }(
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? getJsonField(
+                                                                    FFAppState()
+                                                                        .deviceStatusDIDJson,
+                                                                    r'''$.CS''',
+                                                                  ).toString()
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.CS''',
+                                                                  ).toString()),
+                                                            (FFAppState().relayStatusiATM !=
+                                                                        null &&
+                                                                    FFAppState()
+                                                                            .relayStatusiATM !=
+                                                                        ''
+                                                                ? FFAppState()
+                                                                    .relayStatusiATM
+                                                                : getJsonField(
+                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                        .jsonBody,
+                                                                    r'''$.deviceStatus.RS''',
+                                                                  ).toString()))
+                                                        ? 'Signage is not Working'
+                                                        : 'Signage is not working${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.CS''',
+                                                          ).toString() : getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.CS''',
+                                                          ).toString()}A',
+                                                    textAlign:
+                                                        TextAlign.justify,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          fontSize: 12.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ),
+                                                offset: 4.0,
+                                                preferredDirection:
+                                                    AxisDirection.up,
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                                backgroundColor:
+                                                    Color(0xFF4D4D4D),
+                                                elevation: 4.0,
+                                                tailBaseWidth: 20.0,
+                                                tailLength: 18.0,
+                                                waitDuration:
+                                                    Duration(milliseconds: 100),
+                                                showDuration: Duration(
+                                                    milliseconds: 1500),
+                                                triggerMode:
+                                                    TooltipTriggerMode.tap,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          1.0, -1.0),
+                                                  child: Icon(
+                                                    Icons
+                                                        .report_problem_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    size: 20.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
                                           Builder(
                                             builder: (context) {
                                               if ((String var1) {
@@ -1981,8 +2426,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   },
                                                   child: Container(
-                                                    width: 38.0,
-                                                    height: 38.0,
+                                                    width: 45.0,
+                                                    height: 45.0,
                                                     decoration: BoxDecoration(
                                                       gradient: LinearGradient(
                                                         colors: [
@@ -2001,9 +2446,51 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       ),
                                                       shape: BoxShape.circle,
                                                       border: Border.all(
-                                                        color: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
+                                                        color: (String var1,
+                                                                    String
+                                                                        var2) {
+                                                          return (double.parse(
+                                                                          var1) ==
+                                                                      0.00 &&
+                                                                  var2[3] ==
+                                                                      '1')
+                                                              ? true
+                                                              : false;
+                                                        }(
+                                                                (FFAppState().relayStatusiATM !=
+                                                                            null &&
+                                                                        FFAppState().relayStatusiATM !=
+                                                                            ''
+                                                                    ? getJsonField(
+                                                                        FFAppState()
+                                                                            .deviceStatusDIDJson,
+                                                                        r'''$.CS''',
+                                                                      )
+                                                                        .toString()
+                                                                    : getJsonField(
+                                                                        deviceDetailsGetDeviceStatusResponse
+                                                                            .jsonBody,
+                                                                        r'''$.deviceStatus.CS''',
+                                                                      )
+                                                                        .toString()),
+                                                                (FFAppState().relayStatusiATM !=
+                                                                            null &&
+                                                                        FFAppState().relayStatusiATM !=
+                                                                            ''
+                                                                    ? FFAppState()
+                                                                        .relayStatusiATM
+                                                                    : getJsonField(
+                                                                        deviceDetailsGetDeviceStatusResponse
+                                                                            .jsonBody,
+                                                                        r'''$.deviceStatus.RS''',
+                                                                      )
+                                                                        .toString()))
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
                                                         width: 2.0,
                                                       ),
                                                     ),
@@ -2068,8 +2555,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     }
                                                   },
                                                   child: Container(
-                                                    width: 38.0,
-                                                    height: 38.0,
+                                                    width: 45.0,
+                                                    height: 45.0,
                                                     decoration: BoxDecoration(
                                                       color: Color(0xFFA9AAAC),
                                                       shape: BoxShape.circle,
@@ -2094,7 +2581,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    13.0, 0.0, 13.0, 0.0),
+                                                    13.0, 8.0, 13.0, 8.0),
                                             child: Container(
                                               width: MediaQuery.sizeOf(context)
                                                       .width *
@@ -2111,7 +2598,24 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF929395),
+                                                  color: (String var2) {
+                                                    return var2[3] == '1';
+                                                  }((FFAppState().relayStatusiATM !=
+                                                                  null &&
+                                                              FFAppState()
+                                                                      .relayStatusiATM !=
+                                                                  ''
+                                                          ? FFAppState()
+                                                              .relayStatusiATM
+                                                          : getJsonField(
+                                                              deviceDetailsGetDeviceStatusResponse
+                                                                  .jsonBody,
+                                                              r'''$.deviceStatus.RS''',
+                                                            ).toString()))
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText
+                                                      : Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -2141,7 +2645,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   mainAxisSize:
                                                       MainAxisSize.max,
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       (String var1) {
@@ -2280,7 +2785,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 89.0,
+                                    width: 100.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
@@ -2295,8 +2800,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            width: 38.0,
-                                            height: 38.0,
+                                            width: 45.0,
+                                            height: 45.0,
                                             decoration: BoxDecoration(
                                               gradient: LinearGradient(
                                                 colors: [
@@ -2355,7 +2860,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 89.0,
+                                    width: 100.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
@@ -2370,8 +2875,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            width: 38.0,
-                                            height: 38.0,
+                                            width: 45.0,
+                                            height: 45.0,
                                             decoration: BoxDecoration(
                                               gradient: LinearGradient(
                                                 colors: [
@@ -2430,7 +2935,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 89.0,
+                                    width: 100.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
@@ -2445,8 +2950,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            width: 38.0,
-                                            height: 38.0,
+                                            width: 45.0,
+                                            height: 45.0,
                                             decoration: BoxDecoration(
                                               gradient: LinearGradient(
                                                 colors: [
@@ -2505,7 +3010,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   ),
                                   Container(
-                                    width: 89.0,
+                                    width: 100.0,
                                     height: 100.0,
                                     decoration: BoxDecoration(
                                       color: Color(0xFFEEEFF1),
@@ -2520,8 +3025,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
-                                            width: 38.0,
-                                            height: 38.0,
+                                            width: 45.0,
+                                            height: 45.0,
                                             decoration: BoxDecoration(
                                               gradient: LinearGradient(
                                                 colors: [
