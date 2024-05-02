@@ -29,8 +29,6 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   bool? ac1Value;
   // State field(s) for AC2 widget.
   bool? ac2Value;
-  // State field(s) for LobbyLight widget.
-  bool? lobbyLightValue;
   // State field(s) for Signage widget.
   bool? signageValue;
 
