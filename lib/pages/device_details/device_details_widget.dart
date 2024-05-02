@@ -419,74 +419,6 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                       ],
                     ),
                   ),
-                  Text(
-                    (double.parse(FFAppState().relayStatusiATM != null &&
-                                FFAppState().relayStatusiATM != ''
-                            ? getJsonField(
-                                FFAppState().deviceStatusDIDJson,
-                                r'''$.VN''',
-                              ).toString()
-                            : getJsonField(
-                                deviceDetailsGetDeviceStatusResponse.jsonBody,
-                                r'''$.deviceStatus.VN''',
-                              ).toString()))
-                        .toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    (double.parse(FFAppState().relayStatusiATM != null &&
-                                FFAppState().relayStatusiATM != ''
-                            ? getJsonField(
-                                FFAppState().deviceStatusDIDJson,
-                                r'''$.VE''',
-                              ).toString()
-                            : getJsonField(
-                                deviceDetailsGetDeviceStatusResponse.jsonBody,
-                                r'''$.deviceStatus.VE''',
-                              ).toString()))
-                        .toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    (double.parse(FFAppState().relayStatusiATM != null &&
-                                FFAppState().relayStatusiATM != ''
-                            ? getJsonField(
-                                FFAppState().deviceStatusDIDJson,
-                                r'''$.VU''',
-                              ).toString()
-                            : getJsonField(
-                                deviceDetailsGetDeviceStatusResponse.jsonBody,
-                                r'''$.deviceStatus.VU''',
-                              ).toString()))
-                        .toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    (double.parse(FFAppState().relayStatusiATM != null &&
-                                FFAppState().relayStatusiATM != ''
-                            ? getJsonField(
-                                FFAppState().deviceStatusDIDJson,
-                                r'''$.UE''',
-                              ).toString()
-                            : getJsonField(
-                                deviceDetailsGetDeviceStatusResponse.jsonBody,
-                                r'''$.deviceStatus.ups_phase_to_earth_voltage''',
-                              ).toString()))
-                        .toString(),
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0.0, 1.0),
@@ -495,23 +427,127 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Icon(
-                              Icons.report_problem_outlined,
-                              color: FlutterFlowTheme.of(context).error,
-                              size: 50.0,
-                            ),
-                            Text(
-                              'PowerTS Device Issue',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).error,
-                                    fontSize: 16.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
+                            if ((String vn, String ve, String vu, String ue) {
+                              return (double.parse(vn) == 0.00 &&
+                                      double.parse(ve) == 0.00 &&
+                                      double.parse(vu) == 0.00 &&
+                                      double.parse(ue) == 0.00)
+                                  ? true
+                                  : false;
+                            }(
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.VN''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.VN''',
+                                      ).toString()),
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.VE''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.VE''',
+                                      ).toString()),
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.VU''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.VU''',
+                                      ).toString()),
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.UE''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.ups_phase_to_earth_voltage''',
+                                      ).toString())))
+                              Icon(
+                                Icons.report_problem_outlined,
+                                color: FlutterFlowTheme.of(context).error,
+                                size: 50.0,
+                              ),
+                            if ((String vn, String ve, String vu, String ue) {
+                              return (double.parse(vn) == 0.00 &&
+                                      double.parse(ve) == 0.00 &&
+                                      double.parse(vu) == 0.00 &&
+                                      double.parse(ue) == 0.00)
+                                  ? true
+                                  : false;
+                            }(
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.VN''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.VN''',
+                                      ).toString()),
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.VE''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.VE''',
+                                      ).toString()),
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.VU''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.VU''',
+                                      ).toString()),
+                                (FFAppState().relayStatusiATM != null &&
+                                        FFAppState().relayStatusiATM != ''
+                                    ? getJsonField(
+                                        FFAppState().deviceStatusDIDJson,
+                                        r'''$.UE''',
+                                      ).toString()
+                                    : getJsonField(
+                                        deviceDetailsGetDeviceStatusResponse
+                                            .jsonBody,
+                                        r'''$.deviceStatus.ups_phase_to_earth_voltage''',
+                                      ).toString())))
+                              Text(
+                                'PowerTS Device Issue',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: FlutterFlowTheme.of(context).error,
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   13.0, 20.0, 13.0, 20.0),
