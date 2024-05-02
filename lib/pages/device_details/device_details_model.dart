@@ -26,11 +26,11 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   // State field(s) for AC1 widget.
-  bool? ac1Value;
+  bool ac1Value = true;
   // State field(s) for AC2 widget.
-  bool? ac2Value;
+  bool ac2Value = true;
   // State field(s) for Signage widget.
-  bool? signageValue;
+  bool signageValue = true;
 
   @override
   void initState(BuildContext context) {}
