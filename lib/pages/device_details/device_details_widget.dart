@@ -2083,7 +2083,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         child: Switch(
                                                           value: _model
                                                                   .signageValue ??=
-                                                              true,
+                                                              (String var1) {
+                                                            return var1 == ''
+                                                                ? true
+                                                                : (var1[3] ==
+                                                                        '1'
+                                                                    ? true
+                                                                    : false);
+                                                          }(getJsonField(
+                                                            FFAppState()
+                                                                .deviceStatusDIDJson,
+                                                            r'''$.RM''',
+                                                          ).toString()),
                                                           onChanged:
                                                               (newValue) async {
                                                             setState(() => _model
