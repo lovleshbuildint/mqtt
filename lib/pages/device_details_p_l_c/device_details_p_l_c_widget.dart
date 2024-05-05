@@ -249,8 +249,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                 FFAppState().mqttTime != null &&
                                         FFAppState().mqttTime != ''
                                     ? ((String var1) {
-                                        return var1.split(' ')[0] +
-                                            var1.split('.')[0];
+                                        return var1.split('.')[0];
                                       }(FFAppState().mqttTime))
                                     : '-',
                                 style: FlutterFlowTheme.of(context)
@@ -278,9 +277,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                         FFAppState().relayStatusiATM != '')
                       Switch(
                         value: _model.autoValue ??= (String var1) {
-                          return (var1 != '' && var1 != null)
-                              ? (var1.split(',')[0][4] == '1' ? true : false)
-                              : false;
+                          return var1.split(',')[0][4] == '1' ? true : false;
                         }(FFAppState().relayStatusiATM),
                         onChanged: (newValue) async {
                           setState(() => _model.autoValue = newValue!);
