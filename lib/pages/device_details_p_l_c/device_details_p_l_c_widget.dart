@@ -330,7 +330,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                             ? ((String var1) {
                                                 return var1.split(',')[1];
                                               }(FFAppState().relayStatusiATM))
-                                            : '-',
+                                            : '0',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -344,7 +344,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                         width: 30.0,
                                         height: 30.0,
                                         decoration: BoxDecoration(
-                                          color: Color(0x8007D95A),
+                                          color: double.parse(FFAppState()
+                                                                  .relayStatusiATM !=
+                                                              null &&
+                                                          FFAppState()
+                                                                  .relayStatusiATM !=
+                                                              ''
+                                                      ? ((String var1) {
+                                                          return var1
+                                                              .split(',')[1];
+                                                        }(FFAppState()
+                                                          .relayStatusiATM))
+                                                      : '0') >
+                                                  24.0
+                                              ? Color(0x8007D95A)
+                                              : Color(0x80FF5963),
                                           borderRadius:
                                               BorderRadius.circular(4.0),
                                         ),
