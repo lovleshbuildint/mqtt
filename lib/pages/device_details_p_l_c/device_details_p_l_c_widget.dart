@@ -316,60 +316,56 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 13.0, 0.0),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        FFAppState().relayStatusiATM != null &&
-                                                FFAppState().relayStatusiATM !=
-                                                    ''
-                                            ? ((String var1) {
-                                                return var1.split(',')[1];
-                                              }(FFAppState().relayStatusiATM))
-                                            : '0',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Color(0xFF808080),
-                                              fontSize: 26.0,
-                                              letterSpacing: 0.0,
-                                            ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      FFAppState().relayStatusiATM != null &&
+                                              FFAppState().relayStatusiATM != ''
+                                          ? ((String var1) {
+                                              return var1.split(',')[1];
+                                            }(FFAppState().relayStatusiATM))
+                                          : '0',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF808080),
+                                            fontSize: 26.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Container(
+                                      width: 30.0,
+                                      height: 30.0,
+                                      decoration: BoxDecoration(
+                                        color: double.parse(FFAppState()
+                                                                .relayStatusiATM !=
+                                                            null &&
+                                                        FFAppState()
+                                                                .relayStatusiATM !=
+                                                            ''
+                                                    ? ((String var1) {
+                                                        return var1
+                                                            .split(',')[1];
+                                                      }(FFAppState()
+                                                        .relayStatusiATM))
+                                                    : '0') >
+                                                24.0
+                                            ? Color(0x8007D95A)
+                                            : Color(0x80FF5963),
+                                        borderRadius:
+                                            BorderRadius.circular(4.0),
                                       ),
-                                      Container(
-                                        width: 30.0,
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: double.parse(FFAppState()
-                                                                  .relayStatusiATM !=
-                                                              null &&
-                                                          FFAppState()
-                                                                  .relayStatusiATM !=
-                                                              ''
-                                                      ? ((String var1) {
-                                                          return var1
-                                                              .split(',')[1];
-                                                        }(FFAppState()
-                                                          .relayStatusiATM))
-                                                      : '0') >
-                                                  24.0
-                                              ? Color(0x8007D95A)
-                                              : Color(0x80FF5963),
-                                          borderRadius:
-                                              BorderRadius.circular(4.0),
-                                        ),
-                                        child: Icon(
-                                          Icons.ac_unit,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
+                                      child: Icon(
+                                        Icons.ac_unit,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
