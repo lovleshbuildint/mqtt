@@ -248,7 +248,10 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                               child: Text(
                                 FFAppState().mqttTime != null &&
                                         FFAppState().mqttTime != ''
-                                    ? FFAppState().mqttTime
+                                    ? ((String var1) {
+                                        return var1.split(' ')[0] +
+                                            var1.split('.')[0];
+                                      }(FFAppState().mqttTime))
                                     : '-',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -271,59 +274,61 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Switch(
-                      value: _model.autoValue ??= (String var1) {
-                        return (var1 != '' && var1 != null)
-                            ? (var1.split(',')[0][4] == '1' ? true : false)
-                            : false;
-                      }(FFAppState().relayStatusiATM),
-                      onChanged: (newValue) async {
-                        setState(() => _model.autoValue = newValue!);
-                        if (newValue!) {
-                          if ((FFAppState().role == 'Engineer') ||
-                              (FFAppState().role == 'Super Admin')) {
-                            await actions.publishMqtt(
-                              context,
-                              'Settings',
-                              '${widget.did}\$SREL${(String var1) {
-                                return var1.split(',')[0][0] +
-                                    var1.split(',')[0][1] +
-                                    var1.split(',')[0][2] +
-                                    var1.split(',')[0][3] +
-                                    '1';
-                              }(FFAppState().relayStatusiATM)},',
-                              FFAppState().deviceId,
-                              '15.206.230.32',
-                              'mqtt_buildint_\$\$2023',
-                            );
+                    if (FFAppState().relayStatusiATM != null &&
+                        FFAppState().relayStatusiATM != '')
+                      Switch(
+                        value: _model.autoValue ??= (String var1) {
+                          return (var1 != '' && var1 != null)
+                              ? (var1.split(',')[0][4] == '1' ? true : false)
+                              : false;
+                        }(FFAppState().relayStatusiATM),
+                        onChanged: (newValue) async {
+                          setState(() => _model.autoValue = newValue!);
+                          if (newValue!) {
+                            if ((FFAppState().role == 'Engineer') ||
+                                (FFAppState().role == 'Super Admin')) {
+                              await actions.publishMqtt(
+                                context,
+                                'Settings',
+                                '${widget.did}\$SREL${(String var1) {
+                                  return var1.split(',')[0][0] +
+                                      var1.split(',')[0][1] +
+                                      var1.split(',')[0][2] +
+                                      var1.split(',')[0][3] +
+                                      '1';
+                                }(FFAppState().relayStatusiATM)},',
+                                FFAppState().deviceId,
+                                '15.206.230.32',
+                                'mqtt_buildint_\$\$2023',
+                              );
+                            }
+                          } else {
+                            if ((FFAppState().role == 'Engineer') ||
+                                (FFAppState().role == 'Super Admin')) {
+                              await actions.publishMqtt(
+                                context,
+                                'Settings',
+                                '${widget.did}\$SREL${(String var1) {
+                                  return var1.split(',')[0][0] +
+                                      var1.split(',')[0][1] +
+                                      var1.split(',')[0][2] +
+                                      var1.split(',')[0][3] +
+                                      '0';
+                                }(FFAppState().relayStatusiATM)},',
+                                FFAppState().deviceId,
+                                '15.206.230.32',
+                                'mqtt_buildint_\$\$2023',
+                              );
+                            }
                           }
-                        } else {
-                          if ((FFAppState().role == 'Engineer') ||
-                              (FFAppState().role == 'Super Admin')) {
-                            await actions.publishMqtt(
-                              context,
-                              'Settings',
-                              '${widget.did}\$SREL${(String var1) {
-                                return var1.split(',')[0][0] +
-                                    var1.split(',')[0][1] +
-                                    var1.split(',')[0][2] +
-                                    var1.split(',')[0][3] +
-                                    '0';
-                              }(FFAppState().relayStatusiATM)},',
-                              FFAppState().deviceId,
-                              '15.206.230.32',
-                              'mqtt_buildint_\$\$2023',
-                            );
-                          }
-                        }
-                      },
-                      activeColor: FlutterFlowTheme.of(context).primary,
-                      activeTrackColor: FlutterFlowTheme.of(context).accent1,
-                      inactiveTrackColor:
-                          FlutterFlowTheme.of(context).alternate,
-                      inactiveThumbColor:
-                          FlutterFlowTheme.of(context).secondaryText,
-                    ),
+                        },
+                        activeColor: FlutterFlowTheme.of(context).primary,
+                        activeTrackColor: FlutterFlowTheme.of(context).accent1,
+                        inactiveTrackColor:
+                            FlutterFlowTheme.of(context).alternate,
+                        inactiveThumbColor:
+                            FlutterFlowTheme.of(context).secondaryText,
+                      ),
                     Expanded(
                       child: Padding(
                         padding:
