@@ -24,6 +24,8 @@ class DeviceDetailsPLCModel extends FlutterFlowModel<DeviceDetailsPLCWidget> {
   // Stores action output result for [Backend Call - API (User Info)] action in DeviceDetailsPLC widget.
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
+  // State field(s) for AC1 widget.
+  bool ac1Value = true;
 
   @override
   void initState(BuildContext context) {}
