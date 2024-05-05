@@ -543,7 +543,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -553,7 +553,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
@@ -671,7 +672,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -681,7 +682,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
@@ -758,7 +760,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -768,7 +770,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
@@ -886,7 +889,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -896,7 +899,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
@@ -973,7 +977,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -983,7 +987,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
@@ -1101,7 +1106,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -1111,7 +1116,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
@@ -1188,7 +1194,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                               highlightColor:
                                                   Colors.transparent,
                                               onTap: () async {
-                                                if (!(((FFAppState().role ==
+                                                if (((FFAppState().role ==
                                                             'Engineer') ||
                                                         (FFAppState().role ==
                                                             'Super Admin')) &&
@@ -1198,7 +1204,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!)) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   await actions.publishMqtt(
                                                     context,
                                                     'Settings',
