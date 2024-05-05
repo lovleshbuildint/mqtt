@@ -377,34 +377,6 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed(
-                                        'DeviceDetails',
-                                        queryParameters: {
-                                          'did': serializeParam(
-                                            getJsonField(
-                                              dataItem,
-                                              r'''$..DID''',
-                                            ).toString(),
-                                            ParamType.String,
-                                          ),
-                                          'onlineOfflineStatus': serializeParam(
-                                            getJsonField(
-                                              dataItem,
-                                              r'''$..DeviceStatus''',
-                                            ).toString(),
-                                            ParamType.String,
-                                          ),
-                                        }.withoutNulls,
-                                        extra: <String, dynamic>{
-                                          kTransitionInfoKey: TransitionInfo(
-                                            hasTransition: true,
-                                            transitionType:
-                                                PageTransitionType.fade,
-                                            duration: Duration(milliseconds: 0),
-                                          ),
-                                        },
-                                      );
-
                                       setState(() {
                                         FFAppState().deleteMqttTime();
                                         FFAppState().mqttTime = '';
@@ -416,6 +388,74 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                         FFAppState().deleteRelayStatusiATM();
                                         FFAppState().relayStatusiATM = '';
                                       });
+                                      if ((String var1) {
+                                        return var1 == 'iATM' || var1 == 'ATM'
+                                            ? true
+                                            : false;
+                                      }(getJsonField(
+                                        dataItem,
+                                        r'''$..dev_type''',
+                                      ).toString())) {
+                                        context.pushNamed(
+                                          'DeviceDetails',
+                                          queryParameters: {
+                                            'did': serializeParam(
+                                              getJsonField(
+                                                dataItem,
+                                                r'''$..DID''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                            'onlineOfflineStatus':
+                                                serializeParam(
+                                              getJsonField(
+                                                dataItem,
+                                                r'''$..DeviceStatus''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      } else {
+                                        context.pushNamed(
+                                          'DeviceDetailsPLC',
+                                          queryParameters: {
+                                            'did': serializeParam(
+                                              getJsonField(
+                                                dataItem,
+                                                r'''$..DID''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                            'onlineOfflineStatus':
+                                                serializeParam(
+                                              getJsonField(
+                                                dataItem,
+                                                r'''$..DeviceStatus''',
+                                              ).toString(),
+                                              ParamType.String,
+                                            ),
+                                          }.withoutNulls,
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType:
+                                                  PageTransitionType.fade,
+                                              duration:
+                                                  Duration(milliseconds: 0),
+                                            ),
+                                          },
+                                        );
+                                      }
                                     },
                                     child: Container(
                                       width: MediaQuery.sizeOf(context).width *
@@ -548,7 +588,10 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                   .start,
                                                           children: [
                                                             AutoSizeText(
-                                                              'iATM',
+                                                              getJsonField(
+                                                                dataItem,
+                                                                r'''$..dev_type''',
+                                                              ).toString(),
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium

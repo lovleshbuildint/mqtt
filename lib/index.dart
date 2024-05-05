@@ -17,3 +17,5 @@ export '/pages/checklist_view/checklist_view_widget.dart'
 export '/pages/alert_view/alert_view_widget.dart' show AlertViewWidget;
 export '/pages/device_details/device_details_widget.dart'
     show DeviceDetailsWidget;
+export '/pages/device_details_p_l_c/device_details_p_l_c_widget.dart'
+    show DeviceDetailsPLCWidget;

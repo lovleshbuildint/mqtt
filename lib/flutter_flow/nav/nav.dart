@@ -179,6 +179,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'DeviceDetailsPLC',
+          path: '/deviceDetailsPLC',
+          builder: (context, params) => DeviceDetailsPLCWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+            onlineOfflineStatus: params.getParam(
+              'onlineOfflineStatus',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
