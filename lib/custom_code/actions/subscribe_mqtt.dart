@@ -64,12 +64,23 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         Map<String, dynamic> jsonData = parseStringToJSON(pt);
         if (pt.split(',').first == did) {
           if (pt.split(',')[2] == '\$GALL') {
+            // For iATM
             DateTime now = DateTime.now();
             String timestamp = now.toLocal().toString();
             FFAppState().update(() {
               FFAppState().mqttTime = timestamp;
               FFAppState().deviceStatusDIDJson = jsonData;
               FFAppState().relayStatusiATM = jsonData['RS'];
+            });
+          }
+          if (pt.split(',')[2] == '\$GREL') {
+            // For PLC
+            DateTime now = DateTime.now();
+            String timestamp = now.toLocal().toString();
+            FFAppState().update(() {
+              FFAppState().mqttTime = timestamp;
+              FFAppState().relayStatusiATM =
+                  pt.split(',')[3] + ',' + pt.split(',')[4];
             });
           }
         }
