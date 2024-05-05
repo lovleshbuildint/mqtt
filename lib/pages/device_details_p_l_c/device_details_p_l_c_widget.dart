@@ -70,6 +70,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                 );
               }(),
             );
+            if (FFAppState().relayStatusiATM != null &&
+                FFAppState().relayStatusiATM != '') {
+              setState(() {
+                _model.autoValue = ((String var1) {
+                  return var1.split(',')[0][4] == '1' ? true : false;
+                }(FFAppState().relayStatusiATM));
+              });
+            }
             return;
           },
           startImmediately: true,
@@ -297,13 +305,13 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Switch(
-                          value: _model.ac1Value ??= (String var1) {
+                          value: _model.autoValue ??= (String var1) {
                             return (var1 != '' && var1 != null)
                                 ? (var1.split(',')[0][4] == '1' ? true : false)
                                 : false;
                           }(FFAppState().relayStatusiATM),
                           onChanged: (newValue) async {
-                            setState(() => _model.ac1Value = newValue!);
+                            setState(() => _model.autoValue = newValue!);
                             if (newValue!) {
                               if ((FFAppState().role == 'Engineer') ||
                                   (FFAppState().role == 'Super Admin')) {
@@ -491,7 +499,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!) {
+                                                        !_model.autoValue!) {
                                                       unawaited(
                                                         () async {
                                                           await actions
@@ -592,7 +600,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -726,7 +734,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -860,7 +868,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -994,7 +1002,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1128,7 +1136,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1262,7 +1270,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
@@ -1396,7 +1404,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             FFAppState()
                                                                     .relayStatusiATM !=
                                                                 '') &&
-                                                        !_model.ac1Value!)) {
+                                                        !_model.autoValue!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
