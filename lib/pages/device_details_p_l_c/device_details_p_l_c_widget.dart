@@ -316,11 +316,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      '${getJsonField(
-                                        deviceDetailsPLCGetDeviceStatusResponse
-                                            .jsonBody,
-                                        r'''$.deviceStatus.TM''',
-                                      ).toString()} C',
+                                      '26 C',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -334,14 +330,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                       width: 30.0,
                                       height: 30.0,
                                       decoration: BoxDecoration(
-                                        color: (double.parse(getJsonField(
-                                                  deviceDetailsPLCGetDeviceStatusResponse
-                                                      .jsonBody,
-                                                  r'''$.deviceStatus.TM''',
-                                                ).toString())) >=
-                                                30.0
-                                            ? Color(0x80F71A1A)
-                                            : Color(0x8007D95A),
+                                        color: Color(0x8007D95A),
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
@@ -399,19 +388,12 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                         children: [
                                           Builder(
                                             builder: (context) {
-                                              if ((String var1) {
-                                                return var1[0] == "1";
-                                              }((FFAppState().relayStatusiATM !=
-                                                          null &&
-                                                      FFAppState()
-                                                              .relayStatusiATM !=
-                                                          ''
-                                                  ? FFAppState().relayStatusiATM
-                                                  : getJsonField(
-                                                      deviceDetailsPLCGetDeviceStatusResponse
-                                                          .jsonBody,
-                                                      r'''$.deviceStatus.RS''',
-                                                    ).toString()))) {
+                                              if (FFAppState()
+                                                          .relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') {
                                                 return InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -596,24 +578,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: (String var2) {
-                                                    return var2[0] == '1';
-                                                  }((FFAppState().relayStatusiATM !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .relayStatusiATM !=
-                                                                  ''
-                                                          ? FFAppState()
-                                                              .relayStatusiATM
-                                                          : getJsonField(
-                                                              deviceDetailsPLCGetDeviceStatusResponse
-                                                                  .jsonBody,
-                                                              r'''$.deviceStatus.RS''',
-                                                            ).toString()))
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText
-                                                      : Color(0xFF929395),
+                                                  color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -638,19 +603,12 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                         children: [
                                           Builder(
                                             builder: (context) {
-                                              if ((String var1) {
-                                                return var1[1] == "1";
-                                              }((FFAppState().relayStatusiATM !=
-                                                          null &&
-                                                      FFAppState()
-                                                              .relayStatusiATM !=
-                                                          ''
-                                                  ? FFAppState().relayStatusiATM
-                                                  : getJsonField(
-                                                      deviceDetailsPLCGetDeviceStatusResponse
-                                                          .jsonBody,
-                                                      r'''$.deviceStatus.RS''',
-                                                    ).toString()))) {
+                                              if (FFAppState()
+                                                          .relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') {
                                                 return InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -871,24 +829,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: (String var2) {
-                                                    return var2[1] == '1';
-                                                  }((FFAppState().relayStatusiATM !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .relayStatusiATM !=
-                                                                  ''
-                                                          ? FFAppState()
-                                                              .relayStatusiATM
-                                                          : getJsonField(
-                                                              deviceDetailsPLCGetDeviceStatusResponse
-                                                                  .jsonBody,
-                                                              r'''$.deviceStatus.RS''',
-                                                            ).toString()))
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText
-                                                      : Color(0xFF929395),
+                                                  color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -913,19 +854,12 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                         children: [
                                           Builder(
                                             builder: (context) {
-                                              if ((String var1) {
-                                                return var1[3] == "1";
-                                              }((FFAppState().relayStatusiATM !=
-                                                          null &&
-                                                      FFAppState()
-                                                              .relayStatusiATM !=
-                                                          ''
-                                                  ? FFAppState().relayStatusiATM
-                                                  : getJsonField(
-                                                      deviceDetailsPLCGetDeviceStatusResponse
-                                                          .jsonBody,
-                                                      r'''$.deviceStatus.RS''',
-                                                    ).toString()))) {
+                                              if (FFAppState()
+                                                          .relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      '') {
                                                 return InkWell(
                                                   splashColor:
                                                       Colors.transparent,
@@ -1146,24 +1080,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Readex Pro',
-                                                  color: (String var2) {
-                                                    return var2[3] == '1';
-                                                  }((FFAppState().relayStatusiATM !=
-                                                                  null &&
-                                                              FFAppState()
-                                                                      .relayStatusiATM !=
-                                                                  ''
-                                                          ? FFAppState()
-                                                              .relayStatusiATM
-                                                          : getJsonField(
-                                                              deviceDetailsPLCGetDeviceStatusResponse
-                                                                  .jsonBody,
-                                                              r'''$.deviceStatus.RS''',
-                                                            ).toString()))
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText
-                                                      : Color(0xFF929395),
+                                                  color: Color(0xFF929395),
                                                   letterSpacing: 0.0,
                                                   fontWeight: FontWeight.w600,
                                                 ),
