@@ -461,7 +461,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM !=
                                                             '') &&
-                                                    !_model.autoValue!) {
+                                                    (_model.autoValue ==
+                                                        false)) {
                                                   unawaited(
                                                     () async {
                                                       await actions.publishMqtt(
