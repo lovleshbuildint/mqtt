@@ -365,18 +365,18 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                   width: 30.0,
                                   height: 30.0,
                                   decoration: BoxDecoration(
-                                    color: double.parse(FFAppState()
-                                                            .relayStatusiATM !=
-                                                        null &&
-                                                    FFAppState()
-                                                            .relayStatusiATM !=
-                                                        ''
-                                                ? ((String var1) {
-                                                    return var1.split(',')[1];
-                                                  }(FFAppState()
-                                                    .relayStatusiATM))
-                                                : '0') >
-                                            24.0
+                                    color: (String var1) {
+                                      return double.parse(var1) < 24.0 &&
+                                              double.parse(var1) != 0.00
+                                          ? true
+                                          : false;
+                                    }((FFAppState().relayStatusiATM != null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    ''
+                                            ? ((String var1) {
+                                                return var1.split(',')[1];
+                                              }(FFAppState().relayStatusiATM))
+                                            : '0'))
                                         ? Color(0x8007D95A)
                                         : Color(0x80FF5963),
                                     borderRadius: BorderRadius.circular(4.0),
@@ -435,10 +435,13 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                     children: [
                                       Builder(
                                         builder: (context) {
-                                          if (FFAppState().relayStatusiATM !=
-                                                  null &&
-                                              FFAppState().relayStatusiATM !=
-                                                  '') {
+                                          if ((String var1) {
+                                            return (var1 != null && var1 != '')
+                                                ? (var1.split(',')[0][0] == '1'
+                                                    ? true
+                                                    : false)
+                                                : false;
+                                          }(FFAppState().relayStatusiATM)) {
                                             return InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -489,7 +492,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                               [2] +
                                                           var1.split(',')[0]
                                                               [3] +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -575,7 +579,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                               [2] +
                                                           var1.split(',')[0]
                                                               [3] +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -702,7 +707,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                               [2] +
                                                           var1.split(',')[0]
                                                               [3] +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -788,7 +794,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                               [2] +
                                                           var1.split(',')[0]
                                                               [3] +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -915,7 +922,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                           '0' +
                                                           var1.split(',')[0]
                                                               [3] +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -1001,7 +1009,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                           '1' +
                                                           var1.split(',')[0]
                                                               [3] +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -1128,7 +1137,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                           var1.split(',')[0]
                                                               [2] +
                                                           '0' +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
@@ -1214,7 +1224,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                           var1.split(',')[0]
                                                               [2] +
                                                           '1' +
-                                                          '0';
+                                                          '0,' +
+                                                          var1.split(',')[1];
                                                     }(FFAppState()
                                                             .relayStatusiATM);
                                                   });
