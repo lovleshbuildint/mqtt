@@ -238,8 +238,11 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                         width: 10.0,
                                         height: 10.0,
                                         decoration: BoxDecoration(
-                                          color: widget.onlineOfflineStatus ==
-                                                  'Online'
+                                          color: FFAppState().relayStatusiATM !=
+                                                      null &&
+                                                  FFAppState()
+                                                          .relayStatusiATM !=
+                                                      ''
                                               ? Color(0xFF07D95A)
                                               : FlutterFlowTheme.of(context)
                                                   .error,
@@ -248,10 +251,10 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                       ),
                                     ),
                                     Text(
-                                      valueOrDefault<String>(
-                                        widget.onlineOfflineStatus,
-                                        'Offline',
-                                      ),
+                                      FFAppState().relayStatusiATM != null &&
+                                              FFAppState().relayStatusiATM != ''
+                                          ? 'Online'
+                                          : 'Offine',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -267,7 +270,10 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    'Hello World',
+                                    FFAppState().mqttTime != null &&
+                                            FFAppState().mqttTime != ''
+                                        ? FFAppState().mqttTime
+                                        : '-',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -310,37 +316,46 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     20.0, 0.0, 13.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      '26 C',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Color(0xFF808080),
-                                            fontSize: 26.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                    Container(
-                                      width: 30.0,
-                                      height: 30.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x8007D95A),
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        FFAppState().relayStatusiATM != null &&
+                                                FFAppState().relayStatusiATM !=
+                                                    ''
+                                            ? ((String var1) {
+                                                return var1.split(',')[1];
+                                              }(FFAppState().relayStatusiATM))
+                                            : '-',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              color: Color(0xFF808080),
+                                              fontSize: 26.0,
+                                              letterSpacing: 0.0,
+                                            ),
                                       ),
-                                      child: Icon(
-                                        Icons.ac_unit,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                      Container(
+                                        width: 30.0,
+                                        height: 30.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0x8007D95A),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
+                                        ),
+                                        child: Icon(
+                                          Icons.ac_unit,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
