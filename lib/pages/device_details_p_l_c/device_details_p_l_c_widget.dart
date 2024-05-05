@@ -56,7 +56,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
           }(),
         );
         _model.instantTimer = InstantTimer.periodic(
-          duration: Duration(milliseconds: 15000),
+          duration: Duration(milliseconds: 5000),
           callback: (timer) async {
             unawaited(
               () async {
