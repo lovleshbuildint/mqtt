@@ -322,12 +322,9 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      FFAppState().relayStatusiATM != null &&
-                                              FFAppState().relayStatusiATM != ''
-                                          ? ((String var1) {
-                                              return var1.split(',')[1];
-                                            }(FFAppState().relayStatusiATM))
-                                          : '0',
+                                      '${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? ((String var1) {
+                                          return var1.split(',')[1];
+                                        }(FFAppState().relayStatusiATM)) : '0'} C',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
