@@ -490,7 +490,8 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!) {
                                                       unawaited(
                                                         () async {
                                                           await actions
@@ -580,7 +581,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -590,16 +591,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
                                                           return '1' +
-                                                              var1[1] +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [1] +
+                                                              var1.split(',')[0]
+                                                                  [2] +
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -610,10 +615,13 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 .relayStatusiATM =
                                                             (String var1) {
                                                           return '1' +
-                                                              var1[1] +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [1] +
+                                                              var1.split(',')[0]
+                                                                  [2] +
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
@@ -707,7 +715,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -717,16 +725,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
-                                                          return var1[0] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
                                                               '0' +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [2] +
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -736,11 +748,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM =
                                                             (String var1) {
-                                                          return var1[0] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
                                                               '0' +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [2] +
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
@@ -834,7 +849,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -844,16 +859,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
-                                                          return var1[0] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
                                                               '1' +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [2] +
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -863,11 +882,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM =
                                                             (String var1) {
-                                                          return var1[0] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
                                                               '1' +
-                                                              var1[2] +
-                                                              var1[3] +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [2] +
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
@@ -961,7 +983,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -971,16 +993,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
                                                               '0' +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -990,11 +1016,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM =
                                                             (String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
                                                               '0' +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
@@ -1088,7 +1117,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -1098,16 +1127,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
                                                               '1' +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -1117,11 +1150,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM =
                                                             (String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
                                                               '1' +
-                                                              '0000';
+                                                              var1.split(',')[0]
+                                                                  [3] +
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
@@ -1215,7 +1251,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -1225,16 +1261,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
+                                                              var1.split(',')[0]
+                                                                  [2] +
                                                               '0' +
-                                                              '0000';
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -1244,11 +1284,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM =
                                                             (String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
+                                                              var1.split(',')[0]
+                                                                  [2] +
                                                               '0' +
-                                                              '0000';
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
@@ -1342,7 +1385,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (((FFAppState().role ==
+                                                    if (!(((FFAppState().role ==
                                                                 'Engineer') ||
                                                             (FFAppState()
                                                                     .role ==
@@ -1352,16 +1395,20 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                                 null &&
                                                             FFAppState()
                                                                     .relayStatusiATM !=
-                                                                '')) {
+                                                                '') &&
+                                                        !_model.ac1Value!)) {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
                                                         '${widget.did}\$SREL${(String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
+                                                              var1.split(',')[0]
+                                                                  [2] +
                                                               '1' +
-                                                              '0000';
+                                                              '0';
                                                         }(FFAppState().relayStatusiATM)},',
                                                         FFAppState().deviceId,
                                                         '15.206.230.32',
@@ -1371,11 +1418,14 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         FFAppState()
                                                                 .relayStatusiATM =
                                                             (String var1) {
-                                                          return var1[0] +
-                                                              var1[1] +
-                                                              var1[2] +
+                                                          return var1.split(
+                                                                  ',')[0][0] +
+                                                              var1.split(',')[0]
+                                                                  [1] +
+                                                              var1.split(',')[0]
+                                                                  [2] +
                                                               '1' +
-                                                              '0000';
+                                                              '0';
                                                         }(FFAppState()
                                                                 .relayStatusiATM);
                                                       });
