@@ -172,7 +172,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                   scrollDirection: Axis.vertical,
                                   children: [
                                     Text(
-                                      'Add User',
+                                      'Create User',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
