@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -427,6 +428,14 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
+                            Container(
+                              width: 100.0,
+                              height: 100.0,
+                              child: custom_widgets.NewCustomWidget(
+                                width: 100.0,
+                                height: 100.0,
+                              ),
+                            ),
                             if ((String vn, String ve, String vu, String ue) {
                               return (double.parse(vn) == 0.00 &&
                                       double.parse(ve) == 0.00 &&
