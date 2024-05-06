@@ -25,7 +25,7 @@ class DeviceDetailsPLCModel extends FlutterFlowModel<DeviceDetailsPLCWidget> {
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   // State field(s) for Auto widget.
-  bool autoValue = true;
+  bool? autoValue;
 
   @override
   void initState(BuildContext context) {}

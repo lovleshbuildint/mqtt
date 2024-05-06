@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'device_details_widget.dart' show DeviceDetailsWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +26,11 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   // State field(s) for AC1 widget.
-  bool ac1Value = true;
+  bool? ac1Value;
   // State field(s) for AC2 widget.
-  bool ac2Value = true;
+  bool? ac2Value;
   // State field(s) for Signage widget.
-  bool signageValue = true;
+  bool? signageValue;
 
   @override
   void initState(BuildContext context) {}

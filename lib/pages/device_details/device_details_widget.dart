@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -428,14 +427,6 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Container(
-                              width: 100.0,
-                              height: 100.0,
-                              child: custom_widgets.NewCustomWidget(
-                                width: 100.0,
-                                height: 100.0,
-                              ),
-                            ),
                             if ((String vn, String ve, String vu, String ue) {
                               return (double.parse(vn) == 0.00 &&
                                       double.parse(ve) == 0.00 &&
@@ -570,6 +561,110 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                 verticalDirection: VerticalDirection.down,
                                 clipBehavior: Clip.none,
                                 children: [
+                                  Text(
+                                    'Raw Power',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                            FFAppState().deviceStatusDIDJson,
+                                            r'''$.VN''',
+                                          ).toString() : getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.VN''',
+                                          ).toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                      Text(
+                                        'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                            FFAppState().deviceStatusDIDJson,
+                                            r'''$.VE''',
+                                          ).toString() : getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.VE''',
+                                          ).toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    'UPS Power',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                  ),
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                            FFAppState().deviceStatusDIDJson,
+                                            r'''$.VU''',
+                                          ).toString() : getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.VU''',
+                                          ).toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                      Text(
+                                        'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                            FFAppState().deviceStatusDIDJson,
+                                            r'''$.UE''',
+                                          ).toString() : getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.ups_phase_to_earth_voltage''',
+                                          ).toString()}',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
                                   Container(
                                     width: 100.0,
                                     decoration: BoxDecoration(

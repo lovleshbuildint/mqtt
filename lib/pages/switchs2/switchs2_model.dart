@@ -10,7 +10,7 @@ class Switchs2Model extends FlutterFlowModel<Switchs2Widget> {
   ///  State fields for stateful widgets in this component.
 
   // State field(s) for Switch widget.
-  bool switchValue = true;
+  bool? switchValue;
   // Stores action output result for [Backend Call - API (Update User or Device State)] action in Switch widget.
   ApiCallResponse? updateDeviceStateOn;
   // Stores action output result for [Backend Call - API (Update User or Device State)] action in Switch widget.
