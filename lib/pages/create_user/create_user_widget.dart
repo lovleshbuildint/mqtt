@@ -137,7 +137,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                         child: SafeArea(
                           child: Container(
                             width: MediaQuery.sizeOf(context).width * 1.0,
-                            height: MediaQuery.sizeOf(context).height * 0.98,
+                            height: MediaQuery.sizeOf(context).height * 1.0,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
