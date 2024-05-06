@@ -247,42 +247,43 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     ),
                                   ),
                                 ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 20.0, 0.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed('AlertView');
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        'Alert',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              color: Color(0xE02D2D2D),
-                                              fontSize: 16.0,
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
-                                      Icon(
-                                        Icons.report_problem_outlined,
-                                        color: Color(0xE02D2D2D),
-                                        size: 20.0,
-                                      ),
-                                    ],
+                              if (FFAppState().role != 'ATMO')
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 20.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('AlertView');
+                                    },
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Alert',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xE02D2D2D),
+                                                fontSize: 16.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                        Icon(
+                                          Icons.report_problem_outlined,
+                                          color: Color(0xE02D2D2D),
+                                          size: 20.0,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
                               if ((FFAppState().role == 'Super Admin') ||
                                   (FFAppState().role == 'Admin') ||
                                   (FFAppState().role == 'Project Manager'))
