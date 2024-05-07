@@ -552,7 +552,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   13.0, 20.0, 13.0, 20.0),
                               child: Wrap(
-                                spacing: 32.0,
+                                spacing: 16.0,
                                 runSpacing: 16.0,
                                 alignment: WrapAlignment.center,
                                 crossAxisAlignment: WrapCrossAlignment.start,
