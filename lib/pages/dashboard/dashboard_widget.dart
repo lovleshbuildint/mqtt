@@ -89,7 +89,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             ..complete(DashboardCall.call(
               deviceId: FFAppState().deviceId,
               token: FFAppState().token,
-              project: FFAppState().userProject,
               orgId: FFAppState().userOrg,
             )))
           .future,
@@ -304,7 +303,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          'Add User',
+                                          'Create New User',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

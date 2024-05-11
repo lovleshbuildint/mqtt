@@ -69,7 +69,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                   return AlertDialog(
                     title: Text('Alert'),
                     content: Text(
-                        'New version of SyncATM is available. Please update to continue.'),
+                        'New version of SyncIoT is available. Please update to continue.'),
                     actions: [
                       TextButton(
                         onPressed: () =>

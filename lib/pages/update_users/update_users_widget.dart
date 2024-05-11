@@ -59,7 +59,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
         _model.getOrganizationResponse = await GetOrganizationCall.call(
           deviceId: FFAppState().deviceId,
           token: FFAppState().token,
-          project: _model.projectName,
         );
         setState(() {
           _model.orgList = (_model.getOrganizationResponse?.jsonBody ?? '');
@@ -576,7 +575,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               await GetOrganizationCall.call(
                                             deviceId: FFAppState().deviceId,
                                             token: FFAppState().token,
-                                            project: _model.projectName,
                                           );
                                           setState(() {
                                             _model.orgList = (_model

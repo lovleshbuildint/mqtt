@@ -161,7 +161,6 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
         deviceId: FFAppState().deviceId,
         token: FFAppState().token,
         did: widget.did,
-        project: FFAppState().userProject,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.

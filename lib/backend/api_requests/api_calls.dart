@@ -483,11 +483,10 @@ class DashboardCall {
     String? deviceId = '',
     String? token = '',
     String? orgId = '',
-    String? project = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Dashboard',
-      apiUrl: 'https://api.app.${project}.buildint.co/api/dashboard/${orgId}',
+      apiUrl: 'https://api.app.master.buildint.co/api/dashboard/${orgId}',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -544,11 +543,10 @@ class GetAlertCall {
   static Future<ApiCallResponse> call({
     String? deviceId = '',
     String? token = '',
-    String? project = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Alert',
-      apiUrl: 'https://api.app.${project}.buildint.co/api/getAlert',
+      apiUrl: 'https://api.app.master.buildint.co/api/getAlert',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -605,11 +603,10 @@ class GetOrganizationCall {
   static Future<ApiCallResponse> call({
     String? deviceId = '',
     String? token = '',
-    String? project = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Organization',
-      apiUrl: 'https://api.app.${project}.buildint.co/api/getOrganization',
+      apiUrl: 'https://api.app.master.buildint.co/api/getOrganization',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -629,14 +626,12 @@ class GetOrganizationCall {
 class GetDeviceDetailsCall {
   static Future<ApiCallResponse> call({
     String? deviceId = '',
-    String? project = '',
     int? locId,
     String? token = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Device Details',
-      apiUrl:
-          'https://api.app.${project}.buildint.co/api/deviceDetails/${locId}',
+      apiUrl: 'https://api.app.master.buildint.co/api/deviceDetails/${locId}',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -658,11 +653,10 @@ class GetDeviceStatusCall {
     String? deviceId = '',
     String? token = '',
     String? did = '',
-    String? project = '',
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Device Status',
-      apiUrl: 'https://api.app.${project}.buildint.co/api/deviceStatus/${did}',
+      apiUrl: 'https://api.app.master.buildint.co/api/deviceStatus/${did}',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -683,7 +677,6 @@ class UpdateAlertsCall {
   static Future<ApiCallResponse> call({
     String? deviceId = '',
     String? token = '',
-    String? project = '',
     int? alertID,
     String? assignTo = '',
     int? assignToNum,
@@ -701,7 +694,7 @@ class UpdateAlertsCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update Alerts',
-      apiUrl: 'https://api.app.${project}.buildint.co/api/updateAlerts',
+      apiUrl: 'https://api.app.master.buildint.co/api/updateAlerts',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',

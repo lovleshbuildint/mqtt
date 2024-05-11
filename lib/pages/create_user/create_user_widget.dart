@@ -131,7 +131,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                     padding:
                         EdgeInsetsDirectional.fromSTEB(100.0, 60.0, 100.0, 0.0),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(0.0),
                       child: Image.asset(
                         'assets/images/Group_1000004811.png',
                         fit: BoxFit.fitWidth,
@@ -191,7 +191,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              'Create User',
+                                              'Create New User',
                                               style: FlutterFlowTheme.of(
                                                       context)
                                                   .bodyMedium
@@ -790,8 +790,6 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               .deviceId,
                                                           token: FFAppState()
                                                               .token,
-                                                          project: _model
-                                                              .projectValue,
                                                         );
 
                                                         setState(() {});

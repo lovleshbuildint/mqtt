@@ -1359,10 +1359,6 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                   await UpdateAlertsCall.call(
                                                 deviceId: FFAppState().deviceId,
                                                 token: FFAppState().token,
-                                                project: getJsonField(
-                                                  checkListResultItem,
-                                                  r'''$..db_name''',
-                                                ).toString(),
                                                 alertID: getJsonField(
                                                   checkListResultItem,
                                                   r'''$..alertID''',

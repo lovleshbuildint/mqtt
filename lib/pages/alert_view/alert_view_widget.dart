@@ -87,7 +87,6 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
       future: GetAlertCall.call(
         deviceId: FFAppState().deviceId,
         token: FFAppState().token,
-        project: FFAppState().userProject,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -492,8 +491,6 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                     deviceId:
                                                         FFAppState().deviceId,
                                                     token: FFAppState().token,
-                                                    project: FFAppState()
-                                                        .userProject,
                                                     alertID: getJsonField(
                                                       alertsItem,
                                                       r'''$..id''',

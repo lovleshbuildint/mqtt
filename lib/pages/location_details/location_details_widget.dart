@@ -95,7 +95,6 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
     return FutureBuilder<ApiCallResponse>(
       future: GetDeviceDetailsCall.call(
         deviceId: FFAppState().deviceId,
-        project: FFAppState().userProject,
         locId: widget.locId,
         token: FFAppState().token,
       ),
