@@ -861,6 +861,23 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   ),
                                   fixedWidth: 100.0,
                                 ),
+                                DataColumn2(
+                                  label: DefaultTextStyle.merge(
+                                    softWrap: true,
+                                    child: Text(
+                                      'No Resp\\\\\\]]]',
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            fontSize: 14.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ),
+                                ),
                               ],
                               dataRowBuilder: (checkListResultItem,
                                       checkListResultIndex,
@@ -1459,6 +1476,19 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                           ),
                                       ],
                                     ),
+                                  ),
+                                  Text(
+                                    getJsonField(
+                                      checkListResultItem,
+                                      r'''$..issuse_resolved''',
+                                    ).toString(),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ].map((c) => DataCell(c)).toList(),
                               ),
