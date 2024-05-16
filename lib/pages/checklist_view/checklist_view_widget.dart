@@ -1236,7 +1236,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                   Text(
                                     getJsonField(
                                       checkListResultItem,
-                                      r'''$..issuse_resolved''',
+                                      r'''$..issue_resolved''',
                                     ).toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
