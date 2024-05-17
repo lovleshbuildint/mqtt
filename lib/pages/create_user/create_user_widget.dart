@@ -93,9 +93,9 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: MasterGroup.getProjectCall.call(
-        token: FFAppState().token,
+      future: GetOrganizationCall.call(
         deviceId: FFAppState().deviceId,
+        token: FFAppState().token,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -115,7 +115,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
             ),
           );
         }
-        final createUserGetProjectResponse = snapshot.data!;
+        final createUserGetOrganizationResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -179,7 +179,9 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                       ),
                                     ),
                                   ),
-                                  Expanded(
+                                  Form(
+                                    key: _model.formKey,
+                                    autovalidateMode: AutovalidateMode.disabled,
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           20.0, 15.0, 20.0, 0.0),
@@ -370,7 +372,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                       obscureText: false,
                                                       decoration:
                                                           InputDecoration(
-                                                        hintText: 'username',
+                                                        hintText: 'Username',
                                                         hintStyle:
                                                             FlutterFlowTheme.of(
                                                                     context)
@@ -767,184 +769,6 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     child: FlutterFlowDropDown<
                                                         String>(
                                                       controller: _model
-                                                              .projectValueController ??=
-                                                          FormFieldController<
-                                                              String>(null),
-                                                      options: (getJsonField(
-                                                        createUserGetProjectResponse
-                                                            .jsonBody,
-                                                        r'''$.result..project''',
-                                                        true,
-                                                      ) as List)
-                                                          .map<String>((s) =>
-                                                              s.toString())
-                                                          .toList()!,
-                                                      onChanged: (val) async {
-                                                        setState(() => _model
-                                                                .projectValue =
-                                                            val);
-                                                        _model.getOrganizationResponse =
-                                                            await GetOrganizationCall
-                                                                .call(
-                                                          deviceId: FFAppState()
-                                                              .deviceId,
-                                                          token: FFAppState()
-                                                              .token,
-                                                        );
-
-                                                        setState(() {});
-                                                      },
-                                                      width: 300.0,
-                                                      height: 50.0,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintText:
-                                                          'Select Database',
-                                                      icon: Icon(
-                                                        Icons
-                                                            .keyboard_arrow_down_rounded,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 24.0,
-                                                      ),
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      elevation: 2.0,
-                                                      borderColor:
-                                                          Color(0xFFF2F2F2),
-                                                      borderWidth: 2.0,
-                                                      borderRadius: 8.0,
-                                                      margin:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  4.0,
-                                                                  16.0,
-                                                                  4.0),
-                                                      hidesUnderline: true,
-                                                      isOverButton: true,
-                                                      isSearchable: false,
-                                                      isMultiSelect: false,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 14.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  if (_model.projectValue !=
-                                                          null &&
-                                                      _model.projectValue != '')
-                                                    Expanded(
-                                                      child:
-                                                          FlutterFlowDropDown<
-                                                              String>(
-                                                        controller: _model
-                                                                .organizationValueController ??=
-                                                            FormFieldController<
-                                                                String>(null),
-                                                        options: (getJsonField(
-                                                          (_model.getOrganizationResponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.result..org_name''',
-                                                          true,
-                                                        ) as List)
-                                                            .map<String>((s) =>
-                                                                s.toString())
-                                                            .toList()!,
-                                                        onChanged: (val) async {
-                                                          setState(() => _model
-                                                                  .organizationValue =
-                                                              val);
-                                                          setState(() {
-                                                            _model.orgId = functions.checkIndex(
-                                                                (_model.getOrganizationResponse
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                _model
-                                                                    .organizationValue,
-                                                                'org_name',
-                                                                'org_id');
-                                                          });
-                                                        },
-                                                        width: 300.0,
-                                                        height: 50.0,
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Readex Pro',
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                ),
-                                                        hintText:
-                                                            'Select Project',
-                                                        icon: Icon(
-                                                          Icons
-                                                              .keyboard_arrow_down_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 24.0,
-                                                        ),
-                                                        fillColor: FlutterFlowTheme
-                                                                .of(context)
-                                                            .secondaryBackground,
-                                                        elevation: 2.0,
-                                                        borderColor:
-                                                            Color(0xFFF2F2F2),
-                                                        borderWidth: 2.0,
-                                                        borderRadius: 8.0,
-                                                        margin:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    16.0,
-                                                                    4.0,
-                                                                    16.0,
-                                                                    4.0),
-                                                        hidesUnderline: true,
-                                                        isOverButton: true,
-                                                        isSearchable: false,
-                                                        isMultiSelect: false,
-                                                      ),
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 14.0, 0.0, 0.0),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Expanded(
-                                                    child: FlutterFlowDropDown<
-                                                        String>(
-                                                      controller: _model
                                                               .roleValueController ??=
                                                           FormFieldController<
                                                               String>(null),
@@ -1028,6 +852,93 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                 ],
                                               ),
                                             ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 14.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Expanded(
+                                                    child: FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
+                                                              .organizationValueController ??=
+                                                          FormFieldController<
+                                                              String>(null),
+                                                      options: (getJsonField(
+                                                        createUserGetOrganizationResponse
+                                                            .jsonBody,
+                                                        r'''$.result..org_name''',
+                                                        true,
+                                                      ) as List)
+                                                          .map<String>((s) =>
+                                                              s.toString())
+                                                          .toList()!,
+                                                      onChanged: (val) async {
+                                                        setState(() => _model
+                                                                .organizationValue =
+                                                            val);
+                                                        setState(() {
+                                                          _model.orgId = functions
+                                                              .checkIndex(
+                                                                  createUserGetOrganizationResponse
+                                                                      .jsonBody,
+                                                                  _model
+                                                                      .organizationValue,
+                                                                  'org_name',
+                                                                  'org_id');
+                                                        });
+                                                      },
+                                                      width: 300.0,
+                                                      height: 50.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText:
+                                                          'Select Project',
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          Color(0xFFF2F2F2),
+                                                      borderWidth: 2.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  4.0,
+                                                                  16.0,
+                                                                  4.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: true,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
@@ -1041,143 +952,143 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                 0.0, 15.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
-                                                        if ((_model.fullnameTextController.text != null && _model.fullnameTextController.text != '') &&
-                                                            (_model.emailAddressTextController
-                                                                        .text !=
-                                                                    null &&
-                                                                _model.emailAddressTextController
-                                                                        .text !=
-                                                                    '') &&
-                                                            (_model.contactNumTextController
-                                                                        .text !=
-                                                                    null &&
-                                                                _model.contactNumTextController
-                                                                        .text !=
-                                                                    '') &&
-                                                            (_model.projectValue !=
-                                                                    null &&
-                                                                _model.projectValue !=
-                                                                    '') &&
-                                                            (_model.organizationValue !=
-                                                                    null &&
-                                                                _model.organizationValue !=
-                                                                    '') &&
-                                                            (_model.roleValue !=
-                                                                    null &&
-                                                                _model.roleValue !=
-                                                                    '')) {
-                                                          _model.addUserResponse =
-                                                              await MasterGroup
-                                                                  .createUserCall
-                                                                  .call(
-                                                            username: _model
-                                                                .emailAddressTextController
-                                                                .text,
-                                                            password: _model
-                                                                .passwordTextController
-                                                                .text,
-                                                            userRole: _model
-                                                                .roleValue,
-                                                            userOrg:
-                                                                _model.orgId,
-                                                            fullName: _model
-                                                                .fullnameTextController
-                                                                .text,
-                                                            userProject: _model
-                                                                .projectValue,
-                                                            token: FFAppState()
-                                                                .token,
-                                                            deviceId:
-                                                                FFAppState()
-                                                                    .deviceId,
-                                                            contactNum: int
-                                                                .tryParse(_model
-                                                                    .contactNumTextController
-                                                                    .text),
+                                                        if (_model.formKey
+                                                                    .currentState ==
+                                                                null ||
+                                                            !_model.formKey
+                                                                .currentState!
+                                                                .validate()) {
+                                                          return;
+                                                        }
+                                                        if (_model.roleValue ==
+                                                            null) {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Alert'),
+                                                                content: Text(
+                                                                    'Select Role'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
                                                           );
-                                                          if ((_model
-                                                                  .addUserResponse
-                                                                  ?.succeeded ??
-                                                              true)) {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  content: Text((_model
-                                                                          .addUserResponse
-                                                                          ?.bodyText ??
-                                                                      '')),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            );
-                                                            context.safePop();
-                                                          } else {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  content: Text((_model
-                                                                          .addUserResponse
-                                                                          ?.bodyText ??
-                                                                      '')),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            );
-                                                          }
+                                                          return;
+                                                        }
+                                                        if (_model
+                                                                .organizationValue ==
+                                                            null) {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Alert'),
+                                                                content: Text(
+                                                                    'Select Project'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                          return;
+                                                        }
+                                                        _model.addUserResponse =
+                                                            await MasterGroup
+                                                                .createUserCall
+                                                                .call(
+                                                          username: _model
+                                                              .emailAddressTextController
+                                                              .text,
+                                                          password: _model
+                                                              .passwordTextController
+                                                              .text,
+                                                          userRole:
+                                                              _model.roleValue,
+                                                          userOrg: _model.orgId,
+                                                          fullName: _model
+                                                              .fullnameTextController
+                                                              .text,
+                                                          token: FFAppState()
+                                                              .token,
+                                                          deviceId: FFAppState()
+                                                              .deviceId,
+                                                          contactNum: int
+                                                              .tryParse(_model
+                                                                  .contactNumTextController
+                                                                  .text),
+                                                        );
+                                                        if ((_model
+                                                                .addUserResponse
+                                                                ?.succeeded ??
+                                                            true)) {
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                content: Text((_model
+                                                                        .addUserResponse
+                                                                        ?.bodyText ??
+                                                                    '')),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          );
+                                                          context.safePop();
                                                         } else {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Fill all fileds',
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .override(
-                                                                      fontFamily:
-                                                                          'Readex Pro',
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryBackground,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                    ),
-                                                              ),
-                                                              duration: Duration(
-                                                                  milliseconds:
-                                                                      4000),
-                                                              backgroundColor:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
-                                                            ),
+                                                          await showDialog(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                content: Text((_model
+                                                                        .addUserResponse
+                                                                        ?.bodyText ??
+                                                                    '')),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
                                                           );
                                                         }
 
                                                         setState(() {});
                                                       },
-                                                      text: 'Add User',
+                                                      text: 'Create User',
                                                       options: FFButtonOptions(
                                                         width: 351.0,
                                                         height: 46.0,

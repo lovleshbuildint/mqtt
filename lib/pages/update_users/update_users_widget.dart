@@ -124,9 +124,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
     context.watch<FFAppState>();
 
     return FutureBuilder<ApiCallResponse>(
-      future: MasterGroup.getProjectCall.call(
-        token: FFAppState().token,
+      future: GetOrganizationCall.call(
         deviceId: FFAppState().deviceId,
+        token: FFAppState().token,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -146,7 +146,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
             ),
           );
         }
-        final updateUsersGetProjectResponse = snapshot.data!;
+        final updateUsersGetOrganizationResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -548,232 +548,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Expanded(
-                                      child: FlutterFlowDropDown<String>(
-                                        controller:
-                                            _model.projectValueController ??=
-                                                FormFieldController<String>(
-                                          _model.projectValue ??=
-                                              widget.userProject,
-                                        ),
-                                        options: (getJsonField(
-                                          updateUsersGetProjectResponse
-                                              .jsonBody,
-                                          r'''$.result..project''',
-                                          true,
-                                        ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList()!,
-                                        onChanged: (val) async {
-                                          setState(
-                                              () => _model.projectValue = val);
-                                          setState(() {
-                                            _model.projectName =
-                                                _model.projectValue;
-                                          });
-                                          _model.getOrganizationResponse2 =
-                                              await GetOrganizationCall.call(
-                                            deviceId: FFAppState().deviceId,
-                                            token: FFAppState().token,
-                                          );
-                                          setState(() {
-                                            _model.orgList = (_model
-                                                    .getOrganizationResponse2
-                                                    ?.jsonBody ??
-                                                '');
-                                          });
-
-                                          setState(() {});
-                                        },
-                                        width: 300.0,
-                                        height: 50.0,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintText: 'Select Database',
-                                        icon: Icon(
-                                          Icons.keyboard_arrow_down_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 24.0,
-                                        ),
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        elevation: 2.0,
-                                        borderColor: Color(0xFFF2F2F2),
-                                        borderWidth: 2.0,
-                                        borderRadius: 8.0,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 4.0, 16.0, 4.0),
-                                        hidesUnderline: true,
-                                        isOverButton: true,
-                                        isSearchable: false,
-                                        isMultiSelect: false,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 14.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: FlutterFlowDropDown<String>(
-                                        controller: _model
-                                                .organizationValueController ??=
-                                            FormFieldController<String>(
-                                          _model.organizationValue ??=
-                                              functions.editUserOrg(
-                                                  (_model.getOrganizationResponse
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  widget.userOrg,
-                                                  'org_id',
-                                                  'org_name'),
-                                        ),
-                                        options: (getJsonField(
-                                          _model.orgList,
-                                          r'''$.result..org_name''',
-                                          true,
-                                        ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList()!,
-                                        onChanged: (val) async {
-                                          setState(() =>
-                                              _model.organizationValue = val);
-                                          setState(() {
-                                            _model.orgId = functions.checkIndex(
-                                                (_model.getOrganizationResponse
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                _model.organizationValue,
-                                                'org_name',
-                                                'org_id');
-                                          });
-                                        },
-                                        width: 300.0,
-                                        height: 50.0,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintText: 'Select Organization',
-                                        icon: Icon(
-                                          Icons.keyboard_arrow_down_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 24.0,
-                                        ),
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        elevation: 2.0,
-                                        borderColor: Color(0xFFF2F2F2),
-                                        borderWidth: 2.0,
-                                        borderRadius: 8.0,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 4.0, 16.0, 4.0),
-                                        hidesUnderline: true,
-                                        isOverButton: true,
-                                        isSearchable: false,
-                                        isMultiSelect: false,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 14.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: FlutterFlowDropDown<String>(
-                                        controller:
-                                            _model.roleValueController ??=
-                                                FormFieldController<String>(
-                                          _model.roleValue ??= widget.userRole,
-                                        ),
-                                        options: () {
-                                          if (FFAppState().role ==
-                                              'Super Admin') {
-                                            return [
-                                              'Super Admin',
-                                              'Admin',
-                                              'Project Manager',
-                                              'Engineer',
-                                              'ATMO'
-                                            ];
-                                          } else if (FFAppState().role ==
-                                              'Admin') {
-                                            return [
-                                              'Admin',
-                                              'Project Manager',
-                                              'Engineer',
-                                              'ATMO'
-                                            ];
-                                          } else if (FFAppState().role ==
-                                              'Project Manager') {
-                                            return [
-                                              'Project Manager',
-                                              'Engineer',
-                                              'ATMO'
-                                            ];
-                                          } else {
-                                            return ['Null'];
-                                          }
-                                        }(),
-                                        onChanged: (val) => setState(
-                                            () => _model.roleValue = val),
-                                        width: 300.0,
-                                        height: 50.0,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
-                                        hintText: 'Select Role',
-                                        icon: Icon(
-                                          Icons.keyboard_arrow_down_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          size: 24.0,
-                                        ),
-                                        fillColor: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        elevation: 2.0,
-                                        borderColor: Color(0xFFF2F2F2),
-                                        borderWidth: 2.0,
-                                        borderRadius: 8.0,
-                                        margin: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 4.0, 16.0, 4.0),
-                                        hidesUnderline: true,
-                                        isOverButton: true,
-                                        isSearchable: false,
-                                        isMultiSelect: false,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 14.0, 0.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
                                     if ((_model.roleValue ==
                                             'Project Manager') ||
                                         (_model.roleValue == 'Engineer'))
@@ -867,6 +641,156 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                   ],
                                 ),
                               ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 14.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: FlutterFlowDropDown<String>(
+                                        controller:
+                                            _model.roleValueController ??=
+                                                FormFieldController<String>(
+                                          _model.roleValue ??= widget.userRole,
+                                        ),
+                                        options: () {
+                                          if (FFAppState().role ==
+                                              'Super Admin') {
+                                            return [
+                                              'Super Admin',
+                                              'Admin',
+                                              'Project Manager',
+                                              'Engineer',
+                                              'ATMO'
+                                            ];
+                                          } else if (FFAppState().role ==
+                                              'Admin') {
+                                            return [
+                                              'Admin',
+                                              'Project Manager',
+                                              'Engineer',
+                                              'ATMO'
+                                            ];
+                                          } else if (FFAppState().role ==
+                                              'Project Manager') {
+                                            return [
+                                              'Project Manager',
+                                              'Engineer',
+                                              'ATMO'
+                                            ];
+                                          } else {
+                                            return ['Null'];
+                                          }
+                                        }(),
+                                        onChanged: (val) => setState(
+                                            () => _model.roleValue = val),
+                                        width: 300.0,
+                                        height: 50.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintText: 'Select Role',
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 2.0,
+                                        borderColor: Color(0xFFF2F2F2),
+                                        borderWidth: 2.0,
+                                        borderRadius: 8.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 4.0, 16.0, 4.0),
+                                        hidesUnderline: true,
+                                        isOverButton: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 14.0, 0.0, 0.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: FlutterFlowDropDown<String>(
+                                        controller: _model
+                                                .organizationValueController ??=
+                                            FormFieldController<String>(
+                                          _model.organizationValue ??=
+                                              functions.editUserOrg(
+                                                  updateUsersGetOrganizationResponse
+                                                      .jsonBody,
+                                                  widget.userOrg,
+                                                  'org_id',
+                                                  'org_name'),
+                                        ),
+                                        options: (getJsonField(
+                                          updateUsersGetOrganizationResponse
+                                              .jsonBody,
+                                          r'''$.result..org_name''',
+                                          true,
+                                        ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()!,
+                                        onChanged: (val) async {
+                                          setState(() =>
+                                              _model.organizationValue = val);
+                                          setState(() {
+                                            _model.orgId = functions.checkIndex(
+                                                (_model.getOrganizationResponse
+                                                        ?.jsonBody ??
+                                                    ''),
+                                                _model.organizationValue,
+                                                'org_name',
+                                                'org_id');
+                                          });
+                                        },
+                                        width: 300.0,
+                                        height: 50.0,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                        hintText: 'Select Project',
+                                        icon: Icon(
+                                          Icons.keyboard_arrow_down_rounded,
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                          size: 24.0,
+                                        ),
+                                        fillColor: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        elevation: 2.0,
+                                        borderColor: Color(0xFFF2F2F2),
+                                        borderWidth: 2.0,
+                                        borderRadius: 8.0,
+                                        margin: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 4.0, 16.0, 4.0),
+                                        hidesUnderline: true,
+                                        isOverButton: true,
+                                        isSearchable: false,
+                                        isMultiSelect: false,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -879,7 +803,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                         onPressed: () async {
                                           var _shouldSetState = false;
                                           if ((_model.fullnameTextController.text != null && _model.fullnameTextController.text != '') &&
-                                              (_model.emailAddressTextController
+                                              (_model
+                                                          .emailAddressTextController
                                                           .text !=
                                                       null &&
                                                   _model.emailAddressTextController
@@ -888,11 +813,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               (_model.passwordTextController
                                                           .text !=
                                                       null &&
-                                                  _model.passwordTextController
+                                                  _model
+                                                          .passwordTextController
                                                           .text !=
                                                       '') &&
-                                              (_model.projectValue != null &&
-                                                  _model.projectValue != '') &&
                                               (_model.organizationValue !=
                                                       null &&
                                                   _model.organizationValue !=
@@ -954,8 +878,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   fullName: _model
                                                       .fullnameTextController
                                                       .text,
-                                                  userProject:
-                                                      _model.projectValue,
                                                   token: FFAppState().token,
                                                   deviceId:
                                                       FFAppState().deviceId,
@@ -1036,8 +958,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                 fullName: _model
                                                     .fullnameTextController
                                                     .text,
-                                                userProject:
-                                                    _model.projectValue,
                                                 token: FFAppState().token,
                                                 deviceId: FFAppState().deviceId,
                                                 contactNum: int.tryParse(_model

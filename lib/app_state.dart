@@ -37,10 +37,6 @@ class FFAppState extends ChangeNotifier {
       _userOrg = await secureStorage.getString('ff_userOrg') ?? _userOrg;
     });
     await _safeInitAsync(() async {
-      _userProject =
-          await secureStorage.getString('ff_userProject') ?? _userProject;
-    });
-    await _safeInitAsync(() async {
       _deviceStateDid =
           await secureStorage.getString('ff_deviceStateDid') ?? _deviceStateDid;
     });
@@ -126,17 +122,6 @@ class FFAppState extends ChangeNotifier {
 
   void deleteUserOrg() {
     secureStorage.delete(key: 'ff_userOrg');
-  }
-
-  String _userProject = '';
-  String get userProject => _userProject;
-  set userProject(String _value) {
-    _userProject = _value;
-    secureStorage.setString('ff_userProject', _value);
-  }
-
-  void deleteUserProject() {
-    secureStorage.delete(key: 'ff_userProject');
   }
 
   String _deviceStateDid = '';

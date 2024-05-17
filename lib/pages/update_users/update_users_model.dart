@@ -43,21 +43,16 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
   // State field(s) for changePasswordCheckBox widget.
   bool? changePasswordCheckBoxValue;
-  // State field(s) for project widget.
-  String? projectValue;
-  FormFieldController<String>? projectValueController;
-  // Stores action output result for [Backend Call - API (Get Organization)] action in project widget.
-  ApiCallResponse? getOrganizationResponse2;
-  // State field(s) for organization widget.
-  String? organizationValue;
-  FormFieldController<String>? organizationValueController;
-  // State field(s) for role widget.
-  String? roleValue;
-  FormFieldController<String>? roleValueController;
   // State field(s) for contact_num widget.
   FocusNode? contactNumFocusNode;
   TextEditingController? contactNumTextController;
   String? Function(BuildContext, String?)? contactNumTextControllerValidator;
+  // State field(s) for role widget.
+  String? roleValue;
+  FormFieldController<String>? roleValueController;
+  // State field(s) for organization widget.
+  String? organizationValue;
+  FormFieldController<String>? organizationValueController;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
   ApiCallResponse? updateUserResponse2;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.

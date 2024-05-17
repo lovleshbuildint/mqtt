@@ -350,10 +350,9 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 'testPa\$\$word')) {
                                           setState(() {
                                             FFAppState().deviceId = '123456';
-                                            FFAppState().userProject = 'iEMS';
                                             FFAppState().role = 'ATM';
                                             FFAppState().fullName = 'Demo User';
-                                            FFAppState().userOrg = '7';
+                                            FFAppState().userOrg = '0';
                                             FFAppState().token =
                                                 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlbW9Nb2RlIiwicm9sZSI6IkFUTU8iLCJkZXZpY2VfaWQiOiIxMjM0NTYiLCJ1c2VyX3Byb2plY3QiOiJpRU1TIiwidXNlcl9vcmciOiI3IiwiZnVsbE5hbWUiOiJEZW1vIFVzZXIiLCJpYXQiOjE3MDgxNzY3Mzl9.mncjy5-hq-CExJ-osJvuaObh2E3jjotpKgOb1UYScyI';
                                           });
@@ -409,13 +408,6 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                         ?.jsonBody ??
                                                     ''),
                                                 r'''$.user_data.user_org''',
-                                              ).toString();
-                                              FFAppState().userProject =
-                                                  getJsonField(
-                                                (_model.loginResponce
-                                                        ?.jsonBody ??
-                                                    ''),
-                                                r'''$.user_data.user_project''',
                                               ).toString();
                                               FFAppState().contactNum =
                                                   getJsonField(

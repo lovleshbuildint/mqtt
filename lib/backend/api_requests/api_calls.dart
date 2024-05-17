@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
@@ -11,7 +12,11 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start Master Group Code
 
 class MasterGroup {
-  static String baseUrl = 'https://api.app.master.buildint.co/api';
+  static String getBaseUrl({
+    String? token = '',
+    String? deviceId = '',
+  }) =>
+      'https://api.app.master.buildint.co/api';
   static Map<String, String> headers = {
     'Authorization': '[token]',
   };
@@ -41,6 +46,11 @@ class LoginCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
     "username": "${username}",
@@ -49,7 +59,7 @@ class LoginCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Login',
-      apiUrl: '${MasterGroup.baseUrl}/login',
+      apiUrl: '${baseUrl}/login',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -72,6 +82,11 @@ class RegisterDeviceCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "username": "${username}",
@@ -79,7 +94,7 @@ class RegisterDeviceCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Register Device',
-      apiUrl: '${MasterGroup.baseUrl}/createDevice',
+      apiUrl: '${baseUrl}/createDevice',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': '${token}',
@@ -101,9 +116,14 @@ class GetNotificationCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'Get Notification',
-      apiUrl: '${MasterGroup.baseUrl}/getNotification',
+      apiUrl: '${baseUrl}/getNotification',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -127,6 +147,11 @@ class ChangeDeviceStateCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "username": "${username}",
@@ -135,7 +160,7 @@ class ChangeDeviceStateCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Change Device State',
-      apiUrl: '${MasterGroup.baseUrl}/changeDeviceState',
+      apiUrl: '${baseUrl}/changeDeviceState',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': '${token}',
@@ -157,9 +182,14 @@ class GetProjectCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'Get Project',
-      apiUrl: '${MasterGroup.baseUrl}/getProject',
+      apiUrl: '${baseUrl}/getProject',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -181,9 +211,14 @@ class GetChecklistViewCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'Get Checklist View',
-      apiUrl: '${MasterGroup.baseUrl}/checklistView',
+      apiUrl: '${baseUrl}/checklistView',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -205,9 +240,14 @@ class GetChecklistOTPCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'Get Checklist OTP',
-      apiUrl: '${MasterGroup.baseUrl}/checklistOtp',
+      apiUrl: '${baseUrl}/checklistOtp',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -231,11 +271,15 @@ class CreateUserCall {
     String? userRole = '',
     int? userOrg,
     String? fullName = '',
-    String? userProject = '',
     int? contactNum,
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "username": "${username}",
@@ -243,13 +287,12 @@ class CreateUserCall {
   "userRole": "${userRole}",
   "fullName": "${fullName}",
   "user_org": ${userOrg},
-  "user_project": "${userProject}",
   "deviceId": "${deviceId}",
   "contact_num": "${contactNum}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Create User',
-      apiUrl: '${MasterGroup.baseUrl}/createUser',
+      apiUrl: '${baseUrl}/createUser',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -273,11 +316,15 @@ class UpdateUserCall {
     String? userRole = '',
     int? userOrg,
     String? fullName = '',
-    String? userProject = '',
     int? contactNum,
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "username": "${username}",
@@ -285,13 +332,12 @@ class UpdateUserCall {
   "userRole": "${userRole}",
   "fullName": "${fullName}",
   "user_org": ${userOrg},
-  "user_project": "${userProject}",
   "deviceId": "${deviceId}",
   "contact_num": "${contactNum}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update User',
-      apiUrl: '${MasterGroup.baseUrl}/updateUser',
+      apiUrl: '${baseUrl}/updateUser',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -314,6 +360,11 @@ class DeleteChecklistCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "deviceId": "${deviceId}",
@@ -321,7 +372,7 @@ class DeleteChecklistCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Checklist',
-      apiUrl: '${MasterGroup.baseUrl}/checklistDelete',
+      apiUrl: '${baseUrl}/checklistDelete',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -343,9 +394,14 @@ class UserInfoCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'User Info',
-      apiUrl: '${MasterGroup.baseUrl}/getUserInfo',
+      apiUrl: '${baseUrl}/getUserInfo',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -367,9 +423,14 @@ class GetUserListCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'Get User List',
-      apiUrl: '${MasterGroup.baseUrl}/getUsersList',
+      apiUrl: '${baseUrl}/getUsersList',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -394,6 +455,11 @@ class UpdateUserOrDeviceStateCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "username": "${username}",
@@ -403,7 +469,7 @@ class UpdateUserOrDeviceStateCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update User or Device State',
-      apiUrl: '${MasterGroup.baseUrl}/updateUserDeviceState',
+      apiUrl: '${baseUrl}/updateUserDeviceState',
       callType: ApiCallType.PUT,
       headers: {
         'Authorization': '${token}',
@@ -428,6 +494,11 @@ class DeleteUserOrDeviceCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     final ffApiRequestBody = '''
 {
   "username": "${username}",
@@ -437,7 +508,7 @@ class DeleteUserOrDeviceCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Delete User or Device',
-      apiUrl: '${MasterGroup.baseUrl}/deleteUserDevice',
+      apiUrl: '${baseUrl}/deleteUserDevice',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
@@ -459,9 +530,14 @@ class AppVersionCheckCall {
     String? token = '',
     String? deviceId = '',
   }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
     return ApiManager.instance.makeApiCall(
       callName: 'App Version Check',
-      apiUrl: '${MasterGroup.baseUrl}/appVersionInfo',
+      apiUrl: '${baseUrl}/appVersionInfo',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
@@ -812,6 +888,9 @@ String _serializeList(List? list) {
   try {
     return json.encode(list);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
@@ -821,6 +900,9 @@ String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   try {
     return json.encode(jsonVar);
   } catch (_) {
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
     return isList ? '[]' : '{}';
   }
 }
