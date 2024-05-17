@@ -158,6 +158,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                     controller:
                                         _model.emailAddressTextController,
                                     focusNode: _model.emailAddressFocusNode,
+                                    autofillHints: [AutofillHints.username],
                                     textCapitalization: TextCapitalization.none,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -237,6 +238,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                   child: TextFormField(
                                     controller: _model.passwordTextController,
                                     focusNode: _model.passwordFocusNode,
+                                    autofillHints: [AutofillHints.password],
                                     obscureText: !_model.passwordVisibility,
                                     decoration: InputDecoration(
                                       isDense: false,

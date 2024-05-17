@@ -191,7 +191,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                 },
                               ),
                               autofocus: false,
-                              textCapitalization: TextCapitalization.characters,
+                              textCapitalization: TextCapitalization.none,
                               obscureText: false,
                               decoration: InputDecoration(
                                 isDense: true,
