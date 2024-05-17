@@ -13,15 +13,32 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for emailAddress widget.
-  FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressTextController;
-  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
+  final formKey = GlobalKey<FormState>();
+  // State field(s) for username widget.
+  FocusNode? usernameFocusNode;
+  TextEditingController? usernameTextController;
+  String? Function(BuildContext, String?)? usernameTextControllerValidator;
+  String? _usernameTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // State field(s) for password widget.
   FocusNode? passwordFocusNode;
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
+  String? _passwordTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    return null;
+  }
+
   // Stores action output result for [Custom Action - deviceId] action in Button-Login widget.
   String? deviceIdResponce;
   // Stores action output result for [Backend Call - API (Login)] action in Button-Login widget.
@@ -31,14 +48,16 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
 
   @override
   void initState(BuildContext context) {
+    usernameTextControllerValidator = _usernameTextControllerValidator;
     passwordVisibility = false;
+    passwordTextControllerValidator = _passwordTextControllerValidator;
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    emailAddressFocusNode?.dispose();
-    emailAddressTextController?.dispose();
+    usernameFocusNode?.dispose();
+    usernameTextController?.dispose();
 
     passwordFocusNode?.dispose();
     passwordTextController?.dispose();
