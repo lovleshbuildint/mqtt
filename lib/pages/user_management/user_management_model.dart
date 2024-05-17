@@ -8,6 +8,7 @@ import '/pages/switchs2/switchs2_widget.dart';
 import 'dart:async';
 import 'user_management_widget.dart' show UserManagementWidget;
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,10 @@ class UserManagementModel extends FlutterFlowModel<UserManagementWidget> {
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (User Info)] action in UserManagement widget.
   ApiCallResponse? userInfoRespnse;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController;
+  String? Function(BuildContext, String?)? textControllerValidator;
   Completer<ApiCallResponse>? apiRequestCompleter;
   // Stores action output result for [Backend Call - API (Delete User or Device)] action in IconButton widget.
   ApiCallResponse? deleteUserResponse;
@@ -35,6 +40,8 @@ class UserManagementModel extends FlutterFlowModel<UserManagementWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    textFieldFocusNode?.dispose();
+    textController?.dispose();
   }
 
   /// Additional helper methods.

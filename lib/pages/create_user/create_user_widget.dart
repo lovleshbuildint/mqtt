@@ -586,7 +586,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                             fontSize: 16.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight.bold,
+                                                                FontWeight
+                                                                    .normal,
                                                           ),
                                                       maxLength: 10,
                                                       maxLengthEnforcement:
