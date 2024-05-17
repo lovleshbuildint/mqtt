@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/switchs/switchs_widget.dart';
 import '/pages/switchs2/switchs2_widget.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -182,7 +183,12 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                               onChanged: (_) => EasyDebounce.debounce(
                                 '_model.textController',
                                 Duration(milliseconds: 0),
-                                () => setState(() {}),
+                                () async {
+                                  setState(() {
+                                    _model.searchValueUser =
+                                        _model.textController.text;
+                                  });
+                                },
                               ),
                               autofocus: false,
                               textCapitalization: TextCapitalization.characters,
@@ -231,7 +237,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    fontSize: 12.0,
+                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                   ),
                               validator: _model.textControllerValidator
@@ -248,18 +254,22 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                           13.0, 15.0, 13.0, 15.0),
                       child: Builder(
                         builder: (context) {
-                          final userList = getJsonField(
-                            userManagementGetUserListResponse.jsonBody,
-                            r'''$.result''',
-                          ).toList();
+                          final userList = functions
+                                  .searchFilter(
+                                      getJsonField(
+                                        userManagementGetUserListResponse
+                                            .jsonBody,
+                                        r'''$.result''',
+                                      ),
+                                      _model.searchValueUser,
+                                      'username')
+                                  ?.toList() ??
+                              [];
                           return RefreshIndicator(
                             onRefresh: () async {
                               setState(() => _model.apiRequestCompleter = null);
                               await _model.waitForApiRequestCompleted(
                                   minWait: 2000, maxWait: 5000);
-                              setState(() {
-                                _model.test = null;
-                              });
                             },
                             child: ListView.builder(
                               padding: EdgeInsets.zero,
