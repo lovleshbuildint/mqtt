@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/custom_code/actions/index.dart' as actions;
+import 'dart:async';
 import 'device_details_widget.dart' show DeviceDetailsWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   // Stores action output result for [Backend Call - API (User Info)] action in DeviceDetails widget.
   ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
+  Completer<ApiCallResponse>? apiRequestCompleter;
   // State field(s) for AC1 widget.
   bool? ac1Value;
   // State field(s) for AC2 widget.
@@ -39,5 +41,21 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   void dispose() {
     unfocusNode.dispose();
     instantTimer?.cancel();
+  }
+
+  /// Additional helper methods.
+  Future waitForApiRequestCompleted({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = apiRequestCompleter?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
   }
 }
