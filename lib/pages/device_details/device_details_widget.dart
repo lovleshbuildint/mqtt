@@ -280,8 +280,15 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         width: 10.0,
                                         height: 10.0,
                                         decoration: BoxDecoration(
-                                          color: widget.onlineOfflineStatus ==
-                                                  'Online'
+                                          color: (String var1) {
+                                            return var1 == "Online"
+                                                ? true
+                                                : false;
+                                          }(getJsonField(
+                                            deviceDetailsGetDeviceStatusResponse
+                                                .jsonBody,
+                                            r'''$.deviceStatus.device_status''',
+                                          ).toString())
                                               ? Color(0xFF07D95A)
                                               : FlutterFlowTheme.of(context)
                                                   .error,
@@ -293,7 +300,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                       getJsonField(
                                         deviceDetailsGetDeviceStatusResponse
                                             .jsonBody,
-                                        r'''$.deviceStatus.evt_dt''',
+                                        r'''$.deviceStatus.device_status''',
                                       ).toString(),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -313,7 +320,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     FFAppState().mqttTime != null &&
                                             FFAppState().mqttTime != ''
                                         ? ((String var1) {
-                                            return var1.split('.')[0];
+                                            return 'MQTT - ' +
+                                                var1.split('.')[0];
                                           }(FFAppState().mqttTime))
                                         : '${(String var1) {
                                             return var1.split('T').first;
