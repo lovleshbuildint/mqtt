@@ -39,33 +39,51 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
         deviceId: FFAppState().deviceId,
       );
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        setState(() {
+          FFAppState().fullName = getJsonField(
+            (_model.userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.fullName''',
+          ).toString().toString();
+          FFAppState().role = getJsonField(
+            (_model.userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.role''',
+          ).toString().toString();
+          FFAppState().userOrg = getJsonField(
+            (_model.userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.user_org''',
+          ).toString().toString();
+          FFAppState().contactNum = getJsonField(
+            (_model.userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.contact_num''',
+          );
+        });
+        return;
+      } else {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return AlertDialog(
+              title: Text('Alert'),
+              content: Text(
+                  'Unauthorized access or your device is not registered. Try login again'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            );
+          },
+        );
+        setState(() {
+          FFAppState().deleteToken();
+          FFAppState().token = '';
+        });
+
+        context.goNamed('LogIn');
+
         return;
       }
-
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Alert'),
-            content: Text(
-                'Unauthorized access or your device is not registered. Try login again'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-      setState(() {
-        FFAppState().deleteToken();
-        FFAppState().token = '';
-      });
-
-      context.goNamed('LogIn');
-
-      return;
     });
 
     _model.textController ??= TextEditingController();

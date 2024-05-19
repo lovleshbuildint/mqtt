@@ -36,18 +36,68 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
             FFAppConstants.appVersion) {
           if ((FFAppState().token != null && FFAppState().token != '') &&
               (FFAppState().deviceId != null && FFAppState().deviceId != '')) {
-            context.goNamed(
-              'Dashboard',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.fade,
-                  duration: Duration(milliseconds: 0),
-                ),
-              },
+            _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
+              token: FFAppState().token,
+              deviceId: FFAppState().deviceId,
             );
+            if ((_model.userInfoRespnse?.succeeded ?? true)) {
+              setState(() {
+                FFAppState().fullName = getJsonField(
+                  (_model.userInfoRespnse?.jsonBody ?? ''),
+                  r'''$.user_data.fullName''',
+                ).toString().toString();
+                FFAppState().role = getJsonField(
+                  (_model.userInfoRespnse?.jsonBody ?? ''),
+                  r'''$.user_data.role''',
+                ).toString().toString();
+                FFAppState().userOrg = getJsonField(
+                  (_model.userInfoRespnse?.jsonBody ?? ''),
+                  r'''$.user_data.user_org''',
+                ).toString().toString();
+                FFAppState().contactNum = getJsonField(
+                  (_model.userInfoRespnse?.jsonBody ?? ''),
+                  r'''$.user_data.contact_num''',
+                );
+              });
 
-            return;
+              context.goNamed(
+                'Dashboard',
+                extra: <String, dynamic>{
+                  kTransitionInfoKey: TransitionInfo(
+                    hasTransition: true,
+                    transitionType: PageTransitionType.fade,
+                    duration: Duration(milliseconds: 0),
+                  ),
+                },
+              );
+
+              return;
+            } else {
+              await showDialog(
+                context: context,
+                builder: (alertDialogContext) {
+                  return AlertDialog(
+                    title: Text('Alert'),
+                    content: Text(
+                        'Unauthorized access or your device is not registered. Try login again'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: Text('Ok'),
+                      ),
+                    ],
+                  );
+                },
+              );
+              setState(() {
+                FFAppState().deleteToken();
+                FFAppState().token = '';
+              });
+
+              context.goNamed('LogIn');
+
+              return;
+            }
           } else {
             context.goNamed(
               'LogIn',
