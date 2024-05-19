@@ -866,6 +866,103 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     child: FlutterFlowDropDown<
                                                         String>(
                                                       controller: _model
+                                                              .accessRoleValueController ??=
+                                                          FormFieldController<
+                                                              String>(null),
+                                                      options: () {
+                                                        if (FFAppState().role ==
+                                                            'Super Admin') {
+                                                          return [
+                                                            'Super Admin',
+                                                            'Admin',
+                                                            'Project Manager',
+                                                            'Engineer',
+                                                            'ATMO'
+                                                          ];
+                                                        } else if (FFAppState()
+                                                                .role ==
+                                                            'Admin') {
+                                                          return [
+                                                            'Admin',
+                                                            'Project Manager',
+                                                            'Engineer',
+                                                            'ATMO'
+                                                          ];
+                                                        } else if (FFAppState()
+                                                                .role ==
+                                                            'Project Manager') {
+                                                          return [
+                                                            'Project Manager',
+                                                            'Engineer',
+                                                            'ATMO'
+                                                          ];
+                                                        } else {
+                                                          return ['Null'];
+                                                        }
+                                                      }(),
+                                                      onChanged: (val) =>
+                                                          setState(() => _model
+                                                                  .accessRoleValue =
+                                                              val),
+                                                      width: 300.0,
+                                                      height: 50.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText: 'Select Role',
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          Color(0xFFF2F2F2),
+                                                      borderWidth: 2.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  4.0,
+                                                                  16.0,
+                                                                  4.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: true,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 14.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Expanded(
+                                                    child: FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
                                                               .organizationValueController ??=
                                                           FormFieldController<
                                                               String>(null),

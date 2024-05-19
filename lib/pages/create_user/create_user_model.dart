@@ -80,6 +80,9 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // State field(s) for access-role widget.
+  String? accessRoleValue;
+  FormFieldController<String>? accessRoleValueController;
   // State field(s) for organization widget.
   String? organizationValue;
   FormFieldController<String>? organizationValueController;
