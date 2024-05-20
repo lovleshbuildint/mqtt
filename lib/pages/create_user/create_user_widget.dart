@@ -1043,6 +1043,124 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                 ],
                                               ),
                                             ),
+                                            if (_model.userAccessRoleId == 4)
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 14.0, 0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Expanded(
+                                                      child: FutureBuilder<
+                                                          ApiCallResponse>(
+                                                        future: MasterGroup
+                                                            .getRegionCall
+                                                            .call(
+                                                          token: FFAppState()
+                                                              .token,
+                                                          deviceId: FFAppState()
+                                                              .deviceId,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          final regionalGetRegionResponse =
+                                                              snapshot.data!;
+                                                          return FlutterFlowDropDown<
+                                                              String>(
+                                                            controller: _model
+                                                                    .regionalValueController ??=
+                                                                FormFieldController<
+                                                                        String>(
+                                                                    null),
+                                                            options:
+                                                                (getJsonField(
+                                                              createUserGetOrganizationResponse
+                                                                  .jsonBody,
+                                                              r'''$.result..region_name''',
+                                                              true,
+                                                            ) as List)
+                                                                    .map<String>(
+                                                                        (s) => s
+                                                                            .toString())
+                                                                    .toList()!,
+                                                            onChanged: (val) =>
+                                                                setState(() =>
+                                                                    _model.regionalValue =
+                                                                        val),
+                                                            width: 300.0,
+                                                            height: 50.0,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintText:
+                                                                'Select Region',
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_rounded,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            elevation: 2.0,
+                                                            borderColor: Color(
+                                                                0xFFF2F2F2),
+                                                            borderWidth: 2.0,
+                                                            borderRadius: 8.0,
+                                                            margin:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        4.0,
+                                                                        16.0,
+                                                                        4.0),
+                                                            hidesUnderline:
+                                                                true,
+                                                            isOverButton: true,
+                                                            isSearchable: false,
+                                                            isMultiSelect:
+                                                                false,
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
                                             Row(
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
