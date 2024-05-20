@@ -1098,7 +1098,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                     null),
                                                             options:
                                                                 (getJsonField(
-                                                              createUserGetOrganizationResponse
+                                                              regionalGetRegionResponse
                                                                   .jsonBody,
                                                               r'''$.result..region_name''',
                                                               true,
