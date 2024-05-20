@@ -1091,10 +1091,11 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               snapshot.data!;
                                                           return FlutterFlowDropDown<
                                                               String>(
-                                                            controller: _model
+                                                            multiSelectController: _model
                                                                     .regionalValueController ??=
                                                                 FormFieldController<
-                                                                        String>(
+                                                                        List<
+                                                                            String>>(
                                                                     null),
                                                             options:
                                                                 (getJsonField(
@@ -1107,10 +1108,6 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                         (s) => s
                                                                             .toString())
                                                                     .toList()!,
-                                                            onChanged: (val) =>
-                                                                setState(() =>
-                                                                    _model.regionalValue =
-                                                                        val),
                                                             width: 300.0,
                                                             height: 50.0,
                                                             textStyle:
@@ -1152,8 +1149,12 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                 true,
                                                             isOverButton: true,
                                                             isSearchable: false,
-                                                            isMultiSelect:
-                                                                false,
+                                                            isMultiSelect: true,
+                                                            onMultiSelectChanged:
+                                                                (val) => setState(
+                                                                    () => _model
+                                                                            .regionalValue =
+                                                                        val),
                                                           );
                                                         },
                                                       ),
@@ -1259,6 +1260,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   .text),
                                                           userAccessRole: _model
                                                               .userAccessRoleId,
+                                                          userRegionList: _model
+                                                              .regionalValue,
                                                         );
                                                         if ((_model
                                                                 .addUserResponse
