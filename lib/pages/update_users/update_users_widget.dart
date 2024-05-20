@@ -54,19 +54,19 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
         FFAppState().update(() {
           FFAppState().fullName = getJsonField(
-            (userInfoRespnse?.jsonBody ?? ''),
+            (_model.userInfoRespnse?.jsonBody ?? ''),
             r'''$.user_data.fullName''',
           ).toString().toString();
           FFAppState().role = getJsonField(
-            (userInfoRespnse?.jsonBody ?? ''),
+            (_model.userInfoRespnse?.jsonBody ?? ''),
             r'''$.user_data.role''',
           ).toString().toString();
           FFAppState().userOrg = getJsonField(
-            (userInfoRespnse?.jsonBody ?? ''),
+            (_model.userInfoRespnse?.jsonBody ?? ''),
             r'''$.user_data.user_org''',
           ).toString().toString();
           FFAppState().contactNum = getJsonField(
-            (userInfoRespnse?.jsonBody ?? ''),
+            (_model.userInfoRespnse?.jsonBody ?? ''),
             r'''$.user_data.contact_num''',
           );
         });
