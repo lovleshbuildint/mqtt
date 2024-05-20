@@ -37,6 +37,7 @@ class MasterGroup {
   static DeleteUserOrDeviceCall deleteUserOrDeviceCall =
       DeleteUserOrDeviceCall();
   static AppVersionCheckCall appVersionCheckCall = AppVersionCheckCall();
+  static GetAccessRoleCall getAccessRoleCall = GetAccessRoleCall();
 }
 
 class LoginCall {
@@ -543,6 +544,35 @@ class AppVersionCheckCall {
         'Authorization': '${token}',
       },
       params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetAccessRoleCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Access Role',
+      apiUrl: '${baseUrl}/getAccessRole',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

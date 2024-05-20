@@ -834,88 +834,112 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Expanded(
-                                                    child: FlutterFlowDropDown<
-                                                        String>(
-                                                      controller: _model
-                                                              .accessRoleValueController ??=
-                                                          FormFieldController<
-                                                              String>(null),
-                                                      options: () {
-                                                        if (FFAppState().role ==
-                                                            'Super Admin') {
-                                                          return [
-                                                            'Super Admin',
-                                                            'Admin',
-                                                            'Project Manager',
-                                                            'Engineer',
-                                                            'ATMO'
-                                                          ];
-                                                        } else if (FFAppState()
-                                                                .role ==
-                                                            'Admin') {
-                                                          return [
-                                                            'Admin',
-                                                            'Project Manager',
-                                                            'Engineer',
-                                                            'ATMO'
-                                                          ];
-                                                        } else if (FFAppState()
-                                                                .role ==
-                                                            'Project Manager') {
-                                                          return [
-                                                            'Project Manager',
-                                                            'Engineer',
-                                                            'ATMO'
-                                                          ];
-                                                        } else {
-                                                          return ['Null'];
-                                                        }
-                                                      }(),
-                                                      onChanged: (val) =>
-                                                          setState(() => _model
-                                                                  .accessRoleValue =
-                                                              val),
-                                                      width: 300.0,
-                                                      height: 50.0,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                letterSpacing:
-                                                                    0.0,
-                                                              ),
-                                                      hintText: 'Select Role',
-                                                      icon: Icon(
-                                                        Icons
-                                                            .keyboard_arrow_down_rounded,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 24.0,
+                                                    child: FutureBuilder<
+                                                        ApiCallResponse>(
+                                                      future: MasterGroup
+                                                          .getAccessRoleCall
+                                                          .call(
+                                                        token:
+                                                            FFAppState().token,
+                                                        deviceId: FFAppState()
+                                                            .deviceId,
                                                       ),
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
-                                                      elevation: 2.0,
-                                                      borderColor:
-                                                          Color(0xFFF2F2F2),
-                                                      borderWidth: 2.0,
-                                                      borderRadius: 8.0,
-                                                      margin:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  4.0,
-                                                                  16.0,
-                                                                  4.0),
-                                                      hidesUnderline: true,
-                                                      isOverButton: true,
-                                                      isSearchable: false,
-                                                      isMultiSelect: false,
+                                                      builder:
+                                                          (context, snapshot) {
+                                                        // Customize what your widget looks like when it's loading.
+                                                        if (!snapshot.hasData) {
+                                                          return Center(
+                                                            child: SizedBox(
+                                                              width: 50.0,
+                                                              height: 50.0,
+                                                              child:
+                                                                  CircularProgressIndicator(
+                                                                valueColor:
+                                                                    AlwaysStoppedAnimation<
+                                                                        Color>(
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          );
+                                                        }
+                                                        final accessRoleGetAccessRoleResponse =
+                                                            snapshot.data!;
+                                                        return FlutterFlowDropDown<
+                                                            String>(
+                                                          controller: _model
+                                                                  .accessRoleValueController ??=
+                                                              FormFieldController<
+                                                                  String>(null),
+                                                          options: (FFAppState()
+                                                                          .role ==
+                                                                      'Super Admin') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Admin') ||
+                                                                  (FFAppState()
+                                                                          .role ==
+                                                                      'Project Manager')
+                                                              ? (getJsonField(
+                                                                  accessRoleGetAccessRoleResponse
+                                                                      .jsonBody,
+                                                                  r'''$.result..role_name''',
+                                                                  true,
+                                                                ) as List)
+                                                                  .map<String>(
+                                                                      (s) => s
+                                                                          .toString())
+                                                                  .toList()!
+                                                              : ['Null'],
+                                                          onChanged: (val) =>
+                                                              setState(() =>
+                                                                  _model.accessRoleValue =
+                                                                      val),
+                                                          width: 300.0,
+                                                          height: 50.0,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Readex Pro',
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                  ),
+                                                          hintText:
+                                                              'Select Access Role',
+                                                          icon: Icon(
+                                                            Icons
+                                                                .keyboard_arrow_down_rounded,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 24.0,
+                                                          ),
+                                                          fillColor: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                          elevation: 2.0,
+                                                          borderColor:
+                                                              Color(0xFFF2F2F2),
+                                                          borderWidth: 2.0,
+                                                          borderRadius: 8.0,
+                                                          margin:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      4.0,
+                                                                      16.0,
+                                                                      4.0),
+                                                          hidesUnderline: true,
+                                                          isOverButton: true,
+                                                          isSearchable: false,
+                                                          isMultiSelect: false,
+                                                        );
+                                                      },
                                                     ),
                                                   ),
                                                 ],
