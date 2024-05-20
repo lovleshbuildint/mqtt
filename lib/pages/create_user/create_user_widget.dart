@@ -1261,10 +1261,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                           userAccessRole: _model
                                                               .userAccessRoleId,
                                                           userRegion: (_model
-                                                                  .regionalValue!
-                                                                  .take(10)
-                                                                  .toList()
-                                                                  .isNotEmpty)
+                                                                  .regionalValue!)
+                                                              .toList()
                                                               .toString(),
                                                         );
                                                         if ((_model
