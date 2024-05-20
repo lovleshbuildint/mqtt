@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'checklist_view_widget.dart' show ChecklistViewWidget;
 import 'dart:async';
@@ -22,8 +23,6 @@ class ChecklistViewModel extends FlutterFlowModel<ChecklistViewWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in ChecklistView widget.
-  ApiCallResponse? userInfoRespnse;
   Completer<ApiCallResponse>? apiRequestCompleter;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/switchs/switchs_widget.dart';
 import '/pages/switchs2/switchs2_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -35,38 +36,8 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
-        token: FFAppState().token,
-        deviceId: FFAppState().deviceId,
-      );
-      if ((_model.userInfoRespnse?.succeeded ?? true)) {
-        return;
-      }
-
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Alert'),
-            content: Text(
-                'Unauthorized access or your device is not registered. Try login again'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-      setState(() {
-        FFAppState().deleteToken();
-        FFAppState().token = '';
-      });
-
-      context.goNamed('LogIn');
-
-      return;
+      await action_blocks.userInfoUpdate(context);
+      setState(() {});
     });
 
     _model.textController ??= TextEditingController();

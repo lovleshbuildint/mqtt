@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/assign_to/assign_to_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -32,56 +33,8 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
-        token: FFAppState().token,
-        deviceId: FFAppState().deviceId,
-      );
-      if ((_model.userInfoRespnse?.succeeded ?? true)) {
-        setState(() {
-          FFAppState().fullName = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.fullName''',
-          ).toString().toString();
-          FFAppState().role = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.role''',
-          ).toString().toString();
-          FFAppState().userOrg = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.user_org''',
-          ).toString().toString();
-          FFAppState().contactNum = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.contact_num''',
-          );
-        });
-        return;
-      } else {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Alert'),
-              content: Text(
-                  'Unauthorized access or your device is not registered. Try login again'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-        setState(() {
-          FFAppState().deleteToken();
-          FFAppState().token = '';
-        });
-
-        context.goNamed('LogIn');
-
-        return;
-      }
+      await action_blocks.userInfoUpdate(context);
+      setState(() {});
     });
 
     _model.textController ??= TextEditingController();

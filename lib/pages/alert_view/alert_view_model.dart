@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/assign_to/assign_to_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'alert_view_widget.dart' show AlertViewWidget;
 import 'package:easy_debounce/easy_debounce.dart';
@@ -22,8 +23,6 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in AlertView widget.
-  ApiCallResponse? userInfoRespnse;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

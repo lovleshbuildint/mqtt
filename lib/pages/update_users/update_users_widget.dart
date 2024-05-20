@@ -52,6 +52,24 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
         deviceId: FFAppState().deviceId,
       );
       if ((_model.userInfoRespnse?.succeeded ?? true)) {
+        FFAppState().update(() {
+          FFAppState().fullName = getJsonField(
+            (userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.fullName''',
+          ).toString().toString();
+          FFAppState().role = getJsonField(
+            (userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.role''',
+          ).toString().toString();
+          FFAppState().userOrg = getJsonField(
+            (userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.user_org''',
+          ).toString().toString();
+          FFAppState().contactNum = getJsonField(
+            (userInfoRespnse?.jsonBody ?? ''),
+            r'''$.user_data.contact_num''',
+          );
+        });
         setState(() {
           _model.orgId = widget.userOrg;
           _model.projectName = widget.userProject;

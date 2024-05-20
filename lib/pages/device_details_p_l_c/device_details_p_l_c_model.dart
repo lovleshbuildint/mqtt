@@ -1,9 +1,9 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'device_details_p_l_c_widget.dart' show DeviceDetailsPLCWidget;
 import 'package:flutter/material.dart';
@@ -21,8 +21,6 @@ class DeviceDetailsPLCModel extends FlutterFlowModel<DeviceDetailsPLCWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in DeviceDetailsPLC widget.
-  ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   // State field(s) for Auto widget.
   bool? autoValue;

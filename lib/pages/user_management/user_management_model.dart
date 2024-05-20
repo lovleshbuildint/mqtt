@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/switchs/switchs_widget.dart';
 import '/pages/switchs2/switchs2_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
 import 'user_management_widget.dart' show UserManagementWidget;
@@ -23,8 +24,6 @@ class UserManagementModel extends FlutterFlowModel<UserManagementWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in UserManagement widget.
-  ApiCallResponse? userInfoRespnse;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;

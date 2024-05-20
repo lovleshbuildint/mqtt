@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'dart:async';
 import 'device_details_widget.dart' show DeviceDetailsWidget;
@@ -23,8 +24,6 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in DeviceDetails widget.
-  ApiCallResponse? userInfoRespnse;
   InstantTimer? instantTimer;
   Completer<ApiCallResponse>? apiRequestCompleter;
   // State field(s) for AC1 widget.

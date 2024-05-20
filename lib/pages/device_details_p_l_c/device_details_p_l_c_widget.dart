@@ -1,9 +1,9 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -38,76 +38,46 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
-        token: FFAppState().token,
-        deviceId: FFAppState().deviceId,
+      await action_blocks.userInfoUpdate(context);
+      setState(() {});
+      unawaited(
+        () async {
+          await actions.subscribeMqtt(
+            context,
+            'Response',
+            FFAppState().deviceId,
+            widget.did,
+            '15.206.230.32',
+            'mqtt_buildint_\$\$2023',
+          );
+        }(),
       );
-      if ((_model.userInfoRespnse?.succeeded ?? true)) {
-        unawaited(
-          () async {
-            await actions.subscribeMqtt(
-              context,
-              'Response',
-              FFAppState().deviceId,
-              widget.did,
-              '15.206.230.32',
-              'mqtt_buildint_\$\$2023',
-            );
-          }(),
-        );
-        _model.instantTimer = InstantTimer.periodic(
-          duration: Duration(milliseconds: 5000),
-          callback: (timer) async {
-            unawaited(
-              () async {
-                await actions.publishMqtt(
-                  context,
-                  'Settings',
-                  '${widget.did}\$GREL,',
-                  FFAppState().deviceId,
-                  '15.206.230.32',
-                  'mqtt_buildint_\$\$2023',
-                );
-              }(),
-            );
-            if (FFAppState().relayStatusiATM != null &&
-                FFAppState().relayStatusiATM != '') {
-              setState(() {
-                _model.autoValue = ((String var1) {
-                  return var1.split(',')[0][4] == '1' ? true : false;
-                }(FFAppState().relayStatusiATM));
-              });
-            }
-            return;
-          },
-          startImmediately: true,
-        );
-      } else {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Alert'),
-              content: Text(
-                  'Unauthorized access or your device is not registered. Try login again'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-        setState(() {
-          FFAppState().deleteToken();
-          FFAppState().token = '';
-        });
-
-        context.goNamed('LogIn');
-
-        return;
-      }
+      _model.instantTimer = InstantTimer.periodic(
+        duration: Duration(milliseconds: 5000),
+        callback: (timer) async {
+          unawaited(
+            () async {
+              await actions.publishMqtt(
+                context,
+                'Settings',
+                '${widget.did}\$GREL,',
+                FFAppState().deviceId,
+                '15.206.230.32',
+                'mqtt_buildint_\$\$2023',
+              );
+            }(),
+          );
+          if (FFAppState().relayStatusiATM != null &&
+              FFAppState().relayStatusiATM != '') {
+            setState(() {
+              _model.autoValue = ((String var1) {
+                return var1.split(',')[0][4] == '1' ? true : false;
+              }(FFAppState().relayStatusiATM));
+            });
+          }
+        },
+        startImmediately: true,
+      );
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));

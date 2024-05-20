@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,38 +29,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
-        token: FFAppState().token,
-        deviceId: FFAppState().deviceId,
-      );
-      if ((_model.userInfoRespnse?.succeeded ?? true)) {
-        return;
-      }
-
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Alert'),
-            content: Text(
-                'Unauthorized access or your device is not registered. Try login again'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
-      setState(() {
-        FFAppState().deleteToken();
-        FFAppState().token = '';
-      });
-
-      context.goNamed('LogIn');
-
-      return;
+      await action_blocks.userInfoUpdate(context);
+      setState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
