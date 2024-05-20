@@ -273,6 +273,7 @@ class CreateUserCall {
     int? userOrg,
     String? fullName = '',
     int? contactNum,
+    int? userAccessRole,
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -289,7 +290,8 @@ class CreateUserCall {
   "fullName": "${fullName}",
   "user_org": ${userOrg},
   "deviceId": "${deviceId}",
-  "contact_num": "${contactNum}"
+  "contact_num": "${contactNum}",
+  "user_access_role": "${userAccessRole}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Create User',
@@ -318,6 +320,7 @@ class UpdateUserCall {
     int? userOrg,
     String? fullName = '',
     int? contactNum,
+    int? userAccessRole,
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -334,7 +337,8 @@ class UpdateUserCall {
   "fullName": "${fullName}",
   "user_org": ${userOrg},
   "deviceId": "${deviceId}",
-  "contact_num": "${contactNum}"
+  "contact_num": "${contactNum}",
+  "user_access_role": "${userAccessRole}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update User',

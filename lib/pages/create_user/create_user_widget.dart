@@ -893,10 +893,21 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                           .toString())
                                                                   .toList()!
                                                               : ['Null'],
-                                                          onChanged: (val) =>
-                                                              setState(() =>
-                                                                  _model.accessRoleValue =
-                                                                      val),
+                                                          onChanged:
+                                                              (val) async {
+                                                            setState(() => _model
+                                                                    .accessRoleValue =
+                                                                val);
+                                                            setState(() {
+                                                              _model.userAccessRoleId = functions.checkIndex(
+                                                                  accessRoleGetAccessRoleResponse
+                                                                      .jsonBody,
+                                                                  _model
+                                                                      .accessRoleValue,
+                                                                  'role_name',
+                                                                  'role_id');
+                                                            });
+                                                          },
                                                           width: 300.0,
                                                           height: 50.0,
                                                           textStyle:
@@ -1128,6 +1139,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               .tryParse(_model
                                                                   .contactNumTextController
                                                                   .text),
+                                                          userAccessRole: _model
+                                                              .userAccessRoleId,
                                                         );
                                                         if ((_model
                                                                 .addUserResponse

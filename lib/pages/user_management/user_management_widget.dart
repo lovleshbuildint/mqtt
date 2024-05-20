@@ -280,13 +280,6 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                   ).toString(),
                                                   ParamType.String,
                                                 ),
-                                                'userProject': serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..user_project''',
-                                                  ).toString(),
-                                                  ParamType.String,
-                                                ),
                                                 'userOrg': serializeParam(
                                                   getJsonField(
                                                     userListItem,
@@ -306,6 +299,14 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                   getJsonField(
                                                     userListItem,
                                                     r'''$..contact_num''',
+                                                  ),
+                                                  ParamType.int,
+                                                ),
+                                                'userAccessRoleId':
+                                                    serializeParam(
+                                                  getJsonField(
+                                                    userListItem,
+                                                    r'''$..user_access_role''',
                                                   ),
                                                   ParamType.int,
                                                 ),

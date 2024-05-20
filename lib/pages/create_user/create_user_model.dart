@@ -18,6 +18,8 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
 
   int? orgId;
 
+  int? userAccessRoleId;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

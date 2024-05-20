@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -18,18 +19,18 @@ class UpdateUsersWidget extends StatefulWidget {
     super.key,
     String? fullName,
     required this.username,
-    required this.userProject,
     required this.userOrg,
     required this.userRole,
     required this.userContactNum,
+    required this.userAccessRoleId,
   }) : this.fullName = fullName ?? '';
 
   final String fullName;
   final String? username;
-  final String? userProject;
   final int? userOrg;
   final String? userRole;
   final int? userContactNum;
+  final int? userAccessRoleId;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -47,66 +48,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.userInfoRespnse = await MasterGroup.userInfoCall.call(
-        token: FFAppState().token,
-        deviceId: FFAppState().deviceId,
-      );
-      if ((_model.userInfoRespnse?.succeeded ?? true)) {
-        FFAppState().update(() {
-          FFAppState().fullName = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.fullName''',
-          ).toString().toString();
-          FFAppState().role = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.role''',
-          ).toString().toString();
-          FFAppState().userOrg = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.user_org''',
-          ).toString().toString();
-          FFAppState().contactNum = getJsonField(
-            (_model.userInfoRespnse?.jsonBody ?? ''),
-            r'''$.user_data.contact_num''',
-          );
-        });
-        setState(() {
-          _model.orgId = widget.userOrg;
-          _model.projectName = widget.userProject;
-        });
-        _model.getOrganizationResponse = await GetOrganizationCall.call(
-          deviceId: FFAppState().deviceId,
-          token: FFAppState().token,
-        );
-        setState(() {
-          _model.orgList = (_model.getOrganizationResponse?.jsonBody ?? '');
-        });
-      } else {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Alert'),
-              content: Text(
-                  'Unauthorized access or your device is not registered. Try login again'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-        setState(() {
-          FFAppState().deleteToken();
-          FFAppState().token = '';
-        });
-
-        context.goNamed('LogIn');
-
-        return;
-      }
+      await action_blocks.userInfoUpdate(context);
+      setState(() {});
     });
 
     _model.fullnameTextController ??=
@@ -892,6 +835,150 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Expanded(
+                                                child: FutureBuilder<
+                                                    ApiCallResponse>(
+                                                  future: MasterGroup
+                                                      .getAccessRoleCall
+                                                      .call(
+                                                    token: FFAppState().token,
+                                                    deviceId:
+                                                        FFAppState().deviceId,
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    final accessRoleGetAccessRoleResponse =
+                                                        snapshot.data!;
+                                                    return FlutterFlowDropDown<
+                                                        String>(
+                                                      controller: _model
+                                                              .accessRoleValueController ??=
+                                                          FormFieldController<
+                                                              String>(
+                                                        _model.accessRoleValue ??=
+                                                            valueOrDefault<
+                                                                String>(
+                                                          functions.editUserOrg(
+                                                              accessRoleGetAccessRoleResponse
+                                                                  .jsonBody,
+                                                              widget
+                                                                  .userAccessRoleId,
+                                                              'role_id',
+                                                              'role_name'),
+                                                          'Null',
+                                                        ),
+                                                      ),
+                                                      options: () {
+                                                        if (FFAppState().role ==
+                                                            'Super Admin') {
+                                                          return [
+                                                            'Super Admin',
+                                                            'Admin',
+                                                            'Project Manager',
+                                                            'Engineer',
+                                                            'ATMO'
+                                                          ];
+                                                        } else if (FFAppState()
+                                                                .role ==
+                                                            'Admin') {
+                                                          return [
+                                                            'Admin',
+                                                            'Project Manager',
+                                                            'Engineer',
+                                                            'ATMO'
+                                                          ];
+                                                        } else if (FFAppState()
+                                                                .role ==
+                                                            'Project Manager') {
+                                                          return [
+                                                            'Project Manager',
+                                                            'Engineer',
+                                                            'ATMO'
+                                                          ];
+                                                        } else {
+                                                          return ['Null'];
+                                                        }
+                                                      }(),
+                                                      onChanged: (val) =>
+                                                          setState(() => _model
+                                                                  .accessRoleValue =
+                                                              val),
+                                                      width: 300.0,
+                                                      height: 50.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText:
+                                                          'Select Access Role',
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          Color(0xFFF2F2F2),
+                                                      borderWidth: 2.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  4.0,
+                                                                  16.0,
+                                                                  4.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: true,
+                                                      isSearchable: false,
+                                                      isMultiSelect: false,
+                                                    );
+                                                  },
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 14.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
                                                 child:
                                                     FlutterFlowDropDown<String>(
                                                   controller: _model
@@ -915,21 +1002,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       .map<String>(
                                                           (s) => s.toString())
                                                       .toList()!,
-                                                  onChanged: (val) async {
-                                                    setState(() => _model
-                                                            .organizationValue =
-                                                        val);
-                                                    setState(() {
-                                                      _model.orgId = functions.checkIndex(
-                                                          (_model.getOrganizationResponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          _model
-                                                              .organizationValue,
-                                                          'org_name',
-                                                          'org_id');
-                                                    });
-                                                  },
+                                                  onChanged: (val) => setState(
+                                                      () => _model
+                                                              .organizationValue =
+                                                          val),
                                                   width: 300.0,
                                                   height: 50.0,
                                                   textStyle:
@@ -1055,14 +1131,13 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                 .text,
                                                             userRole: _model
                                                                 .roleValue,
-                                                            userOrg: functions
-                                                                .checkIndex(
-                                                                    _model
-                                                                        .orgList!,
-                                                                    _model
-                                                                        .organizationValue,
-                                                                    'org_name',
-                                                                    'org_id'),
+                                                            userOrg: functions.checkIndex(
+                                                                updateUsersGetOrganizationResponse
+                                                                    .jsonBody,
+                                                                _model
+                                                                    .organizationValue,
+                                                                'org_name',
+                                                                'org_id'),
                                                             fullName: _model
                                                                 .fullnameTextController
                                                                 .text,
@@ -1146,14 +1221,13 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               .text,
                                                           userRole:
                                                               _model.roleValue,
-                                                          userOrg: functions
-                                                              .checkIndex(
-                                                                  _model
-                                                                      .orgList!,
-                                                                  _model
-                                                                      .organizationValue,
-                                                                  'org_name',
-                                                                  'org_id'),
+                                                          userOrg: functions.checkIndex(
+                                                              updateUsersGetOrganizationResponse
+                                                                  .jsonBody,
+                                                              _model
+                                                                  .organizationValue,
+                                                              'org_name',
+                                                              'org_id'),
                                                           fullName: _model
                                                               .fullnameTextController
                                                               .text,

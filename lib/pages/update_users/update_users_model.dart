@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'update_users_widget.dart' show UpdateUsersWidget;
 import 'package:flutter/material.dart';
@@ -13,21 +14,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
-  ///  Local state fields for this page.
-
-  int? orgId;
-
-  String? projectName;
-
-  dynamic orgList;
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Stores action output result for [Backend Call - API (User Info)] action in UpdateUsers widget.
-  ApiCallResponse? userInfoRespnse;
-  // Stores action output result for [Backend Call - API (Get Organization)] action in UpdateUsers widget.
-  ApiCallResponse? getOrganizationResponse;
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
   TextEditingController? fullnameTextController;
@@ -50,6 +39,9 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   // State field(s) for role widget.
   String? roleValue;
   FormFieldController<String>? roleValueController;
+  // State field(s) for access-role widget.
+  String? accessRoleValue;
+  FormFieldController<String>? accessRoleValueController;
   // State field(s) for organization widget.
   String? organizationValue;
   FormFieldController<String>? organizationValueController;

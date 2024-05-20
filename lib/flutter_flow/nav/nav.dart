@@ -115,10 +115,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'username',
               ParamType.String,
             ),
-            userProject: params.getParam(
-              'userProject',
-              ParamType.String,
-            ),
             userOrg: params.getParam(
               'userOrg',
               ParamType.int,
@@ -129,6 +125,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             userContactNum: params.getParam(
               'userContactNum',
+              ParamType.int,
+            ),
+            userAccessRoleId: params.getParam(
+              'userAccessRoleId',
               ParamType.int,
             ),
           ),
