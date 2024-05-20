@@ -885,37 +885,25 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                           'Null',
                                                         ),
                                                       ),
-                                                      options: () {
-                                                        if (FFAppState().role ==
-                                                            'Super Admin') {
-                                                          return [
-                                                            'Super Admin',
-                                                            'Admin',
-                                                            'Project Manager',
-                                                            'Engineer',
-                                                            'ATMO'
-                                                          ];
-                                                        } else if (FFAppState()
-                                                                .role ==
-                                                            'Admin') {
-                                                          return [
-                                                            'Admin',
-                                                            'Project Manager',
-                                                            'Engineer',
-                                                            'ATMO'
-                                                          ];
-                                                        } else if (FFAppState()
-                                                                .role ==
-                                                            'Project Manager') {
-                                                          return [
-                                                            'Project Manager',
-                                                            'Engineer',
-                                                            'ATMO'
-                                                          ];
-                                                        } else {
-                                                          return ['Null'];
-                                                        }
-                                                      }(),
+                                                      options: (FFAppState()
+                                                                      .role ==
+                                                                  'Super Admin') ||
+                                                              (FFAppState()
+                                                                      .role ==
+                                                                  'Admin') ||
+                                                              (FFAppState()
+                                                                      .role ==
+                                                                  'Project Manager')
+                                                          ? (getJsonField(
+                                                              accessRoleGetAccessRoleResponse
+                                                                  .jsonBody,
+                                                              r'''$.result..role_name''',
+                                                              true,
+                                                            ) as List)
+                                                              .map<String>((s) =>
+                                                                  s.toString())
+                                                              .toList()!
+                                                          : ['Null'],
                                                       onChanged: (val) =>
                                                           setState(() => _model
                                                                   .accessRoleValue =
