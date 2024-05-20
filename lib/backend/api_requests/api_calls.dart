@@ -275,7 +275,7 @@ class CreateUserCall {
     String? fullName = '',
     int? contactNum,
     int? userAccessRole,
-    List<String>? userRegionList,
+    String? userRegion = '',
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -283,7 +283,6 @@ class CreateUserCall {
       token: token,
       deviceId: deviceId,
     );
-    final userRegion = _serializeList(userRegionList);
 
     final ffApiRequestBody = '''
 {
