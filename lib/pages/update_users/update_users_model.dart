@@ -17,6 +17,8 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  // Stores action output result for [Backend Call - API (Get Access Role)] action in UpdateUsers widget.
+  ApiCallResponse? getaccessroleresponse;
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
   TextEditingController? fullnameTextController;
