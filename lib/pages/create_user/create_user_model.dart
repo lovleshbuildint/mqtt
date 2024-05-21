@@ -88,8 +88,8 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   String? organizationValue;
   FormFieldController<String>? organizationValueController;
   // State field(s) for regional widget.
-  List<String>? regionalValue;
-  FormFieldController<List<String>>? regionalValueController;
+  List<int>? regionalValue;
+  FormFieldController<List<int>>? regionalValueController;
   // Stores action output result for [Backend Call - API (Create User)] action in Button-Login widget.
   ApiCallResponse? addUserResponse;
 

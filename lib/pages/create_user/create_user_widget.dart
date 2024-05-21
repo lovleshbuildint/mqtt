@@ -1090,14 +1090,22 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                           final regionalGetRegionResponse =
                                                               snapshot.data!;
                                                           return FlutterFlowDropDown<
-                                                              String>(
+                                                              int>(
                                                             multiSelectController: _model
                                                                     .regionalValueController ??=
                                                                 FormFieldController<
                                                                         List<
-                                                                            String>>(
+                                                                            int>>(
                                                                     null),
-                                                            options:
+                                                            options: List<
+                                                                    int>.from(
+                                                                getJsonField(
+                                                              regionalGetRegionResponse
+                                                                  .jsonBody,
+                                                              r'''$.result..region_id''',
+                                                              true,
+                                                            )!),
+                                                            optionLabels:
                                                                 (getJsonField(
                                                               regionalGetRegionResponse
                                                                   .jsonBody,
@@ -1260,10 +1268,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   .text),
                                                           userAccessRole: _model
                                                               .userAccessRoleId,
-                                                          userRegion: (_model
-                                                                  .regionalValue!)
-                                                              .toList()
-                                                              .toString(),
+                                                          userRegionList: _model
+                                                              .regionalValue,
                                                         );
                                                         if ((_model
                                                                 .addUserResponse
