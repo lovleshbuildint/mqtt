@@ -23,6 +23,7 @@ class UpdateUsersWidget extends StatefulWidget {
     required this.userRole,
     required this.userContactNum,
     required this.userAccessRoleId,
+    this.userRegion,
   }) : this.fullName = fullName ?? '';
 
   final String fullName;
@@ -31,6 +32,7 @@ class UpdateUsersWidget extends StatefulWidget {
   final String? userRole;
   final int? userContactNum;
   final int? userAccessRoleId;
+  final List<int>? userRegion;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -994,6 +996,126 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   isOverButton: true,
                                                   isSearchable: false,
                                                   isMultiSelect: false,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 14.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Expanded(
+                                                child: FutureBuilder<
+                                                    ApiCallResponse>(
+                                                  future: MasterGroup
+                                                      .getRegionCall
+                                                      .call(
+                                                    token: FFAppState().token,
+                                                    deviceId:
+                                                        FFAppState().deviceId,
+                                                  ),
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            valueColor:
+                                                                AlwaysStoppedAnimation<
+                                                                    Color>(
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .primary,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    final regionalGetRegionResponse =
+                                                        snapshot.data!;
+                                                    return FlutterFlowDropDown<
+                                                        int>(
+                                                      multiSelectController: _model
+                                                              .regionalValueController ??=
+                                                          FormFieldController<
+                                                              List<int>>(_model
+                                                                  .regionalValue ??=
+                                                              List<int>.from(
+                                                        widget.userRegion ?? [],
+                                                      )),
+                                                      options: List<int>.from(
+                                                          getJsonField(
+                                                        regionalGetRegionResponse
+                                                            .jsonBody,
+                                                        r'''$.result..region_id''',
+                                                        true,
+                                                      )!),
+                                                      optionLabels:
+                                                          (getJsonField(
+                                                        regionalGetRegionResponse
+                                                            .jsonBody,
+                                                        r'''$.result..region_name''',
+                                                        true,
+                                                      ) as List)
+                                                              .map<String>((s) =>
+                                                                  s.toString())
+                                                              .toList()!,
+                                                      width: 300.0,
+                                                      height: 50.0,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Readex Pro',
+                                                                letterSpacing:
+                                                                    0.0,
+                                                              ),
+                                                      hintText: 'Select Region',
+                                                      icon: Icon(
+                                                        Icons
+                                                            .keyboard_arrow_down_rounded,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 24.0,
+                                                      ),
+                                                      fillColor: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                      elevation: 2.0,
+                                                      borderColor:
+                                                          Color(0xFFF2F2F2),
+                                                      borderWidth: 2.0,
+                                                      borderRadius: 8.0,
+                                                      margin:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  4.0,
+                                                                  16.0,
+                                                                  4.0),
+                                                      hidesUnderline: true,
+                                                      isOverButton: true,
+                                                      isSearchable: false,
+                                                      isMultiSelect: true,
+                                                      onMultiSelectChanged:
+                                                          (val) => setState(() =>
+                                                              _model.regionalValue =
+                                                                  val),
+                                                    );
+                                                  },
                                                 ),
                                               ),
                                             ],

@@ -310,6 +310,15 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                   ),
                                                   ParamType.int,
                                                 ),
+                                                'userRegion': serializeParam(
+                                                  getJsonField(
+                                                    userListItem,
+                                                    r'''$..user_region''',
+                                                    true,
+                                                  ),
+                                                  ParamType.int,
+                                                  true,
+                                                ),
                                               }.withoutNulls,
                                             );
                                           },
