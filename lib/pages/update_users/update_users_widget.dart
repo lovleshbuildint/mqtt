@@ -1223,6 +1223,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                     .accessRoleValue,
                                                                 'role_name',
                                                                 'role_id'),
+                                                            userRegionList:
+                                                                widget
+                                                                    .userRegion,
                                                           );
                                                           _shouldSetState =
                                                               true;
@@ -1315,6 +1318,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                   .accessRoleValue,
                                                               'role_name',
                                                               'role_id'),
+                                                          userRegionList:
+                                                              widget.userRegion,
                                                         );
                                                         _shouldSetState = true;
                                                         if ((_model

@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -868,46 +867,34 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                         final accessRoleGetAccessRoleResponse =
                                                             snapshot.data!;
                                                         return FlutterFlowDropDown<
-                                                            String>(
+                                                            int>(
                                                           controller: _model
                                                                   .accessRoleValueController ??=
                                                               FormFieldController<
-                                                                  String>(null),
-                                                          options: (FFAppState()
-                                                                          .role ==
-                                                                      'Super Admin') ||
-                                                                  (FFAppState()
-                                                                          .role ==
-                                                                      'Admin') ||
-                                                                  (FFAppState()
-                                                                          .role ==
-                                                                      'Project Manager')
-                                                              ? (getJsonField(
-                                                                  accessRoleGetAccessRoleResponse
-                                                                      .jsonBody,
-                                                                  r'''$.result..role_name''',
-                                                                  true,
-                                                                ) as List)
+                                                                  int>(null),
+                                                          options:
+                                                              List<int>.from(
+                                                                  getJsonField(
+                                                            accessRoleGetAccessRoleResponse
+                                                                .jsonBody,
+                                                            r'''$.result..role_id''',
+                                                            true,
+                                                          )!),
+                                                          optionLabels:
+                                                              (getJsonField(
+                                                            accessRoleGetAccessRoleResponse
+                                                                .jsonBody,
+                                                            r'''$.result..role_name''',
+                                                            true,
+                                                          ) as List)
                                                                   .map<String>(
                                                                       (s) => s
                                                                           .toString())
-                                                                  .toList()!
-                                                              : ['Null'],
-                                                          onChanged:
-                                                              (val) async {
-                                                            setState(() => _model
-                                                                    .accessRoleValue =
-                                                                val);
-                                                            setState(() {
-                                                              _model.userAccessRoleId = functions.checkIndex(
-                                                                  accessRoleGetAccessRoleResponse
-                                                                      .jsonBody,
-                                                                  _model
-                                                                      .accessRoleValue,
-                                                                  'role_name',
-                                                                  'role_id');
-                                                            });
-                                                          },
+                                                                  .toList()!,
+                                                          onChanged: (val) =>
+                                                              setState(() =>
+                                                                  _model.accessRoleValue =
+                                                                      val),
                                                           width: 300.0,
                                                           height: 50.0,
                                                           textStyle:
@@ -1040,7 +1027,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                 ],
                                               ),
                                             ),
-                                            if (_model.userAccessRoleId == 4)
+                                            if (_model.accessRoleValue == 4)
                                               Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -1265,7 +1252,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   .contactNumTextController
                                                                   .text),
                                                           userAccessRole: _model
-                                                              .userAccessRoleId,
+                                                              .accessRoleValue,
                                                           userRegionList: _model
                                                               .regionalValue,
                                                         );

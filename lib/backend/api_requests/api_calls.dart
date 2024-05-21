@@ -325,6 +325,7 @@ class UpdateUserCall {
     String? fullName = '',
     int? contactNum,
     int? userAccessRole,
+    List<int>? userRegionList,
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -332,6 +333,7 @@ class UpdateUserCall {
       token: token,
       deviceId: deviceId,
     );
+    final userRegion = _serializeList(userRegionList);
 
     final ffApiRequestBody = '''
 {
@@ -342,7 +344,8 @@ class UpdateUserCall {
   "user_org": ${userOrg},
   "deviceId": "${deviceId}",
   "contact_num": "${contactNum}",
-  "user_access_role": "${userAccessRole}"
+  "user_access_role": "${userAccessRole}",
+"user_region": "${userRegion}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Update User',

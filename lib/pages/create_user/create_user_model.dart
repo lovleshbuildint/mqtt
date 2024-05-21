@@ -5,7 +5,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'create_user_widget.dart' show CreateUserWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -14,12 +13,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
-  ///  Local state fields for this page.
-
-  int? orgId;
-
-  int? userAccessRoleId;
-
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -82,8 +75,8 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   String? roleValue;
   FormFieldController<String>? roleValueController;
   // State field(s) for access-role widget.
-  String? accessRoleValue;
-  FormFieldController<String>? accessRoleValueController;
+  int? accessRoleValue;
+  FormFieldController<int>? accessRoleValueController;
   // State field(s) for organization widget.
   int? organizationValue;
   FormFieldController<int>? organizationValueController;
