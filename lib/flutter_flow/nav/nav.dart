@@ -131,10 +131,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'userAccessRoleId',
               ParamType.int,
             ),
-            userRegion: params.getParam<int>(
+            userRegion: params.getParam(
               'userRegion',
               ParamType.int,
-              isList: true,
             ),
           ),
         ),

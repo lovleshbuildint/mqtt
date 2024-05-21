@@ -32,7 +32,7 @@ class UpdateUsersWidget extends StatefulWidget {
   final String? userRole;
   final int? userContactNum;
   final int? userAccessRoleId;
-  final List<int>? userRegion;
+  final int? userRegion;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -189,9 +189,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                       children: [
                                         Text(
                                           valueOrDefault<String>(
-                                            widget.userRegion?.first
-                                                ?.toString(),
-                                            '111111111111',
+                                            widget.userRegion?.toString(),
+                                            '1232313',
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
