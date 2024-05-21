@@ -1050,11 +1050,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       multiSelectController: _model
                                                               .regionalValueController ??=
                                                           FormFieldController<
-                                                              List<int>>(_model
-                                                                  .regionalValue ??=
-                                                              List<int>.from(
-                                                        widget.userRegion ?? [],
-                                                      )),
+                                                              List<int>>(null),
                                                       options: List<int>.from(
                                                           getJsonField(
                                                         regionalGetRegionResponse
