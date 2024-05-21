@@ -841,42 +841,31 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Expanded(
-                                                child:
-                                                    FlutterFlowDropDown<String>(
+                                                child: FlutterFlowDropDown<int>(
                                                   controller: _model
                                                           .accessRoleValueController ??=
-                                                      FormFieldController<
-                                                          String>(
+                                                      FormFieldController<int>(
                                                     _model.accessRoleValue ??=
-                                                        valueOrDefault<String>(
-                                                      functions.editUserOrg(
-                                                          (_model.getaccessroleresponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          widget
-                                                              .userAccessRoleId,
-                                                          'role_id',
-                                                          'role_name'),
-                                                      'Null',
-                                                    ),
+                                                        widget.userAccessRoleId,
                                                   ),
-                                                  options: (FFAppState().role ==
-                                                              'Super Admin') ||
-                                                          (FFAppState().role ==
-                                                              'Admin') ||
-                                                          (FFAppState().role ==
-                                                              'Project Manager')
-                                                      ? (getJsonField(
-                                                          (_model.getaccessroleresponse
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                          r'''$.result..role_name''',
-                                                          true,
-                                                        ) as List)
-                                                          .map<String>((s) =>
-                                                              s.toString())
-                                                          .toList()!
-                                                      : ['Null'],
+                                                  options: List<int>.from(
+                                                      getJsonField(
+                                                    (_model.getaccessroleresponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.result..role_id''',
+                                                    true,
+                                                  )!),
+                                                  optionLabels: (getJsonField(
+                                                    (_model.getaccessroleresponse
+                                                            ?.jsonBody ??
+                                                        ''),
+                                                    r'''$.result..role_name''',
+                                                    true,
+                                                  ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()!,
                                                   onChanged: (val) => setState(
                                                       () => _model
                                                               .accessRoleValue =
@@ -1215,17 +1204,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                 .tryParse(_model
                                                                     .contactNumTextController
                                                                     .text),
-                                                            userAccessRole: functions.checkIndex(
-                                                                (_model.getaccessroleresponse
-                                                                        ?.jsonBody ??
-                                                                    ''),
-                                                                _model
-                                                                    .accessRoleValue,
-                                                                'role_name',
-                                                                'role_id'),
-                                                            userRegionList:
-                                                                widget
-                                                                    .userRegion,
+                                                            userAccessRole: _model
+                                                                .accessRoleValue,
+                                                            userRegionList: _model
+                                                                .regionalValue,
                                                           );
                                                           _shouldSetState =
                                                               true;
@@ -1310,16 +1292,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               .tryParse(_model
                                                                   .contactNumTextController
                                                                   .text),
-                                                          userAccessRole: functions.checkIndex(
-                                                              (_model.getaccessroleresponse
-                                                                      ?.jsonBody ??
-                                                                  ''),
-                                                              _model
-                                                                  .accessRoleValue,
-                                                              'role_name',
-                                                              'role_id'),
-                                                          userRegionList:
-                                                              widget.userRegion,
+                                                          userAccessRole: _model
+                                                              .accessRoleValue,
+                                                          userRegionList: _model
+                                                              .regionalValue,
                                                         );
                                                         _shouldSetState = true;
                                                         if ((_model
