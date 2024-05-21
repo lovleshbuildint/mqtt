@@ -45,8 +45,8 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   String? accessRoleValue;
   FormFieldController<String>? accessRoleValueController;
   // State field(s) for organization widget.
-  String? organizationValue;
-  FormFieldController<String>? organizationValueController;
+  int? organizationValue;
+  FormFieldController<int>? organizationValueController;
   // State field(s) for regional widget.
   List<int>? regionalValue;
   FormFieldController<List<int>>? regionalValueController;

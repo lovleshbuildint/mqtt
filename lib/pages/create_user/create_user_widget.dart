@@ -967,35 +967,32 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                 children: [
                                                   Expanded(
                                                     child: FlutterFlowDropDown<
-                                                        String>(
+                                                        int>(
                                                       controller: _model
                                                               .organizationValueController ??=
                                                           FormFieldController<
-                                                              String>(null),
-                                                      options: (getJsonField(
+                                                              int>(null),
+                                                      options: List<int>.from(
+                                                          getJsonField(
+                                                        createUserGetOrganizationResponse
+                                                            .jsonBody,
+                                                        r'''$.result..org_id''',
+                                                        true,
+                                                      )!),
+                                                      optionLabels:
+                                                          (getJsonField(
                                                         createUserGetOrganizationResponse
                                                             .jsonBody,
                                                         r'''$.result..org_name''',
                                                         true,
                                                       ) as List)
-                                                          .map<String>((s) =>
-                                                              s.toString())
-                                                          .toList()!,
-                                                      onChanged: (val) async {
-                                                        setState(() => _model
-                                                                .organizationValue =
-                                                            val);
-                                                        setState(() {
-                                                          _model.orgId = functions
-                                                              .checkIndex(
-                                                                  createUserGetOrganizationResponse
-                                                                      .jsonBody,
-                                                                  _model
-                                                                      .organizationValue,
-                                                                  'org_name',
-                                                                  'org_id');
-                                                        });
-                                                      },
+                                                              .map<String>((s) =>
+                                                                  s.toString())
+                                                              .toList()!,
+                                                      onChanged: (val) =>
+                                                          setState(() => _model
+                                                                  .organizationValue =
+                                                              val),
                                                       width: 300.0,
                                                       height: 50.0,
                                                       textStyle:
@@ -1254,7 +1251,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               .text,
                                                           userRole:
                                                               _model.roleValue,
-                                                          userOrg: _model.orgId,
+                                                          userOrg: _model
+                                                              .organizationValue,
                                                           fullName: _model
                                                               .fullnameTextController
                                                               .text,

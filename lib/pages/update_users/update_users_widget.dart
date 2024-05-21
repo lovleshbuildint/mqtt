@@ -933,21 +933,21 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Expanded(
-                                                child:
-                                                    FlutterFlowDropDown<String>(
+                                                child: FlutterFlowDropDown<int>(
                                                   controller: _model
                                                           .organizationValueController ??=
-                                                      FormFieldController<
-                                                          String>(
+                                                      FormFieldController<int>(
                                                     _model.organizationValue ??=
-                                                        functions.editUserOrg(
-                                                            updateUsersGetOrganizationResponse
-                                                                .jsonBody,
-                                                            widget.userOrg,
-                                                            'org_id',
-                                                            'org_name'),
+                                                        widget.userOrg,
                                                   ),
-                                                  options: (getJsonField(
+                                                  options: List<int>.from(
+                                                      getJsonField(
+                                                    updateUsersGetOrganizationResponse
+                                                        .jsonBody,
+                                                    r'''$.result..org_id''',
+                                                    true,
+                                                  )!),
+                                                  optionLabels: (getJsonField(
                                                     updateUsersGetOrganizationResponse
                                                         .jsonBody,
                                                     r'''$.result..org_name''',
@@ -1138,21 +1138,17 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                         (_model.emailAddressTextController
                                                                     .text !=
                                                                 null &&
-                                                            _model
-                                                                    .emailAddressTextController
+                                                            _model.emailAddressTextController
                                                                     .text !=
                                                                 '') &&
                                                         (_model.passwordTextController
                                                                     .text !=
                                                                 null &&
-                                                            _model
-                                                                    .passwordTextController
+                                                            _model.passwordTextController
                                                                     .text !=
                                                                 '') &&
                                                         (_model.organizationValue !=
-                                                                null &&
-                                                            _model.organizationValue !=
-                                                                '') &&
+                                                            null) &&
                                                         (_model.roleValue !=
                                                                 null &&
                                                             _model.roleValue !=
@@ -1205,13 +1201,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                 .text,
                                                             userRole: _model
                                                                 .roleValue,
-                                                            userOrg: functions.checkIndex(
-                                                                updateUsersGetOrganizationResponse
-                                                                    .jsonBody,
-                                                                _model
-                                                                    .organizationValue,
-                                                                'org_name',
-                                                                'org_id'),
+                                                            userOrg: _model
+                                                                .organizationValue,
                                                             fullName: _model
                                                                 .fullnameTextController
                                                                 .text,
@@ -1303,13 +1294,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               .text,
                                                           userRole:
                                                               _model.roleValue,
-                                                          userOrg: functions.checkIndex(
-                                                              updateUsersGetOrganizationResponse
-                                                                  .jsonBody,
-                                                              _model
-                                                                  .organizationValue,
-                                                              'org_name',
-                                                              'org_id'),
+                                                          userOrg: _model
+                                                              .organizationValue,
                                                           fullName: _model
                                                               .fullnameTextController
                                                               .text,
