@@ -314,8 +314,10 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                   getJsonField(
                                                     userListItem,
                                                     r'''$..user_region''',
+                                                    true,
                                                   ),
                                                   ParamType.int,
+                                                  true,
                                                 ),
                                               }.withoutNulls,
                                             );

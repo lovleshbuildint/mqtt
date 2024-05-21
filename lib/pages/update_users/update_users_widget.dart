@@ -32,7 +32,7 @@ class UpdateUsersWidget extends StatefulWidget {
   final String? userRole;
   final int? userContactNum;
   final int? userAccessRoleId;
-  final int? userRegion;
+  final List<int>? userRegion;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -188,10 +188,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          valueOrDefault<String>(
-                                            widget.userRegion?.toString(),
-                                            '1232313',
-                                          ),
+                                          'Update User',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
