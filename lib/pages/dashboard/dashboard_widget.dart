@@ -1121,6 +1121,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               setState(() => _model.apiRequestCompleter = null);
                               await _model.waitForApiRequestCompleted(
                                   minWait: 2000, maxWait: 5000);
+                              await action_blocks.userInfoUpdate(context);
+                              setState(() {});
                             },
                             child: SingleChildScrollView(
                               physics: const AlwaysScrollableScrollPhysics(),
