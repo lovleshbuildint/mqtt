@@ -39,6 +39,7 @@ class MasterGroup {
   static AppVersionCheckCall appVersionCheckCall = AppVersionCheckCall();
   static GetAccessRoleCall getAccessRoleCall = GetAccessRoleCall();
   static GetRegionCall getRegionCall = GetRegionCall();
+  static GetDashboardCall getDashboardCall = GetDashboardCall();
 }
 
 class LoginCall {
@@ -620,6 +621,64 @@ class GetRegionCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class GetDashboardCall {
+  Future<ApiCallResponse> call({
+    int? orgId,
+    int? accessRoleId,
+    List<int>? regionIdList,
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+    final regionId = _serializeList(regionIdList);
+
+    final ffApiRequestBody = '''
+{
+  "orgId": "${orgId}",
+  "accessRoleId": "${accessRoleId}",
+  "regionId": "${regionId}",
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Dashboard',
+      apiUrl: '${baseUrl}/getDashboard',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  int? totalLocation(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails[:].Total_Locations''',
+      ));
+  int? onlineLocation(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails[:].Online_Locations''',
+      ));
+  int? offlineLocation(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.siteDetails[:].Offline_Locations''',
+      ));
+  List? locationDetails(dynamic response) => getJsonField(
+        response,
+        r'''$.locationDetails''',
+        true,
+      ) as List?;
 }
 
 /// End Master Group Code

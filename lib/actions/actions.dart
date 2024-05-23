@@ -21,13 +21,24 @@ Future userInfoUpdate(BuildContext context) async {
         (userInfoRespnse?.jsonBody ?? ''),
         r'''$.user_data.role''',
       ).toString().toString();
-      FFAppState().userOrg = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.user_org''',
-      ).toString().toString();
       FFAppState().contactNum = getJsonField(
         (userInfoRespnse?.jsonBody ?? ''),
         r'''$.user_data.contact_num''',
+      );
+      FFAppState().accessRoleId = getJsonField(
+        (userInfoRespnse?.jsonBody ?? ''),
+        r'''$.user_data.user_access_role''',
+      );
+      FFAppState().regionId = getJsonField(
+        (userInfoRespnse?.jsonBody ?? ''),
+        r'''$.user_data.user_region''',
+        true,
+      )!
+          .toList()
+          .cast<int>();
+      FFAppState().userOrg = getJsonField(
+        (userInfoRespnse?.jsonBody ?? ''),
+        r'''$.user_data.user_org''',
       );
     });
     return;
@@ -48,8 +59,10 @@ Future userInfoUpdate(BuildContext context) async {
         );
       },
     );
-    FFAppState().deleteToken();
-    FFAppState().token = '';
+    FFAppState().update(() {
+      FFAppState().deleteToken();
+      FFAppState().token = '';
+    });
 
     context.goNamed('LogIn');
 

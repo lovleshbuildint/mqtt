@@ -34,9 +34,6 @@ class FFAppState extends ChangeNotifier {
       _role = await secureStorage.getString('ff_role') ?? _role;
     });
     await _safeInitAsync(() async {
-      _userOrg = await secureStorage.getString('ff_userOrg') ?? _userOrg;
-    });
-    await _safeInitAsync(() async {
       _deviceStateDid =
           await secureStorage.getString('ff_deviceStateDid') ?? _deviceStateDid;
     });
@@ -59,6 +56,19 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _relayStatusiATM = await secureStorage.getString('ff_relayStatusiATM') ??
           _relayStatusiATM;
+    });
+    await _safeInitAsync(() async {
+      _accessRoleId =
+          await secureStorage.getInt('ff_accessRoleId') ?? _accessRoleId;
+    });
+    await _safeInitAsync(() async {
+      _regionId = (await secureStorage.getStringList('ff_regionId'))
+              ?.map(int.parse)
+              .toList() ??
+          _regionId;
+    });
+    await _safeInitAsync(() async {
+      _userOrg = await secureStorage.getInt('ff_userOrg') ?? _userOrg;
     });
   }
 
@@ -111,17 +121,6 @@ class FFAppState extends ChangeNotifier {
 
   void deleteRole() {
     secureStorage.delete(key: 'ff_role');
-  }
-
-  String _userOrg = '';
-  String get userOrg => _userOrg;
-  set userOrg(String _value) {
-    _userOrg = _value;
-    secureStorage.setString('ff_userOrg', _value);
-  }
-
-  void deleteUserOrg() {
-    secureStorage.delete(key: 'ff_userOrg');
   }
 
   String _deviceStateDid = '';
@@ -177,6 +176,73 @@ class FFAppState extends ChangeNotifier {
 
   void deleteRelayStatusiATM() {
     secureStorage.delete(key: 'ff_relayStatusiATM');
+  }
+
+  int _accessRoleId = 0;
+  int get accessRoleId => _accessRoleId;
+  set accessRoleId(int _value) {
+    _accessRoleId = _value;
+    secureStorage.setInt('ff_accessRoleId', _value);
+  }
+
+  void deleteAccessRoleId() {
+    secureStorage.delete(key: 'ff_accessRoleId');
+  }
+
+  List<int> _regionId = [];
+  List<int> get regionId => _regionId;
+  set regionId(List<int> _value) {
+    _regionId = _value;
+    secureStorage.setStringList(
+        'ff_regionId', _value.map((x) => x.toString()).toList());
+  }
+
+  void deleteRegionId() {
+    secureStorage.delete(key: 'ff_regionId');
+  }
+
+  void addToRegionId(int _value) {
+    _regionId.add(_value);
+    secureStorage.setStringList(
+        'ff_regionId', _regionId.map((x) => x.toString()).toList());
+  }
+
+  void removeFromRegionId(int _value) {
+    _regionId.remove(_value);
+    secureStorage.setStringList(
+        'ff_regionId', _regionId.map((x) => x.toString()).toList());
+  }
+
+  void removeAtIndexFromRegionId(int _index) {
+    _regionId.removeAt(_index);
+    secureStorage.setStringList(
+        'ff_regionId', _regionId.map((x) => x.toString()).toList());
+  }
+
+  void updateRegionIdAtIndex(
+    int _index,
+    int Function(int) updateFn,
+  ) {
+    _regionId[_index] = updateFn(_regionId[_index]);
+    secureStorage.setStringList(
+        'ff_regionId', _regionId.map((x) => x.toString()).toList());
+  }
+
+  void insertAtIndexInRegionId(int _index, int _value) {
+    _regionId.insert(_index, _value);
+    secureStorage.setStringList(
+        'ff_regionId', _regionId.map((x) => x.toString()).toList());
+  }
+
+  int _userOrg = 0;
+  int get userOrg => _userOrg;
+  set userOrg(int _value) {
+    _userOrg = _value;
+    secureStorage.setInt('ff_userOrg', _value);
+  }
+
+  void deleteUserOrg() {
+    secureStorage.delete(key: 'ff_userOrg');
   }
 }
 

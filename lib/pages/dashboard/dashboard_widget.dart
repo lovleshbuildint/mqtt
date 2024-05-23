@@ -57,10 +57,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
     return FutureBuilder<ApiCallResponse>(
       future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
-            ..complete(DashboardCall.call(
-              deviceId: FFAppState().deviceId,
-              token: FFAppState().token,
+            ..complete(MasterGroup.getDashboardCall.call(
               orgId: FFAppState().userOrg,
+              accessRoleId: FFAppState().accessRoleId,
+              regionIdList: FFAppState().regionId,
+              token: FFAppState().token,
+              deviceId: FFAppState().deviceId,
             )))
           .future,
       builder: (context, snapshot) {
@@ -81,7 +83,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
             ),
           );
         }
-        final dashboardDashboardResponse = snapshot.data!;
+        final dashboardGetDashboardResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -519,9 +521,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          DashboardCall.totalSites(
-                                            dashboardDashboardResponse.jsonBody,
-                                          )?.toString(),
+                                          MasterGroup.getDashboardCall
+                                              .totalLocation(
+                                                dashboardGetDashboardResponse
+                                                    .jsonBody,
+                                              )
+                                              ?.toString(),
                                           '0',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -609,10 +614,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  DashboardCall.onlineSites(
-                                                    dashboardDashboardResponse
-                                                        .jsonBody,
-                                                  )?.toString(),
+                                                  MasterGroup.getDashboardCall
+                                                      .onlineLocation(
+                                                        dashboardGetDashboardResponse
+                                                            .jsonBody,
+                                                      )
+                                                      ?.toString(),
                                                   '0',
                                                 ),
                                                 style: FlutterFlowTheme.of(
@@ -697,10 +704,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  DashboardCall.offlineSites(
-                                                    dashboardDashboardResponse
-                                                        .jsonBody,
-                                                  )?.toString(),
+                                                  MasterGroup.getDashboardCall
+                                                      .offlineLocation(
+                                                        dashboardGetDashboardResponse
+                                                            .jsonBody,
+                                                      )
+                                                      ?.toString(),
                                                   '0',
                                                 ),
                                                 style: FlutterFlowTheme.of(
@@ -1102,7 +1111,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         builder: (context) {
                           final locationDetails = functions
                                   .filterDashboard(
-                                      dashboardDashboardResponse.jsonBody,
+                                      dashboardGetDashboardResponse.jsonBody,
                                       _model.textController.text,
                                       _model.fliter)
                                   ?.toList() ??
