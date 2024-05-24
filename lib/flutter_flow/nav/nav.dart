@@ -198,6 +198,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'liveData',
+          path: '/liveData',
+          builder: (context, params) => LiveDataWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'advanceSettings',
+          path: '/advanceSettings',
+          builder: (context, params) => AdvanceSettingsWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

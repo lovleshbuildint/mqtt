@@ -19,3 +19,6 @@ export '/pages/device_details/device_details_widget.dart'
     show DeviceDetailsWidget;
 export '/pages/device_details_p_l_c/device_details_p_l_c_widget.dart'
     show DeviceDetailsPLCWidget;
+export '/pages/live_data/live_data_widget.dart' show LiveDataWidget;
+export '/pages/advance_settings/advance_settings_widget.dart'
+    show AdvanceSettingsWidget;

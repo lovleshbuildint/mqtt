@@ -210,6 +210,39 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                             ),
                           ],
                         ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            setState(() {
+                              FFAppState().deleteMqttTime();
+                              FFAppState().mqttTime = '';
+
+                              FFAppState().deleteDeviceStatusDIDJson();
+                              FFAppState().deviceStatusDIDJson = null;
+
+                              FFAppState().deleteRelayStatusiATM();
+                              FFAppState().relayStatusiATM = '';
+                            });
+
+                            context.pushNamed(
+                              'advanceSettings',
+                              queryParameters: {
+                                'did': serializeParam(
+                                  widget.did,
+                                  ParamType.String,
+                                ),
+                              }.withoutNulls,
+                            );
+                          },
+                          child: Icon(
+                            Icons.settings_suggest_outlined,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 28.0,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -573,12 +606,12 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         Text(
                                           'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                               FFAppState().deviceStatusDIDJson,
-                                              r'''$.VN''',
+                                              r'''$.VE''',
                                             ).toString() : getJsonField(
                                               deviceDetailsGetDeviceStatusResponse
                                                   .jsonBody,
                                               r'''$.deviceStatus.VN''',
-                                            ).toString()}',
+                                            ).toString()}V',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -590,12 +623,12 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         Text(
                                           'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                               FFAppState().deviceStatusDIDJson,
-                                              r'''$.VE''',
+                                              r'''$.VN''',
                                             ).toString() : getJsonField(
                                               deviceDetailsGetDeviceStatusResponse
                                                   .jsonBody,
                                               r'''$.deviceStatus.VE''',
-                                            ).toString()}',
+                                            ).toString()}V',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -630,7 +663,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               deviceDetailsGetDeviceStatusResponse
                                                   .jsonBody,
                                               r'''$.deviceStatus.VU''',
-                                            ).toString()}',
+                                            ).toString()}V',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -647,7 +680,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               deviceDetailsGetDeviceStatusResponse
                                                   .jsonBody,
                                               r'''$.deviceStatus.ups_phase_to_earth_voltage''',
-                                            ).toString()}',
+                                            ).toString()}V',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
