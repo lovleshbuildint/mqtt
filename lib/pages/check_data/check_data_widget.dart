@@ -187,8 +187,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           ),
                                     ),
                                   ),
-                                  fixedWidth:
-                                      MediaQuery.sizeOf(context).width * 1.0,
+                                  fixedWidth: 500.0,
                                 ),
                               ],
                               dataRowBuilder: (datalistItem, datalistIndex,
@@ -213,7 +212,8 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           letterSpacing: 0.0,
                                         ),
                                   ),
-                                  Text(
+                                  SelectionArea(
+                                      child: Text(
                                     getJsonField(
                                       datalistItem,
                                       r'''$..data''',
@@ -223,9 +223,9 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                         .override(
                                           fontFamily: 'Readex Pro',
                                           fontSize: 12.0,
-                                          letterSpacing: 0.0,
+                                          letterSpacing: 1.0,
                                         ),
-                                  ),
+                                  )),
                                 ].map((c) => DataCell(c)).toList(),
                               ),
                               paginated: true,
