@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -187,7 +188,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           ),
                                     ),
                                   ),
-                                  fixedWidth: 500.0,
+                                  fixedWidth: 700.0,
                                 ),
                               ],
                               dataRowBuilder: (datalistItem, datalistIndex,
@@ -213,7 +214,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                         ),
                                   ),
                                   SelectionArea(
-                                      child: Text(
+                                      child: AutoSizeText(
                                     getJsonField(
                                       datalistItem,
                                       r'''$..data''',
@@ -225,6 +226,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           fontSize: 12.0,
                                           letterSpacing: 1.0,
                                         ),
+                                    minFontSize: 8.0,
                                   )),
                                 ].map((c) => DataCell(c)).toList(),
                               ),
