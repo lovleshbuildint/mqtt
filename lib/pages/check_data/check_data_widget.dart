@@ -187,6 +187,8 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           ),
                                     ),
                                   ),
+                                  fixedWidth:
+                                      MediaQuery.sizeOf(context).width * 1.0,
                                 ),
                               ],
                               dataRowBuilder: (datalistItem, datalistIndex,
