@@ -210,39 +210,41 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                             ),
                           ],
                         ),
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            setState(() {
-                              FFAppState().deleteMqttTime();
-                              FFAppState().mqttTime = '';
+                        if ((FFAppState().role == 'Engineer') ||
+                            (FFAppState().role == 'Super Admin'))
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              setState(() {
+                                FFAppState().deleteMqttTime();
+                                FFAppState().mqttTime = '';
 
-                              FFAppState().deleteDeviceStatusDIDJson();
-                              FFAppState().deviceStatusDIDJson = null;
+                                FFAppState().deleteDeviceStatusDIDJson();
+                                FFAppState().deviceStatusDIDJson = null;
 
-                              FFAppState().deleteRelayStatusiATM();
-                              FFAppState().relayStatusiATM = '';
-                            });
+                                FFAppState().deleteRelayStatusiATM();
+                                FFAppState().relayStatusiATM = '';
+                              });
 
-                            context.pushNamed(
-                              'advanceSettings',
-                              queryParameters: {
-                                'did': serializeParam(
-                                  widget.did,
-                                  ParamType.String,
-                                ),
-                              }.withoutNulls,
-                            );
-                          },
-                          child: Icon(
-                            Icons.settings_suggest_outlined,
-                            color: FlutterFlowTheme.of(context).primary,
-                            size: 28.0,
+                              context.pushNamed(
+                                'advanceSettings',
+                                queryParameters: {
+                                  'did': serializeParam(
+                                    widget.did,
+                                    ParamType.String,
+                                  ),
+                                }.withoutNulls,
+                              );
+                            },
+                            child: Icon(
+                              Icons.settings_suggest_outlined,
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 28.0,
+                            ),
                           ),
-                        ),
                       ],
                     ),
                   ),

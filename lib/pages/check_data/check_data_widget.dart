@@ -188,7 +188,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           ),
                                     ),
                                   ),
-                                  fixedWidth: 1000.0,
+                                  fixedWidth: 1200.0,
                                 ),
                               ],
                               dataRowBuilder: (datalistItem, datalistIndex,
