@@ -604,9 +604,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                          'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                               FFAppState().deviceStatusDIDJson,
-                                              r'''$.VE''',
+                                              r'''$.VN''',
                                             ).toString() : getJsonField(
                                               deviceDetailsGetDeviceStatusResponse
                                                   .jsonBody,
@@ -621,9 +621,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               ),
                                         ),
                                         Text(
-                                          'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                          'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                               FFAppState().deviceStatusDIDJson,
-                                              r'''$.VN''',
+                                              r'''$.VE''',
                                             ).toString() : getJsonField(
                                               deviceDetailsGetDeviceStatusResponse
                                                   .jsonBody,
@@ -656,7 +656,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Text(
-                                          'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                          'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                               FFAppState().deviceStatusDIDJson,
                                               r'''$.VU''',
                                             ).toString() : getJsonField(
@@ -673,7 +673,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                               ),
                                         ),
                                         Text(
-                                          'Phase - Neutral: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
+                                          'Phase - Earth: ${FFAppState().relayStatusiATM != null && FFAppState().relayStatusiATM != '' ? getJsonField(
                                               FFAppState().deviceStatusDIDJson,
                                               r'''$.UE''',
                                             ).toString() : getJsonField(

@@ -40,6 +40,7 @@ class MasterGroup {
   static GetAccessRoleCall getAccessRoleCall = GetAccessRoleCall();
   static GetRegionCall getRegionCall = GetRegionCall();
   static GetDashboardCall getDashboardCall = GetDashboardCall();
+  static RawDataIATMCall rawDataIATMCall = RawDataIATMCall();
 }
 
 class LoginCall {
@@ -679,6 +680,36 @@ class GetDashboardCall {
         r'''$.locationDetails''',
         true,
       ) as List?;
+}
+
+class RawDataIATMCall {
+  Future<ApiCallResponse> call({
+    String? did = '',
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Raw Data iATM',
+      apiUrl: '${baseUrl}/rawDataiATM/${did}',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End Master Group Code

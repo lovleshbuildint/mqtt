@@ -218,6 +218,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'checkData',
+          path: '/checkData',
+          builder: (context, params) => CheckDataWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

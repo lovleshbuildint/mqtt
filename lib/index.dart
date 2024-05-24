@@ -22,3 +22,4 @@ export '/pages/device_details_p_l_c/device_details_p_l_c_widget.dart'
 export '/pages/live_data/live_data_widget.dart' show LiveDataWidget;
 export '/pages/advance_settings/advance_settings_widget.dart'
     show AdvanceSettingsWidget;
+export '/pages/check_data/check_data_widget.dart' show CheckDataWidget;

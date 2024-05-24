@@ -163,8 +163,16 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                               ),
                             ),
                             FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.pushNamed(
+                                  'checkData',
+                                  queryParameters: {
+                                    'did': serializeParam(
+                                      widget.did,
+                                      ParamType.String,
+                                    ),
+                                  }.withoutNulls,
+                                );
                               },
                               text: 'Last 100 Strings',
                               options: FFButtonOptions(
