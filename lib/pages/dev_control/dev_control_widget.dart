@@ -307,14 +307,13 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         controller:
                                             _model.dropDownValueController ??=
                                                 FormFieldController<String>(
-                                          _model.dropDownValue ??= _model
-                                                          .devResponse !=
-                                                      null &&
-                                                  _model.devResponse != ''
-                                              ? ((String var1) {
-                                                  return var1.split(',')[3];
-                                                }(FFAppState().mqttResponse))
-                                              : '002',
+                                          _model.dropDownValue ??=
+                                              _model.devResponse != null &&
+                                                      _model.devResponse != ''
+                                                  ? ((String var1) {
+                                                      return var1.split(',')[3];
+                                                    }(_model.devResponse!))
+                                                  : '002',
                                         ),
                                         options: List<String>.from(
                                             ['002', '001', '003']),
