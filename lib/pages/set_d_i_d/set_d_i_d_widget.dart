@@ -252,23 +252,25 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                 );
                                 while (!_model.setResponse &&
                                     (_model.maxTry! < 17) &&
-                                    !_model.notSetResponse) {
-                                  if (('${(String var1) {
+                                    !_model.notSetResponse &&
+                                    (FFAppState().mqttResponse != null &&
+                                        FFAppState().mqttResponse != '')) {
+                                  if ((((String var1) {
                                             return var1.split(',')[0] +
                                                 var1.split(',')[2] +
                                                 var1.split(',')[3];
-                                          }(FFAppState().mqttResponse)}' ==
+                                          }(FFAppState().mqttResponse)) ==
                                           '${widget.deviceMacId},\$SDID,OK') &&
                                       (_model.maxTry! < 15)) {
                                     setState(() {
                                       _model.setResponse = true;
                                       _model.checkResponse = false;
                                     });
-                                  } else if (('${(String var1) {
+                                  } else if ((((String var1) {
                                             return var1.split(',')[0] +
                                                 var1.split(',')[2] +
                                                 var1.split(',')[3];
-                                          }(FFAppState().mqttResponse)}' !=
+                                          }(FFAppState().mqttResponse)) !=
                                           '${widget.deviceMacId},\$SDID,OK') &&
                                       (_model.maxTry! > 14)) {
                                     setState(() {
@@ -343,11 +345,11 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                         child: Text(
-                          '${'${(String var1) {
+                          '${(String var1) {
                             return var1.split(',')[0] +
                                 var1.split(',')[2] +
                                 var1.split(',')[3];
-                          }(FFAppState().mqttResponse)}'},${'${widget.deviceMacId}\$SDIDOK'}',
+                          }(FFAppState().mqttResponse)},${'${widget.deviceMacId}\$SDIDOK'}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
