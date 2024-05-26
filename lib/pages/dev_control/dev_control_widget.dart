@@ -307,11 +307,10 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         controller:
                                             _model.dropDownValueController ??=
                                                 FormFieldController<String>(
-                                          _model.dropDownValue ??= FFAppState()
-                                                          .mqttResponse !=
+                                          _model.dropDownValue ??= _model
+                                                          .devResponse !=
                                                       null &&
-                                                  FFAppState().mqttResponse !=
-                                                      ''
+                                                  _model.devResponse != ''
                                               ? ((String var1) {
                                                   return var1.split(',')[3];
                                                 }(FFAppState().mqttResponse))
