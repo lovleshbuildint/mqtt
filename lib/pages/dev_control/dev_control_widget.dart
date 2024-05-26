@@ -74,9 +74,9 @@ class _DevControlWidgetState extends State<DevControlWidget> {
           }(FFAppState().mqttResponse)) {
             setState(() {
               _model.devResponse = FFAppState().mqttResponse;
-              _model.setTimeDay = ((String? var1) {
-                return var1?.split(',')[4];
-              }(_model.devResponse))!;
+              _model.setTimeDay = (String var1) {
+                return var1.split(',')[4];
+              }(_model.devResponse!);
             });
             return;
           } else {
