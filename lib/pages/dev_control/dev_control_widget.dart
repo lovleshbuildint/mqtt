@@ -157,9 +157,9 @@ class _DevControlWidgetState extends State<DevControlWidget> {
     _model.textFieldFocusNode12 ??= FocusNode();
 
     _model.textController13 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[16];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[16];
+    }(_model.devResponse));
     _model.textFieldFocusNode13 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
