@@ -78,6 +78,11 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                 return var1.split(',')[4];
               }(_model.devResponse);
             });
+            setState(() {
+              _model.setTimeDayTextController?.text = ((String var1) {
+                return var1 != '-' ? var1.split(',')[4] : 'DID';
+              }(_model.devResponse));
+            });
             return;
           } else {
             return;
@@ -87,47 +92,47 @@ class _DevControlWidgetState extends State<DevControlWidget> {
       );
     });
 
-    _model.textController1 ??= TextEditingController(
+    _model.setTimeDayTextController ??= TextEditingController(
         text: (String var1) {
       return var1 != '-' ? var1.split(',')[4] : 'DID';
     }(_model.devResponse));
-    _model.textFieldFocusNode1 ??= FocusNode();
+    _model.setTimeDayFocusNode ??= FocusNode();
 
     _model.textController2 ??= TextEditingController();
-    _model.textFieldFocusNode2 ??= FocusNode();
+    _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController3 ??= TextEditingController();
-    _model.textFieldFocusNode3 ??= FocusNode();
+    _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
+    _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.textController5 ??= TextEditingController();
-    _model.textFieldFocusNode5 ??= FocusNode();
+    _model.textFieldFocusNode4 ??= FocusNode();
 
     _model.textController6 ??= TextEditingController();
-    _model.textFieldFocusNode6 ??= FocusNode();
+    _model.textFieldFocusNode5 ??= FocusNode();
 
     _model.textController7 ??= TextEditingController();
-    _model.textFieldFocusNode7 ??= FocusNode();
+    _model.textFieldFocusNode6 ??= FocusNode();
 
     _model.textController8 ??= TextEditingController();
-    _model.textFieldFocusNode8 ??= FocusNode();
+    _model.textFieldFocusNode7 ??= FocusNode();
 
     _model.textController9 ??= TextEditingController();
-    _model.textFieldFocusNode9 ??= FocusNode();
+    _model.textFieldFocusNode8 ??= FocusNode();
 
     _model.textController10 ??= TextEditingController();
-    _model.textFieldFocusNode10 ??= FocusNode();
+    _model.textFieldFocusNode9 ??= FocusNode();
 
     _model.textController11 ??= TextEditingController();
-    _model.textFieldFocusNode11 ??= FocusNode();
+    _model.textFieldFocusNode10 ??= FocusNode();
 
     _model.textController12 ??= TextEditingController();
-    _model.textFieldFocusNode12 ??= FocusNode();
+    _model.textFieldFocusNode11 ??= FocusNode();
 
     _model.textController13 ??= TextEditingController();
-    _model.textFieldFocusNode13 ??= FocusNode();
+    _model.textFieldFocusNode12 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -414,8 +419,9 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             15.0, 0.0, 0.0, 0.0),
                                         child: TextFormField(
-                                          controller: _model.textController1,
-                                          focusNode: _model.textFieldFocusNode1,
+                                          controller:
+                                              _model.setTimeDayTextController,
+                                          focusNode: _model.setTimeDayFocusNode,
                                           autofocus: false,
                                           textInputAction: TextInputAction.next,
                                           obscureText: false,
@@ -477,7 +483,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                               null,
                                           keyboardType: TextInputType.number,
                                           validator: _model
-                                              .textController1Validator
+                                              .setTimeDayTextControllerValidator
                                               .asValidator(context),
                                         ),
                                       ),
@@ -527,7 +533,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController2,
-                                        focusNode: _model.textFieldFocusNode2,
+                                        focusNode: _model.textFieldFocusNode1,
                                         autofocus: false,
                                         textInputAction: TextInputAction.next,
                                         obscureText: false,
@@ -639,7 +645,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController3,
-                                        focusNode: _model.textFieldFocusNode3,
+                                        focusNode: _model.textFieldFocusNode2,
                                         autofocus: false,
                                         textInputAction: TextInputAction.next,
                                         obscureText: false,
@@ -751,7 +757,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController4,
-                                        focusNode: _model.textFieldFocusNode4,
+                                        focusNode: _model.textFieldFocusNode3,
                                         autofocus: false,
                                         textInputAction: TextInputAction.next,
                                         obscureText: false,
@@ -863,7 +869,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController5,
-                                        focusNode: _model.textFieldFocusNode5,
+                                        focusNode: _model.textFieldFocusNode4,
                                         autofocus: false,
                                         textInputAction: TextInputAction.next,
                                         obscureText: false,
@@ -975,7 +981,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController6,
-                                        focusNode: _model.textFieldFocusNode6,
+                                        focusNode: _model.textFieldFocusNode5,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1087,7 +1093,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController7,
-                                        focusNode: _model.textFieldFocusNode7,
+                                        focusNode: _model.textFieldFocusNode6,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1199,7 +1205,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController8,
-                                        focusNode: _model.textFieldFocusNode8,
+                                        focusNode: _model.textFieldFocusNode7,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1311,7 +1317,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController9,
-                                        focusNode: _model.textFieldFocusNode9,
+                                        focusNode: _model.textFieldFocusNode8,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1423,7 +1429,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController10,
-                                        focusNode: _model.textFieldFocusNode10,
+                                        focusNode: _model.textFieldFocusNode9,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1535,7 +1541,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController11,
-                                        focusNode: _model.textFieldFocusNode11,
+                                        focusNode: _model.textFieldFocusNode10,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1648,7 +1654,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController12,
-                                        focusNode: _model.textFieldFocusNode12,
+                                        focusNode: _model.textFieldFocusNode11,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
@@ -1761,7 +1767,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           15.0, 0.0, 0.0, 0.0),
                                       child: TextFormField(
                                         controller: _model.textController13,
-                                        focusNode: _model.textFieldFocusNode13,
+                                        focusNode: _model.textFieldFocusNode12,
                                         autofocus: false,
                                         textInputAction: TextInputAction.done,
                                         obscureText: false,
