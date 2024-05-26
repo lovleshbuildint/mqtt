@@ -20,6 +20,8 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   String? devResponse;
 
+  String setTimeDay = '03:00';
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

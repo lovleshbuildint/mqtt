@@ -74,6 +74,9 @@ class _DevControlWidgetState extends State<DevControlWidget> {
           }(FFAppState().mqttResponse)) {
             setState(() {
               _model.devResponse = FFAppState().mqttResponse;
+              _model.setTimeDay = ((String? var1) {
+                return var1?.split(',')[4];
+              }(_model.devResponse))!;
             });
             return;
           } else {
@@ -84,10 +87,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
       );
     });
 
-    _model.textController1 ??= TextEditingController(
-        text: (String? var1) {
-      return var1?.split(',')[4];
-    }(_model.devResponse));
+    _model.textController1 ??= TextEditingController(text: _model.setTimeDay);
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
