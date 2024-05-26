@@ -260,23 +260,25 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                                 var1.split(',')[2] +
                                                 var1.split(',')[3];
                                           }(FFAppState().mqttResponse)) ==
-                                          '${widget.deviceMacId},\$SDID,OK') &&
+                                          '${widget.deviceMacId}\$SDIDOK') &&
                                       (_model.maxTry! < 15)) {
                                     setState(() {
                                       _model.setResponse = true;
                                       _model.checkResponse = false;
                                     });
+                                    break;
                                   } else if ((((String var1) {
                                             return var1.split(',')[0] +
                                                 var1.split(',')[2] +
                                                 var1.split(',')[3];
                                           }(FFAppState().mqttResponse)) !=
-                                          '${widget.deviceMacId},\$SDID,OK') &&
+                                          '${widget.deviceMacId}\$SDIDOK') &&
                                       (_model.maxTry! > 14)) {
                                     setState(() {
                                       _model.notSetResponse = true;
                                       _model.checkResponse = false;
                                     });
+                                    break;
                                   } else {
                                     await Future.delayed(
                                         const Duration(milliseconds: 1000));
