@@ -248,7 +248,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                   }(),
                                 );
                                 while (!_model.setResponse &&
-                                    (_model.maxTry! < 16) &&
+                                    (_model.maxTry! < 17) &&
                                     !_model.notSetResponse) {
                                   if (('${(String var1) {
                                             return var1.split(',')[0] +
