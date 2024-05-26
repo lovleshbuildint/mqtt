@@ -246,14 +246,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          valueOrDefault<String>(
-                            (String? var1) {
-                              return var1?.split(',')[5] != null
-                                  ? var1?.split(',')[5]
-                                  : '';
-                            }(_model.devResponse),
-                            'DID',
-                          ),
+                          _model.setTimeDay,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
