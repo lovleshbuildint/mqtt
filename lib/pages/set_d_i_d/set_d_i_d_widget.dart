@@ -259,6 +259,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                       (_model.maxTry! < 15)) {
                                     setState(() {
                                       _model.setResponse = true;
+                                      _model.checkResponse = false;
                                     });
                                   } else if (('${(String var1) {
                                             return var1.split(',')[0] +
