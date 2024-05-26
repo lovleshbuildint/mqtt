@@ -73,376 +73,390 @@ class _NotificationWidgetState extends State<NotificationWidget> {
           );
         }
         final notificationGetNotificationResponse = snapshot.data!;
-        return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: SafeArea(
-              top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 0.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.safePop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Color(0xFF2D2D2D),
-                            size: 24.0,
-                          ),
+        return Title(
+            title: 'Notification',
+            color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+            child: GestureDetector(
+              onTap: () => _model.unfocusNode.canRequestFocus
+                  ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                  : FocusScope.of(context).unfocus(),
+              child: Scaffold(
+                key: scaffoldKey,
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                body: SafeArea(
+                  top: true,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            13.0, 20.0, 0.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.safePop();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Color(0xFF2D2D2D),
+                                size: 24.0,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  7.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'Notifications',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Color(0xFF2D2D2D),
+                                      fontSize: 20.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                              ),
+                            ),
+                          ],
                         ),
-                        Padding(
+                      ),
+                      Expanded(
+                        child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              7.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Notifications',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFF2D2D2D),
-                                  fontSize: 20.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          13.0, 25.0, 13.0, 15.0),
-                      child: Builder(
-                        builder: (context) {
-                          final notiData = getJsonField(
-                            notificationGetNotificationResponse.jsonBody,
-                            r'''$.result''',
-                          ).toList();
-                          return ListView.builder(
-                            padding: EdgeInsets.zero,
-                            scrollDirection: Axis.vertical,
-                            itemCount: notiData.length,
-                            itemBuilder: (context, notiDataIndex) {
-                              final notiDataItem = notiData[notiDataIndex];
-                              return Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          Expanded(
-                                            child: RichText(
-                                              textScaler: MediaQuery.of(context)
-                                                  .textScaler,
-                                              text: TextSpan(
-                                                children: [
-                                                  TextSpan(
-                                                    text: getJsonField(
-                                                      notiDataItem,
-                                                      r'''$..username''',
-                                                    ).toString(),
+                              13.0, 25.0, 13.0, 15.0),
+                          child: Builder(
+                            builder: (context) {
+                              final notiData = getJsonField(
+                                notificationGetNotificationResponse.jsonBody,
+                                r'''$.result''',
+                              ).toList();
+                              return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                scrollDirection: Axis.vertical,
+                                itemCount: notiData.length,
+                                itemBuilder: (context, notiDataIndex) {
+                                  final notiDataItem = notiData[notiDataIndex];
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 15.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Expanded(
+                                                child: RichText(
+                                                  textScaler:
+                                                      MediaQuery.of(context)
+                                                          .textScaler,
+                                                  text: TextSpan(
+                                                    children: [
+                                                      TextSpan(
+                                                        text: getJsonField(
+                                                          notiDataItem,
+                                                          r'''$..username''',
+                                                        ).toString(),
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Readex Pro',
+                                                              color: Color(
+                                                                  0xFF2D2D2D),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal,
+                                                            ),
+                                                      ),
+                                                      TextSpan(
+                                                        text:
+                                                            ' requested to register new device',
+                                                        style: TextStyle(
+                                                          color:
+                                                              Color(0xFF737373),
+                                                          fontSize: 14.0,
+                                                        ),
+                                                      )
+                                                    ],
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
                                                         .override(
                                                           fontFamily:
                                                               'Readex Pro',
-                                                          color:
-                                                              Color(0xFF2D2D2D),
-                                                          fontSize: 16.0,
                                                           letterSpacing: 0.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
                                                         ),
                                                   ),
-                                                  TextSpan(
-                                                    text:
-                                                        ' requested to register new device',
-                                                    style: TextStyle(
-                                                      color: Color(0xFF737373),
-                                                      fontSize: 14.0,
-                                                    ),
-                                                  )
-                                                ],
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                ),
                                               ),
-                                            ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          8.0, 0.0, 0.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        children: [
-                                          FlutterFlowIconButton(
-                                            borderRadius: 8.0,
-                                            fillColor: Color(0xFF07D95A),
-                                            icon: Icon(
-                                              Icons.check_box_outlined,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              FlutterFlowIconButton(
+                                                borderRadius: 8.0,
+                                                fillColor: Color(0xFF07D95A),
+                                                icon: Icon(
+                                                  Icons.check_box_outlined,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .secondaryBackground,
-                                              size: 20.0,
-                                            ),
-                                            onPressed: () async {
-                                              var confirmDialogResponse =
-                                                  await showDialog<bool>(
+                                                  size: 20.0,
+                                                ),
+                                                onPressed: () async {
+                                                  var confirmDialogResponse =
+                                                      await showDialog<bool>(
+                                                            context: context,
+                                                            builder:
+                                                                (alertDialogContext) {
+                                                              return AlertDialog(
+                                                                content: Text(
+                                                                    'Grant access?'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                    child: Text(
+                                                                        'Cancel'),
+                                                                  ),
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                    child: Text(
+                                                                        'Confirm'),
+                                                                  ),
+                                                                ],
+                                                              );
+                                                            },
+                                                          ) ??
+                                                          false;
+                                                  if (confirmDialogResponse) {
+                                                    _model.changeStateReponse =
+                                                        await MasterGroup
+                                                            .changeDeviceStateCall
+                                                            .call(
+                                                      username: getJsonField(
+                                                        notiDataItem,
+                                                        r'''$..username''',
+                                                      ).toString(),
+                                                      newState: 1,
+                                                      token: FFAppState().token,
+                                                      deviceId:
+                                                          FFAppState().deviceId,
+                                                    );
+                                                    if ((_model
+                                                            .changeStateReponse
+                                                            ?.succeeded ??
+                                                        true)) {
+                                                      await showDialog(
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
                                                           return AlertDialog(
-                                                            content: Text(
-                                                                'Grant access?'),
+                                                            content: Text((_model
+                                                                    .changeStateReponse
+                                                                    ?.bodyText ??
+                                                                '')),
                                                             actions: [
                                                               TextButton(
                                                                 onPressed: () =>
                                                                     Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        false),
-                                                                child: Text(
-                                                                    'Cancel'),
-                                                              ),
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext,
-                                                                        true),
-                                                                child: Text(
-                                                                    'Confirm'),
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
                                                               ),
                                                             ],
                                                           );
                                                         },
-                                                      ) ??
-                                                      false;
-                                              if (confirmDialogResponse) {
-                                                _model.changeStateReponse =
-                                                    await MasterGroup
-                                                        .changeDeviceStateCall
-                                                        .call(
-                                                  username: getJsonField(
-                                                    notiDataItem,
-                                                    r'''$..username''',
-                                                  ).toString(),
-                                                  newState: 1,
-                                                  token: FFAppState().token,
-                                                  deviceId:
-                                                      FFAppState().deviceId,
-                                                );
-                                                if ((_model.changeStateReponse
-                                                        ?.succeeded ??
-                                                    true)) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        content: Text((_model
-                                                                .changeStateReponse
-                                                                ?.bodyText ??
-                                                            '')),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
                                                       );
-                                                    },
-                                                  );
-                                                } else {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        content: Text((_model
-                                                                .changeStateReponse
-                                                                ?.bodyText ??
-                                                            '')),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
+                                                    } else {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            content: Text((_model
+                                                                    .changeStateReponse
+                                                                    ?.bodyText ??
+                                                                '')),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
                                                       );
-                                                    },
-                                                  );
-                                                }
-                                              }
+                                                    }
+                                                  }
 
-                                              setState(() {});
-                                            },
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 0.0, 0.0),
-                                            child: FlutterFlowIconButton(
-                                              borderColor: Colors.transparent,
-                                              borderRadius: 8.0,
-                                              fillColor: Color(0xC4F71A1A),
-                                              icon: Icon(
-                                                Icons
-                                                    .disabled_by_default_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryBackground,
-                                                size: 20.0,
+                                                  setState(() {});
+                                                },
                                               ),
-                                              onPressed: () async {
-                                                var confirmDialogResponse =
-                                                    await showDialog<bool>(
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 0.0, 0.0),
+                                                child: FlutterFlowIconButton(
+                                                  borderColor:
+                                                      Colors.transparent,
+                                                  borderRadius: 8.0,
+                                                  fillColor: Color(0xC4F71A1A),
+                                                  icon: Icon(
+                                                    Icons
+                                                        .disabled_by_default_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    size: 20.0,
+                                                  ),
+                                                  onPressed: () async {
+                                                    var confirmDialogResponse =
+                                                        await showDialog<bool>(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  content: Text(
+                                                                      'Cancle Access?'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                      child: Text(
+                                                                          'Cancel'),
+                                                                    ),
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                      child: Text(
+                                                                          'Confirm'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            ) ??
+                                                            false;
+                                                    if (confirmDialogResponse) {
+                                                      _model.changeStateReponseCopy =
+                                                          await MasterGroup
+                                                              .changeDeviceStateCall
+                                                              .call(
+                                                        username: getJsonField(
+                                                          notiDataItem,
+                                                          r'''$..username''',
+                                                        ).toString(),
+                                                        newState: 0,
+                                                        token:
+                                                            FFAppState().token,
+                                                        deviceId: FFAppState()
+                                                            .deviceId,
+                                                      );
+                                                      if ((_model
+                                                              .changeStateReponseCopy
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        await showDialog(
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
                                                             return AlertDialog(
-                                                              content: Text(
-                                                                  'Cancle Access?'),
+                                                              content: Text((_model
+                                                                      .changeStateReponseCopy
+                                                                      ?.bodyText ??
+                                                                  '')),
                                                               actions: [
                                                                 TextButton(
                                                                   onPressed: () =>
                                                                       Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
+                                                                          alertDialogContext),
                                                                   child: Text(
-                                                                      'Cancel'),
-                                                                ),
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                  child: Text(
-                                                                      'Confirm'),
+                                                                      'Ok'),
                                                                 ),
                                                               ],
                                                             );
                                                           },
-                                                        ) ??
-                                                        false;
-                                                if (confirmDialogResponse) {
-                                                  _model.changeStateReponseCopy =
-                                                      await MasterGroup
-                                                          .changeDeviceStateCall
-                                                          .call(
-                                                    username: getJsonField(
-                                                      notiDataItem,
-                                                      r'''$..username''',
-                                                    ).toString(),
-                                                    newState: 0,
-                                                    token: FFAppState().token,
-                                                    deviceId:
-                                                        FFAppState().deviceId,
-                                                  );
-                                                  if ((_model
-                                                          .changeStateReponseCopy
-                                                          ?.succeeded ??
-                                                      true)) {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          content: Text((_model
-                                                                  .changeStateReponseCopy
-                                                                  ?.bodyText ??
-                                                              '')),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
                                                         );
-                                                      },
-                                                    );
-                                                  } else {
-                                                    await showDialog(
-                                                      context: context,
-                                                      builder:
-                                                          (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          content: Text((_model
-                                                                  .changeStateReponseCopy
-                                                                  ?.bodyText ??
-                                                              '')),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              content: Text((_model
+                                                                      .changeStateReponseCopy
+                                                                      ?.bodyText ??
+                                                                  '')),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
                                                         );
-                                                      },
-                                                    );
-                                                  }
-                                                }
+                                                      }
+                                                    }
 
-                                                setState(() {});
-                                              },
-                                            ),
+                                                    setState(() {});
+                                                  },
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
+                                  );
+                                },
                               );
                             },
-                          );
-                        },
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        );
+            ));
       },
     );
   }

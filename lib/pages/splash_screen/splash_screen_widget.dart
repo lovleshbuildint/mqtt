@@ -179,32 +179,35 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: Container(
-          width: MediaQuery.sizeOf(context).width * 1.0,
-          height: MediaQuery.sizeOf(context).height * 1.0,
-          decoration: BoxDecoration(
-            color: Color(0xFF0C172A),
+    return Title(
+        title: 'splashScreen',
+        color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+        child: GestureDetector(
+          onTap: () => _model.unfocusNode.canRequestFocus
+              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+              : FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            key: scaffoldKey,
+            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            body: Container(
+              width: MediaQuery.sizeOf(context).width * 1.0,
+              height: MediaQuery.sizeOf(context).height * 1.0,
+              decoration: BoxDecoration(
+                color: Color(0xFF0C172A),
+              ),
+              child: FlutterFlowVideoPlayer(
+                path: 'assets/videos/VN20240425_110707.mp4',
+                videoType: VideoType.asset,
+                width: double.infinity,
+                height: MediaQuery.sizeOf(context).height * 1.0,
+                autoPlay: true,
+                looping: false,
+                showControls: false,
+                allowFullScreen: true,
+                allowPlaybackSpeedMenu: false,
+              ),
+            ),
           ),
-          child: FlutterFlowVideoPlayer(
-            path: 'assets/videos/VN20240425_110707.mp4',
-            videoType: VideoType.asset,
-            width: double.infinity,
-            height: MediaQuery.sizeOf(context).height * 1.0,
-            autoPlay: true,
-            looping: false,
-            showControls: false,
-            allowFullScreen: true,
-            allowPlaybackSpeedMenu: false,
-          ),
-        ),
-      ),
-    );
+        ));
   }
 }

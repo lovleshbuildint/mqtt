@@ -83,665 +83,702 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
           );
         }
         final userManagementGetUserListResponse = snapshot.data!;
-        return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: SafeArea(
-              top: true,
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 20.0, 13.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.safePop();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: Color(0xFF2D2D2D),
-                            size: 24.0,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              7.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'User Management',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Color(0xFF2D2D2D),
-                                  fontSize: 20.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(13.0, 15.0, 13.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 15.0, 0.0),
-                            child: TextFormField(
-                              controller: _model.textController,
-                              focusNode: _model.textFieldFocusNode,
-                              onChanged: (_) => EasyDebounce.debounce(
-                                '_model.textController',
-                                Duration(milliseconds: 0),
-                                () async {
-                                  setState(() {
-                                    _model.searchValueUser =
-                                        _model.textController.text;
-                                  });
-                                },
+        return Title(
+            title: 'UserManagement',
+            color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+            child: GestureDetector(
+              onTap: () => _model.unfocusNode.canRequestFocus
+                  ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                  : FocusScope.of(context).unfocus(),
+              child: Scaffold(
+                key: scaffoldKey,
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                body: SafeArea(
+                  top: true,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            13.0, 20.0, 13.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                context.safePop();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Color(0xFF2D2D2D),
+                                size: 24.0,
                               ),
-                              autofocus: false,
-                              textCapitalization: TextCapitalization.none,
-                              obscureText: false,
-                              decoration: InputDecoration(
-                                isDense: true,
-                                hintText: 'Search User',
-                                hintStyle: FlutterFlowTheme.of(context)
-                                    .labelMedium
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  7.0, 0.0, 0.0, 0.0),
+                              child: Text(
+                                'User Management',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
                                     .override(
                                       fontFamily: 'Readex Pro',
-                                      fontSize: 12.0,
+                                      color: Color(0xFF2D2D2D),
+                                      fontSize: 20.0,
                                       letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
                                     ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            13.0, 15.0, 13.0, 0.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 15.0, 0.0),
+                                child: TextFormField(
+                                  controller: _model.textController,
+                                  focusNode: _model.textFieldFocusNode,
+                                  onChanged: (_) => EasyDebounce.debounce(
+                                    '_model.textController',
+                                    Duration(milliseconds: 0),
+                                    () async {
+                                      setState(() {
+                                        _model.searchValueUser =
+                                            _model.textController.text;
+                                      });
+                                    },
                                   ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    width: 1.0,
+                                  autofocus: false,
+                                  textCapitalization: TextCapitalization.none,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    isDense: true,
+                                    hintText: 'Search User',
+                                    hintStyle: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          fontSize: 12.0,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color:
+                                            FlutterFlowTheme.of(context).error,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5.0),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: FlutterFlowTheme.of(context).error,
-                                    width: 1.0,
-                                  ),
-                                  borderRadius: BorderRadius.circular(5.0),
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Readex Pro',
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
+                                      ),
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
                                 ),
                               ),
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    fontSize: 14.0,
-                                    letterSpacing: 0.0,
-                                  ),
-                              validator: _model.textControllerValidator
-                                  .asValidator(context),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          13.0, 15.0, 13.0, 15.0),
-                      child: Builder(
-                        builder: (context) {
-                          final userList = functions
-                                  .searchFilter(
-                                      getJsonField(
-                                        userManagementGetUserListResponse
-                                            .jsonBody,
-                                        r'''$.result''',
-                                      ),
-                                      _model.searchValueUser,
-                                      'username')
-                                  ?.toList() ??
-                              [];
-                          return RefreshIndicator(
-                            onRefresh: () async {
-                              setState(() => _model.apiRequestCompleter = null);
-                              await _model.waitForApiRequestCompleted(
-                                  minWait: 2000, maxWait: 5000);
-                            },
-                            child: ListView.builder(
-                              padding: EdgeInsets.zero,
-                              scrollDirection: Axis.vertical,
-                              itemCount: userList.length,
-                              itemBuilder: (context, userListIndex) {
-                                final userListItem = userList[userListIndex];
-                                return Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 15.0),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            context.pushNamed(
-                                              'UpdateUsers',
-                                              queryParameters: {
-                                                'fullName': serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..full_name''',
-                                                  ).toString(),
-                                                  ParamType.String,
-                                                ),
-                                                'username': serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..username''',
-                                                  ).toString(),
-                                                  ParamType.String,
-                                                ),
-                                                'userOrg': serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..user_org''',
-                                                  ),
-                                                  ParamType.int,
-                                                ),
-                                                'userRole': serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..user_role''',
-                                                  ).toString(),
-                                                  ParamType.String,
-                                                ),
-                                                'userContactNum':
-                                                    serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..contact_num''',
-                                                  ),
-                                                  ParamType.int,
-                                                ),
-                                                'userAccessRoleId':
-                                                    serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..user_access_role''',
-                                                  ),
-                                                  ParamType.int,
-                                                ),
-                                                'userRegion': serializeParam(
-                                                  getJsonField(
-                                                    userListItem,
-                                                    r'''$..user_region''',
-                                                    true,
-                                                  ),
-                                                  ParamType.int,
-                                                  true,
-                                                ),
-                                              }.withoutNulls,
-                                            );
-                                          },
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              AutoSizeText(
-                                                getJsonField(
-                                                  userListItem,
-                                                  r'''$..username''',
-                                                ).toString(),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Color(0xFF2D2D2D),
-                                                      fontSize: 16.0,
-                                                      letterSpacing: 0.0,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              13.0, 15.0, 13.0, 15.0),
+                          child: Builder(
+                            builder: (context) {
+                              final userList = functions
+                                      .searchFilter(
+                                          getJsonField(
+                                            userManagementGetUserListResponse
+                                                .jsonBody,
+                                            r'''$.result''',
+                                          ),
+                                          _model.searchValueUser,
+                                          'username')
+                                      ?.toList() ??
+                                  [];
+                              return RefreshIndicator(
+                                onRefresh: () async {
+                                  setState(
+                                      () => _model.apiRequestCompleter = null);
+                                  await _model.waitForApiRequestCompleted(
+                                      minWait: 2000, maxWait: 5000);
+                                },
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: userList.length,
+                                  itemBuilder: (context, userListIndex) {
+                                    final userListItem =
+                                        userList[userListIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                context.pushNamed(
+                                                  'UpdateUsers',
+                                                  queryParameters: {
+                                                    'fullName': serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..full_name''',
+                                                      ).toString(),
+                                                      ParamType.String,
                                                     ),
-                                                minFontSize: 12.0,
+                                                    'username': serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..username''',
+                                                      ).toString(),
+                                                      ParamType.String,
+                                                    ),
+                                                    'userOrg': serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..user_org''',
+                                                      ),
+                                                      ParamType.int,
+                                                    ),
+                                                    'userRole': serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..user_role''',
+                                                      ).toString(),
+                                                      ParamType.String,
+                                                    ),
+                                                    'userContactNum':
+                                                        serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..contact_num''',
+                                                      ),
+                                                      ParamType.int,
+                                                    ),
+                                                    'userAccessRoleId':
+                                                        serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..user_access_role''',
+                                                      ),
+                                                      ParamType.int,
+                                                    ),
+                                                    'userRegion':
+                                                        serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..user_region''',
+                                                        true,
+                                                      ),
+                                                      ParamType.int,
+                                                      true,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  AutoSizeText(
+                                                    getJsonField(
+                                                      userListItem,
+                                                      r'''$..username''',
+                                                    ).toString(),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color:
+                                                              Color(0xFF2D2D2D),
+                                                          fontSize: 16.0,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                    minFontSize: 12.0,
+                                                  ),
+                                                  Text(
+                                                    'Role: ${getJsonField(
+                                                      userListItem,
+                                                      r'''$..user_role''',
+                                                    ).toString()}',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          color:
+                                                              Color(0xFF737373),
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ],
                                               ),
-                                              Text(
-                                                'Role: ${getJsonField(
-                                                  userListItem,
-                                                  r'''$..user_role''',
-                                                ).toString()}',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      fontFamily: 'Readex Pro',
-                                                      color: Color(0xFF737373),
-                                                      letterSpacing: 0.0,
+                                            ),
+                                          ),
+                                          Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Icon(
+                                                      Icons
+                                                          .manage_accounts_outlined,
+                                                      color: Color(0xE02D2D2D),
+                                                      size: 28.0,
                                                     ),
+                                                    InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        setState(() => _model
+                                                                .apiRequestCompleter =
+                                                            null);
+                                                        await _model
+                                                            .waitForApiRequestCompleted(
+                                                                minWait: 1000,
+                                                                maxWait: 5000);
+                                                      },
+                                                      child: SwitchsWidget(
+                                                        key: Key(
+                                                            'Keyqy4_${userListIndex}_of_${userList.length}'),
+                                                        value: getJsonField(
+                                                          userListItem,
+                                                          r'''$..user_state''',
+                                                        ),
+                                                        username: getJsonField(
+                                                          userListItem,
+                                                          r'''$..username''',
+                                                        ).toString(),
+                                                        deviceState:
+                                                            getJsonField(
+                                                          userListItem,
+                                                          r'''$..device_id_state''',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    FlutterFlowIconButton(
+                                                      borderColor:
+                                                          Color(0x004154F1),
+                                                      fillColor:
+                                                          Color(0x004B39EF),
+                                                      icon: Icon(
+                                                        Icons
+                                                            .delete_forever_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 28.0,
+                                                      ),
+                                                      onPressed: () async {
+                                                        var _shouldSetState =
+                                                            false;
+                                                        var confirmDialogResponse =
+                                                            await showDialog<
+                                                                    bool>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      content: Text(
+                                                                          'Delete User?'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              Text('Cancel'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                        if (confirmDialogResponse) {
+                                                          _model.deleteUserResponse =
+                                                              await MasterGroup
+                                                                  .deleteUserOrDeviceCall
+                                                                  .call(
+                                                            username:
+                                                                getJsonField(
+                                                              userListItem,
+                                                              r'''$..username''',
+                                                            ).toString(),
+                                                            deleteUser: 1,
+                                                            deleteDevice: 0,
+                                                            token: FFAppState()
+                                                                .token,
+                                                            deviceId:
+                                                                FFAppState()
+                                                                    .deviceId,
+                                                          );
+                                                          _shouldSetState =
+                                                              true;
+                                                          if ((_model
+                                                                  .deleteUserResponse
+                                                                  ?.succeeded ??
+                                                              true)) {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  content: Text((_model
+                                                                          .deleteUserResponse
+                                                                          ?.bodyText ??
+                                                                      '')),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          } else {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  content: Text((_model
+                                                                          .deleteUserResponse
+                                                                          ?.bodyText ??
+                                                                      '')),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          }
+
+                                                          setState(() => _model
+                                                                  .apiRequestCompleter =
+                                                              null);
+                                                          await _model
+                                                              .waitForApiRequestCompleted(
+                                                                  minWait: 1000,
+                                                                  maxWait:
+                                                                      5000);
+                                                          if (_shouldSetState)
+                                                            setState(() {});
+                                                          return;
+                                                        } else {
+                                                          if (_shouldSetState)
+                                                            setState(() {});
+                                                          return;
+                                                        }
+
+                                                        if (_shouldSetState)
+                                                          setState(() {});
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.phone_iphone,
+                                                      color: Color(0xE02D2D2D),
+                                                      size: 28.0,
+                                                    ),
+                                                    InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        setState(() => _model
+                                                                .apiRequestCompleter =
+                                                            null);
+                                                        await _model
+                                                            .waitForApiRequestCompleted(
+                                                                minWait: 1000,
+                                                                maxWait: 5000);
+                                                      },
+                                                      child: Switchs2Widget(
+                                                        key: Key(
+                                                            'Keyhn4_${userListIndex}_of_${userList.length}'),
+                                                        value: getJsonField(
+                                                          userListItem,
+                                                          r'''$..device_id_state''',
+                                                        ),
+                                                        username: getJsonField(
+                                                          userListItem,
+                                                          r'''$..username''',
+                                                        ).toString(),
+                                                        newUserState:
+                                                            getJsonField(
+                                                          userListItem,
+                                                          r'''$..user_state''',
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    FlutterFlowIconButton(
+                                                      borderColor:
+                                                          Color(0x004154F1),
+                                                      borderRadius: 30.0,
+                                                      buttonSize: 46.0,
+                                                      fillColor:
+                                                          Color(0x004B39EF),
+                                                      icon: Icon(
+                                                        Icons
+                                                            .delete_forever_outlined,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        size: 28.0,
+                                                      ),
+                                                      onPressed: () async {
+                                                        var _shouldSetState =
+                                                            false;
+                                                        var confirmDialogResponse =
+                                                            await showDialog<
+                                                                    bool>(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (alertDialogContext) {
+                                                                    return AlertDialog(
+                                                                      content: Text(
+                                                                          'Delete Device?'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              false),
+                                                                          child:
+                                                                              Text('Cancel'),
+                                                                        ),
+                                                                        TextButton(
+                                                                          onPressed: () => Navigator.pop(
+                                                                              alertDialogContext,
+                                                                              true),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  },
+                                                                ) ??
+                                                                false;
+                                                        if (confirmDialogResponse) {
+                                                          _model.deleteDeviceResponse =
+                                                              await MasterGroup
+                                                                  .deleteUserOrDeviceCall
+                                                                  .call(
+                                                            username:
+                                                                getJsonField(
+                                                              userListItem,
+                                                              r'''$..username''',
+                                                            ).toString(),
+                                                            deleteUser: 0,
+                                                            deleteDevice: 1,
+                                                            token: FFAppState()
+                                                                .token,
+                                                            deviceId:
+                                                                FFAppState()
+                                                                    .deviceId,
+                                                          );
+                                                          _shouldSetState =
+                                                              true;
+                                                          if ((_model
+                                                                  .deleteDeviceResponse
+                                                                  ?.succeeded ??
+                                                              true)) {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  content: Text((_model
+                                                                          .deleteDeviceResponse
+                                                                          ?.bodyText ??
+                                                                      '')),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          } else {
+                                                            await showDialog(
+                                                              context: context,
+                                                              builder:
+                                                                  (alertDialogContext) {
+                                                                return AlertDialog(
+                                                                  content: Text((_model
+                                                                          .deleteDeviceResponse
+                                                                          ?.bodyText ??
+                                                                      '')),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              },
+                                                            );
+                                                          }
+
+                                                          setState(() => _model
+                                                                  .apiRequestCompleter =
+                                                              null);
+                                                          await _model
+                                                              .waitForApiRequestCompleted(
+                                                                  minWait: 1000,
+                                                                  maxWait:
+                                                                      5000);
+                                                          if (_shouldSetState)
+                                                            setState(() {});
+                                                          return;
+                                                        } else {
+                                                          if (_shouldSetState)
+                                                            setState(() {});
+                                                          return;
+                                                        }
+
+                                                        if (_shouldSetState)
+                                                          setState(() {});
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Icon(
-                                                  Icons
-                                                      .manage_accounts_outlined,
-                                                  color: Color(0xE02D2D2D),
-                                                  size: 28.0,
-                                                ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    setState(() => _model
-                                                            .apiRequestCompleter =
-                                                        null);
-                                                    await _model
-                                                        .waitForApiRequestCompleted(
-                                                            minWait: 1000,
-                                                            maxWait: 5000);
-                                                  },
-                                                  child: SwitchsWidget(
-                                                    key: Key(
-                                                        'Keyqy4_${userListIndex}_of_${userList.length}'),
-                                                    value: getJsonField(
-                                                      userListItem,
-                                                      r'''$..user_state''',
-                                                    ),
-                                                    username: getJsonField(
-                                                      userListItem,
-                                                      r'''$..username''',
-                                                    ).toString(),
-                                                    deviceState: getJsonField(
-                                                      userListItem,
-                                                      r'''$..device_id_state''',
-                                                    ),
-                                                  ),
-                                                ),
-                                                FlutterFlowIconButton(
-                                                  borderColor:
-                                                      Color(0x004154F1),
-                                                  fillColor: Color(0x004B39EF),
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_forever_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 28.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    var _shouldSetState = false;
-                                                    var confirmDialogResponse =
-                                                        await showDialog<bool>(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  content: Text(
-                                                                      'Delete User?'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed: () => Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                      child: Text(
-                                                                          'Cancel'),
-                                                                    ),
-                                                                    TextButton(
-                                                                      onPressed: () => Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            ) ??
-                                                            false;
-                                                    if (confirmDialogResponse) {
-                                                      _model.deleteUserResponse =
-                                                          await MasterGroup
-                                                              .deleteUserOrDeviceCall
-                                                              .call(
-                                                        username: getJsonField(
-                                                          userListItem,
-                                                          r'''$..username''',
-                                                        ).toString(),
-                                                        deleteUser: 1,
-                                                        deleteDevice: 0,
-                                                        token:
-                                                            FFAppState().token,
-                                                        deviceId: FFAppState()
-                                                            .deviceId,
-                                                      );
-                                                      _shouldSetState = true;
-                                                      if ((_model
-                                                              .deleteUserResponse
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text((_model
-                                                                      .deleteUserResponse
-                                                                      ?.bodyText ??
-                                                                  '')),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
-                                                      } else {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text((_model
-                                                                      .deleteUserResponse
-                                                                      ?.bodyText ??
-                                                                  '')),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
-                                                      }
-
-                                                      setState(() => _model
-                                                              .apiRequestCompleter =
-                                                          null);
-                                                      await _model
-                                                          .waitForApiRequestCompleted(
-                                                              minWait: 1000,
-                                                              maxWait: 5000);
-                                                      if (_shouldSetState)
-                                                        setState(() {});
-                                                      return;
-                                                    } else {
-                                                      if (_shouldSetState)
-                                                        setState(() {});
-                                                      return;
-                                                    }
-
-                                                    if (_shouldSetState)
-                                                      setState(() {});
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    8.0, 0.0, 0.0, 0.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Icon(
-                                                  Icons.phone_iphone,
-                                                  color: Color(0xE02D2D2D),
-                                                  size: 28.0,
-                                                ),
-                                                InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    setState(() => _model
-                                                            .apiRequestCompleter =
-                                                        null);
-                                                    await _model
-                                                        .waitForApiRequestCompleted(
-                                                            minWait: 1000,
-                                                            maxWait: 5000);
-                                                  },
-                                                  child: Switchs2Widget(
-                                                    key: Key(
-                                                        'Keyhn4_${userListIndex}_of_${userList.length}'),
-                                                    value: getJsonField(
-                                                      userListItem,
-                                                      r'''$..device_id_state''',
-                                                    ),
-                                                    username: getJsonField(
-                                                      userListItem,
-                                                      r'''$..username''',
-                                                    ).toString(),
-                                                    newUserState: getJsonField(
-                                                      userListItem,
-                                                      r'''$..user_state''',
-                                                    ),
-                                                  ),
-                                                ),
-                                                FlutterFlowIconButton(
-                                                  borderColor:
-                                                      Color(0x004154F1),
-                                                  borderRadius: 30.0,
-                                                  buttonSize: 46.0,
-                                                  fillColor: Color(0x004B39EF),
-                                                  icon: Icon(
-                                                    Icons
-                                                        .delete_forever_outlined,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    size: 28.0,
-                                                  ),
-                                                  onPressed: () async {
-                                                    var _shouldSetState = false;
-                                                    var confirmDialogResponse =
-                                                        await showDialog<bool>(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  content: Text(
-                                                                      'Delete Device?'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed: () => Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          false),
-                                                                      child: Text(
-                                                                          'Cancel'),
-                                                                    ),
-                                                                    TextButton(
-                                                                      onPressed: () => Navigator.pop(
-                                                                          alertDialogContext,
-                                                                          true),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            ) ??
-                                                            false;
-                                                    if (confirmDialogResponse) {
-                                                      _model.deleteDeviceResponse =
-                                                          await MasterGroup
-                                                              .deleteUserOrDeviceCall
-                                                              .call(
-                                                        username: getJsonField(
-                                                          userListItem,
-                                                          r'''$..username''',
-                                                        ).toString(),
-                                                        deleteUser: 0,
-                                                        deleteDevice: 1,
-                                                        token:
-                                                            FFAppState().token,
-                                                        deviceId: FFAppState()
-                                                            .deviceId,
-                                                      );
-                                                      _shouldSetState = true;
-                                                      if ((_model
-                                                              .deleteDeviceResponse
-                                                              ?.succeeded ??
-                                                          true)) {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text((_model
-                                                                      .deleteDeviceResponse
-                                                                      ?.bodyText ??
-                                                                  '')),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
-                                                      } else {
-                                                        await showDialog(
-                                                          context: context,
-                                                          builder:
-                                                              (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              content: Text((_model
-                                                                      .deleteDeviceResponse
-                                                                      ?.bodyText ??
-                                                                  '')),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            );
-                                                          },
-                                                        );
-                                                      }
-
-                                                      setState(() => _model
-                                                              .apiRequestCompleter =
-                                                          null);
-                                                      await _model
-                                                          .waitForApiRequestCompleted(
-                                                              minWait: 1000,
-                                                              maxWait: 5000);
-                                                      if (_shouldSetState)
-                                                        setState(() {});
-                                                      return;
-                                                    } else {
-                                                      if (_shouldSetState)
-                                                        setState(() {});
-                                                      return;
-                                                    }
-
-                                                    if (_shouldSetState)
-                                                      setState(() {});
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          ),
                                         ],
                                       ),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        },
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-          ),
-        );
+            ));
       },
     );
   }

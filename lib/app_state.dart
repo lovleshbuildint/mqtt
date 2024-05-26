@@ -244,6 +244,12 @@ class FFAppState extends ChangeNotifier {
   void deleteUserOrg() {
     secureStorage.delete(key: 'ff_userOrg');
   }
+
+  String _mqttResponse = '';
+  String get mqttResponse => _mqttResponse;
+  set mqttResponse(String _value) {
+    _mqttResponse = _value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

@@ -79,183 +79,193 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
           );
         }
         final checkDataRawDataIATMResponse = snapshot.data!;
-        return GestureDetector(
-          onTap: () => _model.unfocusNode.canRequestFocus
-              ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-              : FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: SafeArea(
-              top: true,
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
+        return Title(
+            title: 'checkData',
+            color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
+            child: GestureDetector(
+              onTap: () => _model.unfocusNode.canRequestFocus
+                  ? FocusScope.of(context).requestFocus(_model.unfocusNode)
+                  : FocusScope.of(context).unfocus(),
+              child: Scaffold(
+                key: scaffoldKey,
+                backgroundColor:
+                    FlutterFlowTheme.of(context).secondaryBackground,
+                body: SafeArea(
+                  top: true,
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(13.0, 0.0, 13.0, 0.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 20.0, 0.0, 0.0),
+                          child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.safePop();
-                                },
-                                child: Icon(
-                                  Icons.arrow_back,
-                                  color: Color(0xFF2D2D2D),
-                                  size: 24.0,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    7.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Data View',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: Color(0xFF2D2D2D),
-                                        fontSize: 20.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                      ),
-                                ),
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.safePop();
+                                    },
+                                    child: Icon(
+                                      Icons.arrow_back,
+                                      color: Color(0xFF2D2D2D),
+                                      size: 24.0,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        7.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Data View',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: Color(0xFF2D2D2D),
+                                            fontSize: 20.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
-                        child: Builder(
-                          builder: (context) {
-                            final datalist = getJsonField(
-                              checkDataRawDataIATMResponse.jsonBody,
-                              r'''$.deviceStatus''',
-                            ).toList();
-                            return FlutterFlowDataTable<dynamic>(
-                              controller: _model.paginatedDataTableController,
-                              data: datalist,
-                              columnsBuilder: (onSortChanged) => [
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Text(
-                                      'Location ID',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ),
-                                  fixedWidth: 120.0,
-                                ),
-                                DataColumn2(
-                                  label: DefaultTextStyle.merge(
-                                    softWrap: true,
-                                    child: Text(
-                                      'Data',
-                                      style: FlutterFlowTheme.of(context)
-                                          .labelLarge
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            fontSize: 14.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ),
-                                  fixedWidth: 1200.0,
-                                ),
-                              ],
-                              dataRowBuilder: (datalistItem, datalistIndex,
-                                      selected, onSelectChanged) =>
-                                  DataRow(
-                                color: MaterialStateProperty.all(
-                                  datalistIndex % 2 == 0
-                                      ? FlutterFlowTheme.of(context).accent4
-                                      : FlutterFlowTheme.of(context).accent4,
-                                ),
-                                cells: [
-                                  Text(
-                                    getJsonField(
-                                      datalistItem,
-                                      r'''$..DID''',
-                                    ).toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 12.0,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  SelectionArea(
-                                      child: AutoSizeText(
-                                    getJsonField(
-                                      datalistItem,
-                                      r'''$..data''',
-                                    ).toString(),
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          fontSize: 12.0,
-                                          letterSpacing: 1.0,
-                                        ),
-                                    minFontSize: 8.0,
-                                  )),
-                                ].map((c) => DataCell(c)).toList(),
-                              ),
-                              paginated: false,
-                              selectable: false,
-                              headingRowHeight: 56.0,
-                              dataRowHeight: 70.0,
-                              columnSpacing: 15.0,
-                              headingRowColor:
-                                  FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(8.0),
-                              addHorizontalDivider: false,
-                              addTopAndBottomDivider: false,
-                              hideDefaultHorizontalDivider: false,
-                              addVerticalDivider: true,
-                              verticalDividerColor:
-                                  FlutterFlowTheme.of(context).secondaryText,
-                              verticalDividerThickness: 1.0,
-                            );
-                          },
                         ),
-                      ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 30.0, 0.0, 0.0),
+                            child: Builder(
+                              builder: (context) {
+                                final datalist = getJsonField(
+                                  checkDataRawDataIATMResponse.jsonBody,
+                                  r'''$.deviceStatus''',
+                                ).toList();
+                                return FlutterFlowDataTable<dynamic>(
+                                  controller:
+                                      _model.paginatedDataTableController,
+                                  data: datalist,
+                                  columnsBuilder: (onSortChanged) => [
+                                    DataColumn2(
+                                      label: DefaultTextStyle.merge(
+                                        softWrap: true,
+                                        child: Text(
+                                          'Location ID',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                      fixedWidth: 120.0,
+                                    ),
+                                    DataColumn2(
+                                      label: DefaultTextStyle.merge(
+                                        softWrap: true,
+                                        child: Text(
+                                          'Data',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelLarge
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                fontSize: 14.0,
+                                                letterSpacing: 0.0,
+                                              ),
+                                        ),
+                                      ),
+                                      fixedWidth: 1200.0,
+                                    ),
+                                  ],
+                                  dataRowBuilder: (datalistItem, datalistIndex,
+                                          selected, onSelectChanged) =>
+                                      DataRow(
+                                    color: MaterialStateProperty.all(
+                                      datalistIndex % 2 == 0
+                                          ? FlutterFlowTheme.of(context).accent4
+                                          : FlutterFlowTheme.of(context)
+                                              .accent4,
+                                    ),
+                                    cells: [
+                                      Text(
+                                        getJsonField(
+                                          datalistItem,
+                                          r'''$..DID''',
+                                        ).toString(),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 12.0,
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                      SelectionArea(
+                                          child: AutoSizeText(
+                                        getJsonField(
+                                          datalistItem,
+                                          r'''$..data''',
+                                        ).toString(),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              fontSize: 12.0,
+                                              letterSpacing: 1.0,
+                                            ),
+                                        minFontSize: 8.0,
+                                      )),
+                                    ].map((c) => DataCell(c)).toList(),
+                                  ),
+                                  paginated: false,
+                                  selectable: false,
+                                  headingRowHeight: 56.0,
+                                  dataRowHeight: 70.0,
+                                  columnSpacing: 15.0,
+                                  headingRowColor:
+                                      FlutterFlowTheme.of(context).primary,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  addHorizontalDivider: false,
+                                  addTopAndBottomDivider: false,
+                                  hideDefaultHorizontalDivider: false,
+                                  addVerticalDivider: true,
+                                  verticalDividerColor:
+                                      FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                  verticalDividerThickness: 1.0,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-        );
+            ));
       },
     );
   }
