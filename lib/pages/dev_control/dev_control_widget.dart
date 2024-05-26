@@ -85,9 +85,9 @@ class _DevControlWidgetState extends State<DevControlWidget> {
     });
 
     _model.textController1 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[4];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[4];
+    }(_model.devResponse));
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
