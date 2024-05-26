@@ -72,9 +72,10 @@ class _DevControlWidgetState extends State<DevControlWidget>
             );
           }(),
         );
-        if ((String? var1) {
-          return var1?.split(',')[2] == '\$GDEV' ? true : false;
-        }(FFAppState().mqttResponse)) {
+        if (((String? var1) {
+              return var1?.split(',')[2] == '\$GDEV' ? true : false;
+            }(FFAppState().mqttResponse)) &&
+            (_model.maxTry < 15)) {
           setState(() {
             _model.devResponse = FFAppState().mqttResponse;
           });
