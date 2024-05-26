@@ -1015,7 +1015,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         controller: _model.textController1,
                                         focusNode: _model.textFieldFocusNode1,
                                         autofocus: false,
-                                        textInputAction: TextInputAction.done,
+                                        textInputAction: TextInputAction.next,
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           enabledBorder: OutlineInputBorder(
@@ -1077,10 +1077,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         validator: _model
                                             .textController1Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1193,10 +1189,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         validator: _model
                                             .textController2Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1309,10 +1301,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         validator: _model
                                             .textController3Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1425,10 +1413,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         validator: _model
                                             .textController4Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1541,10 +1525,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         validator: _model
                                             .textController5Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1657,10 +1637,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         validator: _model
                                             .textController6Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1769,14 +1745,11 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                                 required isFocused,
                                                 maxLength}) =>
                                             null,
-                                        keyboardType: TextInputType.number,
+                                        keyboardType: const TextInputType
+                                            .numberWithOptions(decimal: true),
                                         validator: _model
                                             .textController7Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -1885,14 +1858,11 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                                 required isFocused,
                                                 maxLength}) =>
                                             null,
-                                        keyboardType: TextInputType.number,
+                                        keyboardType: const TextInputType
+                                            .numberWithOptions(decimal: true),
                                         validator: _model
                                             .textController8Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
@@ -2001,14 +1971,11 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                                 required isFocused,
                                                 maxLength}) =>
                                             null,
-                                        keyboardType: TextInputType.number,
+                                        keyboardType: const TextInputType
+                                            .numberWithOptions(decimal: true),
                                         validator: _model
                                             .textController9Validator
                                             .asValidator(context),
-                                        inputFormatters: [
-                                          FilteringTextInputFormatter.allow(
-                                              RegExp('[0-9]'))
-                                        ],
                                       ),
                                     ),
                                   ),
