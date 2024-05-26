@@ -144,17 +144,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SplashScreenWidget(),
         ),
         FFRoute(
-          name: 'advanceControl',
-          path: '/advanceControl',
-          builder: (context, params) => AdvanceControlWidget(
-            onlineOfflineStatus: params.getParam(
-              'onlineOfflineStatus',
-              ParamType.String,
-            ),
-            deviceStatus: params.getParam(
-              'deviceStatus',
-              ParamType.JSON,
-            ),
+          name: 'devControl',
+          path: '/devControl',
+          builder: (context, params) => DevControlWidget(
             did: params.getParam(
               'did',
               ParamType.String,

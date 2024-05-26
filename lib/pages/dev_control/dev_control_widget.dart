@@ -3,57 +3,104 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'advance_control_model.dart';
-export 'advance_control_model.dart';
+import 'dev_control_model.dart';
+export 'dev_control_model.dart';
 
-class AdvanceControlWidget extends StatefulWidget {
-  const AdvanceControlWidget({
+class DevControlWidget extends StatefulWidget {
+  const DevControlWidget({
     super.key,
-    required this.onlineOfflineStatus,
-    required this.deviceStatus,
     required this.did,
   });
 
-  final String? onlineOfflineStatus;
-  final dynamic deviceStatus;
   final String? did;
 
   @override
-  State<AdvanceControlWidget> createState() => _AdvanceControlWidgetState();
+  State<DevControlWidget> createState() => _DevControlWidgetState();
 }
 
-class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
-  late AdvanceControlModel _model;
+class _DevControlWidgetState extends State<DevControlWidget> {
+  late DevControlModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AdvanceControlModel());
+    _model = createModel(context, () => DevControlModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await action_blocks.userInfoUpdate(context);
+      setState(() {});
+      unawaited(
+        () async {
+          await actions.subscribeMqtt(
+            context,
+            'Response',
+            FFAppState().deviceId,
+            widget.did,
+            '15.206.230.32',
+            'mqtt_buildint_\$\$2023',
+          );
+        }(),
+      );
+      _model.instantTimer = InstantTimer.periodic(
+        duration: Duration(milliseconds: 5000),
+        callback: (timer) async {
+          unawaited(
+            () async {
+              await actions.publishMqtt(
+                context,
+                'Settings',
+                '${widget.did}\$GDEV,',
+                FFAppState().deviceId,
+                '15.206.230.32',
+                'mqtt_buildint_\$\$2023',
+              );
+            }(),
+          );
+          if ((String var1) {
+            return var1.split(',')[2] == '\$GDEV' ? true : false;
+          }(FFAppState().mqttResponse)) {
+            setState(() {
+              _model.devResponse = FFAppState().mqttResponse;
+            });
+            return;
+          } else {
+            return;
+          }
+        },
+        startImmediately: true,
+      );
+    });
 
     _model.textController1 ??= TextEditingController(text: '0120');
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController(text: '28');
+    _model.textController2 ??= TextEditingController(text: '28.0');
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: '26');
+    _model.textController3 ??= TextEditingController(text: '26.0');
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController(text: '28');
+    _model.textController4 ??= TextEditingController(text: '28.0');
     _model.textFieldFocusNode4 ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController(text: '26');
+    _model.textController5 ??= TextEditingController(text: '26.0');
     _model.textFieldFocusNode5 ??= FocusNode();
 
-    _model.textController6 ??= TextEditingController(text: '26');
+    _model.textController6 ??= TextEditingController(text: '120');
     _model.textFieldFocusNode6 ??= FocusNode();
 
     _model.textController7 ??= TextEditingController(text: '26');
@@ -80,7 +127,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
     context.watch<FFAppState>();
 
     return Title(
-        title: 'advanceControl',
+        title: 'devControl',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
@@ -123,7 +170,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   7.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Advance Controlling',
+                                'DEV Settings',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -167,41 +214,22 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                           children: [
                             Column(
                               mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 2.0, 7.0, 0.0),
-                                      child: Container(
-                                        width: 10.0,
-                                        height: 10.0,
-                                        decoration: BoxDecoration(
-                                          color: widget.onlineOfflineStatus ==
-                                                  'Online'
-                                              ? Color(0xFF07D95A)
-                                              : FlutterFlowTheme.of(context)
-                                                  .error,
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 2.0, 0.0, 0.0),
+                                  child: Container(
+                                    width: 10.0,
+                                    height: 10.0,
+                                    decoration: BoxDecoration(
+                                      color: FFAppState().mqttTime != null &&
+                                              FFAppState().mqttTime != ''
+                                          ? Color(0xFF07D95A)
+                                          : FlutterFlowTheme.of(context).error,
+                                      shape: BoxShape.circle,
                                     ),
-                                    Text(
-                                      valueOrDefault<String>(
-                                        widget.onlineOfflineStatus,
-                                        'Offline',
-                                      ),
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            color: Color(0xFF2D2D2D),
-                                            fontSize: 16.0,
-                                            letterSpacing: 0.0,
-                                          ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -212,19 +240,7 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         ? ((String var1) {
                                             return var1.split('.')[0];
                                           }(FFAppState().mqttTime))
-                                        : '${(String var1) {
-                                            return var1.split('T').first;
-                                          }(getJsonField(
-                                            widget.deviceStatus,
-                                            r'''$.deviceStatus.evt_dt''',
-                                          ).toString())} ${(String var1) {
-                                            return var1.split('.').first;
-                                          }(((String var1) {
-                                            return var1.split('T').last;
-                                          }(getJsonField(
-                                            widget.deviceStatus,
-                                            r'''$.deviceStatus.evt_dt''',
-                                          ).toString())))}',
+                                        : '-',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -291,10 +307,19 @@ class _AdvanceControlWidgetState extends State<AdvanceControlWidget> {
                                         controller:
                                             _model.dropDownValueController ??=
                                                 FormFieldController<String>(
-                                          _model.dropDownValue ??=
-                                              'AC 1 & AC 2',
+                                          _model.dropDownValue ??= FFAppState()
+                                                          .mqttResponse !=
+                                                      null &&
+                                                  FFAppState().mqttResponse !=
+                                                      ''
+                                              ? ((String var1) {
+                                                  return var1.split(',')[3];
+                                                }(FFAppState().mqttResponse))
+                                              : '002',
                                         ),
-                                        options: [
+                                        options: List<String>.from(
+                                            ['002', '001', '003']),
+                                        optionLabels: [
                                           'AC 1 & AC 2',
                                           'AC 1 Only',
                                           'AC 2 Only'

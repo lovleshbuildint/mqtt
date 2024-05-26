@@ -3,18 +3,28 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'advance_control_widget.dart' show AdvanceControlWidget;
+import '/flutter_flow/instant_timer.dart';
+import 'dart:async';
+import '/actions/actions.dart' as action_blocks;
+import '/custom_code/actions/index.dart' as actions;
+import 'dev_control_widget.dart' show DevControlWidget;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AdvanceControlModel extends FlutterFlowModel<AdvanceControlWidget> {
+class DevControlModel extends FlutterFlowModel<DevControlWidget> {
+  ///  Local state fields for this page.
+
+  String? devResponse;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  InstantTimer? instantTimer;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -65,6 +75,7 @@ class AdvanceControlModel extends FlutterFlowModel<AdvanceControlWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
+    instantTimer?.cancel();
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 

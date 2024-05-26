@@ -10,8 +10,7 @@ export '/pages/user_management/user_management_widget.dart'
     show UserManagementWidget;
 export '/pages/update_users/update_users_widget.dart' show UpdateUsersWidget;
 export '/pages/splash_screen/splash_screen_widget.dart' show SplashScreenWidget;
-export '/pages/advance_control/advance_control_widget.dart'
-    show AdvanceControlWidget;
+export '/pages/dev_control/dev_control_widget.dart' show DevControlWidget;
 export '/pages/checklist_view/checklist_view_widget.dart'
     show ChecklistViewWidget;
 export '/pages/alert_view/alert_view_widget.dart' show AlertViewWidget;
