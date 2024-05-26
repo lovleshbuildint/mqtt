@@ -275,8 +275,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                     width: 10.0,
                                     height: 10.0,
                                     decoration: BoxDecoration(
-                                      color: _model.devResponse != null &&
-                                              _model.devResponse != ''
+                                      color: _model.devResponse != '-'
                                           ? Color(0xFF07D95A)
                                           : FlutterFlowTheme.of(context).error,
                                       shape: BoxShape.circle,
