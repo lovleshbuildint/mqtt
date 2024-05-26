@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/pages/mac_id_device_id/mac_id_device_id_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
@@ -197,6 +198,75 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            useSafeArea: true,
+                                            context: context,
+                                            builder: (context) {
+                                              return GestureDetector(
+                                                onTap: () => _model.unfocusNode
+                                                        .canRequestFocus
+                                                    ? FocusScope.of(context)
+                                                        .requestFocus(
+                                                            _model.unfocusNode)
+                                                    : FocusScope.of(context)
+                                                        .unfocus(),
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: Container(
+                                                    height: MediaQuery.sizeOf(
+                                                                context)
+                                                            .height *
+                                                        0.8,
+                                                    child:
+                                                        MacIdDeviceIdWidget(),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Configure Device',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xE02D2D2D),
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                            Icon(
+                                              Icons.settings_suggest_outlined,
+                                              color: Color(0xE02D2D2D),
+                                              size: 20.0,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  if (FFAppState().role != 'ATMO')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
                                           context.pushNamed('ChecklistView');
                                         },
                                         child: Row(
@@ -314,45 +384,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('Notification');
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              'Notifications',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Color(0xE02D2D2D),
-                                                    fontSize: 16.0,
-                                                    letterSpacing: 0.0,
-                                                  ),
-                                            ),
-                                            Icon(
-                                              Icons.notifications_outlined,
-                                              color: Color(0xE02D2D2D),
-                                              size: 20.0,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  if ((FFAppState().role == 'Super Admin') ||
-                                      (FFAppState().role == 'Admin'))
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 20.0, 0.0, 0.0),
-                                      child: InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
                                           context.pushNamed('UserManagement');
                                         },
                                         child: Row(
@@ -374,6 +405,45 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                             ),
                                             Icon(
                                               Icons.manage_accounts_outlined,
+                                              color: Color(0xE02D2D2D),
+                                              size: 20.0,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  if ((FFAppState().role == 'Super Admin') ||
+                                      (FFAppState().role == 'Admin'))
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed('Notification');
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Notifications',
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    color: Color(0xE02D2D2D),
+                                                    fontSize: 16.0,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                            Icon(
+                                              Icons.notifications_outlined,
                                               color: Color(0xE02D2D2D),
                                               size: 20.0,
                                             ),
