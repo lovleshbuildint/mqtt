@@ -198,7 +198,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                     color: Color(0xFF2D2D2D),
                                     fontSize: 16.0,
                                     letterSpacing: 0.0,
-                                    fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.w500,
                                   ),
                               validator: _model.setDidTextControllerValidator
                                   .asValidator(context),
@@ -260,7 +260,6 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                     setState(() {
                                       _model.setResponse = true;
                                     });
-                                    break;
                                   } else if (('${(String var1) {
                                             return var1.split(',')[0] +
                                                 var1.split(',')[2] +
@@ -270,8 +269,8 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                       (_model.maxTry! > 14)) {
                                     setState(() {
                                       _model.notSetResponse = true;
+                                      _model.checkResponse = false;
                                     });
-                                    break;
                                   } else {
                                     await Future.delayed(
                                         const Duration(milliseconds: 1000));
