@@ -340,7 +340,11 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                         child: Text(
-                          '${FFAppState().mqttResponse} ${_model.maxTry?.toString()}',
+                          '${FFAppState().mqttResponse} ${_model.maxTry?.toString()} ${('${(String var1) {
+                                return var1.split(',')[0] +
+                                    var1.split(',')[2] +
+                                    var1.split(',')[3];
+                              }(FFAppState().mqttResponse)}' == '${widget.deviceMacId},\$SDID,OK').toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
