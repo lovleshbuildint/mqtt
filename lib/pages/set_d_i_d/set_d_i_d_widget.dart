@@ -143,7 +143,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                             child: TextFormField(
                               controller: _model.setDidTextController,
                               focusNode: _model.setDidFocusNode,
-                              textCapitalization: TextCapitalization.characters,
+                              textCapitalization: TextCapitalization.words,
                               textInputAction: TextInputAction.done,
                               obscureText: false,
                               decoration: InputDecoration(

@@ -229,8 +229,14 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                                           _model.unfocusNode)
                                                   : FocusScope.of(context)
                                                       .unfocus(),
-                                              child: SetDIDWidget(
-                                                deviceMacId: widget.did!,
+                                              child: Container(
+                                                width:
+                                                    MediaQuery.sizeOf(context)
+                                                            .width *
+                                                        0.8,
+                                                child: SetDIDWidget(
+                                                  deviceMacId: widget.did!,
+                                                ),
                                               ),
                                             ),
                                           );
