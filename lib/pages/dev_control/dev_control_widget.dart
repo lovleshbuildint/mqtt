@@ -8,7 +8,6 @@ import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -85,32 +84,83 @@ class _DevControlWidgetState extends State<DevControlWidget> {
       );
     });
 
-    _model.textController1 ??= TextEditingController(text: '0120');
+    _model.textController1 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[4];
+    }(_model.devResponse!));
     _model.textFieldFocusNode1 ??= FocusNode();
 
-    _model.textController2 ??= TextEditingController(text: '28.0');
+    _model.textController2 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[5];
+    }(_model.devResponse!));
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    _model.textController3 ??= TextEditingController(text: '26.0');
+    _model.textController3 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[6];
+    }(_model.devResponse!));
     _model.textFieldFocusNode3 ??= FocusNode();
 
-    _model.textController4 ??= TextEditingController(text: '28.0');
+    _model.textController4 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[7];
+    }(_model.devResponse!));
     _model.textFieldFocusNode4 ??= FocusNode();
 
-    _model.textController5 ??= TextEditingController(text: '26.0');
+    _model.textController5 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[8];
+    }(_model.devResponse!));
     _model.textFieldFocusNode5 ??= FocusNode();
 
-    _model.textController6 ??= TextEditingController(text: '120');
+    _model.textController6 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[9];
+    }(_model.devResponse!));
     _model.textFieldFocusNode6 ??= FocusNode();
 
-    _model.textController7 ??= TextEditingController(text: '26');
+    _model.textController7 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[10];
+    }(_model.devResponse!));
     _model.textFieldFocusNode7 ??= FocusNode();
 
-    _model.textController8 ??= TextEditingController(text: '26');
+    _model.textController8 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[11];
+    }(_model.devResponse!));
     _model.textFieldFocusNode8 ??= FocusNode();
 
-    _model.textController9 ??= TextEditingController(text: '26');
+    _model.textController9 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[12];
+    }(_model.devResponse!));
     _model.textFieldFocusNode9 ??= FocusNode();
+
+    _model.textController10 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[13];
+    }(_model.devResponse!));
+    _model.textFieldFocusNode10 ??= FocusNode();
+
+    _model.textController11 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[14];
+    }(_model.devResponse!));
+    _model.textFieldFocusNode11 ??= FocusNode();
+
+    _model.textController12 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[15];
+    }(_model.devResponse!));
+    _model.textFieldFocusNode12 ??= FocusNode();
+
+    _model.textController13 ??= TextEditingController(
+        text: (String var1) {
+      return var1.split(',')[16];
+    }(_model.devResponse!));
+    _model.textFieldFocusNode13 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -197,7 +247,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            _model.devResponse,
+                            widget.did,
                             'DID',
                           ),
                           style:
@@ -310,13 +360,9 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                               _model.dropDownValueController ??=
                                                   FormFieldController<String>(
                                             _model.dropDownValue ??=
-                                                _model.devResponse != null &&
-                                                        _model.devResponse != ''
-                                                    ? ((String var1) {
-                                                        return var1
-                                                            .split(',')[3];
-                                                      }(_model.devResponse!))
-                                                    : '002',
+                                                (String var1) {
+                                              return var1.split(',')[3];
+                                            }(_model.devResponse!),
                                           ),
                                           options: List<String>.from(
                                               ['002', '001', '003']),
@@ -389,662 +435,6 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
                                           'Set Time (Day)',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                color: Color(0xFF4D4D4D),
-                                                letterSpacing: 0.0,
-                                              ),
-                                          minFontSize: 9.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 0.0, 0.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            final _datePicked1Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime: TimeOfDay
-                                                  .fromDateTime(DateTime
-                                                      .fromMicrosecondsSinceEpoch(
-                                                          1710822600000000)),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 32.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
-                                            );
-                                            if (_datePicked1Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked1 = DateTime(
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710822600000000)
-                                                      .year,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710822600000000)
-                                                      .month,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710822600000000)
-                                                      .day,
-                                                  _datePicked1Time.hour,
-                                                  _datePicked1Time.minute,
-                                                );
-                                              });
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 35.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(6.0),
-                                              border: Border.all(
-                                                color: Color(0x35404042),
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 2.0, 10.0, 0.0),
-                                              child: AutoSizeText(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                      'Hm', _model.datePicked1),
-                                                  '10:00',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF4D4D4D),
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                minFontSize: 9.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 35.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        border: Border.all(
-                                          color: Color(0xFF404042),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 2.0, 10.0, 0.0),
-                                        child: AutoSizeText(
-                                          'Set Time (Night)',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                color: Color(0xFF4D4D4D),
-                                                letterSpacing: 0.0,
-                                              ),
-                                          minFontSize: 9.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 0.0, 0.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            final _datePicked2Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime: TimeOfDay
-                                                  .fromDateTime(DateTime
-                                                      .fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 32.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
-                                            );
-                                            if (_datePicked2Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked2 = DateTime(
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)
-                                                      .year,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)
-                                                      .month,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)
-                                                      .day,
-                                                  _datePicked2Time.hour,
-                                                  _datePicked2Time.minute,
-                                                );
-                                              });
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 35.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(6.0),
-                                              border: Border.all(
-                                                color: Color(0x35404042),
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 2.0, 10.0, 0.0),
-                                              child: AutoSizeText(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                      'Hm', _model.datePicked2),
-                                                  '18:00',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF4D4D4D),
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                minFontSize: 9.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 35.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        border: Border.all(
-                                          color: Color(0xFF404042),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 2.0, 10.0, 0.0),
-                                        child: AutoSizeText(
-                                          'Signage On Time',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                color: Color(0xFF4D4D4D),
-                                                letterSpacing: 0.0,
-                                              ),
-                                          minFontSize: 9.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 0.0, 0.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            final _datePicked3Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime: TimeOfDay
-                                                  .fromDateTime(DateTime
-                                                      .fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 32.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
-                                            );
-                                            if (_datePicked3Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked3 = DateTime(
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)
-                                                      .year,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)
-                                                      .month,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710851400000000)
-                                                      .day,
-                                                  _datePicked3Time.hour,
-                                                  _datePicked3Time.minute,
-                                                );
-                                              });
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 35.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(6.0),
-                                              border: Border.all(
-                                                color: Color(0x35404042),
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 2.0, 10.0, 0.0),
-                                              child: AutoSizeText(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                      'Hm', _model.datePicked3),
-                                                  '18:00',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF4D4D4D),
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                minFontSize: 9.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 35.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        border: Border.all(
-                                          color: Color(0xFF404042),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 2.0, 10.0, 0.0),
-                                        child: AutoSizeText(
-                                          'Signage Off Time',
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Poppins',
-                                                color: Color(0xFF4D4D4D),
-                                                letterSpacing: 0.0,
-                                              ),
-                                          minFontSize: 9.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            15.0, 0.0, 0.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            final _datePicked4Time =
-                                                await showTimePicker(
-                                              context: context,
-                                              initialTime: TimeOfDay
-                                                  .fromDateTime(DateTime
-                                                      .fromMicrosecondsSinceEpoch(
-                                                          1710808200000000)),
-                                              builder: (context, child) {
-                                                return wrapInMaterialTimePickerTheme(
-                                                  context,
-                                                  child!,
-                                                  headerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  headerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  headerTextStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .headlineLarge
-                                                          .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            fontSize: 32.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                  pickerBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  pickerForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  selectedDateTimeBackgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  selectedDateTimeForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  actionButtonForegroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primaryText,
-                                                  iconSize: 24.0,
-                                                );
-                                              },
-                                            );
-                                            if (_datePicked4Time != null) {
-                                              safeSetState(() {
-                                                _model.datePicked4 = DateTime(
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710808200000000)
-                                                      .year,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710808200000000)
-                                                      .month,
-                                                  DateTime.fromMicrosecondsSinceEpoch(
-                                                          1710808200000000)
-                                                      .day,
-                                                  _datePicked4Time.hour,
-                                                  _datePicked4Time.minute,
-                                                );
-                                              });
-                                            }
-                                          },
-                                          child: Container(
-                                            height: 35.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                              borderRadius:
-                                                  BorderRadius.circular(6.0),
-                                              border: Border.all(
-                                                color: Color(0x35404042),
-                                                width: 1.0,
-                                              ),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      10.0, 2.0, 10.0, 0.0),
-                                              child: AutoSizeText(
-                                                valueOrDefault<String>(
-                                                  dateTimeFormat(
-                                                      'Hm', _model.datePicked4),
-                                                  '18:00',
-                                                ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF4D4D4D),
-                                                          letterSpacing: 0.0,
-                                                        ),
-                                                minFontSize: 9.0,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Container(
-                                      height: 35.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(6.0),
-                                        border: Border.all(
-                                          color: Color(0xFF404042),
-                                          width: 1.0,
-                                        ),
-                                      ),
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 2.0, 10.0, 0.0),
-                                        child: AutoSizeText(
-                                          'Data interval',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1157,7 +547,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          'Max Temp (Day)',
+                                          'Set Time (Night)',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1177,7 +567,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           controller: _model.textController2,
                                           focusNode: _model.textFieldFocusNode2,
                                           autofocus: false,
-                                          textInputAction: TextInputAction.done,
+                                          textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             enabledBorder: OutlineInputBorder(
@@ -1270,7 +660,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          'Min Temp (Day)',
+                                          'Signage On Time',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1290,7 +680,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           controller: _model.textController3,
                                           focusNode: _model.textFieldFocusNode3,
                                           autofocus: false,
-                                          textInputAction: TextInputAction.done,
+                                          textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             enabledBorder: OutlineInputBorder(
@@ -1383,7 +773,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          'Max Temp (Night)',
+                                          'Signage Off Time',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1403,7 +793,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           controller: _model.textController4,
                                           focusNode: _model.textFieldFocusNode4,
                                           autofocus: false,
-                                          textInputAction: TextInputAction.done,
+                                          textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             enabledBorder: OutlineInputBorder(
@@ -1496,7 +886,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          'Min Temp (Night)',
+                                          'Data interval',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1516,7 +906,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                           controller: _model.textController5,
                                           focusNode: _model.textFieldFocusNode5,
                                           autofocus: false,
-                                          textInputAction: TextInputAction.done,
+                                          textInputAction: TextInputAction.next,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             enabledBorder: OutlineInputBorder(
@@ -1609,7 +999,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          ' AC On time (Day)',
+                                          'Max Temp (Day)',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1722,7 +1112,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          ' AC On time (Night)',
+                                          'Min Temp (Day)',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1800,8 +1190,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                                   required isFocused,
                                                   maxLength}) =>
                                               null,
-                                          keyboardType: const TextInputType
-                                              .numberWithOptions(decimal: true),
+                                          keyboardType: TextInputType.number,
                                           validator: _model
                                               .textController7Validator
                                               .asValidator(context),
@@ -1836,7 +1225,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          ' AC Off time (Day)',
+                                          'Max Temp (Night)',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -1914,8 +1303,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                                   required isFocused,
                                                   maxLength}) =>
                                               null,
-                                          keyboardType: const TextInputType
-                                              .numberWithOptions(decimal: true),
+                                          keyboardType: TextInputType.number,
                                           validator: _model
                                               .textController8Validator
                                               .asValidator(context),
@@ -1950,7 +1338,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             10.0, 2.0, 10.0, 0.0),
                                         child: AutoSizeText(
-                                          ' AC Off time (Night)',
+                                          'Min Temp (Night)',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -2028,10 +1416,468 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                                   required isFocused,
                                                   maxLength}) =>
                                               null,
+                                          keyboardType: TextInputType.number,
+                                          validator: _model
+                                              .textController9Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 15.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0xFF404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          ' AC On time (Day)',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController10,
+                                          focusNode:
+                                              _model.textFieldFocusNode10,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.done,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          maxLength: 4,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
+                                          buildCounter: (context,
+                                                  {required currentLength,
+                                                  required isFocused,
+                                                  maxLength}) =>
+                                              null,
+                                          keyboardType: TextInputType.number,
+                                          validator: _model
+                                              .textController10Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 15.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0xFF404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          ' AC On time (Night)',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController11,
+                                          focusNode:
+                                              _model.textFieldFocusNode11,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.done,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          maxLength: 4,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
+                                          buildCounter: (context,
+                                                  {required currentLength,
+                                                  required isFocused,
+                                                  maxLength}) =>
+                                              null,
                                           keyboardType: const TextInputType
                                               .numberWithOptions(decimal: true),
                                           validator: _model
-                                              .textController9Validator
+                                              .textController11Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 15.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0xFF404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          ' AC Off time (Day)',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController12,
+                                          focusNode:
+                                              _model.textFieldFocusNode12,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.done,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          maxLength: 4,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
+                                          buildCounter: (context,
+                                                  {required currentLength,
+                                                  required isFocused,
+                                                  maxLength}) =>
+                                              null,
+                                          keyboardType: const TextInputType
+                                              .numberWithOptions(decimal: true),
+                                          validator: _model
+                                              .textController12Validator
+                                              .asValidator(context),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 15.0, 15.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      height: 35.0,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                        borderRadius:
+                                            BorderRadius.circular(6.0),
+                                        border: Border.all(
+                                          color: Color(0xFF404042),
+                                          width: 1.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10.0, 2.0, 10.0, 0.0),
+                                        child: AutoSizeText(
+                                          ' AC Off time (Night)',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          minFontSize: 9.0,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController13,
+                                          focusNode:
+                                              _model.textFieldFocusNode13,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.done,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          maxLength: 4,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
+                                          buildCounter: (context,
+                                                  {required currentLength,
+                                                  required isFocused,
+                                                  maxLength}) =>
+                                              null,
+                                          keyboardType: const TextInputType
+                                              .numberWithOptions(decimal: true),
+                                          validator: _model
+                                              .textController13Validator
                                               .asValidator(context),
                                         ),
                                       ),

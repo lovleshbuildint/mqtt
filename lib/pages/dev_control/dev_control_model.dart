@@ -9,7 +9,6 @@ import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'dev_control_widget.dart' show DevControlWidget;
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -28,10 +27,6 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
-  DateTime? datePicked1;
-  DateTime? datePicked2;
-  DateTime? datePicked3;
-  DateTime? datePicked4;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? textController1;
@@ -68,6 +63,22 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   FocusNode? textFieldFocusNode9;
   TextEditingController? textController9;
   String? Function(BuildContext, String?)? textController9Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode10;
+  TextEditingController? textController10;
+  String? Function(BuildContext, String?)? textController10Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode11;
+  TextEditingController? textController11;
+  String? Function(BuildContext, String?)? textController11Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode12;
+  TextEditingController? textController12;
+  String? Function(BuildContext, String?)? textController12Validator;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode13;
+  TextEditingController? textController13;
+  String? Function(BuildContext, String?)? textController13Validator;
 
   @override
   void initState(BuildContext context) {}
@@ -102,5 +113,17 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
     textFieldFocusNode9?.dispose();
     textController9?.dispose();
+
+    textFieldFocusNode10?.dispose();
+    textController10?.dispose();
+
+    textFieldFocusNode11?.dispose();
+    textController11?.dispose();
+
+    textFieldFocusNode12?.dispose();
+    textController12?.dispose();
+
+    textFieldFocusNode13?.dispose();
+    textController13?.dispose();
   }
 }
