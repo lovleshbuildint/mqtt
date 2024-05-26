@@ -76,7 +76,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
               _model.devResponse = FFAppState().mqttResponse;
               _model.setTimeDay = (String var1) {
                 return var1.split(',')[4];
-              }(_model.devResponse!);
+              }(_model.devResponse);
             });
             return;
           } else {
@@ -87,7 +87,10 @@ class _DevControlWidgetState extends State<DevControlWidget> {
       );
     });
 
-    _model.textController1 ??= TextEditingController(text: _model.setTimeDay);
+    _model.textController1 ??= TextEditingController(
+        text: (String var1) {
+      return var1 != '-' ? var1.split(',')[4] : 'DID';
+    }(_model.devResponse));
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
@@ -247,8 +250,8 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                       children: [
                         Text(
                           (String var1) {
-                            return var1.split(',')[4];
-                          }(_model.devResponse!),
+                            return var1 != '-' ? var1.split(',')[4] : 'DID';
+                          }(_model.devResponse),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
@@ -284,8 +287,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    _model.devResponse != null &&
-                                            _model.devResponse != ''
+                                    _model.devResponse != '-'
                                         ? ((String var1) {
                                             return var1.split('.')[0];
                                           }(FFAppState().mqttTime))
@@ -305,7 +307,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                       ],
                     ),
                   ),
-                  if (_model.devResponse != null && _model.devResponse != '')
+                  if (_model.devResponse != '-')
                     Expanded(
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -361,7 +363,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                             _model.dropDownValue ??=
                                                 (String var1) {
                                               return var1.split(',')[3];
-                                            }(_model.devResponse!),
+                                            }(_model.devResponse),
                                           ),
                                           options: List<String>.from(
                                               ['002', '001', '003']),

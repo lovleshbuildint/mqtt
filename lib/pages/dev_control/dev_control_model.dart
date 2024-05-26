@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   ///  Local state fields for this page.
 
-  String? devResponse;
+  String devResponse = '-';
 
   String setTimeDay = '03:00';
 
