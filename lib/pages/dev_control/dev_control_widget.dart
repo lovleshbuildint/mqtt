@@ -91,69 +91,69 @@ class _DevControlWidgetState extends State<DevControlWidget> {
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[5];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[5];
+    }(_model.devResponse));
     _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController3 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[6];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[6];
+    }(_model.devResponse));
     _model.textFieldFocusNode3 ??= FocusNode();
 
     _model.textController4 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[7];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[7];
+    }(_model.devResponse));
     _model.textFieldFocusNode4 ??= FocusNode();
 
     _model.textController5 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[8];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[8];
+    }(_model.devResponse));
     _model.textFieldFocusNode5 ??= FocusNode();
 
     _model.textController6 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[9];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[9];
+    }(_model.devResponse));
     _model.textFieldFocusNode6 ??= FocusNode();
 
     _model.textController7 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[10];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[10];
+    }(_model.devResponse));
     _model.textFieldFocusNode7 ??= FocusNode();
 
     _model.textController8 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[11];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[11];
+    }(_model.devResponse));
     _model.textFieldFocusNode8 ??= FocusNode();
 
     _model.textController9 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[12];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[12];
+    }(_model.devResponse));
     _model.textFieldFocusNode9 ??= FocusNode();
 
     _model.textController10 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[13];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[13];
+    }(_model.devResponse));
     _model.textFieldFocusNode10 ??= FocusNode();
 
     _model.textController11 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[14];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[14];
+    }(_model.devResponse));
     _model.textFieldFocusNode11 ??= FocusNode();
 
     _model.textController12 ??= TextEditingController(
-        text: (String var1) {
-      return var1.split(',')[15];
-    }(_model.devResponse!));
+        text: (String? var1) {
+      return var1?.split(',')[15];
+    }(_model.devResponse));
     _model.textFieldFocusNode12 ??= FocusNode();
 
     _model.textController13 ??= TextEditingController(
