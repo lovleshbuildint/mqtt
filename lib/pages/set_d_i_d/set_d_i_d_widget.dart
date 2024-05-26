@@ -224,7 +224,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                   _model.checkResponse = true;
                                 });
                                 setState(() {
-                                  FFAppState().mqttResponse = '';
+                                  FFAppState().mqttResponse = ',,';
                                 });
                                 unawaited(
                                   () async {
@@ -349,7 +349,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                             return var1.split(',')[0] +
                                 var1.split(',')[2] +
                                 var1.split(',')[3];
-                          }(FFAppState().mqttResponse)},${'${widget.deviceMacId}\$SDIDOK'}',
+                          }(FFAppState().mqttResponse)},${'${widget.deviceMacId}\$SDIDOK'},${_model.maxTry?.toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
