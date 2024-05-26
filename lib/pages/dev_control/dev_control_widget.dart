@@ -247,7 +247,11 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.did,
+                            (String? var1) {
+                              return var1?.split(',')[5] != null
+                                  ? var1?.split(',')[5]
+                                  : '';
+                            }(_model.devResponse),
                             'DID',
                           ),
                           style:
