@@ -223,8 +223,8 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                     width: 10.0,
                                     height: 10.0,
                                     decoration: BoxDecoration(
-                                      color: FFAppState().mqttTime != null &&
-                                              FFAppState().mqttTime != ''
+                                      color: _model.devResponse != null &&
+                                              _model.devResponse != ''
                                           ? Color(0xFF07D95A)
                                           : FlutterFlowTheme.of(context).error,
                                       shape: BoxShape.circle,
@@ -235,8 +235,8 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    FFAppState().mqttTime != null &&
-                                            FFAppState().mqttTime != ''
+                                    _model.devResponse != null &&
+                                            _model.devResponse != ''
                                         ? ((String var1) {
                                             return var1.split('.')[0];
                                           }(FFAppState().mqttTime))
