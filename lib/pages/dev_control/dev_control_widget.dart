@@ -197,8 +197,8 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.did,
-                            'Device ID',
+                            _model.devResponse,
+                            'DID',
                           ),
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
