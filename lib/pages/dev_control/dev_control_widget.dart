@@ -450,88 +450,79 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                         ),
                                       ),
                                     ),
-                                    if ((String? var1) {
-                                      return var1?.split(',')[4] != null &&
-                                              var1?.split(',')[4] != ''
-                                          ? true
-                                          : false;
-                                    }(_model.devResponse))
-                                      Expanded(
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  15.0, 0.0, 0.0, 0.0),
-                                          child: TextFormField(
-                                            controller: _model.textController1,
-                                            focusNode:
-                                                _model.textFieldFocusNode1,
-                                            autofocus: false,
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            obscureText: false,
-                                            decoration: InputDecoration(
-                                              enabledBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: Color(0x35404042),
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            15.0, 0.0, 0.0, 0.0),
+                                        child: TextFormField(
+                                          controller: _model.textController1,
+                                          focusNode: _model.textFieldFocusNode1,
+                                          autofocus: false,
+                                          textInputAction: TextInputAction.next,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x35404042),
+                                                width: 1.0,
                                               ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
-                                              ),
-                                              errorBorder: OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
-                                              ),
-                                              focusedErrorBorder:
-                                                  OutlineInputBorder(
-                                                borderSide: BorderSide(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .error,
-                                                  width: 1.0,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(6.0),
-                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  color: Color(0xFF4D4D4D),
-                                                  letterSpacing: 0.0,
-                                                ),
-                                            maxLength: 4,
-                                            maxLengthEnforcement:
-                                                MaxLengthEnforcement.enforced,
-                                            buildCounter: (context,
-                                                    {required currentLength,
-                                                    required isFocused,
-                                                    maxLength}) =>
-                                                null,
-                                            keyboardType: TextInputType.number,
-                                            validator: _model
-                                                .textController1Validator
-                                                .asValidator(context),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .error,
+                                                width: 1.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                            ),
                                           ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                color: Color(0xFF4D4D4D),
+                                                letterSpacing: 0.0,
+                                              ),
+                                          maxLength: 4,
+                                          maxLengthEnforcement:
+                                              MaxLengthEnforcement.enforced,
+                                          buildCounter: (context,
+                                                  {required currentLength,
+                                                  required isFocused,
+                                                  maxLength}) =>
+                                              null,
+                                          keyboardType: TextInputType.number,
+                                          validator: _model
+                                              .textController1Validator
+                                              .asValidator(context),
                                         ),
                                       ),
+                                    ),
                                   ],
                                 ),
                               ),
