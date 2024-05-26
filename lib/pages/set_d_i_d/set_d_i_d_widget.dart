@@ -224,7 +224,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                   _model.checkResponse = true;
                                 });
                                 setState(() {
-                                  FFAppState().mqttResponse = ',,';
+                                  FFAppState().mqttResponse = '1,2,3,4';
                                 });
                                 unawaited(
                                   () async {
