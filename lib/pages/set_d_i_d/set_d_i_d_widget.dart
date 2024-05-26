@@ -413,7 +413,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
               ),
             ),
           ),
-        if (_model.setResponse)
+        if (_model.notSetResponse)
           Align(
             alignment: AlignmentDirectional(0.0, 1.0),
             child: SafeArea(
