@@ -452,6 +452,40 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                         color: Color(0xC4F71A1A),
                         size: 50.0,
                       ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                        child: FFButtonWidget(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                          },
+                          text: 'OK',
+                          options: FFButtonOptions(
+                            width: 351.0,
+                            height: 46.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: Color(0xFF4154F1),
+                            textStyle: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                  fontFamily: 'Poppins',
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
                     ],
                   ).animateOnPageLoad(
                       animationsMap['columnOnPageLoadAnimation2']!),
