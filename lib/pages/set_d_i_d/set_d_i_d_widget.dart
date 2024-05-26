@@ -342,11 +342,9 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                         child: Text(
                           '${FFAppState().mqttResponse} ${_model.maxTry?.toString()} ${'${(String var1) {
                             return var1.split(',')[0] +
-                                ',' +
                                 var1.split(',')[2] +
-                                ',' +
                                 var1.split(',')[3];
-                          }(FFAppState().mqttResponse)}'}->${'${widget.deviceMacId},\$SDID,OK'}',
+                          }(FFAppState().mqttResponse)}'}->${'${widget.deviceMacId}\$SDIDOK'}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
