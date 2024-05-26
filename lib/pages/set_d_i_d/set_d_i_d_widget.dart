@@ -340,7 +340,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                         child: Text(
-                          'Waiting for Response',
+                          '${FFAppState().mqttResponse} ${_model.maxTry?.toString()}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Poppins',
