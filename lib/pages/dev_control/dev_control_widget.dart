@@ -451,7 +451,7 @@ class _DevControlWidgetState extends State<DevControlWidget> {
                                       ),
                                     ),
                                     if ((String? var1) {
-                                      return var1?.split(',')[4] != null ||
+                                      return var1?.split(',')[4] != null &&
                                               var1?.split(',')[4] != ''
                                           ? true
                                           : false;
