@@ -1,10 +1,11 @@
+import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import 'dart:math';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'dev_control_widget.dart' show DevControlWidget;
@@ -12,6 +13,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -20,12 +22,13 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   String devResponse = '-';
 
-  String setTimeDay = '03:00';
+  int maxTry = 0;
+
+  bool noResponse = false;
 
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  InstantTimer? instantTimer;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -33,54 +36,56 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   FocusNode? setTimeDayFocusNode;
   TextEditingController? setTimeDayTextController;
   String? Function(BuildContext, String?)? setTimeDayTextControllerValidator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
-  TextEditingController? textController2;
-  String? Function(BuildContext, String?)? textController2Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController5;
-  String? Function(BuildContext, String?)? textController5Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode5;
-  TextEditingController? textController6;
-  String? Function(BuildContext, String?)? textController6Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode6;
-  TextEditingController? textController7;
-  String? Function(BuildContext, String?)? textController7Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode7;
-  TextEditingController? textController8;
-  String? Function(BuildContext, String?)? textController8Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode8;
-  TextEditingController? textController9;
-  String? Function(BuildContext, String?)? textController9Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode9;
-  TextEditingController? textController10;
-  String? Function(BuildContext, String?)? textController10Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode10;
-  TextEditingController? textController11;
-  String? Function(BuildContext, String?)? textController11Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode11;
-  TextEditingController? textController12;
-  String? Function(BuildContext, String?)? textController12Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode12;
-  TextEditingController? textController13;
-  String? Function(BuildContext, String?)? textController13Validator;
+  // State field(s) for setTimeNight widget.
+  FocusNode? setTimeNightFocusNode;
+  TextEditingController? setTimeNightTextController;
+  String? Function(BuildContext, String?)? setTimeNightTextControllerValidator;
+  // State field(s) for signageOnTime widget.
+  FocusNode? signageOnTimeFocusNode;
+  TextEditingController? signageOnTimeTextController;
+  String? Function(BuildContext, String?)? signageOnTimeTextControllerValidator;
+  // State field(s) for signageOffTime widget.
+  FocusNode? signageOffTimeFocusNode;
+  TextEditingController? signageOffTimeTextController;
+  String? Function(BuildContext, String?)?
+      signageOffTimeTextControllerValidator;
+  // State field(s) for dataInterval widget.
+  FocusNode? dataIntervalFocusNode;
+  TextEditingController? dataIntervalTextController;
+  String? Function(BuildContext, String?)? dataIntervalTextControllerValidator;
+  // State field(s) for maxTempDay widget.
+  FocusNode? maxTempDayFocusNode;
+  TextEditingController? maxTempDayTextController;
+  String? Function(BuildContext, String?)? maxTempDayTextControllerValidator;
+  // State field(s) for minTempDay widget.
+  FocusNode? minTempDayFocusNode;
+  TextEditingController? minTempDayTextController;
+  String? Function(BuildContext, String?)? minTempDayTextControllerValidator;
+  // State field(s) for maxTempNight widget.
+  FocusNode? maxTempNightFocusNode;
+  TextEditingController? maxTempNightTextController;
+  String? Function(BuildContext, String?)? maxTempNightTextControllerValidator;
+  // State field(s) for minTempNight widget.
+  FocusNode? minTempNightFocusNode;
+  TextEditingController? minTempNightTextController;
+  String? Function(BuildContext, String?)? minTempNightTextControllerValidator;
+  // State field(s) for acOnTimeDay widget.
+  FocusNode? acOnTimeDayFocusNode;
+  TextEditingController? acOnTimeDayTextController;
+  String? Function(BuildContext, String?)? acOnTimeDayTextControllerValidator;
+  // State field(s) for acOnTimeNight widget.
+  FocusNode? acOnTimeNightFocusNode;
+  TextEditingController? acOnTimeNightTextController;
+  String? Function(BuildContext, String?)? acOnTimeNightTextControllerValidator;
+  // State field(s) for acOffTimeDay widget.
+  FocusNode? acOffTimeDayFocusNode;
+  TextEditingController? acOffTimeDayTextController;
+  String? Function(BuildContext, String?)? acOffTimeDayTextControllerValidator;
+  // State field(s) for acOffTimeNight widget.
+  FocusNode? acOffTimeNightFocusNode;
+  TextEditingController? acOffTimeNightTextController;
+  String? Function(BuildContext, String?)?
+      acOffTimeNightTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -88,44 +93,43 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   @override
   void dispose() {
     unfocusNode.dispose();
-    instantTimer?.cancel();
     setTimeDayFocusNode?.dispose();
     setTimeDayTextController?.dispose();
 
-    textFieldFocusNode1?.dispose();
-    textController2?.dispose();
+    setTimeNightFocusNode?.dispose();
+    setTimeNightTextController?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController3?.dispose();
+    signageOnTimeFocusNode?.dispose();
+    signageOnTimeTextController?.dispose();
 
-    textFieldFocusNode3?.dispose();
-    textController4?.dispose();
+    signageOffTimeFocusNode?.dispose();
+    signageOffTimeTextController?.dispose();
 
-    textFieldFocusNode4?.dispose();
-    textController5?.dispose();
+    dataIntervalFocusNode?.dispose();
+    dataIntervalTextController?.dispose();
 
-    textFieldFocusNode5?.dispose();
-    textController6?.dispose();
+    maxTempDayFocusNode?.dispose();
+    maxTempDayTextController?.dispose();
 
-    textFieldFocusNode6?.dispose();
-    textController7?.dispose();
+    minTempDayFocusNode?.dispose();
+    minTempDayTextController?.dispose();
 
-    textFieldFocusNode7?.dispose();
-    textController8?.dispose();
+    maxTempNightFocusNode?.dispose();
+    maxTempNightTextController?.dispose();
 
-    textFieldFocusNode8?.dispose();
-    textController9?.dispose();
+    minTempNightFocusNode?.dispose();
+    minTempNightTextController?.dispose();
 
-    textFieldFocusNode9?.dispose();
-    textController10?.dispose();
+    acOnTimeDayFocusNode?.dispose();
+    acOnTimeDayTextController?.dispose();
 
-    textFieldFocusNode10?.dispose();
-    textController11?.dispose();
+    acOnTimeNightFocusNode?.dispose();
+    acOnTimeNightTextController?.dispose();
 
-    textFieldFocusNode11?.dispose();
-    textController12?.dispose();
+    acOffTimeDayFocusNode?.dispose();
+    acOffTimeDayTextController?.dispose();
 
-    textFieldFocusNode12?.dispose();
-    textController13?.dispose();
+    acOffTimeNightFocusNode?.dispose();
+    acOffTimeNightTextController?.dispose();
   }
 }
