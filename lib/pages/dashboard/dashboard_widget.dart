@@ -218,10 +218,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       MediaQuery.viewInsetsOf(
                                                           context),
                                                   child: Container(
-                                                    height: MediaQuery.sizeOf(
-                                                                context)
-                                                            .height *
-                                                        0.8,
+                                                    height: 260.0,
                                                     child:
                                                         MacIdDeviceIdWidget(),
                                                   ),
