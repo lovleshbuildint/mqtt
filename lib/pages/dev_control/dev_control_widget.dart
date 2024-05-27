@@ -2268,7 +2268,8 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                         : false;
                                   }(FFAppState().mqttResponse))) {
                                 setState(() {
-                                  _model.devResponse = '';
+                                  _model.devResponse =
+                                      FFAppState().mqttResponse;
                                 });
                                 setState(() {
                                   _model.dropDownValueController?.value =
