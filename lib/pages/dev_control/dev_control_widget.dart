@@ -2271,6 +2271,15 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   _model.test = true;
                                 });
                                 break;
+                              } else if ((_model.maxTry > 14) &&
+                                  ((String var1) {
+                                    return var1.split(',')[2] != '\$GDEV'
+                                        ? true
+                                        : false;
+                                  }(FFAppState().mqttResponse))) {
+                                setState(() {
+                                  _model.noResponse = true;
+                                });
                               } else {
                                 await Future.delayed(
                                     const Duration(milliseconds: 1000));
