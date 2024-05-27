@@ -72,18 +72,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
         }(),
       );
       while (_model.maxTry < 16) {
-        unawaited(
-          () async {
-            await actions.publishMqtt(
-              context,
-              'Settings',
-              '${widget.did}\$GDEV,',
-              FFAppState().deviceId,
-              '15.206.230.32',
-              'mqtt_buildint_\$\$2023',
-            );
-          }(),
-        );
         if (((String? var1) {
               return var1?.split(',')[2] == '\$GDEV' ? true : false;
             }(FFAppState().mqttResponse)) &&
@@ -160,6 +148,18 @@ class _DevControlWidgetState extends State<DevControlWidget>
             _model.maxTry = _model.maxTry + 1;
           });
           await Future.delayed(const Duration(milliseconds: 1000));
+          unawaited(
+            () async {
+              await actions.publishMqtt(
+                context,
+                'Settings',
+                '${widget.did}\$GDEV,',
+                FFAppState().deviceId,
+                '15.206.230.32',
+                'mqtt_buildint_\$\$2023',
+              );
+            }(),
+          );
         }
       }
     });
