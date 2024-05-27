@@ -265,7 +265,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       7.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    'DEV Settings',
+                                    'DEV Config',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
