@@ -189,7 +189,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${_model.test},${_model.maxTry.toString()}',
+                              '${_model.test.toString()},${_model.maxTry.toString()}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -2115,7 +2115,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   setState(() {
                                     _model.devResponse =
                                         FFAppState().mqttResponse;
-                                    _model.test = 'Condition1';
                                   });
                                   setState(() {
                                     _model.dropDownValueController?.value =
@@ -2190,21 +2189,30 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                           ? true
                                           : false;
                                     }(FFAppState().mqttResponse)) &&
-                                    (FFAppState().mqttResponse != null &&
-                                        FFAppState().mqttResponse != '')) {
+                                    (FFAppState().mqttResponse == null ||
+                                        FFAppState().mqttResponse == '')) {
                                   setState(() {
                                     _model.noResponse = true;
-                                    _model.test = 'Condition2';
                                   });
                                   break;
                                 } else {
                                   setState(() {
                                     _model.maxTry = _model.maxTry + 1;
-                                    _model.test = 'Condition3';
                                   });
                                   await Future.delayed(
                                       const Duration(milliseconds: 1000));
                                 }
+
+                                setState(() {
+                                  _model.test = ((String var1) {
+                                        return var1.split(',')[2] == '\$GDEV'
+                                            ? true
+                                            : false;
+                                      }(FFAppState().mqttResponse)) &&
+                                      (_model.maxTry < 15) &&
+                                      (FFAppState().mqttResponse != null &&
+                                          FFAppState().mqttResponse != '');
+                                });
                               }
                             },
                             text: 'GET DEV',
