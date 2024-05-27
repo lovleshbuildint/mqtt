@@ -2088,15 +2088,15 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   );
                                 }(),
                               );
-                              while ((_model.maxTry < 16) &&
-                                  (FFAppState().mqttResponse != null &&
-                                      FFAppState().mqttResponse != '')) {
+                              while (_model.maxTry < 16) {
                                 if (((String var1) {
                                       return var1.split(',')[2] == '\$GDEV'
                                           ? true
                                           : false;
                                     }(FFAppState().mqttResponse)) &&
-                                    (_model.maxTry < 15)) {
+                                    (_model.maxTry < 15) &&
+                                    (FFAppState().mqttResponse != null &&
+                                        FFAppState().mqttResponse != '')) {
                                   setState(() {
                                     _model.devResponse =
                                         FFAppState().mqttResponse;
@@ -2173,7 +2173,9 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                       return var1.split(',')[2] != '\$GDEV'
                                           ? true
                                           : false;
-                                    }(FFAppState().mqttResponse))) {
+                                    }(FFAppState().mqttResponse)) &&
+                                    (FFAppState().mqttResponse != null &&
+                                        FFAppState().mqttResponse != '')) {
                                   setState(() {
                                     _model.noResponse = true;
                                   });
