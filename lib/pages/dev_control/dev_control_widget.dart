@@ -189,7 +189,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              _model.test,
+                              'Device ID',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
