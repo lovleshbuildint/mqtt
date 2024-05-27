@@ -189,7 +189,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              _model.noResponse.toString(),
+                              '${_model.noResponse.toString()},${_model.maxTry.toString()},${(_model.maxTry > 14).toString()}',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -2271,12 +2271,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   _model.test = true;
                                 });
                                 break;
-                              } else if ((_model.maxTry > 14) &&
-                                  ((String var1) {
-                                    return var1.split(',')[2] != '\$GDEV'
-                                        ? true
-                                        : false;
-                                  }(FFAppState().mqttResponse))) {
+                              } else if (_model.maxTry > 14) {
                                 setState(() {
                                   _model.noResponse = true;
                                 });
