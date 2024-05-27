@@ -2076,7 +2076,9 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               50.0, 0.0, 50.0, 18.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              setState(() {});
+                              setState(() {
+                                _model.maxTry = 0;
+                              });
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
