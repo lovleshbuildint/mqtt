@@ -2092,18 +2092,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 }(),
                               );
                               while (_model.maxTry < 16) {
-                                unawaited(
-                                  () async {
-                                    await actions.publishMqtt(
-                                      context,
-                                      'Settings',
-                                      '${widget.did}\$GDEV,',
-                                      FFAppState().deviceId,
-                                      '15.206.230.32',
-                                      'mqtt_buildint_\$\$2023',
-                                    );
-                                  }(),
-                                );
                                 if (((String var1) {
                                       return var1.split(',')[2] == '\$GDEV'
                                           ? true
@@ -2196,11 +2184,23 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   });
                                   break;
                                 } else {
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 1000));
                                   setState(() {
                                     _model.maxTry = _model.maxTry + 1;
                                   });
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 1000));
+                                  unawaited(
+                                    () async {
+                                      await actions.publishMqtt(
+                                        context,
+                                        'Settings',
+                                        '${widget.did}\$GDEV,',
+                                        FFAppState().deviceId,
+                                        '15.206.230.32',
+                                        'mqtt_buildint_\$\$2023',
+                                      );
+                                    }(),
+                                  );
                                 }
 
                                 setState(() {
@@ -2266,8 +2266,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     return var1.split(',')[2] == '\$GDEV'
                                         ? true
                                         : false;
-                                  }(FFAppState().mqttResponse)) &&
-                                  (_model.maxTry < 15)) {
+                                  }(FFAppState().mqttResponse))) {
                                 setState(() {
                                   _model.test = true;
                                 });
