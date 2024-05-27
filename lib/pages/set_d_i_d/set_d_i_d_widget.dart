@@ -256,11 +256,10 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                     (FFAppState().mqttResponse != null &&
                                         FFAppState().mqttResponse != '')) {
                                   if ((((String var1) {
-                                            return var1.split(',')[0] +
-                                                var1.split(',')[2] +
+                                            return var1.split(',')[2] +
                                                 var1.split(',')[3];
                                           }(FFAppState().mqttResponse)) ==
-                                          '${widget.deviceMacId}\$SDIDOK') &&
+                                          '\$SDIDOK') &&
                                       (_model.maxTry! < 15)) {
                                     setState(() {
                                       _model.setResponse = true;
@@ -268,11 +267,10 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                     });
                                     break;
                                   } else if ((((String var1) {
-                                            return var1.split(',')[0] +
-                                                var1.split(',')[2] +
+                                            return var1.split(',')[2] +
                                                 var1.split(',')[3];
                                           }(FFAppState().mqttResponse)) !=
-                                          '${widget.deviceMacId}\$SDIDOK') &&
+                                          '\$SDIDOK') &&
                                       (_model.maxTry! > 14)) {
                                     setState(() {
                                       _model.notSetResponse = true;
