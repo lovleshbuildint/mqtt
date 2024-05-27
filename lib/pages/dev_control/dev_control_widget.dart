@@ -189,7 +189,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${_model.test.toString()},${_model.maxTry.toString()}',
+                              _model.noResponse.toString(),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -2280,6 +2280,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 setState(() {
                                   _model.noResponse = true;
                                 });
+                                break;
                               } else {
                                 await Future.delayed(
                                     const Duration(milliseconds: 1000));
@@ -2327,7 +2328,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                       ),
                     ],
                   ),
-                  if (_model.noResponse)
+                  if (_model.noResponse == true)
                     Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: MediaQuery.sizeOf(context).height * 1.0,
