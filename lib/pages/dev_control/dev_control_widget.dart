@@ -306,7 +306,11 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                               controller: _model
                                                       .dropDownValueController ??=
                                                   FormFieldController<String>(
-                                                      null),
+                                                _model.dropDownValue ??=
+                                                    (String var1) {
+                                                  return var1.split(',')[3];
+                                                }(_model.devResponse),
+                                              ),
                                               options: List<String>.from(
                                                   ['002', '001', '003']),
                                               optionLabels: [
