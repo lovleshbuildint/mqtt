@@ -2271,6 +2271,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 setState(() {
                                   _model.test = true;
                                 });
+                                break;
                               } else {
                                 await Future.delayed(
                                     const Duration(milliseconds: 1000));
