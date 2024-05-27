@@ -59,6 +59,18 @@ class _DevControlWidgetState extends State<DevControlWidget>
           );
         }(),
       );
+      unawaited(
+        () async {
+          await actions.publishMqtt(
+            context,
+            'Settings',
+            '${widget.did}\$GDEV,',
+            FFAppState().deviceId,
+            '15.206.230.32',
+            'mqtt_buildint_\$\$2023',
+          );
+        }(),
+      );
       while (_model.maxTry < 16) {
         unawaited(
           () async {
