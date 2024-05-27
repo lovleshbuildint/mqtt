@@ -11,7 +11,6 @@ import '/custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -189,7 +188,9 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${_model.noResponse.toString()},${_model.maxTry.toString()},${(_model.maxTry > 14).toString()}',
+                              (String var1) {
+                                return var1.split(',')[3];
+                              }(_model.devResponse),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -463,14 +464,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -592,14 +585,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -721,14 +706,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -850,14 +827,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -979,14 +948,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -1051,7 +1012,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.maxTempDayFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1108,14 +1069,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -1180,7 +1133,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.minTempDayFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1237,14 +1190,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -1309,7 +1254,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.maxTempNightFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1366,14 +1311,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -1438,7 +1375,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.minTempNightFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1495,14 +1432,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -1567,7 +1496,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.acOnTimeDayFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1624,14 +1553,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType:
                                                   TextInputType.number,
                                               validator: _model
@@ -1696,7 +1617,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.acOnTimeNightFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1753,14 +1674,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType: const TextInputType
                                                   .numberWithOptions(
                                                   decimal: true),
@@ -1826,7 +1739,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   _model.acOffTimeDayFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -1883,14 +1796,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType: const TextInputType
                                                   .numberWithOptions(
                                                   decimal: true),
@@ -1956,7 +1861,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   .acOffTimeNightFocusNode,
                                               autofocus: false,
                                               textInputAction:
-                                                  TextInputAction.done,
+                                                  TextInputAction.next,
                                               obscureText: false,
                                               decoration: InputDecoration(
                                                 enabledBorder:
@@ -2013,14 +1918,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     color: Color(0xFF4D4D4D),
                                                     letterSpacing: 0.0,
                                                   ),
-                                              maxLength: 4,
-                                              maxLengthEnforcement:
-                                                  MaxLengthEnforcement.enforced,
-                                              buildCounter: (context,
-                                                      {required currentLength,
-                                                      required isFocused,
-                                                      maxLength}) =>
-                                                  null,
                                               keyboardType: const TextInputType
                                                   .numberWithOptions(
                                                   decimal: true),
@@ -2067,175 +1964,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 width: 1.0,
                               ),
                               borderRadius: BorderRadius.circular(6.0),
-                            ),
-                          ),
-                        ),
-                      if (_model.devResponse == '-')
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              50.0, 0.0, 50.0, 18.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              setState(() {
-                                _model.maxTry = 0;
-                              });
-                              unawaited(
-                                () async {
-                                  await actions.subscribeMqtt(
-                                    context,
-                                    'Response',
-                                    FFAppState().deviceId,
-                                    widget.did,
-                                    '15.206.230.32',
-                                    'mqtt_buildint_\$\$2023',
-                                  );
-                                }(),
-                              );
-                              while (_model.maxTry < 16) {
-                                if (((String var1) {
-                                      return var1.split(',')[2] == '\$GDEV'
-                                          ? true
-                                          : false;
-                                    }(FFAppState().mqttResponse)) &&
-                                    (_model.maxTry < 15) &&
-                                    (FFAppState().mqttResponse != null &&
-                                        FFAppState().mqttResponse != '')) {
-                                  setState(() {
-                                    _model.devResponse =
-                                        FFAppState().mqttResponse;
-                                  });
-                                  setState(() {
-                                    _model.dropDownValueController?.value =
-                                        ((String var1) {
-                                      return var1.split(',')[3];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.setTimeDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[4];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.setTimeNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[5];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.signageOnTimeTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[6];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.signageOffTimeTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[7];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.dataIntervalTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[8];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.maxTempDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[9];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.minTempDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[10];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.maxTempNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[11];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.minTempNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[12];
-                                    }(_model.devResponse));
-                                  });
-                                  setState(() {
-                                    _model.acOnTimeDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[13];
-                                    }(_model.devResponse));
-                                  });
-                                  break;
-                                } else if ((_model.maxTry > 14) &&
-                                    ((String var1) {
-                                      return var1.split(',')[2] != '\$GDEV'
-                                          ? true
-                                          : false;
-                                    }(FFAppState().mqttResponse)) &&
-                                    (FFAppState().mqttResponse == null ||
-                                        FFAppState().mqttResponse == '')) {
-                                  setState(() {
-                                    _model.noResponse = true;
-                                  });
-                                  break;
-                                } else {
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 1000));
-                                  setState(() {
-                                    _model.maxTry = _model.maxTry + 1;
-                                  });
-                                  unawaited(
-                                    () async {
-                                      await actions.publishMqtt(
-                                        context,
-                                        'Settings',
-                                        '${widget.did}\$GDEV,',
-                                        FFAppState().deviceId,
-                                        '15.206.230.32',
-                                        'mqtt_buildint_\$\$2023',
-                                      );
-                                    }(),
-                                  );
-                                }
-
-                                setState(() {
-                                  _model.test = ((String var1) {
-                                        return var1.split(',')[2] == '\$GDEV'
-                                            ? true
-                                            : false;
-                                      }(FFAppState().mqttResponse)) &&
-                                      (_model.maxTry < 15) &&
-                                      (FFAppState().mqttResponse != null &&
-                                          FFAppState().mqttResponse != '');
-                                });
-                              }
-                            },
-                            text: 'GET DEV',
-                            options: FFButtonOptions(
-                              height: 40.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  24.0, 0.0, 24.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(8.0),
                             ),
                           ),
                         ),
@@ -2335,6 +2063,24 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   _model.acOnTimeDayTextController?.text =
                                       ((String var1) {
                                     return var1.split(',')[13];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.acOnTimeNightTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[14];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.acOffTimeDayTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[15];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.acOffTimeNightTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[16];
                                   }(_model.devResponse));
                                 });
                                 break;
