@@ -2268,7 +2268,73 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                         : false;
                                   }(FFAppState().mqttResponse))) {
                                 setState(() {
-                                  _model.test = true;
+                                  _model.devResponse = '';
+                                });
+                                setState(() {
+                                  _model.dropDownValueController?.value =
+                                      ((String var1) {
+                                    return var1.split(',')[3];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.setTimeDayTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[4];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.setTimeNightTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[5];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.signageOnTimeTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[6];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.signageOffTimeTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[7];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.dataIntervalTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[8];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.maxTempDayTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[9];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.minTempDayTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[10];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.maxTempNightTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[11];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.minTempNightTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[12];
+                                  }(_model.devResponse));
+                                });
+                                setState(() {
+                                  _model.acOnTimeDayTextController?.text =
+                                      ((String var1) {
+                                    return var1.split(',')[13];
+                                  }(_model.devResponse));
                                 });
                                 break;
                               } else if (_model.maxTry > 14) {
