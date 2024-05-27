@@ -64,13 +64,14 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         Map<String, dynamic> jsonData = parseStringToJSON(pt);
         if (pt.split(',').first == did) {
+          DateTime now = DateTime.now();
+          String timestamp = now.toLocal().toString();
           FFAppState().update(() {
             FFAppState().mqttResponse = pt;
+            FFAppState().mqttTime = timestamp;
           });
           if (pt.split(',')[2] == '\$GALL') {
             // For iATM
-            DateTime now = DateTime.now();
-            String timestamp = now.toLocal().toString();
             FFAppState().update(() {
               FFAppState().mqttTime = timestamp;
               FFAppState().deviceStatusDIDJson = jsonData;
@@ -79,10 +80,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
           }
           if (pt.split(',')[2] == '\$GREL') {
             // For PLC
-            DateTime now = DateTime.now();
-            String timestamp = now.toLocal().toString();
             FFAppState().update(() {
-              FFAppState().mqttTime = timestamp;
               FFAppState().relayStatusiATM =
                   pt.split(',')[3] + ',' + pt.split(',')[4];
             });
