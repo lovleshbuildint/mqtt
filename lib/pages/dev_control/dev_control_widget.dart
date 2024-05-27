@@ -2088,9 +2088,11 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   );
                                 }(),
                               );
-                              while (_model.maxTry < 16) {
-                                if (((String? var1) {
-                                      return var1?.split(',')[2] == '\$GDEV'
+                              while ((_model.maxTry < 16) &&
+                                  (FFAppState().mqttResponse != null &&
+                                      FFAppState().mqttResponse != '')) {
+                                if (((String var1) {
+                                      return var1.split(',')[2] == '\$GDEV'
                                           ? true
                                           : false;
                                     }(FFAppState().mqttResponse)) &&
@@ -2167,8 +2169,8 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   });
                                   break;
                                 } else if ((_model.maxTry > 14) &&
-                                    ((String? var1) {
-                                      return var1?.split(',')[2] != '\$GDEV'
+                                    ((String var1) {
+                                      return var1.split(',')[2] != '\$GDEV'
                                           ? true
                                           : false;
                                     }(FFAppState().mqttResponse))) {
