@@ -2251,6 +2251,8 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               setState(() {
                                 _model.maxTry = _model.maxTry + 1;
                               });
+                              await Future.delayed(
+                                  const Duration(milliseconds: 1000));
                             }
                           },
                           text: 'GET DEV',
