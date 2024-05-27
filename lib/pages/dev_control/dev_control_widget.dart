@@ -189,7 +189,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              _model.maxTry.toString(),
+                              _model.test,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -2076,6 +2076,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               50.0, 0.0, 50.0, 18.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              setState(() {});
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
@@ -2089,6 +2090,18 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 }(),
                               );
                               while (_model.maxTry < 16) {
+                                unawaited(
+                                  () async {
+                                    await actions.publishMqtt(
+                                      context,
+                                      'Settings',
+                                      '${widget.did}\$GDEV,',
+                                      FFAppState().deviceId,
+                                      '15.206.230.32',
+                                      'mqtt_buildint_\$\$2023',
+                                    );
+                                  }(),
+                                );
                                 if (((String var1) {
                                       return var1.split(',')[2] == '\$GDEV'
                                           ? true
@@ -2100,6 +2113,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   setState(() {
                                     _model.devResponse =
                                         FFAppState().mqttResponse;
+                                    _model.test = 'Condition1';
                                   });
                                   setState(() {
                                     _model.dropDownValueController?.value =
@@ -2178,26 +2192,16 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                         FFAppState().mqttResponse != '')) {
                                   setState(() {
                                     _model.noResponse = true;
+                                    _model.test = 'Condition2';
                                   });
                                   break;
                                 } else {
                                   setState(() {
                                     _model.maxTry = _model.maxTry + 1;
+                                    _model.test = 'Condition3';
                                   });
                                   await Future.delayed(
                                       const Duration(milliseconds: 1000));
-                                  unawaited(
-                                    () async {
-                                      await actions.publishMqtt(
-                                        context,
-                                        'Settings',
-                                        '${widget.did}\$GDEV,',
-                                        FFAppState().deviceId,
-                                        '15.206.230.32',
-                                        'mqtt_buildint_\$\$2023',
-                                      );
-                                    }(),
-                                  );
                                 }
                               }
                             },
