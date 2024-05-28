@@ -63,7 +63,7 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
         final pt =
             MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
         Map<String, dynamic> jsonData = parseStringToJSON(pt);
-        if (pt.split(',').first == did) {
+        if (pt.split(',').first == did || pt.split(',')[1] == did) {
           DateTime now = DateTime.now();
           String timestamp = now.toLocal().toString();
           FFAppState().update(() {

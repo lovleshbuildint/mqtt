@@ -2035,22 +2035,24 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 }(),
                               );
                               while (_model.maxTry < 17) {
-                                if ((((String var1) {
-                                          return var1.split(',')[2] +
-                                              var1.split(',')[3];
-                                        }(FFAppState().mqttResponse)) ==
-                                        '\$SDEVOK') &&
+                                if (((((String var1) {
+                                              return var1.split(',')[0] +
+                                                  var1.split(',')[2] +
+                                                  var1.split(',')[3];
+                                            }(FFAppState().mqttResponse)) ==
+                                            '${widget.did}\$SDEVOK') &&
+                                        (((String var1) {
+                                              return var1.split(',')[1] +
+                                                  var1.split(',')[2] +
+                                                  var1.split(',')[3];
+                                            }(FFAppState().mqttResponse)) ==
+                                            '${widget.did}\$SDEVOK')) &&
                                     (_model.maxTry < 15)) {
                                   setState(() {
                                     _model.setResponse = true;
                                   });
                                   break;
-                                } else if ((((String var1) {
-                                          return var1.split(',')[2] +
-                                              var1.split(',')[3];
-                                        }(FFAppState().mqttResponse)) !=
-                                        '\$SDEVOK') &&
-                                    (_model.maxTry > 14)) {
+                                } else if (_model.maxTry > 15) {
                                   setState(() {
                                     _model.noResponse = true;
                                   });
