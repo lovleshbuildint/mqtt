@@ -25,9 +25,9 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   bool noResponse = false;
 
-  bool test = false;
-
   bool setResponse = false;
+
+  bool checkResponse = false;
 
   ///  State fields for stateful widgets in this page.
 

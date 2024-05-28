@@ -112,6 +112,19 @@ class _DevControlWidgetState extends State<DevControlWidget>
           ),
         ],
       ),
+      'iconOnPageLoadAnimation': AnimationInfo(
+        loop: true,
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          RotateEffect(
+            curve: Curves.bounceOut,
+            delay: 0.0.ms,
+            duration: 1000.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -1947,6 +1960,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               });
                               setState(() {
                                 _model.maxTry = 0;
+                                _model.checkResponse = true;
                               });
                               unawaited(
                                 () async {
@@ -2050,11 +2064,13 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     (_model.maxTry < 15)) {
                                   setState(() {
                                     _model.setResponse = true;
+                                    _model.checkResponse = false;
                                   });
                                   break;
                                 } else if (_model.maxTry > 15) {
                                   setState(() {
                                     _model.noResponse = true;
+                                    _model.checkResponse = false;
                                   });
                                   break;
                                 } else {
@@ -2433,6 +2449,62 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 ],
                               ).animateOnPageLoad(
                                   animationsMap['columnOnPageLoadAnimation2']!),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (_model.checkResponse)
+                    Container(
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      decoration: BoxDecoration(
+                        color: Color(0x80000000),
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: SafeArea(
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: 210.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 20.0, 20.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 6.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Waiting for Response',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF4D4D4D),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.api_rounded,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 50.0,
+                                  ).animateOnPageLoad(animationsMap[
+                                      'iconOnPageLoadAnimation']!),
+                                ],
+                              ),
                             ),
                           ),
                         ),
