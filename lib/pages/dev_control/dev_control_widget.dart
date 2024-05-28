@@ -2040,7 +2040,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   var1.split(',')[2] +
                                                   var1.split(',')[3];
                                             }(FFAppState().mqttResponse)) ==
-                                            '${widget.did}\$SDEVOK') &&
+                                            '${widget.did}\$SDEVOK') ||
                                         (((String var1) {
                                               return var1.split(',')[1] +
                                                   var1.split(',')[2] +
