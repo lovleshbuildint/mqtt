@@ -2009,7 +2009,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                           var13 +
                                           ',' +
                                           var14 +
-                                          ',001,001,25.0';
+                                          ',001,001,25.0,';
                                     }(
                                         _model.dropDownValue!,
                                         _model.setTimeDayTextController.text,
