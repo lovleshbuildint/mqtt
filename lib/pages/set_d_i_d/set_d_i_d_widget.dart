@@ -255,23 +255,25 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                     !_model.notSetResponse &&
                                     (FFAppState().mqttResponse != null &&
                                         FFAppState().mqttResponse != '')) {
-                                  if ((((String var1) {
-                                            return var1.split(',')[2] +
-                                                var1.split(',')[3];
-                                          }(FFAppState().mqttResponse)) ==
-                                          '\$SDIDOK') &&
+                                  if (((((String var1) {
+                                                return var1.split(',')[0] +
+                                                    var1.split(',')[2] +
+                                                    var1.split(',')[3];
+                                              }(FFAppState().mqttResponse)) ==
+                                              '${widget.deviceMacId}\$SDIDOK') ||
+                                          (((String var1) {
+                                                return var1.split(',')[1] +
+                                                    var1.split(',')[2] +
+                                                    var1.split(',')[3];
+                                              }(FFAppState().mqttResponse)) ==
+                                              '${widget.deviceMacId}\$SDIDOK')) &&
                                       (_model.maxTry! < 15)) {
                                     setState(() {
                                       _model.setResponse = true;
                                       _model.checkResponse = false;
                                     });
                                     break;
-                                  } else if ((((String var1) {
-                                            return var1.split(',')[2] +
-                                                var1.split(',')[3];
-                                          }(FFAppState().mqttResponse)) !=
-                                          '\$SDIDOK') &&
-                                      (_model.maxTry! > 14)) {
+                                  } else if (_model.maxTry! > 15) {
                                     setState(() {
                                       _model.notSetResponse = true;
                                       _model.checkResponse = false;
