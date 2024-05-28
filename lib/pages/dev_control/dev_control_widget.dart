@@ -88,7 +88,19 @@ class _DevControlWidgetState extends State<DevControlWidget>
     _model.acOffTimeNightFocusNode ??= FocusNode();
 
     animationsMap.addAll({
-      'columnOnPageLoadAnimation': AnimationInfo(
+      'columnOnPageLoadAnimation1': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeIn,
+            delay: 0.0.ms,
+            duration: 310.0.ms,
+            begin: 0.0,
+            end: 1.0,
+          ),
+        ],
+      ),
+      'columnOnPageLoadAnimation2': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           FadeEffect(
@@ -189,9 +201,10 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           children: [
                             if (_model.devResponse != '-')
                               Text(
-                                (String var1) {
-                                  return var1.split(',')[3];
-                                }(_model.devResponse),
+                                valueOrDefault<String>(
+                                  widget.did,
+                                  'DID',
+                                ),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -222,23 +235,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   .error,
                                           shape: BoxShape.circle,
                                         ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 4.0, 0.0, 0.0),
-                                      child: Text(
-                                        _model.devResponse != '-'
-                                            ? ((String var1) {
-                                                return var1.split('.')[0];
-                                              }(FFAppState().mqttTime))
-                                            : '--',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              letterSpacing: 0.0,
-                                            ),
                                       ),
                                     ),
                                   ],
@@ -1945,8 +1941,128 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(
                               50.0, 0.0, 50.0, 18.0),
                           child: FFButtonWidget(
-                            onPressed: () {
-                              print('Button pressed ...');
+                            onPressed: () async {
+                              setState(() {
+                                FFAppState().mqttResponse = '1,2,3,4';
+                              });
+                              setState(() {
+                                _model.maxTry = 0;
+                              });
+                              unawaited(
+                                () async {
+                                  await actions.subscribeMqtt(
+                                    context,
+                                    'Response',
+                                    FFAppState().deviceId,
+                                    widget.did,
+                                    '15.206.230.32',
+                                    'mqtt_buildint_\$\$2023',
+                                  );
+                                }(),
+                              );
+                              unawaited(
+                                () async {
+                                  await actions.publishMqtt(
+                                    context,
+                                    'Settings',
+                                    (String var1,
+                                            String var2,
+                                            String var3,
+                                            String var4,
+                                            String var5,
+                                            String var6,
+                                            String var7,
+                                            String var8,
+                                            String var9,
+                                            String var10,
+                                            String var11,
+                                            String var12,
+                                            String var13,
+                                            String var14,
+                                            String var15) {
+                                      return var15 +
+                                          '\$SDEV' +
+                                          var1 +
+                                          ',' +
+                                          var2 +
+                                          ',' +
+                                          var3 +
+                                          ',' +
+                                          var4 +
+                                          ',' +
+                                          var5 +
+                                          ',' +
+                                          var6 +
+                                          ',' +
+                                          var7 +
+                                          ',' +
+                                          var8 +
+                                          ',' +
+                                          var9 +
+                                          ',' +
+                                          var10 +
+                                          ',' +
+                                          var11 +
+                                          ',' +
+                                          var12 +
+                                          ',' +
+                                          var13 +
+                                          ',' +
+                                          var14 +
+                                          '001,001,25.0';
+                                    }(
+                                        _model.dropDownValue!,
+                                        _model.setTimeDayTextController.text,
+                                        _model.setTimeNightTextController.text,
+                                        _model.signageOnTimeTextController.text,
+                                        _model
+                                            .signageOffTimeTextController.text,
+                                        _model.dataIntervalTextController.text,
+                                        _model.maxTempDayTextController.text,
+                                        _model.minTempDayTextController.text,
+                                        _model.maxTempNightTextController.text,
+                                        _model.minTempNightTextController.text,
+                                        _model.acOnTimeDayTextController.text,
+                                        _model.acOnTimeNightTextController.text,
+                                        _model.acOffTimeDayTextController.text,
+                                        _model
+                                            .acOffTimeNightTextController.text,
+                                        widget.did!),
+                                    FFAppState().deviceId,
+                                    '15.206.230.32',
+                                    'mqtt_buildint_\$\$2023',
+                                  );
+                                }(),
+                              );
+                              while (_model.maxTry < 17) {
+                                if ((((String var1) {
+                                          return var1.split(',')[2] +
+                                              var1.split(',')[3];
+                                        }(FFAppState().mqttResponse)) ==
+                                        '\$SDEVOK') &&
+                                    (_model.maxTry < 15)) {
+                                  setState(() {
+                                    _model.setResponse = true;
+                                  });
+                                  break;
+                                } else if ((((String var1) {
+                                          return var1.split(',')[2] +
+                                              var1.split(',')[3];
+                                        }(FFAppState().mqttResponse)) !=
+                                        '\$SDEVOK') &&
+                                    (_model.maxTry > 14)) {
+                                  setState(() {
+                                    _model.noResponse = true;
+                                  });
+                                  break;
+                                } else {
+                                  await Future.delayed(
+                                      const Duration(milliseconds: 1000));
+                                  setState(() {
+                                    _model.maxTry = _model.maxTry + 1;
+                                  });
+                                }
+                              }
                             },
                             text: 'Apply Changes',
                             options: FFButtonOptions(
@@ -2192,6 +2308,96 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
+                                      setState(() {
+                                        _model.noResponse = false;
+                                      });
+                                    },
+                                    text: 'OK',
+                                    options: FFButtonOptions(
+                                      width: MediaQuery.sizeOf(context).width *
+                                          1.0,
+                                      height: 46.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: Color(0xFF4154F1),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.white,
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                  ),
+                                ],
+                              ).animateOnPageLoad(
+                                  animationsMap['columnOnPageLoadAnimation1']!),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (_model.setResponse)
+                    Container(
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: MediaQuery.sizeOf(context).height * 1.0,
+                      decoration: BoxDecoration(
+                        color: Color(0x80000000),
+                      ),
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: SafeArea(
+                          child: Container(
+                            width: MediaQuery.sizeOf(context).width * 1.0,
+                            height: 210.0,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              borderRadius: BorderRadius.circular(14.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  20.0, 0.0, 20.0, 20.0),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 6.0, 0.0, 0.0),
+                                    child: Text(
+                                      'DEV Config Set Successfully',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFF4D4D4D),
+                                            fontSize: 18.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.done_outlined,
+                                    color: Color(0xFF07D95A),
+                                    size: 50.0,
+                                  ),
+                                  FFButtonWidget(
+                                    onPressed: () async {
                                       context.safePop();
                                     },
                                     text: 'OK',
@@ -2224,7 +2430,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   ),
                                 ],
                               ).animateOnPageLoad(
-                                  animationsMap['columnOnPageLoadAnimation']!),
+                                  animationsMap['columnOnPageLoadAnimation2']!),
                             ),
                           ),
                         ),

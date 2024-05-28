@@ -39,9 +39,6 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
       return 'Field is required';
     }
 
-    if (!RegExp(kTextValidatorUsernameRegex).hasMatch(val)) {
-      return 'Must start with a letter and can only contain letters, digits and - or _.';
-    }
     return null;
   }
 

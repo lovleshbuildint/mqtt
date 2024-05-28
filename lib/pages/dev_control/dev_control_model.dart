@@ -27,6 +27,8 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   bool test = false;
 
+  bool setResponse = false;
+
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
