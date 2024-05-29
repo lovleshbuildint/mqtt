@@ -370,13 +370,11 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           ],
                         ),
                       ),
-                      if (valueOrDefault<bool>(
-                            getJsonField(
-                              deviceDetailsGetDeviceStatusResponse.jsonBody,
-                              r'''$.deviceStatus.device_status''',
-                            ),
-                            false,
-                          ) ||
+                      if ((getJsonField(
+                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                r'''$.deviceStatus.device_status''',
+                              ) !=
+                              null) ||
                           (FFAppState().mqttResponse != null &&
                               FFAppState().mqttResponse != ''))
                         Padding(
