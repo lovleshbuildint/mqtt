@@ -308,11 +308,14 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           ),
                                         ),
                                         Text(
-                                          getJsonField(
-                                            deviceDetailsGetDeviceStatusResponse
-                                                .jsonBody,
-                                            r'''$.deviceStatus.device_status''',
-                                          ).toString(),
+                                          valueOrDefault<String>(
+                                            getJsonField(
+                                              deviceDetailsGetDeviceStatusResponse
+                                                  .jsonBody,
+                                              r'''$.deviceStatus.device_status''',
+                                            )?.toString(),
+                                            '-',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -397,11 +400,14 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          '${getJsonField(
-                                            deviceDetailsGetDeviceStatusResponse
-                                                .jsonBody,
-                                            r'''$.deviceStatus.TM''',
-                                          ).toString()} C',
+                                          valueOrDefault<String>(
+                                            '${getJsonField(
+                                              deviceDetailsGetDeviceStatusResponse
+                                                  .jsonBody,
+                                              r'''$.deviceStatus.TM''',
+                                            ).toString()} C',
+                                            '0 C',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -415,14 +421,17 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           width: 30.0,
                                           height: 30.0,
                                           decoration: BoxDecoration(
-                                            color: (double.parse(getJsonField(
-                                                      deviceDetailsGetDeviceStatusResponse
-                                                          .jsonBody,
-                                                      r'''$.deviceStatus.TM''',
-                                                    ).toString())) >=
-                                                    30.0
-                                                ? Color(0x80F71A1A)
-                                                : Color(0x8007D95A),
+                                            color: valueOrDefault<Color>(
+                                              (double.parse(getJsonField(
+                                                        deviceDetailsGetDeviceStatusResponse
+                                                            .jsonBody,
+                                                        r'''$.deviceStatus.TM''',
+                                                      ).toString())) >=
+                                                      30.0
+                                                  ? Color(0x80F71A1A)
+                                                  : Color(0x8007D95A),
+                                              Color(0x80F71A1A),
+                                            ),
                                             borderRadius:
                                                 BorderRadius.circular(4.0),
                                           ),
