@@ -375,8 +375,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                 r'''$.deviceStatus.device_status''',
                               ) !=
                               null) ||
-                          (FFAppState().mqttResponse != null &&
-                              FFAppState().mqttResponse != ''))
+                          ((String var1) {
+                            return var1 != null && var1 != '' ? true : false;
+                          }(FFAppState().deviceStatusDIDJson.toString())))
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               13.0, 20.0, 0.0, 0.0),
@@ -439,11 +440,15 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               ? (double.parse(
                                                                   var1))
                                                               : 0.00;
-                                                        }(getJsonField(
-                                                          deviceDetailsGetDeviceStatusResponse
-                                                              .jsonBody,
-                                                          r'''$.deviceStatus.TM''',
-                                                        ).toString())) >=
+                                                        }(valueOrDefault<
+                                                            String>(
+                                                          getJsonField(
+                                                            deviceDetailsGetDeviceStatusResponse
+                                                                .jsonBody,
+                                                            r'''$.deviceStatus.TM''',
+                                                          )?.toString(),
+                                                          '0.00',
+                                                        ))) >=
                                                         30.0
                                                     ? Color(0x80F71A1A)
                                                     : Color(0x8007D95A),
@@ -473,8 +478,9 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                 r'''$.deviceStatus.device_status''',
                               ) !=
                               null) ||
-                          (FFAppState().mqttResponse != null &&
-                              FFAppState().mqttResponse != ''))
+                          ((String var1) {
+                            return var1 != null && var1 != '' ? true : false;
+                          }(FFAppState().deviceStatusDIDJson.toString())))
                         Expanded(
                           child: Align(
                             alignment: AlignmentDirectional(0.0, 1.0),
