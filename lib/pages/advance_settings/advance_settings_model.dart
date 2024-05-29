@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/set_d_i_d/set_d_i_d_widget.dart';
+import '/pages/set_u_r_l/set_u_r_l_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'advance_settings_widget.dart' show AdvanceSettingsWidget;
 import 'package:flutter/material.dart';
