@@ -160,7 +160,7 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
                               'advanceSettings',
                               queryParameters: {
                                 'did': serializeParam(
-                                  '',
+                                  _model.didTextController.text,
                                   ParamType.String,
                                 ),
                               }.withoutNulls,
