@@ -157,14 +157,10 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             context.pushNamed(
-                              'DeviceDetails',
+                              'advanceSettings',
                               queryParameters: {
                                 'did': serializeParam(
-                                  _model.didTextController.text,
-                                  ParamType.String,
-                                ),
-                                'onlineOfflineStatus': serializeParam(
-                                  '-',
+                                  '',
                                   ParamType.String,
                                 ),
                               }.withoutNulls,
