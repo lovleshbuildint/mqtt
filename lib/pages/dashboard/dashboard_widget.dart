@@ -301,7 +301,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          context.pushNamed('AlertView');
+                                          context.pushNamed(
+                                            'AlertView',
+                                            queryParameters: {
+                                              'locationIdList': serializeParam(
+                                                getJsonField(
+                                                  dashboardGetDashboardResponse
+                                                      .jsonBody,
+                                                  r'''$.locationDetails..LocId''',
+                                                  true,
+                                                ),
+                                                ParamType.int,
+                                                true,
+                                              ),
+                                            }.withoutNulls,
+                                          );
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,

@@ -41,6 +41,7 @@ class MasterGroup {
   static GetRegionCall getRegionCall = GetRegionCall();
   static GetDashboardCall getDashboardCall = GetDashboardCall();
   static RawDataIATMCall rawDataIATMCall = RawDataIATMCall();
+  static GetAlertsCall getAlertsCall = GetAlertsCall();
 }
 
 class LoginCall {
@@ -712,6 +713,42 @@ class RawDataIATMCall {
   }
 }
 
+class GetAlertsCall {
+  Future<ApiCallResponse> call({
+    List<int>? locationsList,
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+    final locations = _serializeList(locationsList);
+
+    final ffApiRequestBody = '''
+{
+  "locations": ${locations},
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Alerts',
+      apiUrl: '${baseUrl}/getAlerts',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 /// End Master Group Code
 
 class DashboardCall {
@@ -779,17 +816,25 @@ class GetAlertCall {
   static Future<ApiCallResponse> call({
     String? deviceId = '',
     String? token = '',
+    List<int>? locationsList,
   }) async {
+    final locations = _serializeList(locationsList);
+
+    final ffApiRequestBody = '''
+{
+  "locations": ${locations},
+  "deviceId": "${deviceId}"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: 'Get Alert',
-      apiUrl: 'https://api.app.master.buildint.co/api/getAlert',
-      callType: ApiCallType.GET,
+      apiUrl: 'https://api.app.master.buildint.co/api/getAlerts',
+      callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
       },
-      params: {
-        'deviceId': deviceId,
-      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

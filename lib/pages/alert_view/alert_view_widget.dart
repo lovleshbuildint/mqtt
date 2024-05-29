@@ -15,7 +15,12 @@ import 'alert_view_model.dart';
 export 'alert_view_model.dart';
 
 class AlertViewWidget extends StatefulWidget {
-  const AlertViewWidget({super.key});
+  const AlertViewWidget({
+    super.key,
+    this.locationIdList,
+  });
+
+  final List<int>? locationIdList;
 
   @override
   State<AlertViewWidget> createState() => _AlertViewWidgetState();
@@ -58,6 +63,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
       future: GetAlertCall.call(
         deviceId: FFAppState().deviceId,
         token: FFAppState().token,
+        locationsList: widget.locationIdList,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.

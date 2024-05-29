@@ -161,7 +161,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'AlertView',
           path: '/alertView',
-          builder: (context, params) => AlertViewWidget(),
+          builder: (context, params) => AlertViewWidget(
+            locationIdList: params.getParam<int>(
+              'locationIdList',
+              ParamType.int,
+              isList: true,
+            ),
+          ),
         ),
         FFRoute(
           name: 'DeviceDetails',
