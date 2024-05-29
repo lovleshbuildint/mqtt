@@ -164,7 +164,7 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
                                   ParamType.String,
                                 ),
                                 'onlineOfflineStatus': serializeParam(
-                                  '',
+                                  '-',
                                   ParamType.String,
                                 ),
                               }.withoutNulls,
