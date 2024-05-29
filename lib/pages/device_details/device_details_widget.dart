@@ -337,21 +337,24 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 return 'MQTT - ' +
                                                     var1.split('.')[0];
                                               }(FFAppState().mqttTime))
-                                            : '${(String var1) {
-                                                return var1.split('T').first;
-                                              }(getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.evt_dt''',
-                                              ).toString())} ${(String var1) {
-                                                return var1.split('.').first;
-                                              }(((String var1) {
-                                                return var1.split('T').last;
-                                              }(getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
-                                                    .jsonBody,
-                                                r'''$.deviceStatus.evt_dt''',
-                                              ).toString())))}',
+                                            : valueOrDefault<String>(
+                                                '${(String var1) {
+                                                  return var1.split('T').first;
+                                                }(getJsonField(
+                                                  deviceDetailsGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.evt_dt''',
+                                                ).toString())} ${(String var1) {
+                                                  return var1.split('.').first;
+                                                }(((String var1) {
+                                                  return var1.split('T').last;
+                                                }(getJsonField(
+                                                  deviceDetailsGetDeviceStatusResponse
+                                                      .jsonBody,
+                                                  r'''$.deviceStatus.evt_dt''',
+                                                ).toString())))}',
+                                                '0000-00-00 00:00:00',
+                                              ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -422,7 +425,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           height: 30.0,
                                           decoration: BoxDecoration(
                                             color: valueOrDefault<Color>(
-                                              (double.parse(getJsonField(
+                                              ((String var1) {
+                                                        return var1 != null &&
+                                                                var1 != ''
+                                                            ? (double.parse(
+                                                                var1))
+                                                            : 0.00;
+                                                      }(getJsonField(
                                                         deviceDetailsGetDeviceStatusResponse
                                                             .jsonBody,
                                                         r'''$.deviceStatus.TM''',
@@ -470,11 +479,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                 children: [
                                   if ((String vn, String ve, String vu,
                                           String ue) {
-                                    return (double.parse(vn) == 0.00 &&
-                                            double.parse(ve) == 0.00 &&
-                                            double.parse(vu) == 0.00 &&
-                                            double.parse(ue) == 0.00)
-                                        ? true
+                                    return vn != null && vn != ''
+                                        ? ((double.parse(vn) == 0.00 &&
+                                                double.parse(ve) == 0.00 &&
+                                                double.parse(vu) == 0.00 &&
+                                                double.parse(ue) == 0.00)
+                                            ? true
+                                            : false)
                                         : false;
                                   }(
                                       (FFAppState().relayStatusiATM != null &&
@@ -528,11 +539,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     ),
                                   if ((String vn, String ve, String vu,
                                           String ue) {
-                                    return (double.parse(vn) == 0.00 &&
-                                            double.parse(ve) == 0.00 &&
-                                            double.parse(vu) == 0.00 &&
-                                            double.parse(ue) == 0.00)
-                                        ? true
+                                    return vn != null && vn != ''
+                                        ? ((double.parse(vn) == 0.00 &&
+                                                double.parse(ve) == 0.00 &&
+                                                double.parse(vu) == 0.00 &&
+                                                double.parse(ue) == 0.00)
+                                            ? true
+                                            : false)
                                         : false;
                                   }(
                                       (FFAppState().relayStatusiATM != null &&
@@ -738,10 +751,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                   CrossAxisAlignment.center,
                                               children: [
                                                 if ((String var1, String var2) {
-                                                  return (double.parse(var1) <
-                                                              1.00 &&
-                                                          var2[0] == '1')
-                                                      ? true
+                                                  return var1 != null &&
+                                                          var1 != ''
+                                                      ? ((double.parse(var1) <
+                                                                  1.00 &&
+                                                              var2[0] == '1')
+                                                          ? true
+                                                          : false)
                                                       : false;
                                                 }(
                                                     (FFAppState().relayStatusiATM !=
@@ -986,11 +1002,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               color: (String var1,
                                                                           String
                                                                               var2) {
-                                                                return (double.parse(var1) <
-                                                                            1.00 &&
-                                                                        var2[0] ==
-                                                                            '1')
-                                                                    ? true
+                                                                return var1 !=
+                                                                            null &&
+                                                                        var1 !=
+                                                                            ''
+                                                                    ? ((double.parse(var1) <
+                                                                                1.00 &&
+                                                                            var2[0] ==
+                                                                                '1')
+                                                                        ? true
+                                                                        : false)
                                                                     : false;
                                                               }(
                                                                       (FFAppState().relayStatusiATM != null &&
@@ -1345,10 +1366,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 if ((String var1, String var2) {
-                                                  return (double.parse(var1) <
-                                                              1.00 &&
-                                                          var2[1] == '1')
-                                                      ? true
+                                                  return var1 != null &&
+                                                          var1 != ''
+                                                      ? ((double.parse(var1) <
+                                                                  1.00 &&
+                                                              var2[1] == '1')
+                                                          ? true
+                                                          : false)
                                                       : false;
                                                 }(
                                                     (FFAppState().relayStatusiATM !=
@@ -1586,11 +1610,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               color: (String var1,
                                                                           String
                                                                               var2) {
-                                                                return (double.parse(var1) <
-                                                                            1.00 &&
-                                                                        var2[1] ==
-                                                                            '1')
-                                                                    ? true
+                                                                return var1 !=
+                                                                            null &&
+                                                                        var1 !=
+                                                                            ''
+                                                                    ? ((double.parse(var1) <
+                                                                                1.00 &&
+                                                                            var2[1] ==
+                                                                                '1')
+                                                                        ? true
+                                                                        : false)
                                                                     : false;
                                                               }(
                                                                       (FFAppState().relayStatusiATM != null &&
@@ -1945,10 +1974,13 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                       .spaceBetween,
                                               children: [
                                                 if ((String var1, String var2) {
-                                                  return (double.parse(var1) ==
-                                                              0.00 &&
-                                                          var2[3] == '1')
-                                                      ? true
+                                                  return var1 != null &&
+                                                          var1 != ''
+                                                      ? ((double.parse(var1) ==
+                                                                  0.00 &&
+                                                              var2[3] == '1')
+                                                          ? true
+                                                          : false)
                                                       : false;
                                                 }(
                                                     (FFAppState().relayStatusiATM !=
@@ -2186,11 +2218,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               color: (String var1,
                                                                           String
                                                                               var2) {
-                                                                return (double.parse(var1) ==
-                                                                            0.00 &&
-                                                                        var2[3] ==
-                                                                            '1')
-                                                                    ? true
+                                                                return var1 !=
+                                                                            null &&
+                                                                        var1 !=
+                                                                            ''
+                                                                    ? ((double.parse(var1) ==
+                                                                                0.00 &&
+                                                                            var2[3] ==
+                                                                                '1')
+                                                                        ? true
+                                                                        : false)
                                                                     : false;
                                                               }(
                                                                       (FFAppState().relayStatusiATM != null &&
