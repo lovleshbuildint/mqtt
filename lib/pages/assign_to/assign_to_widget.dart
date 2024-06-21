@@ -260,6 +260,7 @@ class _AssignToWidgetState extends State<AssignToWidget> {
                                   _model.contactNumTextController.text),
                               isActive: 2,
                             );
+
                             _shouldSetState = true;
                             if ((_model.updateAlertsResponse2?.succeeded ??
                                 true)) {

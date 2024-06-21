@@ -80,6 +80,9 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
       );
     });
 
+    _model.autoValue = (String var1) {
+      return var1.split(',')[0][4] == '1' ? true : false;
+    }(FFAppState().relayStatusiATM);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -256,11 +259,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                         if (FFAppState().relayStatusiATM != null &&
                             FFAppState().relayStatusiATM != '')
                           Switch(
-                            value: _model.autoValue ??= (String var1) {
-                              return var1.split(',')[0][4] == '1'
-                                  ? true
-                                  : false;
-                            }(FFAppState().relayStatusiATM),
+                            value: _model.autoValue!,
                             onChanged: (newValue) async {
                               setState(() => _model.autoValue = newValue!);
                               if (newValue!) {
@@ -483,23 +482,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                           );
                                                         }(),
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return '0' +
-                                                              var1.split(',')[0]
-                                                                  [1] +
-                                                              var1.split(',')[0]
-                                                                  [2] +
-                                                              var1.split(',')[0]
-                                                                  [3] +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return '0' +
+                                                            var1.split(',')[0]
+                                                                [1] +
+                                                            var1.split(',')[0]
+                                                                [2] +
+                                                            var1.split(',')[0]
+                                                                [3] +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -578,23 +575,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return '1' +
-                                                              var1.split(',')[0]
-                                                                  [1] +
-                                                              var1.split(',')[0]
-                                                                  [2] +
-                                                              var1.split(',')[0]
-                                                                  [3] +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return '1' +
+                                                            var1.split(',')[0]
+                                                                [1] +
+                                                            var1.split(',')[0]
+                                                                [2] +
+                                                            var1.split(',')[0]
+                                                                [3] +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -715,23 +710,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return var1.split(
-                                                                  ',')[0][0] +
-                                                              '0' +
-                                                              var1.split(',')[0]
-                                                                  [2] +
-                                                              var1.split(',')[0]
-                                                                  [3] +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return var1.split(
+                                                                ',')[0][0] +
+                                                            '0' +
+                                                            var1.split(',')[0]
+                                                                [2] +
+                                                            var1.split(',')[0]
+                                                                [3] +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -810,23 +803,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return var1.split(
-                                                                  ',')[0][0] +
-                                                              '1' +
-                                                              var1.split(',')[0]
-                                                                  [2] +
-                                                              var1.split(',')[0]
-                                                                  [3] +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return var1.split(
+                                                                ',')[0][0] +
+                                                            '1' +
+                                                            var1.split(',')[0]
+                                                                [2] +
+                                                            var1.split(',')[0]
+                                                                [3] +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -947,23 +938,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return var1.split(
-                                                                  ',')[0][0] +
-                                                              var1.split(',')[0]
-                                                                  [1] +
-                                                              '0' +
-                                                              var1.split(',')[0]
-                                                                  [3] +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return var1.split(
+                                                                ',')[0][0] +
+                                                            var1.split(',')[0]
+                                                                [1] +
+                                                            '0' +
+                                                            var1.split(',')[0]
+                                                                [3] +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -1042,23 +1031,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return var1.split(
-                                                                  ',')[0][0] +
-                                                              var1.split(',')[0]
-                                                                  [1] +
-                                                              '1' +
-                                                              var1.split(',')[0]
-                                                                  [3] +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return var1.split(
+                                                                ',')[0][0] +
+                                                            var1.split(',')[0]
+                                                                [1] +
+                                                            '1' +
+                                                            var1.split(',')[0]
+                                                                [3] +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -1179,23 +1166,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return var1.split(
-                                                                  ',')[0][0] +
-                                                              var1.split(',')[0]
-                                                                  [1] +
-                                                              var1.split(',')[0]
-                                                                  [2] +
-                                                              '0' +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return var1.split(
+                                                                ',')[0][0] +
+                                                            var1.split(',')[0]
+                                                                [1] +
+                                                            var1.split(',')[0]
+                                                                [2] +
+                                                            '0' +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -1274,23 +1259,21 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                         '15.206.230.32',
                                                         'mqtt_buildint_\$\$2023',
                                                       );
-                                                      setState(() {
-                                                        FFAppState()
-                                                                .relayStatusiATM =
-                                                            (String var1) {
-                                                          return var1.split(
-                                                                  ',')[0][0] +
-                                                              var1.split(',')[0]
-                                                                  [1] +
-                                                              var1.split(',')[0]
-                                                                  [2] +
-                                                              '1' +
-                                                              '0,' +
-                                                              var1.split(
-                                                                  ',')[1];
-                                                        }(FFAppState()
-                                                                .relayStatusiATM);
-                                                      });
+                                                      FFAppState()
+                                                              .relayStatusiATM =
+                                                          (String var1) {
+                                                        return var1.split(
+                                                                ',')[0][0] +
+                                                            var1.split(',')[0]
+                                                                [1] +
+                                                            var1.split(',')[0]
+                                                                [2] +
+                                                            '1' +
+                                                            '0,' +
+                                                            var1.split(',')[1];
+                                                      }(FFAppState()
+                                                              .relayStatusiATM);
+                                                      setState(() {});
                                                     }
                                                   },
                                                   child: Container(

@@ -31,6 +31,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await Future.delayed(const Duration(milliseconds: 3000));
       _model.versionCheck = await MasterGroup.appVersionCheckCall.call();
+
       if ((_model.versionCheck?.succeeded ?? true)) {
         if ((_model.versionCheck?.bodyText ?? '') ==
             FFAppConstants.appVersion) {
@@ -40,25 +41,25 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
               token: FFAppState().token,
               deviceId: FFAppState().deviceId,
             );
+
             if ((_model.userInfoRespnse?.succeeded ?? true)) {
-              setState(() {
-                FFAppState().fullName = getJsonField(
-                  (_model.userInfoRespnse?.jsonBody ?? ''),
-                  r'''$.user_data.fullName''',
-                ).toString().toString();
-                FFAppState().role = getJsonField(
-                  (_model.userInfoRespnse?.jsonBody ?? ''),
-                  r'''$.user_data.role''',
-                ).toString().toString();
-                FFAppState().contactNum = getJsonField(
-                  (_model.userInfoRespnse?.jsonBody ?? ''),
-                  r'''$.user_data.contact_num''',
-                );
-                FFAppState().userOrg = getJsonField(
-                  (_model.userInfoRespnse?.jsonBody ?? ''),
-                  r'''$.user_data.user_org''',
-                );
-              });
+              FFAppState().fullName = getJsonField(
+                (_model.userInfoRespnse?.jsonBody ?? ''),
+                r'''$.user_data.fullName''',
+              ).toString().toString();
+              FFAppState().role = getJsonField(
+                (_model.userInfoRespnse?.jsonBody ?? ''),
+                r'''$.user_data.role''',
+              ).toString().toString();
+              FFAppState().contactNum = getJsonField(
+                (_model.userInfoRespnse?.jsonBody ?? ''),
+                r'''$.user_data.contact_num''',
+              );
+              FFAppState().userOrg = getJsonField(
+                (_model.userInfoRespnse?.jsonBody ?? ''),
+                r'''$.user_data.user_org''',
+              );
+              setState(() {});
 
               context.goNamed(
                 'Dashboard',
@@ -89,10 +90,10 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                   );
                 },
               );
-              setState(() {
-                FFAppState().deleteToken();
-                FFAppState().token = '';
-              });
+              FFAppState().deleteToken();
+              FFAppState().token = '';
+
+              setState(() {});
 
               context.goNamed('LogIn');
 

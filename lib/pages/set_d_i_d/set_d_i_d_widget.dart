@@ -217,15 +217,13 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                 0.0, 25.0, 0.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                setState(() {
-                                  _model.maxTry = 0;
-                                  _model.setResponse = false;
-                                  _model.notSetResponse = false;
-                                  _model.checkResponse = true;
-                                });
-                                setState(() {
-                                  FFAppState().mqttResponse = '1,2,3,4';
-                                });
+                                _model.maxTry = 0;
+                                _model.setResponse = false;
+                                _model.notSetResponse = false;
+                                _model.checkResponse = true;
+                                setState(() {});
+                                FFAppState().mqttResponse = '1,2,3,4';
+                                setState(() {});
                                 unawaited(
                                   () async {
                                     await actions.publishMqtt(
@@ -268,23 +266,20 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                               }(FFAppState().mqttResponse)) ==
                                               '${widget.deviceMacId}\$SDIDOK')) &&
                                       (_model.maxTry! < 15)) {
-                                    setState(() {
-                                      _model.setResponse = true;
-                                      _model.checkResponse = false;
-                                    });
+                                    _model.setResponse = true;
+                                    _model.checkResponse = false;
+                                    setState(() {});
                                     break;
                                   } else if (_model.maxTry! > 15) {
-                                    setState(() {
-                                      _model.notSetResponse = true;
-                                      _model.checkResponse = false;
-                                    });
+                                    _model.notSetResponse = true;
+                                    _model.checkResponse = false;
+                                    setState(() {});
                                     break;
                                   } else {
                                     await Future.delayed(
                                         const Duration(milliseconds: 1000));
-                                    setState(() {
-                                      _model.maxTry = _model.maxTry! + 1;
-                                    });
+                                    _model.maxTry = _model.maxTry! + 1;
+                                    setState(() {});
                                   }
                                 }
                               },

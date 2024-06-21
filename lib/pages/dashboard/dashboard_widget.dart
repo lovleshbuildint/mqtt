@@ -312,7 +312,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   true,
                                                 ),
                                                 ParamType.int,
-                                                true,
+                                                isList: true,
                                               ),
                                             }.withoutNulls,
                                           );
@@ -470,10 +470,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        setState(() {
-                                          FFAppState().deleteToken();
-                                          FFAppState().token = '';
-                                        });
+                                        FFAppState().deleteToken();
+                                        FFAppState().token = '';
+
+                                        setState(() {});
 
                                         context.goNamed('LogIn');
                                       },
@@ -901,9 +901,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
-                                              _model.fliter = 1;
-                                            });
+                                            _model.fliter = 1;
+                                            setState(() {});
                                           },
                                           child: Container(
                                             width: 42.0,
@@ -955,9 +954,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
-                                              _model.fliter = 2;
-                                            });
+                                            _model.fliter = 2;
+                                            setState(() {});
                                           },
                                           child: Container(
                                             height: 30.0,
@@ -1008,9 +1006,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
-                                              _model.fliter = 3;
-                                            });
+                                            _model.fliter = 3;
+                                            setState(() {});
                                           },
                                           child: Container(
                                             height: 30.0,
@@ -1061,9 +1058,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            setState(() {
-                                              _model.fliter = 4;
-                                            });
+                                            _model.fliter = 4;
+                                            setState(() {});
                                           },
                                           child: Container(
                                             height: 30.0,
@@ -1143,17 +1139,15 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     '_model.textController',
                                     Duration(milliseconds: 0),
                                     () async {
-                                      setState(() {
-                                        _model.searchValue =
-                                            _model.textController.text;
-                                      });
+                                      _model.searchValue =
+                                          _model.textController.text;
+                                      setState(() {});
                                     },
                                   ),
                                   onFieldSubmitted: (_) async {
-                                    setState(() {
-                                      _model.searchValue =
-                                          _model.textController.text;
-                                    });
+                                    _model.searchValue =
+                                        _model.textController.text;
+                                    setState(() {});
                                   },
                                   autofocus: false,
                                   textCapitalization:

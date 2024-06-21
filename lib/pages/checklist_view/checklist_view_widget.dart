@@ -287,10 +287,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                       '_model.textController',
                                       Duration(milliseconds: 0),
                                       () async {
-                                        setState(() {
-                                          _model.searchValue =
-                                              _model.textController.text;
-                                        });
+                                        _model.searchValue =
+                                            _model.textController.text;
+                                        setState(() {});
                                       },
                                     ),
                                     autofocus: false,
@@ -358,19 +357,57 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                               ),
                               Align(
                                 alignment: AlignmentDirectional(1.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    await launchURL(
-                                        'https://api.app.master.buildint.co/api/checklist/exportExcel');
-                                  },
-                                  child: FaIcon(
-                                    FontAwesomeIcons.solidFileExcel,
-                                    color: Color(0xFF1D6F42),
-                                    size: 30.0,
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 8.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await launchURL(
+                                          'https://api.app.master.buildint.co/api/checklist/exportExcel');
+                                    },
+                                    child: FaIcon(
+                                      FontAwesomeIcons.solidFileExcel,
+                                      color: Color(0xFF1D6F42),
+                                      size: 35.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed('TA');
+                                },
+                                child: Container(
+                                  width: 25.0,
+                                  height: 35.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10.0),
+                                      bottomRight: Radius.circular(0.0),
+                                      topLeft: Radius.circular(0.0),
+                                      topRight: Radius.circular(10.0),
+                                    ),
+                                  ),
+                                  alignment: AlignmentDirectional(0.0, 0.0),
+                                  child: Text(
+                                    'TA',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
                                 ),
                               ),
@@ -1347,6 +1384,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                     deviceId:
                                                         FFAppState().deviceId,
                                                   );
+
                                                   _shouldSetState = true;
                                                   if ((_model
                                                           .deleteChecklistResponse
@@ -1426,6 +1464,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                     ),
                                                     isActive: 3,
                                                   );
+
                                                   if ((_model
                                                           .updateAlertResponse
                                                           ?.succeeded ??
@@ -1440,6 +1479,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                                       token: FFAppState().token,
                                                       checklistStatus: 3,
                                                     );
+
                                                     if ((_model
                                                             .checkListResponse
                                                             ?.succeeded ??

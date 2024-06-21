@@ -156,9 +156,8 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            setState(() {
-                              FFAppState().mqttResponse = '';
-                            });
+                            FFAppState().mqttResponse = '';
+                            setState(() {});
 
                             context.pushNamed(
                               'DeviceDetails',

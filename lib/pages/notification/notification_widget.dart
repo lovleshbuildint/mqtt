@@ -272,6 +272,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                       deviceId:
                                                           FFAppState().deviceId,
                                                     );
+
                                                     if ((_model
                                                             .changeStateReponse
                                                             ?.succeeded ??
@@ -386,6 +387,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                         deviceId: FFAppState()
                                                             .deviceId,
                                                       );
+
                                                       if ((_model
                                                               .changeStateReponseCopy
                                                               ?.succeeded ??

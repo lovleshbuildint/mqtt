@@ -81,9 +81,9 @@ class FFAppState extends ChangeNotifier {
 
   String _token = '';
   String get token => _token;
-  set token(String _value) {
-    _token = _value;
-    secureStorage.setString('ff_token', _value);
+  set token(String value) {
+    _token = value;
+    secureStorage.setString('ff_token', value);
   }
 
   void deleteToken() {
@@ -92,9 +92,9 @@ class FFAppState extends ChangeNotifier {
 
   String _deviceId = '';
   String get deviceId => _deviceId;
-  set deviceId(String _value) {
-    _deviceId = _value;
-    secureStorage.setString('ff_deviceId', _value);
+  set deviceId(String value) {
+    _deviceId = value;
+    secureStorage.setString('ff_deviceId', value);
   }
 
   void deleteDeviceId() {
@@ -103,9 +103,9 @@ class FFAppState extends ChangeNotifier {
 
   String _fullName = '';
   String get fullName => _fullName;
-  set fullName(String _value) {
-    _fullName = _value;
-    secureStorage.setString('ff_fullName', _value);
+  set fullName(String value) {
+    _fullName = value;
+    secureStorage.setString('ff_fullName', value);
   }
 
   void deleteFullName() {
@@ -114,9 +114,9 @@ class FFAppState extends ChangeNotifier {
 
   String _role = '';
   String get role => _role;
-  set role(String _value) {
-    _role = _value;
-    secureStorage.setString('ff_role', _value);
+  set role(String value) {
+    _role = value;
+    secureStorage.setString('ff_role', value);
   }
 
   void deleteRole() {
@@ -125,9 +125,9 @@ class FFAppState extends ChangeNotifier {
 
   String _deviceStateDid = '';
   String get deviceStateDid => _deviceStateDid;
-  set deviceStateDid(String _value) {
-    _deviceStateDid = _value;
-    secureStorage.setString('ff_deviceStateDid', _value);
+  set deviceStateDid(String value) {
+    _deviceStateDid = value;
+    secureStorage.setString('ff_deviceStateDid', value);
   }
 
   void deleteDeviceStateDid() {
@@ -136,9 +136,9 @@ class FFAppState extends ChangeNotifier {
 
   String _mqttTime = '';
   String get mqttTime => _mqttTime;
-  set mqttTime(String _value) {
-    _mqttTime = _value;
-    secureStorage.setString('ff_mqttTime', _value);
+  set mqttTime(String value) {
+    _mqttTime = value;
+    secureStorage.setString('ff_mqttTime', value);
   }
 
   void deleteMqttTime() {
@@ -147,9 +147,9 @@ class FFAppState extends ChangeNotifier {
 
   dynamic _deviceStatusDIDJson;
   dynamic get deviceStatusDIDJson => _deviceStatusDIDJson;
-  set deviceStatusDIDJson(dynamic _value) {
-    _deviceStatusDIDJson = _value;
-    secureStorage.setString('ff_deviceStatusDIDJson', jsonEncode(_value));
+  set deviceStatusDIDJson(dynamic value) {
+    _deviceStatusDIDJson = value;
+    secureStorage.setString('ff_deviceStatusDIDJson', jsonEncode(value));
   }
 
   void deleteDeviceStatusDIDJson() {
@@ -158,9 +158,9 @@ class FFAppState extends ChangeNotifier {
 
   int _contactNum = 0;
   int get contactNum => _contactNum;
-  set contactNum(int _value) {
-    _contactNum = _value;
-    secureStorage.setInt('ff_contactNum', _value);
+  set contactNum(int value) {
+    _contactNum = value;
+    secureStorage.setInt('ff_contactNum', value);
   }
 
   void deleteContactNum() {
@@ -169,9 +169,9 @@ class FFAppState extends ChangeNotifier {
 
   String _relayStatusiATM = '';
   String get relayStatusiATM => _relayStatusiATM;
-  set relayStatusiATM(String _value) {
-    _relayStatusiATM = _value;
-    secureStorage.setString('ff_relayStatusiATM', _value);
+  set relayStatusiATM(String value) {
+    _relayStatusiATM = value;
+    secureStorage.setString('ff_relayStatusiATM', value);
   }
 
   void deleteRelayStatusiATM() {
@@ -180,9 +180,9 @@ class FFAppState extends ChangeNotifier {
 
   int _accessRoleId = 0;
   int get accessRoleId => _accessRoleId;
-  set accessRoleId(int _value) {
-    _accessRoleId = _value;
-    secureStorage.setInt('ff_accessRoleId', _value);
+  set accessRoleId(int value) {
+    _accessRoleId = value;
+    secureStorage.setInt('ff_accessRoleId', value);
   }
 
   void deleteAccessRoleId() {
@@ -191,54 +191,54 @@ class FFAppState extends ChangeNotifier {
 
   List<int> _regionId = [];
   List<int> get regionId => _regionId;
-  set regionId(List<int> _value) {
-    _regionId = _value;
+  set regionId(List<int> value) {
+    _regionId = value;
     secureStorage.setStringList(
-        'ff_regionId', _value.map((x) => x.toString()).toList());
+        'ff_regionId', value.map((x) => x.toString()).toList());
   }
 
   void deleteRegionId() {
     secureStorage.delete(key: 'ff_regionId');
   }
 
-  void addToRegionId(int _value) {
-    _regionId.add(_value);
+  void addToRegionId(int value) {
+    regionId.add(value);
     secureStorage.setStringList(
         'ff_regionId', _regionId.map((x) => x.toString()).toList());
   }
 
-  void removeFromRegionId(int _value) {
-    _regionId.remove(_value);
+  void removeFromRegionId(int value) {
+    regionId.remove(value);
     secureStorage.setStringList(
         'ff_regionId', _regionId.map((x) => x.toString()).toList());
   }
 
-  void removeAtIndexFromRegionId(int _index) {
-    _regionId.removeAt(_index);
+  void removeAtIndexFromRegionId(int index) {
+    regionId.removeAt(index);
     secureStorage.setStringList(
         'ff_regionId', _regionId.map((x) => x.toString()).toList());
   }
 
   void updateRegionIdAtIndex(
-    int _index,
+    int index,
     int Function(int) updateFn,
   ) {
-    _regionId[_index] = updateFn(_regionId[_index]);
+    regionId[index] = updateFn(_regionId[index]);
     secureStorage.setStringList(
         'ff_regionId', _regionId.map((x) => x.toString()).toList());
   }
 
-  void insertAtIndexInRegionId(int _index, int _value) {
-    _regionId.insert(_index, _value);
+  void insertAtIndexInRegionId(int index, int value) {
+    regionId.insert(index, value);
     secureStorage.setStringList(
         'ff_regionId', _regionId.map((x) => x.toString()).toList());
   }
 
   int _userOrg = 0;
   int get userOrg => _userOrg;
-  set userOrg(int _value) {
-    _userOrg = _value;
-    secureStorage.setInt('ff_userOrg', _value);
+  set userOrg(int value) {
+    _userOrg = value;
+    secureStorage.setInt('ff_userOrg', value);
   }
 
   void deleteUserOrg() {
@@ -247,8 +247,8 @@ class FFAppState extends ChangeNotifier {
 
   String _mqttResponse = '';
   String get mqttResponse => _mqttResponse;
-  set mqttResponse(String _value) {
-    _mqttResponse = _value;
+  set mqttResponse(String value) {
+    _mqttResponse = value;
   }
 }
 

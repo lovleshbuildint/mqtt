@@ -366,19 +366,18 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          setState(() {
-                                            FFAppState().deleteMqttTime();
-                                            FFAppState().mqttTime = '';
+                                          FFAppState().deleteMqttTime();
+                                          FFAppState().mqttTime = '';
 
-                                            FFAppState()
-                                                .deleteDeviceStatusDIDJson();
-                                            FFAppState().deviceStatusDIDJson =
-                                                null;
+                                          FFAppState()
+                                              .deleteDeviceStatusDIDJson();
+                                          FFAppState().deviceStatusDIDJson =
+                                              null;
 
-                                            FFAppState()
-                                                .deleteRelayStatusiATM();
-                                            FFAppState().relayStatusiATM = '';
-                                          });
+                                          FFAppState().deleteRelayStatusiATM();
+                                          FFAppState().relayStatusiATM = '';
+
+                                          setState(() {});
                                           if ((String var1) {
                                             return var1 == 'iATM' ||
                                                     var1 == 'ATM'

@@ -1955,13 +1955,11 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               50.0, 0.0, 50.0, 18.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              setState(() {
-                                FFAppState().mqttResponse = '1,2,3,4';
-                              });
-                              setState(() {
-                                _model.maxTry = 0;
-                                _model.checkResponse = true;
-                              });
+                              FFAppState().mqttResponse = '1,2,3,4';
+                              setState(() {});
+                              _model.maxTry = 0;
+                              _model.checkResponse = true;
+                              setState(() {});
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
@@ -2062,23 +2060,20 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                             }(FFAppState().mqttResponse)) ==
                                             '${widget.did}\$SDEVOK')) &&
                                     (_model.maxTry < 15)) {
-                                  setState(() {
-                                    _model.setResponse = true;
-                                    _model.checkResponse = false;
-                                  });
+                                  _model.setResponse = true;
+                                  _model.checkResponse = false;
+                                  setState(() {});
                                   break;
                                 } else if (_model.maxTry > 15) {
-                                  setState(() {
-                                    _model.noResponse = true;
-                                    _model.checkResponse = false;
-                                  });
+                                  _model.noResponse = true;
+                                  _model.checkResponse = false;
+                                  setState(() {});
                                   break;
                                 } else {
                                   await Future.delayed(
                                       const Duration(milliseconds: 1000));
-                                  setState(() {
-                                    _model.maxTry = _model.maxTry + 1;
-                                  });
+                                  _model.maxTry = _model.maxTry + 1;
+                                  setState(() {});
                                 }
                               }
                             },
@@ -2112,9 +2107,8 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               50.0, 0.0, 50.0, 18.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              setState(() {
-                                _model.maxTry = 0;
-                              });
+                              _model.maxTry = 0;
+                              setState(() {});
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
@@ -2135,10 +2129,9 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                           ? true
                                           : false;
                                     }(FFAppState().mqttResponse))) {
-                                  setState(() {
-                                    _model.devResponse =
-                                        FFAppState().mqttResponse;
-                                  });
+                                  _model.devResponse =
+                                      FFAppState().mqttResponse;
+                                  setState(() {});
                                   setState(() {
                                     _model.dropDownValueController?.value =
                                         ((String var1) {
@@ -2150,91 +2143,177 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                         ((String var1) {
                                       return var1.split(',')[4];
                                     }(_model.devResponse));
+                                    _model.setTimeDayTextController?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .setTimeDayTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.setTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[5];
                                     }(_model.devResponse));
+                                    _model.setTimeNightTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .setTimeNightTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.signageOnTimeTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[6];
                                     }(_model.devResponse));
+                                    _model.signageOnTimeTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .signageOnTimeTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.signageOffTimeTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[7];
                                     }(_model.devResponse));
+                                    _model.signageOffTimeTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .signageOffTimeTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.dataIntervalTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[8];
                                     }(_model.devResponse));
+                                    _model.dataIntervalTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .dataIntervalTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.maxTempDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[9];
                                     }(_model.devResponse));
+                                    _model.maxTempDayTextController?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .maxTempDayTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.minTempDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[10];
                                     }(_model.devResponse));
+                                    _model.minTempDayTextController?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .minTempDayTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.maxTempNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[11];
                                     }(_model.devResponse));
+                                    _model.maxTempNightTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .maxTempNightTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.minTempNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[12];
                                     }(_model.devResponse));
+                                    _model.minTempNightTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .minTempNightTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.acOnTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[13];
                                     }(_model.devResponse));
+                                    _model.acOnTimeDayTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .acOnTimeDayTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.acOnTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[14];
                                     }(_model.devResponse));
+                                    _model.acOnTimeNightTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .acOnTimeNightTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.acOffTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[15];
                                     }(_model.devResponse));
+                                    _model.acOffTimeDayTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .acOffTimeDayTextController!
+                                                .text
+                                                .length);
                                   });
                                   setState(() {
                                     _model.acOffTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[16];
                                     }(_model.devResponse));
+                                    _model.acOffTimeNightTextController
+                                            ?.selection =
+                                        TextSelection.collapsed(
+                                            offset: _model
+                                                .acOffTimeNightTextController!
+                                                .text
+                                                .length);
                                   });
                                   break;
                                 } else if (_model.maxTry > 14) {
-                                  setState(() {
-                                    _model.noResponse = true;
-                                  });
+                                  _model.noResponse = true;
+                                  setState(() {});
                                   break;
                                 } else {
                                   await Future.delayed(
                                       const Duration(milliseconds: 1000));
-                                  setState(() {
-                                    _model.maxTry = _model.maxTry + 1;
-                                  });
+                                  _model.maxTry = _model.maxTry + 1;
+                                  setState(() {});
                                   unawaited(
                                     () async {
                                       await actions.publishMqtt(
@@ -2326,9 +2405,8 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {
-                                      setState(() {
-                                        _model.noResponse = false;
-                                      });
+                                      _model.noResponse = false;
+                                      setState(() {});
                                     },
                                     text: 'OK',
                                     options: FFButtonOptions(

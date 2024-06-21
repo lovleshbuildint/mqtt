@@ -266,9 +266,8 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    setState(() {
-                                      FFAppState().mqttResponse = '';
-                                    });
+                                    FFAppState().mqttResponse = '';
+                                    setState(() {});
 
                                     context.pushNamed(
                                       'devControl',

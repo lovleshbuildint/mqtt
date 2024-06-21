@@ -367,16 +367,14 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 (_model.passwordTextController
                                                         .text ==
                                                     'testPa\$\$word')) {
-                                              setState(() {
-                                                FFAppState().deviceId =
-                                                    '123456';
-                                                FFAppState().role = 'ATM';
-                                                FFAppState().fullName =
-                                                    'Demo User';
-                                                FFAppState().token =
-                                                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlbW9Nb2RlIiwicm9sZSI6IkFUTU8iLCJkZXZpY2VfaWQiOiIxMjM0NTYiLCJ1c2VyX3Byb2plY3QiOiJpRU1TIiwidXNlcl9vcmciOiI3IiwiZnVsbE5hbWUiOiJEZW1vIFVzZXIiLCJpYXQiOjE3MDgxNzY3Mzl9.mncjy5-hq-CExJ-osJvuaObh2E3jjotpKgOb1UYScyI';
-                                                FFAppState().userOrg = 0;
-                                              });
+                                              FFAppState().deviceId = '123456';
+                                              FFAppState().role = 'ATM';
+                                              FFAppState().fullName =
+                                                  'Demo User';
+                                              FFAppState().token =
+                                                  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlbW9Nb2RlIiwicm9sZSI6IkFUTU8iLCJkZXZpY2VfaWQiOiIxMjM0NTYiLCJ1c2VyX3Byb2plY3QiOiJpRU1TIiwidXNlcl9vcmciOiI3IiwiZnVsbE5hbWUiOiJEZW1vIFVzZXIiLCJpYXQiOjE3MDgxNzY3Mzl9.mncjy5-hq-CExJ-osJvuaObh2E3jjotpKgOb1UYScyI';
+                                              FFAppState().userOrg = 0;
+                                              setState(() {});
 
                                               context.goNamed('Dashboard');
                                             } else {
@@ -387,10 +385,9 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 _model.deviceIdResponce =
                                                     await actions.deviceId();
                                                 _shouldSetState = true;
-                                                setState(() {
-                                                  FFAppState().deviceId =
-                                                      _model.deviceIdResponce!;
-                                                });
+                                                FFAppState().deviceId =
+                                                    _model.deviceIdResponce!;
+                                                setState(() {});
                                               }
                                               _model.loginResponce =
                                                   await MasterGroup.loginCall
@@ -403,64 +400,64 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                     .text,
                                                 deviceId: FFAppState().deviceId,
                                               );
+
                                               _shouldSetState = true;
                                               if ((_model.loginResponce
                                                       ?.succeeded ??
                                                   true)) {
-                                                setState(() {
-                                                  FFAppState().token =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.token''',
-                                                  ).toString();
-                                                  FFAppState().fullName =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.user_data.fullName''',
-                                                  ).toString();
-                                                  FFAppState().role =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.user_data.role''',
-                                                  ).toString();
-                                                  FFAppState().contactNum =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.user_data.contact_num''',
-                                                  );
-                                                  FFAppState().accessRoleId =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.user_data.user_access_role''',
-                                                  );
-                                                  FFAppState().regionId =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.user_data.user_region''',
-                                                    true,
-                                                  )!
-                                                          .toList()
-                                                          .cast<int>();
-                                                  FFAppState().userOrg =
-                                                      getJsonField(
-                                                    (_model.loginResponce
-                                                            ?.jsonBody ??
-                                                        ''),
-                                                    r'''$.user_data.user_org''',
-                                                  );
-                                                });
+                                                FFAppState().token =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.token''',
+                                                ).toString();
+                                                FFAppState().fullName =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.fullName''',
+                                                ).toString();
+                                                FFAppState().role =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.role''',
+                                                ).toString();
+                                                FFAppState().contactNum =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.contact_num''',
+                                                );
+                                                FFAppState().accessRoleId =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.user_access_role''',
+                                                );
+                                                FFAppState().regionId =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.user_region''',
+                                                  true,
+                                                )!
+                                                        .toList()
+                                                        .cast<int>();
+                                                FFAppState().userOrg =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.user_org''',
+                                                );
+                                                setState(() {});
 
                                                 context.goNamed('Dashboard');
 
@@ -515,6 +512,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                       deviceId:
                                                           FFAppState().deviceId,
                                                     );
+
                                                     _shouldSetState = true;
                                                     if ((_model
                                                             .registerDeviceResponce

@@ -1143,8 +1143,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   int>(
                                                                 multiSelectController: _model
                                                                         .regionalValueController ??=
-                                                                    FormFieldController<
-                                                                            List<int>>(
+                                                                    FormListFieldController<
+                                                                            int>(
                                                                         null),
                                                                 options: List<
                                                                         int>.from(
@@ -1331,6 +1331,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               userRegionList: _model
                                                                   .regionalValue,
                                                             );
+
                                                             if ((_model
                                                                     .addUserResponse
                                                                     ?.succeeded ??

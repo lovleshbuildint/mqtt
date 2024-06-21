@@ -37,6 +37,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
     super.initState();
     _model = createModel(context, () => SwitchsModel());
 
+    _model.switchValue = widget.value == 1;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -52,7 +53,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
     context.watch<FFAppState>();
 
     return Switch.adaptive(
-      value: _model.switchValue ??= widget.value == 1,
+      value: _model.switchValue!,
       onChanged: (newValue) async {
         setState(() => _model.switchValue = newValue!);
         if (newValue!) {
@@ -64,6 +65,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
             deviceId: FFAppState().deviceId,
             deviceState: widget.deviceState,
           );
+
           if ((_model.updateUserStateOn?.succeeded ?? true)) {
             await showDialog(
               context: context,
@@ -106,6 +108,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
             deviceId: FFAppState().deviceId,
             deviceState: widget.deviceState,
           );
+
           if ((_model.updateUserStateOff?.succeeded ?? true)) {
             await showDialog(
               context: context,

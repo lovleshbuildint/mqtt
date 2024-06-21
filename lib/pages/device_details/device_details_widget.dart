@@ -114,6 +114,24 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
       );
     });
 
+    _model.ac1Value = (String var1) {
+      return var1 == '' ? true : (var1[7] == '1' ? true : false);
+    }(getJsonField(
+      FFAppState().deviceStatusDIDJson,
+      r'''$.RM''',
+    ).toString().toString());
+    _model.ac2Value = (String var1) {
+      return var1 == '' ? true : (var1[7] == '1' ? true : false);
+    }(getJsonField(
+      FFAppState().deviceStatusDIDJson,
+      r'''$.RM''',
+    ).toString().toString());
+    _model.signageValue = (String var1) {
+      return var1 == '' ? true : (var1[3] == '1' ? true : false);
+    }(getJsonField(
+      FFAppState().deviceStatusDIDJson,
+      r'''$.RM''',
+    ).toString().toString());
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -221,16 +239,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(() {
-                                    FFAppState().deleteMqttTime();
-                                    FFAppState().mqttTime = '';
+                                  FFAppState().deleteMqttTime();
+                                  FFAppState().mqttTime = '';
 
-                                    FFAppState().deleteDeviceStatusDIDJson();
-                                    FFAppState().deviceStatusDIDJson = null;
+                                  FFAppState().deleteDeviceStatusDIDJson();
+                                  FFAppState().deviceStatusDIDJson = null;
 
-                                    FFAppState().deleteRelayStatusiATM();
-                                    FFAppState().relayStatusiATM = '';
-                                  });
+                                  FFAppState().deleteRelayStatusiATM();
+                                  FFAppState().relayStatusiATM = '';
+
+                                  setState(() {});
 
                                   context.pushNamed(
                                     'advanceSettings',
@@ -1010,19 +1028,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   );
                                                                 }(),
                                                               );
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .relayStatusiATM =
-                                                                    (String
-                                                                        var1) {
-                                                                  return '0' +
-                                                                      var1[1] +
-                                                                      var1[2] +
-                                                                      var1[3] +
-                                                                      '0000';
-                                                                }(FFAppState()
-                                                                        .relayStatusiATM);
-                                                              });
+                                                              FFAppState()
+                                                                      .relayStatusiATM =
+                                                                  (String
+                                                                      var1) {
+                                                                return '0' +
+                                                                    var1[1] +
+                                                                    var1[2] +
+                                                                    var1[3] +
+                                                                    '0000';
+                                                              }(FFAppState()
+                                                                      .relayStatusiATM);
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1149,19 +1166,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 '15.206.230.32',
                                                                 'mqtt_buildint_\$\$2023',
                                                               );
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .relayStatusiATM =
-                                                                    (String
-                                                                        var1) {
-                                                                  return '1' +
-                                                                      var1[1] +
-                                                                      var1[2] +
-                                                                      var1[3] +
-                                                                      '0000';
-                                                                }(FFAppState()
-                                                                        .relayStatusiATM);
-                                                              });
+                                                              FFAppState()
+                                                                      .relayStatusiATM =
+                                                                  (String
+                                                                      var1) {
+                                                                return '1' +
+                                                                    var1[1] +
+                                                                    var1[2] +
+                                                                    var1[3] +
+                                                                    '0000';
+                                                              }(FFAppState()
+                                                                      .relayStatusiATM);
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1318,21 +1334,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 scaleY: 0.7,
                                                                 child: Switch(
                                                                   value: _model
-                                                                          .ac1Value ??=
-                                                                      (String
-                                                                          var1) {
-                                                                    return var1 ==
-                                                                            ''
-                                                                        ? true
-                                                                        : (var1[7] ==
-                                                                                '1'
-                                                                            ? true
-                                                                            : false);
-                                                                  }(getJsonField(
-                                                                    FFAppState()
-                                                                        .deviceStatusDIDJson,
-                                                                    r'''$.RM''',
-                                                                  ).toString()),
+                                                                      .ac1Value!,
                                                                   onChanged:
                                                                       (newValue) async {
                                                                     setState(() =>
@@ -1634,20 +1636,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 '15.206.230.32',
                                                                 'mqtt_buildint_\$\$2023',
                                                               );
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .relayStatusiATM =
-                                                                    (String
-                                                                        var1) {
-                                                                  return var1[
-                                                                          0] +
-                                                                      '0' +
-                                                                      var1[2] +
-                                                                      var1[3] +
-                                                                      '0000';
-                                                                }(FFAppState()
-                                                                        .relayStatusiATM);
-                                                              });
+                                                              FFAppState()
+                                                                      .relayStatusiATM =
+                                                                  (String
+                                                                      var1) {
+                                                                return var1[0] +
+                                                                    '0' +
+                                                                    var1[2] +
+                                                                    var1[3] +
+                                                                    '0000';
+                                                              }(FFAppState()
+                                                                      .relayStatusiATM);
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1775,20 +1775,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 '15.206.230.32',
                                                                 'mqtt_buildint_\$\$2023',
                                                               );
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .relayStatusiATM =
-                                                                    (String
-                                                                        var1) {
-                                                                  return var1[
-                                                                          0] +
-                                                                      '1' +
-                                                                      var1[2] +
-                                                                      var1[3] +
-                                                                      '0000';
-                                                                }(FFAppState()
-                                                                        .relayStatusiATM);
-                                                              });
+                                                              FFAppState()
+                                                                      .relayStatusiATM =
+                                                                  (String
+                                                                      var1) {
+                                                                return var1[0] +
+                                                                    '1' +
+                                                                    var1[2] +
+                                                                    var1[3] +
+                                                                    '0000';
+                                                              }(FFAppState()
+                                                                      .relayStatusiATM);
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1945,21 +1943,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 scaleY: 0.7,
                                                                 child: Switch(
                                                                   value: _model
-                                                                          .ac2Value ??=
-                                                                      (String
-                                                                          var1) {
-                                                                    return var1 ==
-                                                                            ''
-                                                                        ? true
-                                                                        : (var1[7] ==
-                                                                                '1'
-                                                                            ? true
-                                                                            : false);
-                                                                  }(getJsonField(
-                                                                    FFAppState()
-                                                                        .deviceStatusDIDJson,
-                                                                    r'''$.RM''',
-                                                                  ).toString()),
+                                                                      .ac2Value!,
                                                                   onChanged:
                                                                       (newValue) async {
                                                                     setState(() =>
@@ -2262,20 +2246,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 '15.206.230.32',
                                                                 'mqtt_buildint_\$\$2023',
                                                               );
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .relayStatusiATM =
-                                                                    (String
-                                                                        var1) {
-                                                                  return var1[
-                                                                          0] +
-                                                                      var1[1] +
-                                                                      var1[2] +
-                                                                      '0' +
-                                                                      '0000';
-                                                                }(FFAppState()
-                                                                        .relayStatusiATM);
-                                                              });
+                                                              FFAppState()
+                                                                      .relayStatusiATM =
+                                                                  (String
+                                                                      var1) {
+                                                                return var1[0] +
+                                                                    var1[1] +
+                                                                    var1[2] +
+                                                                    '0' +
+                                                                    '0000';
+                                                              }(FFAppState()
+                                                                      .relayStatusiATM);
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Container(
@@ -2404,20 +2386,18 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 '15.206.230.32',
                                                                 'mqtt_buildint_\$\$2023',
                                                               );
-                                                              setState(() {
-                                                                FFAppState()
-                                                                        .relayStatusiATM =
-                                                                    (String
-                                                                        var1) {
-                                                                  return var1[
-                                                                          0] +
-                                                                      var1[1] +
-                                                                      var1[2] +
-                                                                      '1' +
-                                                                      '0000';
-                                                                }(FFAppState()
-                                                                        .relayStatusiATM);
-                                                              });
+                                                              FFAppState()
+                                                                      .relayStatusiATM =
+                                                                  (String
+                                                                      var1) {
+                                                                return var1[0] +
+                                                                    var1[1] +
+                                                                    var1[2] +
+                                                                    '1' +
+                                                                    '0000';
+                                                              }(FFAppState()
+                                                                      .relayStatusiATM);
+                                                              setState(() {});
                                                             }
                                                           },
                                                           child: Container(
@@ -2575,21 +2555,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                 scaleY: 0.7,
                                                                 child: Switch(
                                                                   value: _model
-                                                                          .signageValue ??=
-                                                                      (String
-                                                                          var1) {
-                                                                    return var1 ==
-                                                                            ''
-                                                                        ? true
-                                                                        : (var1[3] ==
-                                                                                '1'
-                                                                            ? true
-                                                                            : false);
-                                                                  }(getJsonField(
-                                                                    FFAppState()
-                                                                        .deviceStatusDIDJson,
-                                                                    r'''$.RM''',
-                                                                  ).toString()),
+                                                                      .signageValue!,
                                                                   onChanged:
                                                                       (newValue) async {
                                                                     setState(() =>

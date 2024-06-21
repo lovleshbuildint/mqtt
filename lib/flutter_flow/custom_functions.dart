@@ -22,6 +22,22 @@ int? checkIndex(
   }
 }
 
+int? checkIndexta(
+  dynamic list,
+  List<int>? value,
+) {
+  print("list");
+  print(list);
+  print("value");
+  print(value);
+  return 1;
+  // for (int i = 0; i < list['result'].length; i++) {
+  //   if (list['result'][i][checkKey] == value) {
+  //     return list['result'][i][resultKey];
+  //   }
+  // }
+}
+
 String? editUserOrg(
   dynamic list,
   int? value,

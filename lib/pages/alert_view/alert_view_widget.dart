@@ -160,10 +160,8 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                               '_model.textController',
                               Duration(milliseconds: 0),
                               () async {
-                                setState(() {
-                                  _model.searchValue =
-                                      _model.textController.text;
-                                });
+                                _model.searchValue = _model.textController.text;
+                                setState(() {});
                               },
                             ),
                             autofocus: false,
@@ -498,6 +496,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                                 .contactNum,
                                                         isActive: 2,
                                                       );
+
                                                       _shouldSetState = true;
                                                       if ((_model
                                                               .updateAlertsResponse
@@ -648,6 +647,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                       contactNum: FFAppState()
                                                           .contactNum,
                                                     );
+
                                                     _shouldSetState = true;
                                                     if ((_model
                                                             .checklistLoginResponse
@@ -662,6 +662,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                         deviceId: FFAppState()
                                                             .deviceId,
                                                       );
+
                                                       _shouldSetState = true;
                                                       if ((_model
                                                               .checklistOTPResponse
@@ -680,6 +681,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                             r'''$.result[0].otp''',
                                                           ).toString(),
                                                         );
+
                                                         _shouldSetState = true;
                                                         if ((_model
                                                                 .checklistGetTokenResponse

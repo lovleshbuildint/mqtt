@@ -1154,8 +1154,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               int>(
                                                             multiSelectController: _model
                                                                     .regionalValueController ??=
-                                                                FormFieldController<
-                                                                    List<int>>(_model
+                                                                FormListFieldController<
+                                                                    int>(_model
                                                                         .regionalValue ??=
                                                                     List<
                                                                         int>.from(
@@ -1333,6 +1333,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                     _model
                                                                         .regionalValue,
                                                               );
+
                                                               _shouldSetState =
                                                                   true;
                                                               if ((_model
@@ -1424,6 +1425,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               userRegionList: _model
                                                                   .regionalValue,
                                                             );
+
                                                             _shouldSetState =
                                                                 true;
                                                             if ((_model

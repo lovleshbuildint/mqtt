@@ -11,36 +11,36 @@ Future userInfoUpdate(BuildContext context) async {
     token: FFAppState().token,
     deviceId: FFAppState().deviceId,
   );
+
   if ((userInfoRespnse?.succeeded ?? true)) {
-    FFAppState().update(() {
-      FFAppState().fullName = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.fullName''',
-      ).toString().toString();
-      FFAppState().role = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.role''',
-      ).toString().toString();
-      FFAppState().contactNum = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.contact_num''',
-      );
-      FFAppState().accessRoleId = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.user_access_role''',
-      );
-      FFAppState().regionId = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.user_region''',
-        true,
-      )!
-          .toList()
-          .cast<int>();
-      FFAppState().userOrg = getJsonField(
-        (userInfoRespnse?.jsonBody ?? ''),
-        r'''$.user_data.user_org''',
-      );
-    });
+    FFAppState().fullName = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.fullName''',
+    ).toString().toString();
+    FFAppState().role = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.role''',
+    ).toString().toString();
+    FFAppState().contactNum = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.contact_num''',
+    );
+    FFAppState().accessRoleId = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.user_access_role''',
+    );
+    FFAppState().regionId = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.user_region''',
+      true,
+    )!
+        .toList()
+        .cast<int>();
+    FFAppState().userOrg = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.user_org''',
+    );
+    FFAppState().update(() {});
     return;
   } else {
     await showDialog(
@@ -59,10 +59,10 @@ Future userInfoUpdate(BuildContext context) async {
         );
       },
     );
-    FFAppState().update(() {
-      FFAppState().deleteToken();
-      FFAppState().token = '';
-    });
+    FFAppState().deleteToken();
+    FFAppState().token = '';
+
+    FFAppState().update(() {});
 
     context.goNamed('LogIn');
 

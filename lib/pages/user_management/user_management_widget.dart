@@ -159,10 +159,9 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                     '_model.textController',
                                     Duration(milliseconds: 0),
                                     () async {
-                                      setState(() {
-                                        _model.searchValueUser =
-                                            _model.textController.text;
-                                      });
+                                      _model.searchValueUser =
+                                          _model.textController.text;
+                                      setState(() {});
                                     },
                                   ),
                                   autofocus: false,
@@ -328,7 +327,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                         true,
                                                       ),
                                                       ParamType.int,
-                                                      true,
+                                                      isList: true,
                                                     ),
                                                   }.withoutNulls,
                                                 );
@@ -496,6 +495,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                                 FFAppState()
                                                                     .deviceId,
                                                           );
+
                                                           _shouldSetState =
                                                               true;
                                                           if ((_model
@@ -687,6 +687,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                                 FFAppState()
                                                                     .deviceId,
                                                           );
+
                                                           _shouldSetState =
                                                               true;
                                                           if ((_model
