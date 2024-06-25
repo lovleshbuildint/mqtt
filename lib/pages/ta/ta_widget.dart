@@ -136,7 +136,7 @@ class _TaWidgetState extends State<TaWidget> {
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Color(0xFF2D2D2D),
-                                            fontSize: 20.0,
+                                            fontSize: 8.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
