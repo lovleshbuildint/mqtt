@@ -22,7 +22,7 @@ int? checkIndex(
   }
 }
 
-List<int>? checkIndexta(
+String? checkIndexta(
   dynamic list,
   List<int> values,
 ) {
@@ -30,11 +30,9 @@ List<int>? checkIndexta(
   for (int value in values) {
     if (value >= 0 && value < list.length) {
       cIds.add(list[value]['c_id']);
-      print(list[value]['c_id']);
-      print(cIds);
-      return cIds;
     }
   }
+  return cIds.join(',');
 }
 
 String? editUserOrg(

@@ -242,16 +242,11 @@ class _TaWidgetState extends State<TaWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    _model.test = functions
-                                        .checkIndexta(
-                                            getJsonField(
+                                    _model.test =
+                                        'https://api.app.master.buildint.co/api/checklist/exportExcelTa?c_id_list=${functions.checkIndexta(getJsonField(
                                               taGetTAViewResponse.jsonBody,
                                               r'''$.result''',
-                                            ),
-                                            _model.paginatedDataTableController
-                                                .selectedRows
-                                                .toList())
-                                        .toString();
+                                            ), _model.paginatedDataTableController.selectedRows.toList())}';
                                     setState(() {});
                                   },
                                   child: FaIcon(
