@@ -22,20 +22,18 @@ int? checkIndex(
   }
 }
 
-int? checkIndexta(
+List<int>? checkIndexta(
   dynamic list,
-  List<int>? value,
+  List<int> values,
 ) {
-  print("list");
-  print(list);
-  print("value");
-  print(value);
-  return 1;
-  // for (int i = 0; i < list['result'].length; i++) {
-  //   if (list['result'][i][checkKey] == value) {
-  //     return list['result'][i][resultKey];
-  //   }
-  // }
+  List<int> cIds = [];
+  for (int value in values) {
+    if (value >= 0 && value < list.length) {
+      cIds.add(list[value]['c_id']);
+      print(cIds);
+      return cIds;
+    }
+  }
 }
 
 String? editUserOrg(

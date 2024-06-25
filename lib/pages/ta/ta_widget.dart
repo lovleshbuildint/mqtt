@@ -127,7 +127,10 @@ class _TaWidgetState extends State<TaWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         7.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      'TA View',
+                                      valueOrDefault<String>(
+                                        _model.test,
+                                        'TA View',
+                                      ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
