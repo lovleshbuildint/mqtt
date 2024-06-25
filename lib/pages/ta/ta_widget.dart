@@ -127,16 +127,13 @@ class _TaWidgetState extends State<TaWidget> {
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         7.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      valueOrDefault<String>(
-                                        _model.test,
-                                        'TA View',
-                                      ),
+                                      'TA View',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Readex Pro',
                                             color: Color(0xFF2D2D2D),
-                                            fontSize: 8.0,
+                                            fontSize: 20.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.normal,
                                           ),
@@ -242,12 +239,11 @@ class _TaWidgetState extends State<TaWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    _model.test =
+                                    await launchURL(
                                         'https://api.app.master.buildint.co/api/checklist/exportExcelTa?c_id_list=${functions.checkIndexta(getJsonField(
                                               taGetTAViewResponse.jsonBody,
                                               r'''$.result''',
-                                            ), _model.paginatedDataTableController.selectedRows.toList())}';
-                                    setState(() {});
+                                            ), _model.paginatedDataTableController.selectedRows.toList())}');
                                   },
                                   child: FaIcon(
                                     FontAwesomeIcons.solidFileExcel,
