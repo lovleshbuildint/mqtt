@@ -293,6 +293,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'AC Selection',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -302,7 +303,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -396,6 +396,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Set Time (Day)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -405,7 +406,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -517,6 +517,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Set Time (Night)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -526,7 +527,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -638,6 +638,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Signage On Time',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -647,7 +648,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -759,6 +759,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Signage Off Time',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -768,7 +769,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -880,6 +880,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Data interval',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -889,7 +890,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1001,6 +1001,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Max Temp (Day)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1010,7 +1011,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1122,6 +1122,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Min Temp (Day)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1131,7 +1132,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1243,6 +1243,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Max Temp (Night)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1252,7 +1253,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1364,6 +1364,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Min Temp (Night)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1373,7 +1374,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1485,6 +1485,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               ' AC On time (Day)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1494,7 +1495,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1606,6 +1606,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               ' AC On time (Night)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1615,7 +1616,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1728,6 +1728,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               ' AC Off time (Day)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1737,7 +1738,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1850,6 +1850,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               ' AC Off time (Night)',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1859,7 +1860,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),

@@ -342,6 +342,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       userListItem,
                                                       r'''$..username''',
                                                     ).toString(),
+                                                    minFontSize: 12.0,
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -353,7 +354,6 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                           fontSize: 16.0,
                                                           letterSpacing: 0.0,
                                                         ),
-                                                    minFontSize: 12.0,
                                                   ),
                                                   Text(
                                                     'Role: ${getJsonField(

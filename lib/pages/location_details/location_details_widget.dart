@@ -270,6 +270,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                     widget.locStatus,
                                                     'Offline',
                                                   ),
+                                                  minFontSize: 10.0,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -283,13 +284,13 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
-                                                  minFontSize: 10.0,
                                                 ),
                                                 AutoSizeText(
                                                   valueOrDefault<String>(
                                                     widget.locDevices,
                                                     '1',
                                                   ),
+                                                  minFontSize: 10.0,
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -303,7 +304,6 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                       ),
-                                                  minFontSize: 10.0,
                                                 ),
                                               ],
                                             ),
@@ -602,6 +602,8 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                     dataItem,
                                                                     r'''$..dev_type''',
                                                                   ).toString(),
+                                                                  minFontSize:
+                                                                      10.0,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -617,14 +619,14 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                         fontWeight:
                                                                             FontWeight.bold,
                                                                       ),
-                                                                  minFontSize:
-                                                                      10.0,
                                                                 ),
                                                                 AutoSizeText(
                                                                   getJsonField(
                                                                     dataItem,
                                                                     r'''$..DeviceStatus''',
                                                                   ).toString(),
+                                                                  minFontSize:
+                                                                      10.0,
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
@@ -640,8 +642,6 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                         fontWeight:
                                                                             FontWeight.bold,
                                                                       ),
-                                                                  minFontSize:
-                                                                      10.0,
                                                                 ),
                                                               ],
                                                             ),

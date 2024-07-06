@@ -388,14 +388,17 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           ],
                         ),
                       ),
-                      if ((getJsonField(
-                                deviceDetailsGetDeviceStatusResponse.jsonBody,
-                                r'''$.deviceStatus.device_status''',
-                              ) !=
-                              null) ||
-                          ((String var1) {
-                            return var1 != null && var1 != '' ? true : false;
-                          }(FFAppState().deviceStatusDIDJson.toString())))
+                      if (valueOrDefault<bool>(
+                        (getJsonField(
+                                  deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                  r'''$.deviceStatus.device_status''',
+                                ) !=
+                                null) ||
+                            ((String var1) {
+                              return var1 != null && var1 != '' ? true : false;
+                            }(FFAppState().deviceStatusDIDJson.toString())),
+                        false,
+                      ))
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               13.0, 20.0, 0.0, 0.0),

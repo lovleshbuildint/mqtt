@@ -228,6 +228,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                           datalistItem,
                                           r'''$..data''',
                                         ).toString(),
+                                        minFontSize: 8.0,
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -235,7 +236,6 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                               fontSize: 12.0,
                                               letterSpacing: 1.0,
                                             ),
-                                        minFontSize: 8.0,
                                       )),
                                     ].map((c) => DataCell(c)).toList(),
                                   ),

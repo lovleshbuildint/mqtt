@@ -927,6 +927,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   .fromSTEB(0.0, 2.0, 0.0, 0.0),
                                               child: AutoSizeText(
                                                 'All',
+                                                minFontSize: 9.0,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -939,7 +940,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           : Color(0xFF4D4D4D),
                                                       letterSpacing: 0.0,
                                                     ),
-                                                minFontSize: 9.0,
                                               ),
                                             ),
                                           ),
@@ -979,6 +979,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   .fromSTEB(4.0, 2.0, 4.0, 0.0),
                                               child: AutoSizeText(
                                                 'Online',
+                                                minFontSize: 9.0,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -991,7 +992,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           : Color(0xFF4D4D4D),
                                                       letterSpacing: 0.0,
                                                     ),
-                                                minFontSize: 9.0,
                                               ),
                                             ),
                                           ),
@@ -1031,6 +1031,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   .fromSTEB(4.0, 2.0, 4.0, 0.0),
                                               child: AutoSizeText(
                                                 'Offline',
+                                                minFontSize: 9.0,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1043,7 +1044,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           : Color(0xFF4D4D4D),
                                                       letterSpacing: 0.0,
                                                     ),
-                                                minFontSize: 9.0,
                                               ),
                                             ),
                                           ),
@@ -1083,6 +1083,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                   .fromSTEB(4.0, 2.0, 4.0, 0.0),
                                               child: AutoSizeText(
                                                 'No Data',
+                                                minFontSize: 9.0,
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -1095,7 +1096,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           : Color(0xFF4D4D4D),
                                                       letterSpacing: 0.0,
                                                     ),
-                                                minFontSize: 9.0,
                                               ),
                                             ),
                                           ),
@@ -1505,6 +1505,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       locationDetailsItem,
                                                                       r'''$..OnlineStatus''',
                                                                     ).toString(),
+                                                                    minFontSize:
+                                                                        10.0,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1520,14 +1522,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),
-                                                                    minFontSize:
-                                                                        10.0,
                                                                   ),
                                                                   AutoSizeText(
                                                                     getJsonField(
                                                                       locationDetailsItem,
                                                                       r'''$..DeviceCount''',
                                                                     ).toString(),
+                                                                    minFontSize:
+                                                                        10.0,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1543,8 +1545,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),
-                                                                    minFontSize:
-                                                                        10.0,
                                                                   ),
                                                                 ],
                                                               ),

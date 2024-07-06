@@ -267,6 +267,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'TI',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -276,7 +277,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -310,6 +310,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.TI''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -319,7 +320,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -360,6 +360,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'MAC ID',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -369,7 +370,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -403,6 +403,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.IM''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -412,7 +413,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -453,6 +453,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'AS',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -462,7 +463,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -496,6 +496,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.AS''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -505,7 +506,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -546,6 +546,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'AC 1 Status',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -555,7 +556,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -597,6 +597,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CA1''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -606,7 +607,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -647,6 +647,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'AC 2 Status',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -656,7 +657,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -698,6 +698,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CA2''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -707,7 +708,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -748,6 +748,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Lobby Light Status',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -757,7 +758,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -799,6 +799,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CL''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -808,7 +809,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -849,6 +849,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'Signage Status',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -858,7 +859,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -900,6 +900,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CS''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -909,7 +910,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -950,6 +950,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'CUC',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -959,7 +960,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -993,6 +993,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CUC''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1002,7 +1003,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1043,6 +1043,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'CUO',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1052,7 +1053,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1086,6 +1086,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CUO''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1095,7 +1096,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1136,6 +1136,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'CF',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1145,7 +1146,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1179,6 +1179,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.CF''',
                                               ).toString()}A',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1188,7 +1189,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1229,6 +1229,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'TM',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1238,7 +1239,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1272,6 +1272,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.TM''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1281,7 +1282,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1322,6 +1322,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'HM',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1331,7 +1332,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1365,6 +1365,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.HM''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1374,7 +1375,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1415,6 +1415,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'VN',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1424,7 +1425,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1458,6 +1458,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.VN''',
                                               ).toString()}V',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1467,7 +1468,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1508,6 +1508,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'VE',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1517,7 +1518,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1551,6 +1551,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.VE''',
                                               ).toString()}V',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1560,7 +1561,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1601,6 +1601,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'VU',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1610,7 +1611,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1644,6 +1644,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.VU''',
                                               ).toString()}V',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1653,7 +1654,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1694,6 +1694,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'UE',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1703,7 +1704,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1737,6 +1737,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.UE''',
                                               ).toString()}V',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1746,7 +1747,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1787,6 +1787,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'VB',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1796,7 +1797,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1830,6 +1830,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.VB''',
                                               ).toString()}V',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1839,7 +1840,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1880,6 +1880,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'RM',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1889,7 +1890,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1923,6 +1923,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.RM''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1932,7 +1933,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -1973,6 +1973,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
                                               'RS',
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1982,7 +1983,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
@@ -2016,6 +2016,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                     .deviceStatusDIDJson,
                                                 r'''$.RS''',
                                               ).toString(),
+                                              minFontSize: 9.0,
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -2025,7 +2026,6 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             Color(0xFF4D4D4D),
                                                         letterSpacing: 0.0,
                                                       ),
-                                              minFontSize: 9.0,
                                             ),
                                           ),
                                         ),
