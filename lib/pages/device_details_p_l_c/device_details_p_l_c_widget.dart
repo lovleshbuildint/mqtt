@@ -46,7 +46,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
             context,
             'Response',
             FFAppState().deviceId,
-            widget.did,
+            widget!.did,
             '15.206.230.32',
             'mqtt_buildint_\$\$2023',
           );
@@ -60,7 +60,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
               await actions.publishMqtt(
                 context,
                 'Settings',
-                '${widget.did}\$GREL,',
+                '${widget!.did}\$GREL,',
                 FFAppState().deviceId,
                 '15.206.230.32',
                 'mqtt_buildint_\$\$2023',
@@ -168,7 +168,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.did,
+                            widget!.did,
                             'Device ID',
                           ),
                           style:
@@ -268,7 +268,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                   await actions.publishMqtt(
                                     context,
                                     'Settings',
-                                    '${widget.did}\$SREL${(String var1) {
+                                    '${widget!.did}\$SREL${(String var1) {
                                       return var1.split(',')[0][0] +
                                           var1.split(',')[0][1] +
                                           var1.split(',')[0][2] +
@@ -286,7 +286,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                   await actions.publishMqtt(
                                     context,
                                     'Settings',
-                                    '${widget.did}\$SREL${(String var1) {
+                                    '${widget!.did}\$SREL${(String var1) {
                                       return var1.split(',')[0][0] +
                                           var1.split(',')[0][1] +
                                           var1.split(',')[0][2] +
@@ -462,7 +462,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                               .publishMqtt(
                                                             context,
                                                             'Settings',
-                                                            '${widget.did}\$SREL${(String var1) {
+                                                            '${widget!.did}\$SREL${(String var1) {
                                                               return '0' +
                                                                   var1.split(
                                                                           ',')[
@@ -561,7 +561,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return '1' +
                                                               var1.split(',')[0]
                                                                   [1] +
@@ -696,7 +696,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return var1.split(
                                                                   ',')[0][0] +
                                                               '0' +
@@ -789,7 +789,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return var1.split(
                                                                   ',')[0][0] +
                                                               '1' +
@@ -924,7 +924,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return var1.split(
                                                                   ',')[0][0] +
                                                               var1.split(',')[0]
@@ -1017,7 +1017,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return var1.split(
                                                                   ',')[0][0] +
                                                               var1.split(',')[0]
@@ -1152,7 +1152,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return var1.split(
                                                                   ',')[0][0] +
                                                               var1.split(',')[0]
@@ -1245,7 +1245,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                       await actions.publishMqtt(
                                                         context,
                                                         'Settings',
-                                                        '${widget.did}\$SREL${(String var1) {
+                                                        '${widget!.did}\$SREL${(String var1) {
                                                           return var1.split(
                                                                   ',')[0][0] +
                                                               var1.split(',')[0]

@@ -254,7 +254,7 @@ class _AssignToWidgetState extends State<AssignToWidget> {
                                 await UpdateAlertsCall.call(
                               deviceId: FFAppState().deviceId,
                               token: FFAppState().token,
-                              alertID: widget.alertID,
+                              alertID: widget!.alertID,
                               assignTo: _model.fullnameTextController.text,
                               assignToNum: int.tryParse(
                                   _model.contactNumTextController.text),

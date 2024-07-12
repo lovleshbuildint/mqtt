@@ -66,7 +66,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
     return FutureBuilder<ApiCallResponse>(
       future: GetDeviceDetailsCall.call(
         deviceId: FFAppState().deviceId,
-        locId: widget.locId,
+        locId: widget!.locId,
         token: FFAppState().token,
       ),
       builder: (context, snapshot) {
@@ -88,6 +88,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
           );
         }
         final locationDetailsGetDeviceDetailsResponse = snapshot.data!;
+
         return Title(
             title: 'LocationDetails',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -172,7 +173,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${widget.locName} - ${widget.branchCode}',
+                                  '${widget!.locName} - ${widget!.branchCode}',
                                   textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
@@ -208,7 +209,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           child: Image.network(
-                                            widget.locImage!,
+                                            widget!.locImage!,
                                             width: 52.0,
                                             height: 52.0,
                                             fit: BoxFit.fitWidth,
@@ -267,7 +268,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                               children: [
                                                 AutoSizeText(
                                                   valueOrDefault<String>(
-                                                    widget.locStatus,
+                                                    widget!.locStatus,
                                                     'Offline',
                                                   ),
                                                   minFontSize: 10.0,
@@ -287,7 +288,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                 ),
                                                 AutoSizeText(
                                                   valueOrDefault<String>(
-                                                    widget.locDevices,
+                                                    widget!.locDevices,
                                                     '1',
                                                   ),
                                                   minFontSize: 10.0,
@@ -350,6 +351,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                     .jsonBody,
                                 r'''$.deviceDetails''',
                               ).toList();
+
                               return SingleChildScrollView(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,

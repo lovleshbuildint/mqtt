@@ -215,7 +215,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                             if (_model.devResponse != '-')
                               Text(
                                 valueOrDefault<String>(
-                                  widget.did,
+                                  widget!.did,
                                   'DID',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -1966,7 +1966,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     context,
                                     'Response',
                                     FFAppState().deviceId,
-                                    widget.did,
+                                    widget!.did,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',
                                   );
@@ -2039,7 +2039,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                         _model.acOffTimeDayTextController.text,
                                         _model
                                             .acOffTimeNightTextController.text,
-                                        widget.did!),
+                                        widget!.did!),
                                     FFAppState().deviceId,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',
@@ -2052,13 +2052,13 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   var1.split(',')[2] +
                                                   var1.split(',')[3];
                                             }(FFAppState().mqttResponse)) ==
-                                            '${widget.did}\$SDEVOK') ||
+                                            '${widget!.did}\$SDEVOK') ||
                                         (((String var1) {
                                               return var1.split(',')[1] +
                                                   var1.split(',')[2] +
                                                   var1.split(',')[3];
                                             }(FFAppState().mqttResponse)) ==
-                                            '${widget.did}\$SDEVOK')) &&
+                                            '${widget!.did}\$SDEVOK')) &&
                                     (_model.maxTry < 15)) {
                                   _model.setResponse = true;
                                   _model.checkResponse = false;
@@ -2115,7 +2115,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     context,
                                     'Response',
                                     FFAppState().deviceId,
-                                    widget.did,
+                                    widget!.did,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',
                                   );
@@ -2319,7 +2319,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                       await actions.publishMqtt(
                                         context,
                                         'Settings',
-                                        '${widget.did}\$GDEV,',
+                                        '${widget!.did}\$GDEV,',
                                         FFAppState().deviceId,
                                         '15.206.230.32',
                                         'mqtt_buildint_\$\$2023',

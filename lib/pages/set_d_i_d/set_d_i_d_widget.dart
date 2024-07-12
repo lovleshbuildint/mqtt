@@ -229,7 +229,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                     await actions.publishMqtt(
                                       context,
                                       'Settings',
-                                      '${widget.deviceMacId}\$SDID${_model.setDidTextController.text},',
+                                      '${widget!.deviceMacId}\$SDID${_model.setDidTextController.text},',
                                       FFAppState().deviceId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
@@ -242,7 +242,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                       context,
                                       'Response',
                                       FFAppState().deviceId,
-                                      widget.deviceMacId,
+                                      widget!.deviceMacId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
                                     );
@@ -258,13 +258,13 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                                     var1.split(',')[2] +
                                                     var1.split(',')[3];
                                               }(FFAppState().mqttResponse)) ==
-                                              '${widget.deviceMacId}\$SDIDOK') ||
+                                              '${widget!.deviceMacId}\$SDIDOK') ||
                                           (((String var1) {
                                                 return var1.split(',')[1] +
                                                     var1.split(',')[2] +
                                                     var1.split(',')[3];
                                               }(FFAppState().mqttResponse)) ==
-                                              '${widget.deviceMacId}\$SDIDOK')) &&
+                                              '${widget!.deviceMacId}\$SDIDOK')) &&
                                       (_model.maxTry! < 15)) {
                                     _model.setResponse = true;
                                     _model.checkResponse = false;

@@ -37,7 +37,7 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
     super.initState();
     _model = createModel(context, () => SwitchsModel());
 
-    _model.switchValue = widget.value == 1;
+    _model.switchValue = widget!.value == 1;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -59,11 +59,11 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
         if (newValue!) {
           _model.updateUserStateOn =
               await MasterGroup.updateUserOrDeviceStateCall.call(
-            username: widget.username,
+            username: widget!.username,
             newUserState: 1,
             token: FFAppState().token,
             deviceId: FFAppState().deviceId,
-            deviceState: widget.deviceState,
+            deviceState: widget!.deviceState,
           );
 
           if ((_model.updateUserStateOn?.succeeded ?? true)) {
@@ -102,11 +102,11 @@ class _SwitchsWidgetState extends State<SwitchsWidget> {
         } else {
           _model.updateUserStateOff =
               await MasterGroup.updateUserOrDeviceStateCall.call(
-            username: widget.username,
+            username: widget!.username,
             newUserState: 0,
             token: FFAppState().token,
             deviceId: FFAppState().deviceId,
-            deviceState: widget.deviceState,
+            deviceState: widget!.deviceState,
           );
 
           if ((_model.updateUserStateOff?.succeeded ?? true)) {

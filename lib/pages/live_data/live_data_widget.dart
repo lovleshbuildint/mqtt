@@ -45,7 +45,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
             context,
             'Response',
             FFAppState().deviceId,
-            widget.did,
+            widget!.did,
             '15.206.230.32',
             'mqtt_buildint_\$\$2023',
           );
@@ -59,7 +59,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
               await actions.publishMqtt(
                 context,
                 'Settings',
-                '${widget.did}\$GALL,',
+                '${widget!.did}\$GALL,',
                 FFAppState().deviceId,
                 '15.206.230.32',
                 'mqtt_buildint_\$\$2023',
@@ -156,7 +156,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                       children: [
                         Text(
                           valueOrDefault<String>(
-                            widget.did,
+                            widget!.did,
                             'Device ID',
                           ),
                           style:

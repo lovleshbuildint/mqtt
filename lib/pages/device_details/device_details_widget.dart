@@ -49,7 +49,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
             context,
             'Response',
             FFAppState().deviceId,
-            widget.did,
+            widget!.did,
             '15.206.230.32',
             'mqtt_buildint_\$\$2023',
           );
@@ -63,7 +63,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
               await actions.publishMqtt(
                 context,
                 'Settings',
-                '${widget.did}\$GALL,',
+                '${widget!.did}\$GALL,',
                 FFAppState().deviceId,
                 '15.206.230.32',
                 'mqtt_buildint_\$\$2023',
@@ -151,7 +151,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
             ..complete(GetDeviceStatusCall.call(
               deviceId: FFAppState().deviceId,
               token: FFAppState().token,
-              did: widget.did,
+              did: widget!.did,
             )))
           .future,
       builder: (context, snapshot) {
@@ -173,6 +173,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
           );
         }
         final deviceDetailsGetDeviceStatusResponse = snapshot.data!;
+
         return Title(
             title: 'DeviceDetails',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -254,7 +255,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                     'advanceSettings',
                                     queryParameters: {
                                       'did': serializeParam(
-                                        widget.did,
+                                        widget!.did,
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,
@@ -279,7 +280,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           children: [
                             Text(
                               valueOrDefault<String>(
-                                widget.did,
+                                widget!.did,
                                 'Device ID',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -1014,7 +1015,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                       .publishMqtt(
                                                                     context,
                                                                     'Settings',
-                                                                    '${widget.did}\$SREL${(String var1) {
+                                                                    '${widget!.did}\$SREL${(String var1) {
                                                                       return '0' +
                                                                           var1[
                                                                               1] +
@@ -1157,7 +1158,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   .publishMqtt(
                                                                 context,
                                                                 'Settings',
-                                                                '${widget.did}\$SREL${(String var1) {
+                                                                '${widget!.did}\$SREL${(String var1) {
                                                                   return '1' +
                                                                       var1[1] +
                                                                       var1[2] +
@@ -1352,7 +1353,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             .publishMqtt(
                                                                           context,
                                                                           'Settings',
-                                                                          '${widget.did}\$SRMK${(String var1) {
+                                                                          '${widget!.did}\$SRMK${(String var1) {
                                                                             return var1 == ''
                                                                                 ? '11111111'
                                                                                 : (var1[0] + var1[1] + var1[2] + var1[3] + var1[4] + var1[5] + var1[6] + '1');
@@ -1375,7 +1376,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             .publishMqtt(
                                                                           context,
                                                                           'Settings',
-                                                                          '${widget.did}\$SRMK${(String var1) {
+                                                                          '${widget!.did}\$SRMK${(String var1) {
                                                                             return var1 == ''
                                                                                 ? '11111110'
                                                                                 : (var1[0] + var1[1] + var1[2] + var1[3] + var1[4] + var1[5] + var1[6] + '0');
@@ -1626,7 +1627,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   .publishMqtt(
                                                                 context,
                                                                 'Settings',
-                                                                '${widget.did}\$SREL${(String var1) {
+                                                                '${widget!.did}\$SREL${(String var1) {
                                                                   return var1[
                                                                           0] +
                                                                       '0' +
@@ -1765,7 +1766,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   .publishMqtt(
                                                                 context,
                                                                 'Settings',
-                                                                '${widget.did}\$SREL${(String var1) {
+                                                                '${widget!.did}\$SREL${(String var1) {
                                                                   return var1[
                                                                           0] +
                                                                       '1' +
@@ -1961,7 +1962,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             .publishMqtt(
                                                                           context,
                                                                           'Settings',
-                                                                          '${widget.did}\$SRMK${(String var1) {
+                                                                          '${widget!.did}\$SRMK${(String var1) {
                                                                             return var1 == ''
                                                                                 ? '11111111'
                                                                                 : (var1[0] + var1[1] + var1[2] + var1[3] + var1[4] + var1[5] + var1[6] + '1');
@@ -1984,7 +1985,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             .publishMqtt(
                                                                           context,
                                                                           'Settings',
-                                                                          '${widget.did}\$SRMK${(String var1) {
+                                                                          '${widget!.did}\$SRMK${(String var1) {
                                                                             return var1 == ''
                                                                                 ? '11111110'
                                                                                 : (var1[0] + var1[1] + var1[2] + var1[3] + var1[4] + var1[5] + var1[6] + '0');
@@ -2236,7 +2237,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   .publishMqtt(
                                                                 context,
                                                                 'Settings',
-                                                                '${widget.did}\$SREL${(String var1) {
+                                                                '${widget!.did}\$SREL${(String var1) {
                                                                   return var1[
                                                                           0] +
                                                                       var1[1] +
@@ -2376,7 +2377,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   .publishMqtt(
                                                                 context,
                                                                 'Settings',
-                                                                '${widget.did}\$SREL${(String var1) {
+                                                                '${widget!.did}\$SREL${(String var1) {
                                                                   return var1[
                                                                           0] +
                                                                       var1[1] +
@@ -2573,7 +2574,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             .publishMqtt(
                                                                           context,
                                                                           'Settings',
-                                                                          '${widget.did}\$SRMK${(String var1) {
+                                                                          '${widget!.did}\$SRMK${(String var1) {
                                                                             return var1 == ''
                                                                                 ? '11111111'
                                                                                 : (var1[0] + var1[1] + var1[2] + '1' + var1[4] + var1[5] + var1[6] + var1[7]);
@@ -2596,7 +2597,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             .publishMqtt(
                                                                           context,
                                                                           'Settings',
-                                                                          '${widget.did}\$SRMK${(String var1) {
+                                                                          '${widget!.did}\$SRMK${(String var1) {
                                                                             return var1 == ''
                                                                                 ? '11101111'
                                                                                 : (var1[0] + var1[1] + var1[2] + '0' + var1[4] + var1[5] + var1[6] + var1[7]);

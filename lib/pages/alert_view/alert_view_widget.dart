@@ -63,7 +63,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
       future: GetAlertCall.call(
         deviceId: FFAppState().deviceId,
         token: FFAppState().token,
-        locationsList: widget.locationIdList,
+        locationsList: widget!.locationIdList,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -84,6 +84,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
           );
         }
         final alertViewGetAlertResponse = snapshot.data!;
+
         return Title(
             title: 'AlertView',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -234,6 +235,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                             'DID')
                                         ?.toList() ??
                                     [];
+
                                 return FlutterFlowDataTable<dynamic>(
                                   controller:
                                       _model.paginatedDataTableController,

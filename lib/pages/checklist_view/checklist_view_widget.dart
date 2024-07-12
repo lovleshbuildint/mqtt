@@ -80,6 +80,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
           );
         }
         final checklistViewGetChecklistViewResponse = snapshot.data!;
+
         return Title(
             title: 'ChecklistView',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -208,6 +209,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                             }
                                             final textGetChecklistOTPResponse =
                                                 snapshot.data!;
+
                                             return InkWell(
                                               splashColor: Colors.transparent,
                                               focusColor: Colors.transparent,
@@ -431,6 +433,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget> {
                                             'atm_id')
                                         ?.toList() ??
                                     [];
+
                                 return FlutterFlowDataTable<dynamic>(
                                   controller:
                                       _model.paginatedDataTableController,

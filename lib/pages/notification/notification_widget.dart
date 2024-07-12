@@ -73,6 +73,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
           );
         }
         final notificationGetNotificationResponse = snapshot.data!;
+
         return Title(
             title: 'Notification',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -140,6 +141,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                 notificationGetNotificationResponse.jsonBody,
                                 r'''$.result''',
                               ).toList();
+
                               return ListView.builder(
                                 padding: EdgeInsets.zero,
                                 scrollDirection: Axis.vertical,

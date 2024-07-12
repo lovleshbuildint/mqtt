@@ -71,6 +71,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           );
         }
         final profileUserInfoResponse = snapshot.data!;
+
         return Title(
             title: 'Profile',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),

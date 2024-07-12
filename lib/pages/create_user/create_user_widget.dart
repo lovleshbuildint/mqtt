@@ -86,6 +86,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
           );
         }
         final createUserGetOrganizationResponse = snapshot.data!;
+
         return Title(
             title: 'CreateUser',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -917,6 +918,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                             }
                                                             final accessRoleGetAccessRoleResponse =
                                                                 snapshot.data!;
+
                                                             return FlutterFlowDropDown<
                                                                 int>(
                                                               controller: _model
@@ -1139,6 +1141,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               final regionalGetRegionResponse =
                                                                   snapshot
                                                                       .data!;
+
                                                               return FlutterFlowDropDown<
                                                                   int>(
                                                                 multiSelectController: _model

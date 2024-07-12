@@ -56,7 +56,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
 
     return FutureBuilder<ApiCallResponse>(
       future: MasterGroup.rawDataIATMCall.call(
-        did: widget.did,
+        did: widget!.did,
         token: FFAppState().token,
         deviceId: FFAppState().deviceId,
       ),
@@ -79,6 +79,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
           );
         }
         final checkDataRawDataIATMResponse = snapshot.data!;
+
         return Title(
             title: 'checkData',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -155,6 +156,7 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
                                   checkDataRawDataIATMResponse.jsonBody,
                                   r'''$.deviceStatus''',
                                 ).toList();
+
                                 return FlutterFlowDataTable<dynamic>(
                                   controller:
                                       _model.paginatedDataTableController,

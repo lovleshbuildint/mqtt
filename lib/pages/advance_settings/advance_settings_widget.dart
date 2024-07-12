@@ -138,7 +138,7 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                       'liveData',
                                       queryParameters: {
                                         'did': serializeParam(
-                                          widget.did,
+                                          widget!.did,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -176,7 +176,7 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                       'checkData',
                                       queryParameters: {
                                         'did': serializeParam(
-                                          widget.did,
+                                          widget!.did,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -230,7 +230,7 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                             child: Container(
                                               height: 260.0,
                                               child: SetDIDWidget(
-                                                deviceMacId: widget.did!,
+                                                deviceMacId: widget!.did!,
                                               ),
                                             ),
                                           ),
@@ -273,7 +273,7 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                       'devControl',
                                       queryParameters: {
                                         'did': serializeParam(
-                                          widget.did,
+                                          widget!.did,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -327,7 +327,7 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                             child: Container(
                                               height: 260.0,
                                               child: SetURLWidget(
-                                                deviceMacId: widget.did!,
+                                                deviceMacId: widget!.did!,
                                               ),
                                             ),
                                           ),

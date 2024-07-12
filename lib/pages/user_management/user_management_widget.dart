@@ -83,6 +83,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
           );
         }
         final userManagementGetUserListResponse = snapshot.data!;
+
         return Title(
             title: 'UserManagement',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -242,6 +243,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                           'username')
                                       ?.toList() ??
                                   [];
+
                               return RefreshIndicator(
                                 onRefresh: () async {
                                   setState(

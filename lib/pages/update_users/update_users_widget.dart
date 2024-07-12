@@ -59,11 +59,11 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
     });
 
     _model.fullnameTextController ??=
-        TextEditingController(text: widget.fullName);
+        TextEditingController(text: widget!.fullName);
     _model.fullnameFocusNode ??= FocusNode();
 
     _model.emailAddressTextController ??=
-        TextEditingController(text: widget.username);
+        TextEditingController(text: widget!.username);
     _model.emailAddressFocusNode ??= FocusNode();
 
     _model.passwordTextController ??= TextEditingController(text: '*****');
@@ -71,7 +71,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
 
     _model.contactNumTextController ??= TextEditingController(
         text: valueOrDefault<String>(
-      widget.userContactNum?.toString(),
+      widget!.userContactNum?.toString(),
       '0',
     ));
     _model.contactNumFocusNode ??= FocusNode();
@@ -114,6 +114,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
           );
         }
         final updateUsersGetOrganizationResponse = snapshot.data!;
+
         return Title(
             title: 'UpdateUsers',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -845,7 +846,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                           FormFieldController<
                                                               String>(
                                                         _model.roleValue ??=
-                                                            widget.userRole,
+                                                            widget!.userRole,
                                                       ),
                                                       options: () {
                                                         if (FFAppState().role ==
@@ -944,7 +945,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                           FormFieldController<
                                                               int>(
                                                         _model.accessRoleValue ??=
-                                                            widget
+                                                            widget!
                                                                 .userAccessRoleId,
                                                       ),
                                                       options: List<int>.from(
@@ -1034,7 +1035,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                           FormFieldController<
                                                               int>(
                                                         _model.organizationValue ??=
-                                                            widget.userOrg,
+                                                            widget!.userOrg,
                                                       ),
                                                       options: List<int>.from(
                                                           getJsonField(
@@ -1150,6 +1151,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                           }
                                                           final regionalGetRegionResponse =
                                                               snapshot.data!;
+
                                                           return FlutterFlowDropDown<
                                                               int>(
                                                             multiSelectController: _model
@@ -1159,7 +1161,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                         .regionalValue ??=
                                                                     List<
                                                                         int>.from(
-                                                              widget.userRegion ??
+                                                              widget!.userRegion ??
                                                                   [],
                                                             )),
                                                             options: List<

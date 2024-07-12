@@ -78,6 +78,7 @@ class _TaWidgetState extends State<TaWidget> {
           );
         }
         final taGetTAViewResponse = snapshot.data!;
+
         return Title(
             title: 'TA',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -271,6 +272,7 @@ class _TaWidgetState extends State<TaWidget> {
                                             'engg_name')
                                         ?.toList() ??
                                     [];
+
                                 return FlutterFlowDataTable<dynamic>(
                                   controller:
                                       _model.paginatedDataTableController,

@@ -322,8 +322,8 @@ class _SetURLWidgetState extends State<SetURLWidget>
                                               _model.setUrl2TextController
                                                       .text !=
                                                   ''
-                                          ? '${widget.deviceMacId}\$SURL${_model.setUrl1TextController.text},${_model.setUrl2TextController.text},'
-                                          : '${widget.deviceMacId}\$SURL${_model.setUrl1TextController.text},',
+                                          ? '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},${_model.setUrl2TextController.text},'
+                                          : '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},',
                                       FFAppState().deviceId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
@@ -336,7 +336,7 @@ class _SetURLWidgetState extends State<SetURLWidget>
                                       context,
                                       'Response',
                                       FFAppState().deviceId,
-                                      widget.deviceMacId,
+                                      widget!.deviceMacId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
                                     );
@@ -352,13 +352,13 @@ class _SetURLWidgetState extends State<SetURLWidget>
                                                     var1.split(',')[2] +
                                                     var1.split(',')[3];
                                               }(FFAppState().mqttResponse)) ==
-                                              '${widget.deviceMacId}\$SURLOK') ||
+                                              '${widget!.deviceMacId}\$SURLOK') ||
                                           (((String var1) {
                                                 return var1.split(',')[1] +
                                                     var1.split(',')[2] +
                                                     var1.split(',')[3];
                                               }(FFAppState().mqttResponse)) ==
-                                              '${widget.deviceMacId}\$SURLOK')) &&
+                                              '${widget!.deviceMacId}\$SURLOK')) &&
                                       (_model.maxTry! < 15)) {
                                     _model.setResponse = true;
                                     _model.checkResponse = false;

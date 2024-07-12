@@ -85,6 +85,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
           );
         }
         final dashboardGetDashboardResponse = snapshot.data!;
+
         return Title(
             title: 'Dashboard',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
@@ -1225,6 +1226,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           _model.fliter)
                                       ?.toList() ??
                                   [];
+
                               return RefreshIndicator(
                                 onRefresh: () async {
                                   setState(

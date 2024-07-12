@@ -37,7 +37,7 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
     super.initState();
     _model = createModel(context, () => Switchs2Model());
 
-    _model.switchValue = widget.value == 1;
+    _model.switchValue = widget!.value == 1;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -59,8 +59,8 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
         if (newValue!) {
           _model.updateDeviceStateOn =
               await MasterGroup.updateUserOrDeviceStateCall.call(
-            username: widget.username,
-            newUserState: widget.newUserState,
+            username: widget!.username,
+            newUserState: widget!.newUserState,
             token: FFAppState().token,
             deviceId: FFAppState().deviceId,
             deviceState: 1,
@@ -102,8 +102,8 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
         } else {
           _model.updateDeviceStateOff =
               await MasterGroup.updateUserOrDeviceStateCall.call(
-            username: widget.username,
-            newUserState: widget.newUserState,
+            username: widget!.username,
+            newUserState: widget!.newUserState,
             token: FFAppState().token,
             deviceId: FFAppState().deviceId,
             deviceState: 0,
