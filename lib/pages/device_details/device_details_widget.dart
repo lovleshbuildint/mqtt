@@ -115,18 +115,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
     });
 
     _model.ac1Value = true;
-    _model.ac2Value = (String var1) {
-      return var1 == '' ? true : (var1[7] == '1' ? true : false);
-    }(getJsonField(
-      FFAppState().deviceStatusDIDJson,
-      r'''$.RM''',
-    ).toString().toString());
-    _model.signageValue = (String var1) {
-      return var1 == '' ? true : (var1[3] == '1' ? true : false);
-    }(getJsonField(
-      FFAppState().deviceStatusDIDJson,
-      r'''$.RM''',
-    ).toString().toString());
+    _model.ac2Value = true;
+    _model.signageValue = true;
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
