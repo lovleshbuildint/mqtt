@@ -1223,6 +1223,140 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                       ],
                                                     ),
                                                   ),
+                                                if (_model.accessRoleValue == 5)
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 14.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Expanded(
+                                                          child: FutureBuilder<
+                                                              ApiCallResponse>(
+                                                            future: MasterGroup
+                                                                .getStatesCall
+                                                                .call(
+                                                              token:
+                                                                  FFAppState()
+                                                                      .token,
+                                                              deviceId:
+                                                                  FFAppState()
+                                                                      .deviceId,
+                                                            ),
+                                                            builder: (context,
+                                                                snapshot) {
+                                                              // Customize what your widget looks like when it's loading.
+                                                              if (!snapshot
+                                                                  .hasData) {
+                                                                return Center(
+                                                                  child:
+                                                                      SizedBox(
+                                                                    width: 50.0,
+                                                                    height:
+                                                                        50.0,
+                                                                    child:
+                                                                        CircularProgressIndicator(
+                                                                      valueColor:
+                                                                          AlwaysStoppedAnimation<
+                                                                              Color>(
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .primary,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                );
+                                                              }
+                                                              final stateManagerGetStatesResponse =
+                                                                  snapshot
+                                                                      .data!;
+
+                                                              return FlutterFlowDropDown<
+                                                                  int>(
+                                                                multiSelectController: _model
+                                                                        .stateManagerValueController ??=
+                                                                    FormListFieldController<
+                                                                            int>(
+                                                                        null),
+                                                                options: List<
+                                                                        int>.from(
+                                                                    getJsonField(
+                                                                  stateManagerGetStatesResponse
+                                                                      .jsonBody,
+                                                                  r'''$.result..state_id''',
+                                                                  true,
+                                                                )!),
+                                                                optionLabels:
+                                                                    (getJsonField(
+                                                                  stateManagerGetStatesResponse
+                                                                      .jsonBody,
+                                                                  r'''$.result..state_name''',
+                                                                  true,
+                                                                ) as List)
+                                                                        .map<String>((s) =>
+                                                                            s.toString())
+                                                                        .toList()!,
+                                                                width: 300.0,
+                                                                height: 50.0,
+                                                                textStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                                hintText:
+                                                                    'Select State',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .keyboard_arrow_down_rounded,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 24.0,
+                                                                ),
+                                                                fillColor: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                elevation: 2.0,
+                                                                borderColor: Color(
+                                                                    0xFFF2F2F2),
+                                                                borderWidth:
+                                                                    2.0,
+                                                                borderRadius:
+                                                                    8.0,
+                                                                margin: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        4.0,
+                                                                        16.0,
+                                                                        4.0),
+                                                                hidesUnderline:
+                                                                    true,
+                                                                isOverButton:
+                                                                    true,
+                                                                isSearchable:
+                                                                    false,
+                                                                isMultiSelect:
+                                                                    true,
+                                                                onMultiSelectChanged: (val) =>
+                                                                    setState(() =>
+                                                                        _model.stateManagerValue =
+                                                                            val),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
                                                 Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1333,6 +1467,9 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   .accessRoleValue,
                                                               userRegionList: _model
                                                                   .regionalValue,
+                                                              userStateManagerList:
+                                                                  _model
+                                                                      .stateManagerValue,
                                                             );
 
                                                             if ((_model

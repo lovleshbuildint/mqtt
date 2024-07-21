@@ -40,6 +40,7 @@ class MasterGroup {
   static AppVersionCheckCall appVersionCheckCall = AppVersionCheckCall();
   static GetAccessRoleCall getAccessRoleCall = GetAccessRoleCall();
   static GetRegionCall getRegionCall = GetRegionCall();
+  static GetStatesCall getStatesCall = GetStatesCall();
   static GetDashboardCall getDashboardCall = GetDashboardCall();
   static RawDataIATMCall rawDataIATMCall = RawDataIATMCall();
   static GetAlertsCall getAlertsCall = GetAlertsCall();
@@ -317,6 +318,7 @@ class CreateUserCall {
     int? contactNum,
     int? userAccessRole,
     List<int>? userRegionList,
+    List<int>? userStateManagerList,
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -325,6 +327,7 @@ class CreateUserCall {
       deviceId: deviceId,
     );
     final userRegion = _serializeList(userRegionList);
+    final userStateManager = _serializeList(userStateManagerList);
 
     final ffApiRequestBody = '''
 {
@@ -336,7 +339,8 @@ class CreateUserCall {
   "deviceId": "${deviceId}",
   "contact_num": "${contactNum}",
   "user_access_role": "${userAccessRole}",
-  "user_region": "${userRegion}"
+  "user_region": "${userRegion}",
+"user_state_manager": "${userStateManager}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Create User',
@@ -656,6 +660,36 @@ class GetRegionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Region',
       apiUrl: '${baseUrl}/getRegion',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetStatesCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get States',
+      apiUrl: '${baseUrl}/getState',
       callType: ApiCallType.GET,
       headers: {
         'Authorization': '${token}',
