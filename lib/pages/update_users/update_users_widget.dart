@@ -1254,7 +1254,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       child: FutureBuilder<
                                                           ApiCallResponse>(
                                                         future: MasterGroup
-                                                            .getRegionCall
+                                                            .getStatesCall
                                                             .call(
                                                           token: FFAppState()
                                                               .token,
@@ -1283,7 +1283,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               ),
                                                             );
                                                           }
-                                                          final stateIdGetRegionResponse =
+                                                          final stateIdGetStatesResponse =
                                                               snapshot.data!;
 
                                                           return FlutterFlowDropDown<
@@ -1301,16 +1301,16 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                             options: List<
                                                                     int>.from(
                                                                 getJsonField(
-                                                              stateIdGetRegionResponse
+                                                              stateIdGetStatesResponse
                                                                   .jsonBody,
-                                                              r'''$.result..stateId''',
+                                                              r'''$.result..state_id''',
                                                               true,
                                                             )!),
                                                             optionLabels:
                                                                 (getJsonField(
-                                                              stateIdGetRegionResponse
+                                                              stateIdGetStatesResponse
                                                                   .jsonBody,
-                                                              r'''$.result..stateId''',
+                                                              r'''$.result..state_name''',
                                                               true,
                                                             ) as List)
                                                                     .map<String>(
