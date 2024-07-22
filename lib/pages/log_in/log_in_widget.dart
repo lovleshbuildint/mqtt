@@ -457,6 +457,16 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                       ''),
                                                   r'''$.user_data.user_org''',
                                                 );
+                                                FFAppState().stateId =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.user_stateId''',
+                                                  true,
+                                                )!
+                                                        .toList()
+                                                        .cast<int>();
                                                 setState(() {});
 
                                                 context.goNamed('Dashboard');

@@ -136,6 +136,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.int,
               isList: true,
             ),
+            userStateId: params.getParam<int>(
+              'userStateId',
+              ParamType.int,
+              isList: true,
+            ),
           ),
         ),
         FFRoute(

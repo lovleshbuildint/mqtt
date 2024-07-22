@@ -712,6 +712,7 @@ class GetDashboardCall {
     int? orgId,
     int? accessRoleId,
     List<int>? regionIdList,
+    List<int>? stateIdList,
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -720,12 +721,14 @@ class GetDashboardCall {
       deviceId: deviceId,
     );
     final regionId = _serializeList(regionIdList);
+    final stateId = _serializeList(stateIdList);
 
     final ffApiRequestBody = '''
 {
   "orgId": "${orgId}",
   "accessRoleId": "${accessRoleId}",
   "regionId": "${regionId}",
+"stateId": "${stateId}"
   "deviceId": "${deviceId}"
 }''';
     return ApiManager.instance.makeApiCall(

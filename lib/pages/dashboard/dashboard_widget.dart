@@ -64,6 +64,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
               regionIdList: FFAppState().regionId,
               token: FFAppState().token,
               deviceId: FFAppState().deviceId,
+              stateIdList: FFAppState().stateId,
             )))
           .future,
       builder: (context, snapshot) {

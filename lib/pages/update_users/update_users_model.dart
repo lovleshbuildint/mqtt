@@ -50,6 +50,9 @@ class UpdateUsersModel extends FlutterFlowModel<UpdateUsersWidget> {
   // State field(s) for regional widget.
   List<int>? regionalValue;
   FormFieldController<List<int>>? regionalValueController;
+  // State field(s) for stateId widget.
+  List<int>? stateIdValue;
+  FormFieldController<List<int>>? stateIdValueController;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.
   ApiCallResponse? updateUserResponse2;
   // Stores action output result for [Backend Call - API (Update User)] action in Button-Login widget.

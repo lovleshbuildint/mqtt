@@ -70,6 +70,12 @@ class FFAppState extends ChangeNotifier {
     await _safeInitAsync(() async {
       _userOrg = await secureStorage.getInt('ff_userOrg') ?? _userOrg;
     });
+    await _safeInitAsync(() async {
+      _stateId = (await secureStorage.getStringList('ff_stateId'))
+              ?.map(int.parse)
+              .toList() ??
+          _stateId;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -249,6 +255,51 @@ class FFAppState extends ChangeNotifier {
   String get mqttResponse => _mqttResponse;
   set mqttResponse(String value) {
     _mqttResponse = value;
+  }
+
+  List<int> _stateId = [];
+  List<int> get stateId => _stateId;
+  set stateId(List<int> value) {
+    _stateId = value;
+    secureStorage.setStringList(
+        'ff_stateId', value.map((x) => x.toString()).toList());
+  }
+
+  void deleteStateId() {
+    secureStorage.delete(key: 'ff_stateId');
+  }
+
+  void addToStateId(int value) {
+    stateId.add(value);
+    secureStorage.setStringList(
+        'ff_stateId', _stateId.map((x) => x.toString()).toList());
+  }
+
+  void removeFromStateId(int value) {
+    stateId.remove(value);
+    secureStorage.setStringList(
+        'ff_stateId', _stateId.map((x) => x.toString()).toList());
+  }
+
+  void removeAtIndexFromStateId(int index) {
+    stateId.removeAt(index);
+    secureStorage.setStringList(
+        'ff_stateId', _stateId.map((x) => x.toString()).toList());
+  }
+
+  void updateStateIdAtIndex(
+    int index,
+    int Function(int) updateFn,
+  ) {
+    stateId[index] = updateFn(_stateId[index]);
+    secureStorage.setStringList(
+        'ff_stateId', _stateId.map((x) => x.toString()).toList());
+  }
+
+  void insertAtIndexInStateId(int index, int value) {
+    stateId.insert(index, value);
+    secureStorage.setStringList(
+        'ff_stateId', _stateId.map((x) => x.toString()).toList());
   }
 }
 

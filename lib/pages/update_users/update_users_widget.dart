@@ -24,6 +24,7 @@ class UpdateUsersWidget extends StatefulWidget {
     required this.userContactNum,
     required this.userAccessRoleId,
     this.userRegion,
+    required this.userStateId,
   }) : this.fullName = fullName ?? '';
 
   final String fullName;
@@ -33,6 +34,7 @@ class UpdateUsersWidget extends StatefulWidget {
   final int? userContactNum;
   final int? userAccessRoleId;
   final List<int>? userRegion;
+  final List<int>? userStateId;
 
   @override
   State<UpdateUsersWidget> createState() => _UpdateUsersWidgetState();
@@ -1229,6 +1231,138 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                 (val) => setState(
                                                                     () => _model
                                                                             .regionalValue =
+                                                                        val),
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            if (_model.accessRoleValue == 4)
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 14.0, 0.0, 0.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Expanded(
+                                                      child: FutureBuilder<
+                                                          ApiCallResponse>(
+                                                        future: MasterGroup
+                                                            .getRegionCall
+                                                            .call(
+                                                          token: FFAppState()
+                                                              .token,
+                                                          deviceId: FFAppState()
+                                                              .deviceId,
+                                                        ),
+                                                        builder: (context,
+                                                            snapshot) {
+                                                          // Customize what your widget looks like when it's loading.
+                                                          if (!snapshot
+                                                              .hasData) {
+                                                            return Center(
+                                                              child: SizedBox(
+                                                                width: 50.0,
+                                                                height: 50.0,
+                                                                child:
+                                                                    CircularProgressIndicator(
+                                                                  valueColor:
+                                                                      AlwaysStoppedAnimation<
+                                                                          Color>(
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          }
+                                                          final stateIdGetRegionResponse =
+                                                              snapshot.data!;
+
+                                                          return FlutterFlowDropDown<
+                                                              int>(
+                                                            multiSelectController: _model
+                                                                    .stateIdValueController ??=
+                                                                FormListFieldController<
+                                                                    int>(_model
+                                                                        .stateIdValue ??=
+                                                                    List<
+                                                                        int>.from(
+                                                              widget!.userStateId ??
+                                                                  [],
+                                                            )),
+                                                            options: List<
+                                                                    int>.from(
+                                                                getJsonField(
+                                                              stateIdGetRegionResponse
+                                                                  .jsonBody,
+                                                              r'''$.result..stateId''',
+                                                              true,
+                                                            )!),
+                                                            optionLabels:
+                                                                (getJsonField(
+                                                              stateIdGetRegionResponse
+                                                                  .jsonBody,
+                                                              r'''$.result..stateId''',
+                                                              true,
+                                                            ) as List)
+                                                                    .map<String>(
+                                                                        (s) => s
+                                                                            .toString())
+                                                                    .toList()!,
+                                                            width: 300.0,
+                                                            height: 50.0,
+                                                            textStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Readex Pro',
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                    ),
+                                                            hintText:
+                                                                'Select State',
+                                                            icon: Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_down_rounded,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 24.0,
+                                                            ),
+                                                            fillColor: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryBackground,
+                                                            elevation: 2.0,
+                                                            borderColor: Color(
+                                                                0xFFF2F2F2),
+                                                            borderWidth: 2.0,
+                                                            borderRadius: 8.0,
+                                                            margin:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        16.0,
+                                                                        4.0,
+                                                                        16.0,
+                                                                        4.0),
+                                                            hidesUnderline:
+                                                                true,
+                                                            isOverButton: true,
+                                                            isSearchable: false,
+                                                            isMultiSelect: true,
+                                                            onMultiSelectChanged:
+                                                                (val) => setState(
+                                                                    () => _model
+                                                                            .stateIdValue =
                                                                         val),
                                                           );
                                                         },

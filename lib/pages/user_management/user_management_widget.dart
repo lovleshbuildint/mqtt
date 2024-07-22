@@ -331,6 +331,16 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       ParamType.int,
                                                       isList: true,
                                                     ),
+                                                    'userStateId':
+                                                        serializeParam(
+                                                      getJsonField(
+                                                        userListItem,
+                                                        r'''$..user_stateId''',
+                                                        true,
+                                                      ),
+                                                      ParamType.int,
+                                                      isList: true,
+                                                    ),
                                                   }.withoutNulls,
                                                 );
                                               },
