@@ -728,7 +728,7 @@ class GetDashboardCall {
   "orgId": "${orgId}",
   "accessRoleId": "${accessRoleId}",
   "regionId": "${regionId}",
-"stateId": "${stateId}"
+"stateId": "${stateId}",
   "deviceId": "${deviceId}"
 }''';
     return ApiManager.instance.makeApiCall(
