@@ -1468,6 +1468,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                 userRegionList:
                                                                     _model
                                                                         .regionalValue,
+                                                                userStateManagerList:
+                                                                    _model
+                                                                        .stateIdValue,
                                                               );
 
                                                               _shouldSetState =
@@ -1560,6 +1563,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                   .accessRoleValue,
                                                               userRegionList: _model
                                                                   .regionalValue,
+                                                              userStateManagerList:
+                                                                  _model
+                                                                      .stateIdValue,
                                                             );
 
                                                             _shouldSetState =
