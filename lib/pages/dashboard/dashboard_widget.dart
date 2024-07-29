@@ -864,7 +864,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: Text(
-                                    'Filter',
+                                    isAndroid.toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1119,7 +1119,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Locations',
+                              isWeb.toString(),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
