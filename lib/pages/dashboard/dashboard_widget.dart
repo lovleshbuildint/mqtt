@@ -1578,7 +1578,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                               .maybeFromMap(
                                                                   getJsonField(
                                                             locationDetailsItem,
-                                                            r'''$..DeviceCount''',
+                                                            r'''$..LatLong''',
                                                           ))?.latLog,
                                                           title: '',
                                                         );
