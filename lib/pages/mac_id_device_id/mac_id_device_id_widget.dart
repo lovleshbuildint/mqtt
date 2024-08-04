@@ -157,6 +157,15 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
                         child: FFButtonWidget(
                           onPressed: () async {
                             FFAppState().mqttResponse = '';
+                            FFAppState().deleteMqttTime();
+                            FFAppState().mqttTime = '';
+
+                            FFAppState().deleteDeviceStatusDIDJson();
+                            FFAppState().deviceStatusDIDJson = null;
+
+                            FFAppState().deleteRelayStatusiATM();
+                            FFAppState().relayStatusiATM = '';
+
                             setState(() {});
 
                             context.pushNamed(

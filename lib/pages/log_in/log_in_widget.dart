@@ -73,7 +73,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                 decoration: BoxDecoration(
                   color: Color(0xFF08182F),
                   image: DecorationImage(
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.scaleDown,
                     alignment: AlignmentDirectional(0.0, -0.7),
                     image: Image.asset(
                       'assets/images/Asset_3@4x.png',

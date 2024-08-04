@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/mac_id_device_id/mac_id_device_id_widget.dart';
 import '/actions/actions.dart' as action_blocks;
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
+import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -864,7 +866,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 2.0, 0.0, 0.0),
                                   child: Text(
-                                    isAndroid.toString(),
+                                    'Filter',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -1119,7 +1121,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              isWeb.toString(),
+                              'Locations',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -1555,6 +1557,41 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                           ),
                                                         ),
                                                       ],
+                                                    ),
+                                                  ),
+                                                  Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            1.0, 1.0),
+                                                    child: InkWell(
+                                                      splashColor:
+                                                          Colors.transparent,
+                                                      focusColor:
+                                                          Colors.transparent,
+                                                      hoverColor:
+                                                          Colors.transparent,
+                                                      highlightColor:
+                                                          Colors.transparent,
+                                                      onTap: () async {
+                                                        await launchMap(
+                                                          location: LatLongStruct
+                                                              .maybeFromMap(
+                                                                  getJsonField(
+                                                            locationDetailsItem,
+                                                            r'''$..DeviceCount''',
+                                                          ))?.latLog,
+                                                          title: '',
+                                                        );
+                                                      },
+                                                      child: Icon(
+                                                        Icons
+                                                            .assistant_navigation,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        size: 35.0,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
