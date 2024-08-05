@@ -4,10 +4,8 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/mac_id_device_id/mac_id_device_id_widget.dart';
 import '/actions/actions.dart' as action_blocks;
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'dart:async';
-import 'package:map_launcher/map_launcher.dart' as $ml;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +27,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   late DashboardModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   @override
   void initState() {
@@ -41,6 +40,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       setState(() {});
     });
 
+    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
+        .then((loc) => setState(() => currentUserLocationValue = loc));
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -57,6 +58,22 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
+    if (currentUserLocationValue == null) {
+      return Container(
+        color: FlutterFlowTheme.of(context).primaryBackground,
+        child: Center(
+          child: SizedBox(
+            width: 50.0,
+            height: 50.0,
+            child: CircularProgressIndicator(
+              valueColor: AlwaysStoppedAnimation<Color>(
+                FlutterFlowTheme.of(context).primary,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     return FutureBuilder<ApiCallResponse>(
       future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
@@ -1573,15 +1590,26 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        await launchMap(
-                                                          location: LatLongStruct
-                                                              .maybeFromMap(
-                                                                  getJsonField(
-                                                            locationDetailsItem,
-                                                            r'''$..LatLong''',
-                                                          ))?.latLog,
-                                                          title: '',
-                                                        );
+                                                        currentUserLocationValue =
+                                                            await getCurrentUserLocation(
+                                                                defaultLocation:
+                                                                    LatLng(0.0,
+                                                                        0.0));
+                                                        await launchURL((String
+                                                                    var1,
+                                                                String var2) {
+                                                          return "https://www.google.com/maps/dir/?api=1&origin=" +
+                                                              var2 +
+                                                              "&destination=" +
+                                                              var1 +
+                                                              "&travelmode=driving";
+                                                        }(
+                                                            getJsonField(
+                                                              locationDetailsItem,
+                                                              r'''$..LatLong''',
+                                                            ).toString(),
+                                                            currentUserLocationValue!
+                                                                .toString()));
                                                       },
                                                       child: Icon(
                                                         Icons
@@ -1593,6 +1621,29 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         size: 35.0,
                                                       ),
                                                     ),
+                                                  ),
+                                                  Text(
+                                                    (String var1, String var2) {
+                                                      return "https://www.google.com/maps/dir/?api=1&origin=" +
+                                                          var2 +
+                                                          "&destination=" +
+                                                          var1 +
+                                                          "&travelmode=driving";
+                                                    }(
+                                                        getJsonField(
+                                                          locationDetailsItem,
+                                                          r'''$..LatLong''',
+                                                        ).toString(),
+                                                        currentUserLocationValue!
+                                                            .toString()),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
                                                   ),
                                                 ],
                                               ),
