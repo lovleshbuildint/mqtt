@@ -40,8 +40,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       setState(() {});
     });
 
-    getCurrentUserLocation(defaultLocation: LatLng(0.0, 0.0), cached: true)
-        .then((loc) => setState(() => currentUserLocationValue = loc));
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -58,22 +56,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   @override
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
-    if (currentUserLocationValue == null) {
-      return Container(
-        color: FlutterFlowTheme.of(context).primaryBackground,
-        child: Center(
-          child: SizedBox(
-            width: 50.0,
-            height: 50.0,
-            child: CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(
-                FlutterFlowTheme.of(context).primary,
-              ),
-            ),
-          ),
-        ),
-      );
-    }
 
     return FutureBuilder<ApiCallResponse>(
       future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
@@ -1599,10 +1581,17 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                     var1,
                                                                 String var2) {
                                                           return "https://www.google.com/maps/dir/?api=1&origin=" +
-                                                              var2 +
+                                                              var2
+                                                                  .replaceAll(
+                                                                      'LatLng(lat: ',
+                                                                      '')
+                                                                  .replaceAll(
+                                                                      ' lng: ',
+                                                                      '')
+                                                                  .replaceAll(
+                                                                      ')', '') +
                                                               "&destination=" +
-                                                              var1 +
-                                                              "&travelmode=driving";
+                                                              var1;
                                                         }(
                                                             getJsonField(
                                                               locationDetailsItem,
@@ -1621,29 +1610,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         size: 35.0,
                                                       ),
                                                     ),
-                                                  ),
-                                                  Text(
-                                                    (String var1, String var2) {
-                                                      return "https://www.google.com/maps/dir/?api=1&origin=" +
-                                                          var2 +
-                                                          "&destination=" +
-                                                          var1 +
-                                                          "&travelmode=driving";
-                                                    }(
-                                                        getJsonField(
-                                                          locationDetailsItem,
-                                                          r'''$..LatLong''',
-                                                        ).toString(),
-                                                        currentUserLocationValue!
-                                                            .toString()),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Readex Pro',
-                                                          letterSpacing: 0.0,
-                                                        ),
                                                   ),
                                                 ],
                                               ),
