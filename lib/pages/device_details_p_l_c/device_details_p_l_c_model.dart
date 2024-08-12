@@ -20,7 +20,6 @@ class DeviceDetailsPLCModel extends FlutterFlowModel<DeviceDetailsPLCWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   InstantTimer? instantTimer;
   // State field(s) for Auto widget.
   bool? autoValue;
@@ -30,7 +29,6 @@ class DeviceDetailsPLCModel extends FlutterFlowModel<DeviceDetailsPLCWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     instantTimer?.cancel();
   }
 }

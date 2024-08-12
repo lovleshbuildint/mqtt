@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 class LogInModel extends FlutterFlowModel<LogInWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for username widget.
   FocusNode? usernameFocusNode;
@@ -55,7 +54,6 @@ class LogInModel extends FlutterFlowModel<LogInWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     usernameFocusNode?.dispose();
     usernameTextController?.dispose();
 

@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 class NotificationModel extends FlutterFlowModel<NotificationWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (Change Device State)] action in IconButton widget.
   ApiCallResponse? changeStateReponse;
   // Stores action output result for [Backend Call - API (Change Device State)] action in IconButton widget.
@@ -24,7 +23,5 @@ class NotificationModel extends FlutterFlowModel<NotificationWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

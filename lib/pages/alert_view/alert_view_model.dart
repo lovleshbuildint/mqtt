@@ -22,7 +22,6 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode;
   TextEditingController? textController;
@@ -44,7 +43,6 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
   }

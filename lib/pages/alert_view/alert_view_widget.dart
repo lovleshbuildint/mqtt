@@ -89,9 +89,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
             title: 'AlertView',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
-              onTap: () => _model.unfocusNode.canRequestFocus
-                  ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                  : FocusScope.of(context).unfocus(),
+              onTap: () => FocusScope.of(context).unfocus(),
               child: Scaffold(
                 key: scaffoldKey,
                 backgroundColor:
@@ -573,16 +571,9 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                                         context)),
                                                             child:
                                                                 GestureDetector(
-                                                              onTap: () => _model
-                                                                      .unfocusNode
-                                                                      .canRequestFocus
-                                                                  ? FocusScope.of(
-                                                                          context)
-                                                                      .requestFocus(
-                                                                          _model
-                                                                              .unfocusNode)
-                                                                  : FocusScope.of(
-                                                                          context)
+                                                              onTap: () =>
+                                                                  FocusScope.of(
+                                                                          dialogContext)
                                                                       .unfocus(),
                                                               child: Container(
                                                                 height: 260.0,
@@ -602,8 +593,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                             ),
                                                           );
                                                         },
-                                                      ).then((value) =>
-                                                          setState(() {}));
+                                                      );
                                                     }
 
                                                     if (_shouldSetState)

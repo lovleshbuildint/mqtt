@@ -28,11 +28,16 @@ class MasterGroup {
   static ChangeDeviceStateCall changeDeviceStateCall = ChangeDeviceStateCall();
   static GetProjectCall getProjectCall = GetProjectCall();
   static GetChecklistViewCall getChecklistViewCall = GetChecklistViewCall();
+  static GetChecklistViewCameraCall getChecklistViewCameraCall =
+      GetChecklistViewCameraCall();
   static GetTAViewCall getTAViewCall = GetTAViewCall();
   static GetChecklistOTPCall getChecklistOTPCall = GetChecklistOTPCall();
   static CreateUserCall createUserCall = CreateUserCall();
   static UpdateUserCall updateUserCall = UpdateUserCall();
   static DeleteChecklistCall deleteChecklistCall = DeleteChecklistCall();
+  static DeleteChecklistCameraInstallationCall
+      deleteChecklistCameraInstallationCall =
+      DeleteChecklistCameraInstallationCall();
   static UserInfoCall userInfoCall = UserInfoCall();
   static GetUserListCall getUserListCall = GetUserListCall();
   static UpdateUserOrDeviceStateCall updateUserOrDeviceStateCall =
@@ -250,6 +255,36 @@ class GetChecklistViewCall {
   }
 }
 
+class GetChecklistViewCameraCall {
+  Future<ApiCallResponse> call({
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Checklist View Camera',
+      apiUrl: '${baseUrl}/checklistView/camera-installation',
+      callType: ApiCallType.GET,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {
+        'deviceId': deviceId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class GetTAViewCall {
   Future<ApiCallResponse> call({
     String? token = '',
@@ -437,6 +472,42 @@ class DeleteChecklistCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Checklist',
       apiUrl: '${baseUrl}/checklistDelete',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class DeleteChecklistCameraInstallationCall {
+  Future<ApiCallResponse> call({
+    String? amtId = '',
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "deviceId": "${deviceId}",
+  "atm_id": "${amtId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Delete Checklist Camera Installation',
+      apiUrl: '${baseUrl}/checklistView/camera-installation',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',

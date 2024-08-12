@@ -6,7 +6,6 @@ import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'dart:async';
 import 'device_details_widget.dart' show DeviceDetailsWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,6 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   InstantTimer? instantTimer;
   Completer<ApiCallResponse>? apiRequestCompleter;
   // State field(s) for AC1 widget.
@@ -38,7 +36,6 @@ class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     instantTimer?.cancel();
   }
 

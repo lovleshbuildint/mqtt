@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // State field(s) for fullname widget.
   FocusNode? fullnameFocusNode;
@@ -97,7 +96,6 @@ class CreateUserModel extends FlutterFlowModel<CreateUserWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     fullnameFocusNode?.dispose();
     fullnameTextController?.dispose();
 

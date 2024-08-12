@@ -20,7 +20,6 @@ class CheckDataModel extends FlutterFlowModel<CheckDataWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for PaginatedDataTable widget.
   final paginatedDataTableController =
       FlutterFlowDataTableController<dynamic>();
@@ -29,7 +28,5 @@ class CheckDataModel extends FlutterFlowModel<CheckDataWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

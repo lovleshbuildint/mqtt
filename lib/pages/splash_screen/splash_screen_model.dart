@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (App Version Check)] action in splashScreen widget.
   ApiCallResponse? versionCheck;
   // Stores action output result for [Backend Call - API (User Info)] action in splashScreen widget.
@@ -22,7 +21,5 @@ class SplashScreenModel extends FlutterFlowModel<SplashScreenWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

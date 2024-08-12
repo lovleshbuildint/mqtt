@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 class LiveDataModel extends FlutterFlowModel<LiveDataWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   InstantTimer? instantTimer;
 
   @override
@@ -23,7 +22,6 @@ class LiveDataModel extends FlutterFlowModel<LiveDataWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     instantTimer?.cancel();
   }
 }

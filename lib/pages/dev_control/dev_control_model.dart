@@ -31,7 +31,6 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -95,7 +94,6 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     setTimeDayFocusNode?.dispose();
     setTimeDayTextController?.dispose();
 
