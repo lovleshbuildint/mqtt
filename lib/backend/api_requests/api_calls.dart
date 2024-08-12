@@ -507,7 +507,7 @@ class DeleteChecklistCameraInstallationCall {
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Checklist Camera Installation',
-      apiUrl: '${baseUrl}/checklistView/camera-installation',
+      apiUrl: '${baseUrl}/checklistDelete/camera-installation',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',
