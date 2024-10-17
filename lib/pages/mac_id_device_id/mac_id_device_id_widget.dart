@@ -31,7 +31,7 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
     _model.didTextController ??= TextEditingController();
     _model.didFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -166,7 +166,7 @@ class _MacIdDeviceIdWidgetState extends State<MacIdDeviceIdWidget> {
                             FFAppState().deleteRelayStatusiATM();
                             FFAppState().relayStatusiATM = '';
 
-                            setState(() {});
+                            safeSetState(() {});
 
                             context.pushNamed(
                               'DeviceDetails',

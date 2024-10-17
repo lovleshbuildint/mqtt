@@ -38,7 +38,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
       unawaited(
         () async {
           await actions.subscribeMqtt(
@@ -71,7 +71,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
       );
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

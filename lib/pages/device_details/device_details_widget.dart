@@ -41,7 +41,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
       unawaited(
         () async {
           await actions.subscribeMqtt(
@@ -71,7 +71,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
           );
           if (FFAppState().relayStatusiATM != null &&
               FFAppState().relayStatusiATM != '') {
-            setState(() {
+            safeSetState(() {
               _model.ac1Value = ((String var1) {
                 return var1 == ''
                     ? true
@@ -83,7 +83,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                 r'''$.RM''',
               ).toString().toString()));
             });
-            setState(() {
+            safeSetState(() {
               _model.ac2Value = ((String var1) {
                 return var1 == ''
                     ? true
@@ -95,7 +95,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                 r'''$.RM''',
               ).toString().toString()));
             });
-            setState(() {
+            safeSetState(() {
               _model.signageValue = ((String var1) {
                 return var1 == ''
                     ? true
@@ -116,7 +116,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
     _model.ac1Value = true;
     _model.ac2Value = true;
     _model.signageValue = true;
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -231,7 +231,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                   FFAppState().deleteRelayStatusiATM();
                                   FFAppState().relayStatusiATM = '';
 
-                                  setState(() {});
+                                  safeSetState(() {});
 
                                   context.pushNamed(
                                     'advanceSettings',
@@ -494,7 +494,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                               hoverColor: Colors.transparent,
                               highlightColor: Colors.transparent,
                               onTap: () async {
-                                setState(
+                                safeSetState(
                                     () => _model.apiRequestCompleter = null);
                                 await _model.waitForApiRequestCompleted(
                                     minWait: 2000, maxWait: 5000);
@@ -1025,7 +1025,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     '0000';
                                                               }(FFAppState()
                                                                       .relayStatusiATM);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1163,7 +1164,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     '0000';
                                                               }(FFAppState()
                                                                       .relayStatusiATM);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1323,7 +1325,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                       .ac1Value!,
                                                                   onChanged:
                                                                       (newValue) async {
-                                                                    setState(() =>
+                                                                    safeSetState(() =>
                                                                         _model.ac1Value =
                                                                             newValue!);
                                                                     if (newValue!) {
@@ -1633,7 +1635,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     '0000';
                                                               }(FFAppState()
                                                                       .relayStatusiATM);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1772,7 +1775,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     '0000';
                                                               }(FFAppState()
                                                                       .relayStatusiATM);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -1932,7 +1936,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                       .ac2Value!,
                                                                   onChanged:
                                                                       (newValue) async {
-                                                                    setState(() =>
+                                                                    safeSetState(() =>
                                                                         _model.ac2Value =
                                                                             newValue!);
                                                                     if (newValue!) {
@@ -2243,7 +2247,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     '0000';
                                                               }(FFAppState()
                                                                       .relayStatusiATM);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -2383,7 +2388,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                     '0000';
                                                               }(FFAppState()
                                                                       .relayStatusiATM);
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             }
                                                           },
                                                           child: Container(
@@ -2544,7 +2550,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                       .signageValue!,
                                                                   onChanged:
                                                                       (newValue) async {
-                                                                    setState(() =>
+                                                                    safeSetState(() =>
                                                                         _model.signageValue =
                                                                             newValue!);
                                                                     if (newValue!) {

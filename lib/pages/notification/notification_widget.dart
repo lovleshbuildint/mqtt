@@ -32,10 +32,10 @@ class _NotificationWidgetState extends State<NotificationWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -323,7 +323,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                     }
                                                   }
 
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 },
                                               ),
                                               Padding(
@@ -438,7 +438,7 @@ class _NotificationWidgetState extends State<NotificationWidget> {
                                                       }
                                                     }
 
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   },
                                                 ),
                                               ),

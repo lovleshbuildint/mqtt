@@ -46,10 +46,10 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -377,7 +377,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                           FFAppState().deleteRelayStatusiATM();
                                           FFAppState().relayStatusiATM = '';
 
-                                          setState(() {});
+                                          safeSetState(() {});
                                           if ((String var1) {
                                             return var1 == 'iATM' ||
                                                     var1 == 'ATM'
@@ -402,6 +402,36 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                   getJsonField(
                                                     dataItem,
                                                     r'''$..DeviceStatus''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType.fade,
+                                                  duration:
+                                                      Duration(milliseconds: 0),
+                                                ),
+                                              },
+                                            );
+                                          } else if ((String var1) {
+                                            return var1 == 'iMAX'
+                                                ? true
+                                                : false;
+                                          }(getJsonField(
+                                            dataItem,
+                                            r'''$..dev_type''',
+                                          ).toString())) {
+                                            context.pushNamed(
+                                              'DeviceDetailsSurveillance',
+                                              queryParameters: {
+                                                'did': serializeParam(
+                                                  getJsonField(
+                                                    dataItem,
+                                                    r'''$..DID''',
                                                   ).toString(),
                                                   ParamType.String,
                                                 ),
@@ -479,23 +509,31 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                   '${getJsonField(
                                                     dataItem,
                                                     r'''$..DID''',
-                                                  ).toString()} (${(String var1) {
-                                                    return var1
-                                                        .split('T')
-                                                        .first;
+                                                  ).toString()} (${(String var1, String var2) {
+                                                    return var2 == 'iMAX'
+                                                        ? ''
+                                                        : var1.split('T').first;
                                                   }(getJsonField(
-                                                    dataItem,
-                                                    r'''$..evt_dt''',
-                                                  ).toString())} ${(String var1) {
-                                                    return var1
-                                                        .split('.')
-                                                        .first;
+                                                        dataItem,
+                                                        r'''$..evt_dt''',
+                                                      ).toString(), getJsonField(
+                                                        dataItem,
+                                                        r'''$..dev_type''',
+                                                      ).toString())} ${(String var1, String var2) {
+                                                    return var2 == 'iMAX'
+                                                        ? ''
+                                                        : var1.split('.').first;
                                                   }(((String var1) {
-                                                    return var1.split('T').last;
-                                                  }(getJsonField(
-                                                    dataItem,
-                                                    r'''$..evt_dt''',
-                                                  ).toString())))})',
+                                                        return var1
+                                                            .split('T')
+                                                            .last;
+                                                      }(getJsonField(
+                                                        dataItem,
+                                                        r'''$..evt_dt''',
+                                                      ).toString())), getJsonField(
+                                                        dataItem,
+                                                        r'''$..dev_type''',
+                                                      ).toString())})',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -621,10 +659,22 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                       ),
                                                                 ),
                                                                 AutoSizeText(
-                                                                  getJsonField(
-                                                                    dataItem,
-                                                                    r'''$..DeviceStatus''',
-                                                                  ).toString(),
+                                                                  (String var1,
+                                                                          String
+                                                                              var2) {
+                                                                    return var2 ==
+                                                                            'iMAX'
+                                                                        ? 'Online'
+                                                                        : var1;
+                                                                  }(
+                                                                      getJsonField(
+                                                                        dataItem,
+                                                                        r'''$..DeviceStatus''',
+                                                                      ).toString(),
+                                                                      getJsonField(
+                                                                        dataItem,
+                                                                        r'''$..dev_type''',
+                                                                      ).toString()),
                                                                   minFontSize:
                                                                       10.0,
                                                                   style: FlutterFlowTheme.of(

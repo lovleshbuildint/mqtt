@@ -37,21 +37,21 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.tabBarController = TabController(
       vsync: this,
       length: 2,
       initialIndex: 0,
-    )..addListener(() => setState(() {}));
+    )..addListener(() => safeSetState(() {}));
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -168,8 +168,8 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                         if (!snapshot.hasData) {
                                           return Center(
                                             child: SizedBox(
-                                              width: 50.0,
-                                              height: 50.0,
+                                              width: 20.0,
+                                              height: 20.0,
                                               child: CircularProgressIndicator(
                                                 valueColor:
                                                     AlwaysStoppedAnimation<
@@ -224,7 +224,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  setState(
+                                  safeSetState(
                                       () => _model.apiRequestCompleter = null);
                                   await _model.waitForApiRequestCompleted(
                                       minWait: 2000, maxWait: 5000);
@@ -259,18 +259,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
-                                        return Center(
-                                          child: SizedBox(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            child: CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation<Color>(
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                              ),
-                                            ),
-                                          ),
+                                        return Image.asset(
+                                          'assets/images/Logo_Preloader_buildint.gif',
+                                          fit: BoxFit.none,
                                         );
                                       }
                                       final columnGetChecklistViewResponse =
@@ -312,7 +303,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                               _model
                                                                   .textController1
                                                                   .text;
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         },
                                                       ),
                                                       autofocus: false,
@@ -1711,7 +1702,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                             ?.succeeded ??
                                                                         true)) {
                                                                       if (_shouldSetState)
-                                                                        setState(
+                                                                        safeSetState(
                                                                             () {});
                                                                       return;
                                                                     }
@@ -1736,18 +1727,18 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                       },
                                                                     );
                                                                     if (_shouldSetState)
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     return;
                                                                   } else {
                                                                     if (_shouldSetState)
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     return;
                                                                   }
 
                                                                   if (_shouldSetState)
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                 },
                                                                 child: Icon(
@@ -1882,7 +1873,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                       );
                                                                     }
 
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                   },
                                                                   child: Icon(
@@ -1902,8 +1893,10 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                               DataCell(c))
                                                           .toList(),
                                                     ),
-                                                    paginated: false,
+                                                    paginated: true,
                                                     selectable: false,
+                                                    hidePaginator: false,
+                                                    showFirstLastButtons: false,
                                                     headingRowHeight: 56.0,
                                                     columnSpacing: 15.0,
                                                     headingRowColor:
@@ -2000,7 +1993,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                               _model
                                                                   .textController2
                                                                   .text;
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         },
                                                       ),
                                                       autofocus: false,
@@ -2510,9 +2503,9 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                 onTap:
                                                                     () async {
                                                                   await launchURL(
-                                                                      'https://api.app.master.buildint.co/checklist/camera-intsallation-zip?atm_id=${getJsonField(
+                                                                      'https://api.app.master.buildint.co/checklist/camera-intsallation-zip?hpy_code=${getJsonField(
                                                                     checkListCameraResultItem,
-                                                                    r'''$..atm_id''',
+                                                                    r'''$..hpy_code''',
                                                                   ).toString()}');
                                                                 },
                                                                 child: Icon(
@@ -2566,16 +2559,16 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                         await MasterGroup
                                                                             .deleteChecklistCameraInstallationCall
                                                                             .call(
-                                                                      amtId:
-                                                                          getJsonField(
-                                                                        checkListCameraResultItem,
-                                                                        r'''$..atm_id''',
-                                                                      ).toString(),
                                                                       token: FFAppState()
                                                                           .token,
                                                                       deviceId:
                                                                           FFAppState()
                                                                               .deviceId,
+                                                                      hpyCode:
+                                                                          getJsonField(
+                                                                        checkListCameraResultItem,
+                                                                        r'''$..hpy_code''',
+                                                                      ).toString(),
                                                                     );
 
                                                                     _shouldSetState =
@@ -2585,7 +2578,7 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                             ?.succeeded ??
                                                                         true)) {
                                                                       if (_shouldSetState)
-                                                                        setState(
+                                                                        safeSetState(
                                                                             () {});
                                                                       return;
                                                                     }
@@ -2610,18 +2603,18 @@ class _ChecklistViewWidgetState extends State<ChecklistViewWidget>
                                                                       },
                                                                     );
                                                                     if (_shouldSetState)
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     return;
                                                                   } else {
                                                                     if (_shouldSetState)
-                                                                      setState(
+                                                                      safeSetState(
                                                                           () {});
                                                                     return;
                                                                   }
 
                                                                   if (_shouldSetState)
-                                                                    setState(
+                                                                    safeSetState(
                                                                         () {});
                                                                 },
                                                                 child: Icon(

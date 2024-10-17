@@ -45,5 +45,7 @@ class AlertViewModel extends FlutterFlowModel<AlertViewWidget> {
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    paginatedDataTableController.dispose();
   }
 }

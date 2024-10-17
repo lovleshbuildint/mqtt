@@ -238,6 +238,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'TA',
           path: '/taView',
           builder: (context, params) => TaWidget(),
+        ),
+        FFRoute(
+          name: 'DeviceDetailsSurveillance',
+          path: '/deviceDetailsSurveillance',
+          builder: (context, params) => DeviceDetailsSurveillanceWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

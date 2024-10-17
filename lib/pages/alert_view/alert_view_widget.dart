@@ -39,13 +39,13 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -160,7 +160,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                               Duration(milliseconds: 0),
                               () async {
                                 _model.searchValue = _model.textController.text;
-                                setState(() {});
+                                safeSetState(() {});
                               },
                             ),
                             autofocus: false,
@@ -550,7 +550,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                       }
 
                                                       if (_shouldSetState)
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       return;
                                                     } else {
                                                       await showDialog(
@@ -597,7 +597,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                     }
 
                                                     if (_shouldSetState)
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                   },
                                                   child: Text(
                                                     'Assign To',
@@ -728,7 +728,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                         }
 
                                                         if (_shouldSetState)
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         return;
                                                       } else {
                                                         await showDialog(
@@ -755,7 +755,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                           },
                                                         );
                                                         if (_shouldSetState)
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                         return;
                                                       }
                                                     } else {
@@ -783,7 +783,7 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                         },
                                                       );
                                                       if (_shouldSetState)
-                                                        setState(() {});
+                                                        safeSetState(() {});
                                                       return;
                                                     }
                                                   } else {
@@ -807,12 +807,12 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                       },
                                                     );
                                                     if (_shouldSetState)
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     return;
                                                   }
 
                                                   if (_shouldSetState)
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                 },
                                                 child: Text(
                                                   'Fill Checklist',

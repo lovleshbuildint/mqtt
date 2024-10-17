@@ -46,5 +46,7 @@ class TaModel extends FlutterFlowModel<TaWidget> {
   void dispose() {
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    paginatedDataTableController.dispose();
   }
 }

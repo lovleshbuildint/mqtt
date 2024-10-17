@@ -45,7 +45,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.setTimeDayTextController ??= TextEditingController();
@@ -127,7 +127,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -325,8 +325,9 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 'AC 1 Only',
                                                 'AC 2 Only'
                                               ],
-                                              onChanged: (val) => setState(() =>
-                                                  _model.dropDownValue = val),
+                                              onChanged: (val) => safeSetState(
+                                                  () => _model.dropDownValue =
+                                                      val),
                                               width: 300.0,
                                               height: 35.0,
                                               textStyle:
@@ -1954,10 +1955,10 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           child: FFButtonWidget(
                             onPressed: () async {
                               FFAppState().mqttResponse = '1,2,3,4';
-                              setState(() {});
+                              safeSetState(() {});
                               _model.maxTry = 0;
                               _model.checkResponse = true;
-                              setState(() {});
+                              safeSetState(() {});
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
@@ -2060,18 +2061,18 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     (_model.maxTry < 15)) {
                                   _model.setResponse = true;
                                   _model.checkResponse = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   break;
                                 } else if (_model.maxTry > 15) {
                                   _model.noResponse = true;
                                   _model.checkResponse = false;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   break;
                                 } else {
                                   await Future.delayed(
                                       const Duration(milliseconds: 1000));
                                   _model.maxTry = _model.maxTry + 1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                 }
                               }
                             },
@@ -2106,7 +2107,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                           child: FFButtonWidget(
                             onPressed: () async {
                               _model.maxTry = 0;
-                              setState(() {});
+                              safeSetState(() {});
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
@@ -2129,14 +2130,14 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     }(FFAppState().mqttResponse))) {
                                   _model.devResponse =
                                       FFAppState().mqttResponse;
-                                  setState(() {});
-                                  setState(() {
+                                  safeSetState(() {});
+                                  safeSetState(() {
                                     _model.dropDownValueController?.value =
                                         ((String var1) {
                                       return var1.split(',')[3];
                                     }(_model.devResponse));
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.setTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[4];
@@ -2148,7 +2149,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.setTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[5];
@@ -2161,7 +2162,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.signageOnTimeTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[6];
@@ -2174,7 +2175,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.signageOffTimeTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[7];
@@ -2187,7 +2188,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.dataIntervalTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[8];
@@ -2200,7 +2201,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.maxTempDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[9];
@@ -2212,7 +2213,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.minTempDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[10];
@@ -2224,7 +2225,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.maxTempNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[11];
@@ -2237,7 +2238,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.minTempNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[12];
@@ -2250,7 +2251,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.acOnTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[13];
@@ -2263,7 +2264,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.acOnTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[14];
@@ -2276,7 +2277,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.acOffTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[15];
@@ -2289,7 +2290,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 .text
                                                 .length);
                                   });
-                                  setState(() {
+                                  safeSetState(() {
                                     _model.acOffTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[16];
@@ -2305,13 +2306,13 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   break;
                                 } else if (_model.maxTry > 14) {
                                   _model.noResponse = true;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   break;
                                 } else {
                                   await Future.delayed(
                                       const Duration(milliseconds: 1000));
                                   _model.maxTry = _model.maxTry + 1;
-                                  setState(() {});
+                                  safeSetState(() {});
                                   unawaited(
                                     () async {
                                       await actions.publishMqtt(
@@ -2404,7 +2405,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   FFButtonWidget(
                                     onPressed: () async {
                                       _model.noResponse = false;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                     text: 'OK',
                                     options: FFButtonOptions(

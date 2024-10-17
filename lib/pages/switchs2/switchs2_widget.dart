@@ -38,7 +38,7 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
     _model = createModel(context, () => Switchs2Model());
 
     _model.switchValue = widget!.value == 1;
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -55,7 +55,7 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
     return Switch.adaptive(
       value: _model.switchValue!,
       onChanged: (newValue) async {
-        setState(() => _model.switchValue = newValue!);
+        safeSetState(() => _model.switchValue = newValue!);
         if (newValue!) {
           _model.updateDeviceStateOn =
               await MasterGroup.updateUserOrDeviceStateCall.call(
@@ -98,7 +98,7 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
             );
           }
 
-          setState(() {});
+          safeSetState(() {});
         } else {
           _model.updateDeviceStateOff =
               await MasterGroup.updateUserOrDeviceStateCall.call(
@@ -141,7 +141,7 @@ class _Switchs2WidgetState extends State<Switchs2Widget> {
             );
           }
 
-          setState(() {});
+          safeSetState(() {});
         }
       },
       activeColor: FlutterFlowTheme.of(context).primary,

@@ -41,7 +41,7 @@ class _LogInWidgetState extends State<LogInWidget> {
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -308,7 +308,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     16.0, 0.0, 24.0, 14.0),
                                             suffixIcon: InkWell(
-                                              onTap: () => setState(
+                                              onTap: () => safeSetState(
                                                 () => _model
                                                         .passwordVisibility =
                                                     !_model.passwordVisibility,
@@ -372,7 +372,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                               FFAppState().token =
                                                   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlbW9Nb2RlIiwicm9sZSI6IkFUTU8iLCJkZXZpY2VfaWQiOiIxMjM0NTYiLCJ1c2VyX3Byb2plY3QiOiJpRU1TIiwidXNlcl9vcmciOiI3IiwiZnVsbE5hbWUiOiJEZW1vIFVzZXIiLCJpYXQiOjE3MDgxNzY3Mzl9.mncjy5-hq-CExJ-osJvuaObh2E3jjotpKgOb1UYScyI';
                                               FFAppState().userOrg = 0;
-                                              setState(() {});
+                                              safeSetState(() {});
 
                                               context.goNamed('Dashboard');
                                             } else {
@@ -385,7 +385,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 _shouldSetState = true;
                                                 FFAppState().deviceId =
                                                     _model.deviceIdResponce!;
-                                                setState(() {});
+                                                safeSetState(() {});
                                               }
                                               _model.loginResponce =
                                                   await MasterGroup.loginCall
@@ -465,12 +465,12 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 )!
                                                         .toList()
                                                         .cast<int>();
-                                                setState(() {});
+                                                safeSetState(() {});
 
                                                 context.goNamed('Dashboard');
 
                                                 if (_shouldSetState)
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 return;
                                               } else {
                                                 if ((_model.loginResponce
@@ -574,7 +574,7 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                       );
                                                     }
                                                   } else {
-                                                    setState(() {
+                                                    safeSetState(() {
                                                       _model
                                                           .usernameTextController
                                                           ?.clear();
@@ -632,18 +632,18 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                   }
 
                                                   if (_shouldSetState)
-                                                    setState(() {});
+                                                    safeSetState(() {});
                                                   return;
                                                 }
 
                                                 if (_shouldSetState)
-                                                  setState(() {});
+                                                  safeSetState(() {});
                                                 return;
                                               }
                                             }
 
                                             if (_shouldSetState)
-                                              setState(() {});
+                                              safeSetState(() {});
                                           },
                                           text: 'Login',
                                           options: FFButtonOptions(

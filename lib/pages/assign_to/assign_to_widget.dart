@@ -41,7 +41,7 @@ class _AssignToWidgetState extends State<AssignToWidget> {
     _model.contactNumTextController ??= TextEditingController();
     _model.contactNumFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -281,7 +281,7 @@ class _AssignToWidgetState extends State<AssignToWidget> {
                                 },
                               );
                               Navigator.pop(context);
-                              if (_shouldSetState) setState(() {});
+                              if (_shouldSetState) safeSetState(() {});
                               return;
                             } else {
                               await showDialog(
@@ -303,11 +303,11 @@ class _AssignToWidgetState extends State<AssignToWidget> {
                                 },
                               );
                               Navigator.pop(context);
-                              if (_shouldSetState) setState(() {});
+                              if (_shouldSetState) safeSetState(() {});
                               return;
                             }
 
-                            if (_shouldSetState) setState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                           },
                           text: 'Assign',
                           options: FFButtonOptions(

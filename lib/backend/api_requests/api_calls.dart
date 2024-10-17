@@ -51,6 +51,9 @@ class MasterGroup {
   static GetDashboardCall getDashboardCall = GetDashboardCall();
   static RawDataIATMCall rawDataIATMCall = RawDataIATMCall();
   static GetAlertsCall getAlertsCall = GetAlertsCall();
+  static GetSurveillacePannelDataCall getSurveillacePannelDataCall =
+      GetSurveillacePannelDataCall();
+  static ChangeArmingCall changeArmingCall = ChangeArmingCall();
 }
 
 class LoginCall {
@@ -491,7 +494,7 @@ class DeleteChecklistCall {
 
 class DeleteChecklistCameraInstallationCall {
   Future<ApiCallResponse> call({
-    String? amtId = '',
+    String? hpyCode = '',
     String? token = '',
     String? deviceId = '',
   }) async {
@@ -503,7 +506,7 @@ class DeleteChecklistCameraInstallationCall {
     final ffApiRequestBody = '''
 {
   "deviceId": "${deviceId}",
-  "atm_id": "${amtId}"
+  "hpy_code": "${hpyCode}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: 'Delete Checklist Camera Installation',
@@ -896,6 +899,78 @@ class GetAlertsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'Get Alerts',
       apiUrl: '${baseUrl}/getAlerts',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetSurveillacePannelDataCall {
+  Future<ApiCallResponse> call({
+    String? panelDID = '',
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "panelDID": "${panelDID}",
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Get Surveillace Pannel Data',
+      apiUrl: '${baseUrl}/getSurveillanceData',
+      callType: ApiCallType.POST,
+      headers: {
+        'Authorization': '${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ChangeArmingCall {
+  Future<ApiCallResponse> call({
+    String? armStatus = '',
+    String? token = '',
+    String? deviceId = '',
+  }) async {
+    final baseUrl = MasterGroup.getBaseUrl(
+      token: token,
+      deviceId: deviceId,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "armStatus": "${armStatus}",
+  "deviceId": "${deviceId}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Change Arming',
+      apiUrl: '${baseUrl}/changeArm',
       callType: ApiCallType.POST,
       headers: {
         'Authorization': '${token}',

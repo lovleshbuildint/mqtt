@@ -37,13 +37,13 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -160,7 +160,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                     () async {
                                       _model.searchValueUser =
                                           _model.textController.text;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                   autofocus: false,
@@ -244,7 +244,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
 
                               return RefreshIndicator(
                                 onRefresh: () async {
-                                  setState(
+                                  safeSetState(
                                       () => _model.apiRequestCompleter = null);
                                   await _model.waitForApiRequestCompleted(
                                       minWait: 2000, maxWait: 5000);
@@ -414,7 +414,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        setState(() => _model
+                                                        safeSetState(() => _model
                                                                 .apiRequestCompleter =
                                                             null);
                                                         await _model
@@ -557,25 +557,25 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                             );
                                                           }
 
-                                                          setState(() => _model
-                                                                  .apiRequestCompleter =
-                                                              null);
+                                                          safeSetState(() =>
+                                                              _model.apiRequestCompleter =
+                                                                  null);
                                                           await _model
                                                               .waitForApiRequestCompleted(
                                                                   minWait: 1000,
                                                                   maxWait:
                                                                       5000);
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         } else {
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         }
 
                                                         if (_shouldSetState)
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                       },
                                                     ),
                                                   ],
@@ -604,7 +604,7 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                       highlightColor:
                                                           Colors.transparent,
                                                       onTap: () async {
-                                                        setState(() => _model
+                                                        safeSetState(() => _model
                                                                 .apiRequestCompleter =
                                                             null);
                                                         await _model
@@ -749,25 +749,25 @@ class _UserManagementWidgetState extends State<UserManagementWidget> {
                                                             );
                                                           }
 
-                                                          setState(() => _model
-                                                                  .apiRequestCompleter =
-                                                              null);
+                                                          safeSetState(() =>
+                                                              _model.apiRequestCompleter =
+                                                                  null);
                                                           await _model
                                                               .waitForApiRequestCompleted(
                                                                   minWait: 1000,
                                                                   maxWait:
                                                                       5000);
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         } else {
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         }
 
                                                         if (_shouldSetState)
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                       },
                                                     ),
                                                   ],

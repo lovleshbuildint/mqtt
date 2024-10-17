@@ -53,7 +53,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
       _model.getaccessroleresponse = await MasterGroup.getAccessRoleCall.call(
         token: FFAppState().token,
         deviceId: FFAppState().deviceId,
@@ -78,7 +78,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
     ));
     _model.contactNumFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -581,7 +581,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                     24.0,
                                                                     14.0),
                                                         suffixIcon: InkWell(
-                                                          onTap: () => setState(
+                                                          onTap: () =>
+                                                              safeSetState(
                                                             () => _model
                                                                     .passwordVisibility =
                                                                 !_model
@@ -647,11 +648,11 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                           .changePasswordCheckBoxValue ??=
                                                       false,
                                                   onChanged: (newValue) async {
-                                                    setState(() => _model
+                                                    safeSetState(() => _model
                                                             .changePasswordCheckBoxValue =
                                                         newValue!);
                                                     if (newValue!) {
-                                                      setState(() {
+                                                      safeSetState(() {
                                                         _model
                                                             .passwordTextController
                                                             ?.text = '*****';
@@ -880,8 +881,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                         }
                                                       }(),
                                                       onChanged: (val) =>
-                                                          setState(() => _model
-                                                              .roleValue = val),
+                                                          safeSetState(() =>
+                                                              _model.roleValue =
+                                                                  val),
                                                       width: 300.0,
                                                       height: 50.0,
                                                       textStyle:
@@ -968,9 +970,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                   s.toString())
                                                               .toList()!,
                                                       onChanged: (val) =>
-                                                          setState(() => _model
-                                                                  .accessRoleValue =
-                                                              val),
+                                                          safeSetState(() =>
+                                                              _model.accessRoleValue =
+                                                                  val),
                                                       width: 300.0,
                                                       height: 50.0,
                                                       textStyle:
@@ -1055,9 +1057,9 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                   s.toString())
                                                               .toList()!,
                                                       onChanged: (val) =>
-                                                          setState(() => _model
-                                                                  .organizationValue =
-                                                              val),
+                                                          safeSetState(() =>
+                                                              _model.organizationValue =
+                                                                  val),
                                                       width: 300.0,
                                                       height: 50.0,
                                                       textStyle:
@@ -1226,7 +1228,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                             isSearchable: false,
                                                             isMultiSelect: true,
                                                             onMultiSelectChanged:
-                                                                (val) => setState(
+                                                                (val) => safeSetState(
                                                                     () => _model
                                                                             .regionalValue =
                                                                         val),
@@ -1358,7 +1360,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                             isSearchable: false,
                                                             isMultiSelect: true,
                                                             onMultiSelectChanged:
-                                                                (val) => setState(
+                                                                (val) => safeSetState(
                                                                     () => _model
                                                                             .stateIdValue =
                                                                         val),
@@ -1525,11 +1527,13 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               }
 
                                                               if (_shouldSetState)
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               return;
                                                             } else {
                                                               if (_shouldSetState)
-                                                                setState(() {});
+                                                                safeSetState(
+                                                                    () {});
                                                               return;
                                                             }
                                                           } else {
@@ -1621,7 +1625,8 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                             }
 
                                                             if (_shouldSetState)
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             return;
                                                           }
                                                         } else {
@@ -1654,12 +1659,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                             ),
                                                           );
                                                           if (_shouldSetState)
-                                                            setState(() {});
+                                                            safeSetState(() {});
                                                           return;
                                                         }
 
                                                         if (_shouldSetState)
-                                                          setState(() {});
+                                                          safeSetState(() {});
                                                       },
                                                       text: 'Update User',
                                                       options: FFButtonOptions(

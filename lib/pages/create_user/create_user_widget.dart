@@ -33,7 +33,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.fullnameTextController ??= TextEditingController();
@@ -48,7 +48,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -734,7 +734,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               suffixIcon:
                                                                   InkWell(
                                                                 onTap: () =>
-                                                                    setState(
+                                                                    safeSetState(
                                                                   () => _model
                                                                           .passwordVisibility =
                                                                       !_model
@@ -834,7 +834,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                               }
                                                             }(),
                                                             onChanged: (val) =>
-                                                                setState(() =>
+                                                                safeSetState(() =>
                                                                     _model.roleValue =
                                                                         val),
                                                             width: 300.0,
@@ -963,7 +963,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                             s.toString())
                                                                         .toList()!,
                                                                 onChanged: (val) =>
-                                                                    setState(() =>
+                                                                    safeSetState(() =>
                                                                         _model.accessRoleValue =
                                                                             val),
                                                                 width: 300.0,
@@ -1058,7 +1058,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                             .toString())
                                                                     .toList()!,
                                                             onChanged: (val) =>
-                                                                setState(() =>
+                                                                safeSetState(() =>
                                                                     _model.organizationValue =
                                                                         val),
                                                             width: 300.0,
@@ -1239,7 +1239,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   isMultiSelect:
                                                                       true,
                                                                   onMultiSelectChanged: (val) =>
-                                                                      setState(() =>
+                                                                      safeSetState(() =>
                                                                           _model.regionalValue =
                                                                               val),
                                                                 );
@@ -1379,7 +1379,7 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                   isMultiSelect:
                                                                       true,
                                                                   onMultiSelectChanged: (val) =>
-                                                                      setState(() =>
+                                                                      safeSetState(() =>
                                                                           _model.stateManagerValue =
                                                                               val),
                                                                 );
@@ -1557,7 +1557,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                 );
                                                               }
 
-                                                              setState(() {});
+                                                              safeSetState(
+                                                                  () {});
                                                             },
                                                             text: 'Create User',
                                                             options:

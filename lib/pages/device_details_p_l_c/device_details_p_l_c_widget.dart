@@ -39,7 +39,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
       unawaited(
         () async {
           await actions.subscribeMqtt(
@@ -69,7 +69,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
           );
           if (FFAppState().relayStatusiATM != null &&
               FFAppState().relayStatusiATM != '') {
-            setState(() {
+            safeSetState(() {
               _model.autoValue = ((String var1) {
                 return var1.split(',')[0][4] == '1' ? true : false;
               }(FFAppState().relayStatusiATM));
@@ -83,7 +83,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
     _model.autoValue = (String var1) {
       return var1.split(',')[0][4] == '1' ? true : false;
     }(FFAppState().relayStatusiATM);
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -259,7 +259,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                           Switch(
                             value: _model.autoValue!,
                             onChanged: (newValue) async {
-                              setState(() => _model.autoValue = newValue!);
+                              safeSetState(() => _model.autoValue = newValue!);
                               if (newValue!) {
                                 if ((FFAppState().role == 'Engineer') ||
                                     (FFAppState().role == 'Super Admin')) {
@@ -494,7 +494,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -587,7 +587,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -722,7 +722,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -815,7 +815,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -950,7 +950,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -1043,7 +1043,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -1178,7 +1178,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(
@@ -1271,7 +1271,7 @@ class _DeviceDetailsPLCWidgetState extends State<DeviceDetailsPLCWidget> {
                                                             var1.split(',')[1];
                                                       }(FFAppState()
                                                               .relayStatusiATM);
-                                                      setState(() {});
+                                                      safeSetState(() {});
                                                     }
                                                   },
                                                   child: Container(

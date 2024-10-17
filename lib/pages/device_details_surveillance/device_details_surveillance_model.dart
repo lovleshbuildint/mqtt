@@ -1,34 +1,33 @@
 import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/actions/actions.dart' as action_blocks;
-import 'check_data_widget.dart' show CheckDataWidget;
-import 'package:auto_size_text/auto_size_text.dart';
+import 'device_details_surveillance_widget.dart'
+    show DeviceDetailsSurveillanceWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CheckDataModel extends FlutterFlowModel<CheckDataWidget> {
+class DeviceDetailsSurveillanceModel
+    extends FlutterFlowModel<DeviceDetailsSurveillanceWidget> {
   ///  Local state fields for this page.
 
-  String? searchValue;
+  String? relayStatus;
 
-  int? alertID;
+  String? maskStatus;
 
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController =
-      FlutterFlowDataTableController<dynamic>();
+  // Stores action output result for [Backend Call - API (Change Arming)] action in Container widget.
+  ApiCallResponse? changeArmResponseOn;
+  // Stores action output result for [Backend Call - API (Change Arming)] action in Container widget.
+  ApiCallResponse? changeArmResponseOff;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    paginatedDataTableController.dispose();
-  }
+  void dispose() {}
 }

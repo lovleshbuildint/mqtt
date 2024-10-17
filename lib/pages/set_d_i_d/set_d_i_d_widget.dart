@@ -85,7 +85,7 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
       ),
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -221,9 +221,9 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                 _model.setResponse = false;
                                 _model.notSetResponse = false;
                                 _model.checkResponse = true;
-                                setState(() {});
+                                safeSetState(() {});
                                 FFAppState().mqttResponse = '1,2,3,4';
-                                setState(() {});
+                                safeSetState(() {});
                                 unawaited(
                                   () async {
                                     await actions.publishMqtt(
@@ -268,18 +268,18 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                       (_model.maxTry! < 15)) {
                                     _model.setResponse = true;
                                     _model.checkResponse = false;
-                                    setState(() {});
+                                    safeSetState(() {});
                                     break;
                                   } else if (_model.maxTry! > 15) {
                                     _model.notSetResponse = true;
                                     _model.checkResponse = false;
-                                    setState(() {});
+                                    safeSetState(() {});
                                     break;
                                   } else {
                                     await Future.delayed(
                                         const Duration(milliseconds: 1000));
                                     _model.maxTry = _model.maxTry! + 1;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   }
                                 }
                               },

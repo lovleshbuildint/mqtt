@@ -34,13 +34,13 @@ class _TaWidgetState extends State<TaWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -164,7 +164,7 @@ class _TaWidgetState extends State<TaWidget> {
                                       () async {
                                         _model.searchValue =
                                             _model.textController.text;
-                                        setState(() {});
+                                        safeSetState(() {});
                                       },
                                     ),
                                     autofocus: false,

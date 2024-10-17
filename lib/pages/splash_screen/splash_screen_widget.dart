@@ -59,7 +59,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                 (_model.userInfoRespnse?.jsonBody ?? ''),
                 r'''$.user_data.user_org''',
               );
-              setState(() {});
+              safeSetState(() {});
 
               context.goNamed(
                 'Dashboard',
@@ -93,7 +93,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
               FFAppState().deleteToken();
               FFAppState().token = '';
 
-              setState(() {});
+              safeSetState(() {});
 
               context.goNamed('LogIn');
 
@@ -166,7 +166,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
       }
     });
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

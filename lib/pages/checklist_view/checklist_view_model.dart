@@ -60,8 +60,11 @@ class ChecklistViewModel extends FlutterFlowModel<ChecklistViewWidget> {
     textFieldFocusNode1?.dispose();
     textController1?.dispose();
 
+    paginatedDataTableController1.dispose();
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+
+    paginatedDataTableController2.dispose();
   }
 
   /// Additional helper methods.

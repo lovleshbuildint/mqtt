@@ -37,13 +37,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
-      setState(() {});
+      safeSetState(() {});
     });
 
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -470,7 +470,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         FFAppState().deleteToken();
                                         FFAppState().token = '';
 
-                                        setState(() {});
+                                        safeSetState(() {});
 
                                         context.goNamed('LogIn');
                                       },
@@ -899,7 +899,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.fliter = 1;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           child: Container(
                                             width: 42.0,
@@ -952,7 +952,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.fliter = 2;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           child: Container(
                                             height: 30.0,
@@ -1004,7 +1004,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.fliter = 3;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           child: Container(
                                             height: 30.0,
@@ -1056,7 +1056,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
                                             _model.fliter = 4;
-                                            setState(() {});
+                                            safeSetState(() {});
                                           },
                                           child: Container(
                                             height: 30.0,
@@ -1138,13 +1138,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     () async {
                                       _model.searchValue =
                                           _model.textController.text;
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                   onFieldSubmitted: (_) async {
                                     _model.searchValue =
                                         _model.textController.text;
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                   autofocus: false,
                                   textCapitalization:
@@ -1225,12 +1225,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
 
                               return RefreshIndicator(
                                 onRefresh: () async {
-                                  setState(
+                                  safeSetState(
                                       () => _model.apiRequestCompleter = null);
                                   await _model.waitForApiRequestCompleted(
                                       minWait: 2000, maxWait: 5000);
                                   await action_blocks.userInfoUpdate(context);
-                                  setState(() {});
+                                  safeSetState(() {});
                                 },
                                 child: SingleChildScrollView(
                                   physics:

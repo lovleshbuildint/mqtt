@@ -23,3 +23,5 @@ export '/pages/advance_settings/advance_settings_widget.dart'
     show AdvanceSettingsWidget;
 export '/pages/check_data/check_data_widget.dart' show CheckDataWidget;
 export '/pages/ta/ta_widget.dart' show TaWidget;
+export '/pages/device_details_surveillance/device_details_surveillance_widget.dart'
+    show DeviceDetailsSurveillanceWidget;
