@@ -11,14 +11,10 @@ import 'package:flutter/material.dart';
 
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
-import 'package:mqtt_client/mqtt_browser_client.dart';
-import 'package:flutter/foundation.dart'; // For kIsWeb
 
 Future<String> publishMqtt(BuildContext context, String? pubtopic,
     String? message, String? deviceId, String ip, String pass) async {
-  final client = kIsWeb
-      ? MqttBrowserClient('wss://$ip', '') // Use WebSocket for web
-      : MqttServerClient(ip, '');
+  final MqttServerClient client = MqttServerClient(ip, '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
       .withClientIdentifier('$deviceId-publish')
