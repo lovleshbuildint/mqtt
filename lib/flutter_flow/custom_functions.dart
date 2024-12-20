@@ -143,3 +143,35 @@ dynamic searchFilter(
 
   return filteredData;
 }
+
+dynamic returnMatrix() {
+  //  return a json value
+  return {
+    "levels": [
+      {
+        "level": "LEVEL-1",
+        "name": "SURESHBHAI SOJITRA",
+        "email": "svsojitra@varachhabank.in",
+        "mobile": "7069055426"
+      },
+      {
+        "level": "LEVEL-2",
+        "name": "Janak B. Vadadoriya",
+        "email": "jbvadadoriya@varachhabank.in",
+        "mobile": "6352906273"
+      },
+      {
+        "level": "LEVEL-3",
+        "name": "Kalpesh D. Ribadiya",
+        "email": "kdribadiya@varachhabank.in",
+        "mobile": "9879825893"
+      },
+      {
+        "level": "LEVEL-4",
+        "name": "Paresh D. Kelawala",
+        "email": "pdkelawala@varachhabank.in",
+        "mobile": "9737514000"
+      }
+    ]
+  };
+}

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
@@ -121,7 +122,10 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
             title: 'UpdateUsers',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               child: Scaffold(
                 key: scaffoldKey,
                 backgroundColor: Color(0xFF08182F),
@@ -628,66 +632,70 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(
                                                       0.0, 14.0, 0.0, 0.0),
-                                              child: Theme(
-                                                data: ThemeData(
-                                                  checkboxTheme:
-                                                      CheckboxThemeData(
-                                                    visualDensity:
-                                                        VisualDensity.compact,
-                                                    materialTapTargetSize:
-                                                        MaterialTapTargetSize
-                                                            .shrinkWrap,
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                child: Theme(
+                                                  data: ThemeData(
+                                                    checkboxTheme:
+                                                        CheckboxThemeData(
+                                                      visualDensity:
+                                                          VisualDensity.compact,
+                                                      materialTapTargetSize:
+                                                          MaterialTapTargetSize
+                                                              .shrinkWrap,
+                                                    ),
+                                                    unselectedWidgetColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondaryText,
                                                   ),
-                                                  unselectedWidgetColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryText,
-                                                ),
-                                                child: CheckboxListTile(
-                                                  value: _model
-                                                          .changePasswordCheckBoxValue ??=
-                                                      false,
-                                                  onChanged: (newValue) async {
-                                                    safeSetState(() => _model
-                                                            .changePasswordCheckBoxValue =
-                                                        newValue!);
-                                                    if (newValue!) {
-                                                      safeSetState(() {
-                                                        _model
-                                                            .passwordTextController
-                                                            ?.text = '*****';
-                                                      });
-                                                    }
-                                                  },
-                                                  title: Text(
-                                                    'Edit Passowrd',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .titleLarge
-                                                        .override(
-                                                          fontFamily: 'Poppins',
-                                                          color:
-                                                              Color(0xFF4D4D4D),
-                                                          fontSize: 12.0,
-                                                          letterSpacing: 0.0,
-                                                        ),
+                                                  child: CheckboxListTile(
+                                                    value: _model
+                                                            .changePasswordCheckBoxValue ??=
+                                                        false,
+                                                    onChanged:
+                                                        (newValue) async {
+                                                      safeSetState(() => _model
+                                                              .changePasswordCheckBoxValue =
+                                                          newValue!);
+                                                      if (newValue!) {
+                                                        safeSetState(() {
+                                                          _model
+                                                              .passwordTextController
+                                                              ?.text = '*****';
+                                                        });
+                                                      }
+                                                    },
+                                                    title: Text(
+                                                      'Edit Passowrd',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .titleLarge
+                                                          .override(
+                                                            fontFamily:
+                                                                'Poppins',
+                                                            color: Color(
+                                                                0xFF4D4D4D),
+                                                            fontSize: 12.0,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    tileColor: FlutterFlowTheme
+                                                            .of(context)
+                                                        .secondaryBackground,
+                                                    activeColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .primary,
+                                                    checkColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .info,
+                                                    dense: true,
+                                                    controlAffinity:
+                                                        ListTileControlAffinity
+                                                            .trailing,
                                                   ),
-                                                  tileColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryBackground,
-                                                  activeColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .primary,
-                                                  checkColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .info,
-                                                  dense: true,
-                                                  controlAffinity:
-                                                      ListTileControlAffinity
-                                                          .trailing,
                                                 ),
                                               ),
                                             ),

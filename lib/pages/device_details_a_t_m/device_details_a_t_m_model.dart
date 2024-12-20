@@ -4,16 +4,17 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
-import 'device_details_widget.dart' show DeviceDetailsWidget;
+import 'device_details_a_t_m_widget.dart' show DeviceDetailsATMWidget;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class DeviceDetailsModel extends FlutterFlowModel<DeviceDetailsWidget> {
+class DeviceDetailsATMModel extends FlutterFlowModel<DeviceDetailsATMWidget> {
   ///  Local state fields for this page.
 
   String? relayStatus;

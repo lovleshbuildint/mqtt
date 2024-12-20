@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +94,10 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
             title: 'LocationDetails',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               child: Scaffold(
                 key: scaffoldKey,
                 backgroundColor: Colors.white,
@@ -359,7 +363,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                     final dataItem = data[dataIndex];
                                     return Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 16.0, 0.0, 0.0),
+                                          0.0, 8.0, 0.0, 8.0),
                                       child: InkWell(
                                         splashColor: Colors.transparent,
                                         focusColor: Colors.transparent,
@@ -388,7 +392,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                             r'''$..dev_type''',
                                           ).toString())) {
                                             context.pushNamed(
-                                              'DeviceDetails',
+                                              'DeviceDetailsATM',
                                               queryParameters: {
                                                 'did': serializeParam(
                                                   getJsonField(
@@ -447,6 +451,60 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                 ),
                                               },
                                             );
+                                          } else if ((String var1) {
+                                            return var1 == 'iz' ? true : false;
+                                          }(getJsonField(
+                                            dataItem,
+                                            r'''$..dev_type''',
+                                          ).toString())) {
+                                            context.pushNamed(
+                                              'DeviceDetailsNeon',
+                                              queryParameters: {
+                                                'did': serializeParam(
+                                                  getJsonField(
+                                                    dataItem,
+                                                    r'''$..DID''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                                'onlineOfflineStatus':
+                                                    serializeParam(
+                                                  getJsonField(
+                                                    dataItem,
+                                                    r'''$..DeviceStatus''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                                'deviceName': serializeParam(
+                                                  getJsonField(
+                                                    dataItem,
+                                                    r'''$..DeviceName''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                                'mqttTopic': serializeParam(
+                                                  getJsonField(
+                                                    dataItem,
+                                                    r'''$..MqttTopic''',
+                                                  ).toString(),
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
+                                          } else if ((String var1) {
+                                            return var1 == 'Zion'
+                                                ? true
+                                                : false;
+                                          }(getJsonField(
+                                            dataItem,
+                                            r'''$..dev_type''',
+                                          ).toString())) {
+                                          } else if ((String var1) {
+                                            return var1 == 'LiB' ? true : false;
+                                          }(getJsonField(
+                                            dataItem,
+                                            r'''$..dev_type''',
+                                          ).toString())) {
                                           } else {
                                             context.pushNamed(
                                               'DeviceDetailsPLC',
@@ -506,11 +564,25 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                   MainAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  '${getJsonField(
-                                                    dataItem,
-                                                    r'''$..DID''',
-                                                  ).toString()} (${(String var1, String var2) {
-                                                    return var2 == 'iMAX'
+                                                  '${(String var1, String var2, String var3) {
+                                                    return var2 == 'iz'
+                                                        ? (var3 + ' AC')
+                                                        : (var2 == 'LiB'
+                                                            ? var3 + ' Light'
+                                                            : var1);
+                                                  }(getJsonField(
+                                                        dataItem,
+                                                        r'''$..DID''',
+                                                      ).toString(), getJsonField(
+                                                        dataItem,
+                                                        r'''$..dev_type''',
+                                                      ).toString(), getJsonField(
+                                                        dataItem,
+                                                        r'''$..DeviceName''',
+                                                      ).toString())} (${(String var1, String var2) {
+                                                    return var2 == 'iMAX' ||
+                                                            var2 == 'LiB' ||
+                                                            var2 == 'iz'
                                                         ? ''
                                                         : var1.split('T').first;
                                                   }(getJsonField(
@@ -520,7 +592,9 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                         dataItem,
                                                         r'''$..dev_type''',
                                                       ).toString())} ${(String var1, String var2) {
-                                                    return var2 == 'iMAX'
+                                                    return var2 == 'iMAX' ||
+                                                            var2 == 'LiB' ||
+                                                            var2 == 'iz'
                                                         ? ''
                                                         : var1.split('.').first;
                                                   }(((String var1) {
@@ -636,10 +710,19 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                       .start,
                                                               children: [
                                                                 AutoSizeText(
-                                                                  getJsonField(
+                                                                  (String
+                                                                      var1) {
+                                                                    return var1 ==
+                                                                            "Zion"
+                                                                        ? "BigIO"
+                                                                        : (var1 ==
+                                                                                "iz"
+                                                                            ? "Neon"
+                                                                            : var1);
+                                                                  }(getJsonField(
                                                                     dataItem,
                                                                     r'''$..dev_type''',
-                                                                  ).toString(),
+                                                                  ).toString()),
                                                                   minFontSize:
                                                                       10.0,
                                                                   style: FlutterFlowTheme.of(
@@ -662,8 +745,11 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                   (String var1,
                                                                           String
                                                                               var2) {
-                                                                    return var2 ==
-                                                                            'iMAX'
+                                                                    return var2 == 'iMAX' ||
+                                                                            var2 ==
+                                                                                'LiB' ||
+                                                                            var2 ==
+                                                                                'iz'
                                                                         ? 'Online'
                                                                         : var1;
                                                                   }(

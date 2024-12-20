@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/instant_timer.dart';
 import 'dart:async';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_tooltip/aligned_tooltip.dart';
@@ -11,11 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'device_details_model.dart';
-export 'device_details_model.dart';
+import 'device_details_a_t_m_model.dart';
+export 'device_details_a_t_m_model.dart';
 
-class DeviceDetailsWidget extends StatefulWidget {
-  const DeviceDetailsWidget({
+class DeviceDetailsATMWidget extends StatefulWidget {
+  const DeviceDetailsATMWidget({
     super.key,
     required this.did,
     required this.onlineOfflineStatus,
@@ -25,18 +26,18 @@ class DeviceDetailsWidget extends StatefulWidget {
   final String? onlineOfflineStatus;
 
   @override
-  State<DeviceDetailsWidget> createState() => _DeviceDetailsWidgetState();
+  State<DeviceDetailsATMWidget> createState() => _DeviceDetailsATMWidgetState();
 }
 
-class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
-  late DeviceDetailsModel _model;
+class _DeviceDetailsATMWidgetState extends State<DeviceDetailsATMWidget> {
+  late DeviceDetailsATMModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DeviceDetailsModel());
+    _model = createModel(context, () => DeviceDetailsATMModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -156,13 +157,16 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
             ),
           );
         }
-        final deviceDetailsGetDeviceStatusResponse = snapshot.data!;
+        final deviceDetailsATMGetDeviceStatusResponse = snapshot.data!;
 
         return Title(
-            title: 'DeviceDetails',
+            title: 'DeviceDetailsATM',
             color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
             child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               child: Scaffold(
                 key: scaffoldKey,
                 backgroundColor: Colors.white,
@@ -297,7 +301,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                     ? true
                                                     : false;
                                               }(getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.device_status''',
                                               ).toString())
@@ -311,7 +315,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                         Text(
                                           valueOrDefault<String>(
                                             getJsonField(
-                                              deviceDetailsGetDeviceStatusResponse
+                                              deviceDetailsATMGetDeviceStatusResponse
                                                   .jsonBody,
                                               r'''$.deviceStatus.device_status''',
                                             )?.toString(),
@@ -342,7 +346,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 '${(String var1) {
                                                   return var1.split('T').first;
                                                 }(getJsonField(
-                                                  deviceDetailsGetDeviceStatusResponse
+                                                  deviceDetailsATMGetDeviceStatusResponse
                                                       .jsonBody,
                                                   r'''$.deviceStatus.evt_dt''',
                                                 ).toString())} ${(String var1) {
@@ -350,7 +354,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 }(((String var1) {
                                                   return var1.split('T').last;
                                                 }(getJsonField(
-                                                  deviceDetailsGetDeviceStatusResponse
+                                                  deviceDetailsATMGetDeviceStatusResponse
                                                       .jsonBody,
                                                   r'''$.deviceStatus.evt_dt''',
                                                 ).toString())))}',
@@ -373,7 +377,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                       ),
                       if (valueOrDefault<bool>(
                         (getJsonField(
-                                  deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                  deviceDetailsATMGetDeviceStatusResponse
+                                      .jsonBody,
                                   r'''$.deviceStatus.device_status''',
                                 ) !=
                                 null) ||
@@ -418,7 +423,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                           Text(
                                             valueOrDefault<String>(
                                               '${getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.TM''',
                                               ).toString()} C',
@@ -447,7 +452,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         }(valueOrDefault<
                                                             String>(
                                                           getJsonField(
-                                                            deviceDetailsGetDeviceStatusResponse
+                                                            deviceDetailsATMGetDeviceStatusResponse
                                                                 .jsonBody,
                                                             r'''$.deviceStatus.TM''',
                                                           )?.toString(),
@@ -478,7 +483,8 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                           ),
                         ),
                       if ((getJsonField(
-                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                deviceDetailsATMGetDeviceStatusResponse
+                                    .jsonBody,
                                 r'''$.deviceStatus.device_status''',
                               ) !=
                               null) ||
@@ -524,7 +530,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.VN''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.VN''',
                                               ).toString()),
@@ -537,7 +543,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.VE''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.VE''',
                                               ).toString()),
@@ -550,7 +556,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.VU''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.VU''',
                                               ).toString()),
@@ -563,7 +569,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.UE''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.ups_phase_to_earth_voltage''',
                                               ).toString())))
@@ -593,7 +599,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.VN''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.VN''',
                                               ).toString()),
@@ -606,7 +612,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.VE''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.VE''',
                                               ).toString()),
@@ -619,7 +625,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.VU''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.VU''',
                                               ).toString()),
@@ -632,7 +638,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                 r'''$.UE''',
                                               ).toString()
                                             : getJsonField(
-                                                deviceDetailsGetDeviceStatusResponse
+                                                deviceDetailsATMGetDeviceStatusResponse
                                                     .jsonBody,
                                                 r'''$.deviceStatus.ups_phase_to_earth_voltage''',
                                               ).toString())))
@@ -687,7 +693,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         .deviceStatusDIDJson,
                                                     r'''$.VN''',
                                                   ).toString() : getJsonField(
-                                                    deviceDetailsGetDeviceStatusResponse
+                                                    deviceDetailsATMGetDeviceStatusResponse
                                                         .jsonBody,
                                                     r'''$.deviceStatus.VN''',
                                                   ).toString()}V',
@@ -708,7 +714,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         .deviceStatusDIDJson,
                                                     r'''$.VE''',
                                                   ).toString() : getJsonField(
-                                                    deviceDetailsGetDeviceStatusResponse
+                                                    deviceDetailsATMGetDeviceStatusResponse
                                                         .jsonBody,
                                                     r'''$.deviceStatus.VE''',
                                                   ).toString()}V',
@@ -747,7 +753,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         .deviceStatusDIDJson,
                                                     r'''$.VU''',
                                                   ).toString() : getJsonField(
-                                                    deviceDetailsGetDeviceStatusResponse
+                                                    deviceDetailsATMGetDeviceStatusResponse
                                                         .jsonBody,
                                                     r'''$.deviceStatus.VU''',
                                                   ).toString()}V',
@@ -768,7 +774,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                         .deviceStatusDIDJson,
                                                     r'''$.UE''',
                                                   ).toString() : getJsonField(
-                                                    deviceDetailsGetDeviceStatusResponse
+                                                    deviceDetailsATMGetDeviceStatusResponse
                                                         .jsonBody,
                                                     r'''$.deviceStatus.ups_phase_to_earth_voltage''',
                                                   ).toString()}V',
@@ -825,7 +831,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               r'''$.CA1''',
                                                             ).toString()
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.CAone''',
                                                             ).toString()),
@@ -837,7 +843,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? FFAppState()
                                                               .relayStatusiATM
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.RS''',
                                                             ).toString())))
@@ -876,7 +882,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                           )
                                                                             .toString()
                                                                         : getJsonField(
-                                                                            deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                            deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                             r'''$.deviceStatus.CAone''',
                                                                           )
                                                                             .toString()),
@@ -887,7 +893,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         ? FFAppState()
                                                                             .relayStatusiATM
                                                                         : getJsonField(
-                                                                            deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                            deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                             r'''$.deviceStatus.RS''',
                                                                           ).toString()))
                                                                 ? 'AC 1 is not Working'
@@ -896,7 +902,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         .deviceStatusDIDJson,
                                                                     r'''$.CA1''',
                                                                   ).toString() : getJsonField(
-                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                    deviceDetailsATMGetDeviceStatusResponse
                                                                         .jsonBody,
                                                                     r'''$.deviceStatus.CAone''',
                                                                   ).toString()}A',
@@ -963,7 +969,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? FFAppState()
                                                               .relayStatusiATM
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.RS''',
                                                             ).toString()))) {
@@ -1081,7 +1087,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                               )
                                                                                 .toString()
                                                                             : getJsonField(
-                                                                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                                deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                                 r'''$.deviceStatus.CAone''',
                                                                               )
                                                                                 .toString()),
@@ -1091,7 +1097,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             ? FFAppState()
                                                                                 .relayStatusiATM
                                                                             : getJsonField(
-                                                                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                                deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                                 r'''$.deviceStatus.RS''',
                                                                               )
                                                                                 .toString()))
@@ -1232,7 +1238,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   ? FFAppState()
                                                                       .relayStatusiATM
                                                                   : getJsonField(
-                                                                      deviceDetailsGetDeviceStatusResponse
+                                                                      deviceDetailsATMGetDeviceStatusResponse
                                                                           .jsonBody,
                                                                       r'''$.deviceStatus.RS''',
                                                                     )
@@ -1441,7 +1447,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               r'''$.CA2''',
                                                             ).toString()
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.CAtwo''',
                                                             ).toString()),
@@ -1453,7 +1459,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? FFAppState()
                                                               .relayStatusiATM
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.RS''',
                                                             ).toString())))
@@ -1492,7 +1498,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                           )
                                                                             .toString()
                                                                         : getJsonField(
-                                                                            deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                            deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                             r'''$.deviceStatus.CAtwo''',
                                                                           )
                                                                             .toString()),
@@ -1503,7 +1509,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         ? FFAppState()
                                                                             .relayStatusiATM
                                                                         : getJsonField(
-                                                                            deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                            deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                             r'''$.deviceStatus.RS''',
                                                                           ).toString()))
                                                                 ? 'AC 2 is not Working'
@@ -1512,7 +1518,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         .deviceStatusDIDJson,
                                                                     r'''$.CA2''',
                                                                   ).toString() : getJsonField(
-                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                    deviceDetailsATMGetDeviceStatusResponse
                                                                         .jsonBody,
                                                                     r'''$.deviceStatus.CAtwo''',
                                                                   ).toString()}A',
@@ -1579,7 +1585,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? FFAppState()
                                                               .relayStatusiATM
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.RS''',
                                                             ).toString()))) {
@@ -1691,7 +1697,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                               )
                                                                                 .toString()
                                                                             : getJsonField(
-                                                                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                                deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                                 r'''$.deviceStatus.CAtwo''',
                                                                               )
                                                                                 .toString()),
@@ -1701,7 +1707,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             ? FFAppState()
                                                                                 .relayStatusiATM
                                                                             : getJsonField(
-                                                                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                                deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                                 r'''$.deviceStatus.RS''',
                                                                               )
                                                                                 .toString()))
@@ -1843,7 +1849,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   ? FFAppState()
                                                                       .relayStatusiATM
                                                                   : getJsonField(
-                                                                      deviceDetailsGetDeviceStatusResponse
+                                                                      deviceDetailsATMGetDeviceStatusResponse
                                                                           .jsonBody,
                                                                       r'''$.deviceStatus.RS''',
                                                                     )
@@ -2053,7 +2059,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                               r'''$.CS''',
                                                             ).toString()
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.CS''',
                                                             ).toString()),
@@ -2065,7 +2071,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? FFAppState()
                                                               .relayStatusiATM
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.RS''',
                                                             ).toString())))
@@ -2104,7 +2110,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                           )
                                                                             .toString()
                                                                         : getJsonField(
-                                                                            deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                            deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                             r'''$.deviceStatus.CS''',
                                                                           )
                                                                             .toString()),
@@ -2115,7 +2121,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         ? FFAppState()
                                                                             .relayStatusiATM
                                                                         : getJsonField(
-                                                                            deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                            deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                             r'''$.deviceStatus.RS''',
                                                                           ).toString()))
                                                                 ? 'Signage is not Working'
@@ -2124,7 +2130,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                         .deviceStatusDIDJson,
                                                                     r'''$.CS''',
                                                                   ).toString() : getJsonField(
-                                                                    deviceDetailsGetDeviceStatusResponse
+                                                                    deviceDetailsATMGetDeviceStatusResponse
                                                                         .jsonBody,
                                                                     r'''$.deviceStatus.CS''',
                                                                   ).toString()}A',
@@ -2191,7 +2197,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                           ? FFAppState()
                                                               .relayStatusiATM
                                                           : getJsonField(
-                                                              deviceDetailsGetDeviceStatusResponse
+                                                              deviceDetailsATMGetDeviceStatusResponse
                                                                   .jsonBody,
                                                               r'''$.deviceStatus.RS''',
                                                             ).toString()))) {
@@ -2303,7 +2309,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                               )
                                                                                 .toString()
                                                                             : getJsonField(
-                                                                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                                deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                                 r'''$.deviceStatus.CS''',
                                                                               )
                                                                                 .toString()),
@@ -2313,7 +2319,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                             ? FFAppState()
                                                                                 .relayStatusiATM
                                                                             : getJsonField(
-                                                                                deviceDetailsGetDeviceStatusResponse.jsonBody,
+                                                                                deviceDetailsATMGetDeviceStatusResponse.jsonBody,
                                                                                 r'''$.deviceStatus.RS''',
                                                                               )
                                                                                 .toString()))
@@ -2457,7 +2463,7 @@ class _DeviceDetailsWidgetState extends State<DeviceDetailsWidget> {
                                                                   ? FFAppState()
                                                                       .relayStatusiATM
                                                                   : getJsonField(
-                                                                      deviceDetailsGetDeviceStatusResponse
+                                                                      deviceDetailsATMGetDeviceStatusResponse
                                                                           .jsonBody,
                                                                       r'''$.deviceStatus.RS''',
                                                                     )

@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
@@ -145,7 +146,10 @@ class _DevControlWidgetState extends State<DevControlWidget>
         title: 'devControl',
         color: FlutterFlowTheme.of(context).primary.withAlpha(0XFF),
         child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: Colors.white,
@@ -2142,166 +2146,78 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                         ((String var1) {
                                       return var1.split(',')[4];
                                     }(_model.devResponse));
-                                    _model.setTimeDayTextController?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .setTimeDayTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.setTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[5];
                                     }(_model.devResponse));
-                                    _model.setTimeNightTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .setTimeNightTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.signageOnTimeTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[6];
                                     }(_model.devResponse));
-                                    _model.signageOnTimeTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .signageOnTimeTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.signageOffTimeTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[7];
                                     }(_model.devResponse));
-                                    _model.signageOffTimeTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .signageOffTimeTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.dataIntervalTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[8];
                                     }(_model.devResponse));
-                                    _model.dataIntervalTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .dataIntervalTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.maxTempDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[9];
                                     }(_model.devResponse));
-                                    _model.maxTempDayTextController?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .maxTempDayTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.minTempDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[10];
                                     }(_model.devResponse));
-                                    _model.minTempDayTextController?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .minTempDayTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.maxTempNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[11];
                                     }(_model.devResponse));
-                                    _model.maxTempNightTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .maxTempNightTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.minTempNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[12];
                                     }(_model.devResponse));
-                                    _model.minTempNightTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .minTempNightTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.acOnTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[13];
                                     }(_model.devResponse));
-                                    _model.acOnTimeDayTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .acOnTimeDayTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.acOnTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[14];
                                     }(_model.devResponse));
-                                    _model.acOnTimeNightTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .acOnTimeNightTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.acOffTimeDayTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[15];
                                     }(_model.devResponse));
-                                    _model.acOffTimeDayTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .acOffTimeDayTextController!
-                                                .text
-                                                .length);
                                   });
                                   safeSetState(() {
                                     _model.acOffTimeNightTextController?.text =
                                         ((String var1) {
                                       return var1.split(',')[16];
                                     }(_model.devResponse));
-                                    _model.acOffTimeNightTextController
-                                            ?.selection =
-                                        TextSelection.collapsed(
-                                            offset: _model
-                                                .acOffTimeNightTextController!
-                                                .text
-                                                .length);
                                   });
                                   break;
                                 } else if (_model.maxTry > 14) {

@@ -20,6 +20,8 @@ export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
 
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
+
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
 
@@ -38,6 +40,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) => SplashScreenWidget(),
       routes: [
         FFRoute(
@@ -177,9 +180,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'DeviceDetails',
-          path: '/deviceDetails',
-          builder: (context, params) => DeviceDetailsWidget(
+          name: 'DeviceDetailsATM',
+          path: '/deviceDetailsATM',
+          builder: (context, params) => DeviceDetailsATMWidget(
             did: params.getParam(
               'did',
               ParamType.String,
@@ -245,6 +248,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => DeviceDetailsSurveillanceWidget(
             did: params.getParam(
               'did',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'DeviceDetailsNeon',
+          path: '/deviceDetailsNeon',
+          builder: (context, params) => DeviceDetailsNeonWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+            onlineOfflineStatus: params.getParam(
+              'onlineOfflineStatus',
+              ParamType.String,
+            ),
+            deviceName: params.getParam(
+              'deviceName',
+              ParamType.String,
+            ),
+            mqttTopic: params.getParam(
+              'mqttTopic',
               ParamType.String,
             ),
           ),

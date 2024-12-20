@@ -1320,6 +1320,38 @@ class PostRevisitChecklistMainCall {
   }
 }
 
+class FootageRequestCall {
+  static Future<ApiCallResponse> call({
+    String? startTime = '',
+    String? endTime = '',
+    String? fullName = '',
+    String? cameraName = '',
+  }) async {
+    final ffApiRequestBody = '''
+{
+  "startTime": "${startTime}",
+  "endTime": "${endTime}",
+  "cameraName": "${cameraName}",
+  "fullName": "${fullName}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Footage Request',
+      apiUrl: 'http://110.227.197.237:5001/footage-request',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;
