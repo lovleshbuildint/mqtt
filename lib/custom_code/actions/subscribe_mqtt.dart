@@ -35,12 +35,11 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
     return jsonMap;
   }
 
-  final String webSocketUrl = 'ws://$ip';
-  print('Using WebSocket URL: $webSocketUrl');
+  final String webSocketUrl = 'wss://buildint-mqtt.buildint.co/wss';
 
   // Select the appropriate client based on the platform
   final MqttClient client = kIsWeb
-      ? MqttBrowserClient.withPort(webSocketUrl, '', 9001)
+      ? MqttBrowserClient.withPort(webSocketUrl, '', 443)
       : MqttServerClient(ip, '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()

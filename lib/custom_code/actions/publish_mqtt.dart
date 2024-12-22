@@ -17,11 +17,11 @@ import 'package:mqtt_client/mqtt_browser_client.dart';
 
 Future<String> publishMqtt(BuildContext context, String? pubtopic,
     String? message, String? deviceId, String ip, String pass) async {
-  final String webSocketUrl = 'ws://$ip';
+  final String webSocketUrl = 'wss://buildint-mqtt.buildint.co/wss';
 
   // Select the appropriate client based on the platform
   final MqttClient client = kIsWeb
-      ? MqttBrowserClient.withPort(webSocketUrl, '', 9001)
+      ? MqttBrowserClient.withPort(webSocketUrl, '', 443)
       : MqttServerClient(ip, '');
 
   // client.setProtocolV311(); // Ensure protocol version is set
