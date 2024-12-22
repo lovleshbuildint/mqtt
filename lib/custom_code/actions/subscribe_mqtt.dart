@@ -16,6 +16,9 @@ import 'index.dart'; // Imports other custom actions
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:mqtt_client/mqtt_browser_client.dart';
+
 Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
     String? deviceId, String? did, String ip, String pass) async {
   Map<String, dynamic> parseStringToJSON(String pt) {
@@ -32,7 +35,13 @@ Future<String> subscribeMqtt(BuildContext context, String? subscribeTopic,
     return jsonMap;
   }
 
-  final MqttServerClient client = MqttServerClient(ip, '');
+  final String webSocketUrl = 'ws://$ip';
+  print('Using WebSocket URL: $webSocketUrl');
+
+  // Select the appropriate client based on the platform
+  final MqttClient client = kIsWeb
+      ? MqttBrowserClient.withPort(webSocketUrl, '', 9001)
+      : MqttServerClient(ip, '');
 
   final MqttConnectMessage connectMessage = MqttConnectMessage()
       .withClientIdentifier('$deviceId-subscribe')
