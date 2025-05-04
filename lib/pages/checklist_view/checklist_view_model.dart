@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'checklist_view_widget.dart' show ChecklistViewWidget;
 import 'dart:async';
 import 'package:easy_debounce/easy_debounce.dart';
@@ -28,6 +29,8 @@ class ChecklistViewModel extends FlutterFlowModel<ChecklistViewWidget> {
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
+  int get tabBarPreviousIndex =>
+      tabBarController != null ? tabBarController!.previousIndex : 0;
 
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
+import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -29,6 +30,9 @@ class LocationDetailsWidget extends StatefulWidget {
   final int? locId;
   final String? locImage;
   final String? branchCode;
+
+  static String routeName = 'LocationDetails';
+  static String routePath = '/locationDetails';
 
   @override
   State<LocationDetailsWidget> createState() => _LocationDetailsWidgetState();
@@ -138,11 +142,21 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
-                                          fontFamily: 'Readex Pro',
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight: FontWeight.normal,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                           color: Color(0xFF2D2D2D),
                                           fontSize: 20.0,
                                           letterSpacing: 0.0,
                                           fontWeight: FontWeight.normal,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
                                         ),
                                   ),
                                 ),
@@ -180,11 +194,20 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
-                                        fontFamily: 'Readex Pro',
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
                                         color: Color(0xFF4D4D4D),
                                         fontSize: 16.0,
                                         letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
                                       ),
                                 ),
                                 Padding(
@@ -232,11 +255,24 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    font: GoogleFonts.readexPro(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
                                                     color: Color(0xFF4D4D4D),
                                                     fontSize: 14.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w300,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
                                                   ),
                                             ),
                                             Text(
@@ -245,11 +281,24 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                       context)
                                                   .bodyMedium
                                                   .override(
-                                                    fontFamily: 'Readex Pro',
+                                                    font: GoogleFonts.readexPro(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
                                                     color: Color(0xFF4D4D4D),
                                                     fontSize: 14.0,
                                                     letterSpacing: 0.0,
                                                     fontWeight: FontWeight.w300,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
                                                   ),
                                             ),
                                           ],
@@ -278,14 +327,27 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color:
                                                             Color(0xFF2D2D2D),
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                                 AutoSizeText(
@@ -298,14 +360,27 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color:
                                                             Color(0xFF2D2D2D),
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                               ],
@@ -332,11 +407,19 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Readex Pro',
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FontWeight.bold,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
                                     color: Color(0xFF2D2D2D),
                                     fontSize: 20.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.bold,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
                                   ),
                             ),
                           ],
@@ -381,6 +464,9 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                           FFAppState().deleteRelayStatusiATM();
                                           FFAppState().relayStatusiATM = '';
 
+                                          FFAppState().deleteBSIATMMQTT();
+                                          FFAppState().BSIATMMQTT = null;
+
                                           safeSetState(() {});
                                           if ((String var1) {
                                             return var1 == 'iATM' ||
@@ -392,7 +478,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                             r'''$..dev_type''',
                                           ).toString())) {
                                             context.pushNamed(
-                                              'DeviceDetailsATM',
+                                              DeviceDetailsATMWidget.routeName,
                                               queryParameters: {
                                                 'did': serializeParam(
                                                   getJsonField(
@@ -430,7 +516,8 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                             r'''$..dev_type''',
                                           ).toString())) {
                                             context.pushNamed(
-                                              'DeviceDetailsSurveillance',
+                                              DeviceDetailsSurveillanceWidget
+                                                  .routeName,
                                               queryParameters: {
                                                 'did': serializeParam(
                                                   getJsonField(
@@ -458,7 +545,7 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                             r'''$..dev_type''',
                                           ).toString())) {
                                             context.pushNamed(
-                                              'DeviceDetailsNeon',
+                                              DeviceDetailsNeonWidget.routeName,
                                               queryParameters: {
                                                 'did': serializeParam(
                                                   getJsonField(
@@ -505,9 +592,90 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                             dataItem,
                                             r'''$..dev_type''',
                                           ).toString())) {
+                                          } else if ((String var1) {
+                                            return var1 == 'BSiATM'
+                                                ? true
+                                                : false;
+                                          }(getJsonField(
+                                            dataItem,
+                                            r'''$..dev_type''',
+                                          ).toString())) {
+                                            _model.deviceStatusResponse =
+                                                await GetDeviceStatusCall.call(
+                                              deviceId: FFAppState().deviceId,
+                                              token: FFAppState().token,
+                                              did: getJsonField(
+                                                dataItem,
+                                                r'''$..DID''',
+                                              ).toString(),
+                                            );
+
+                                            if ((_model.deviceStatusResponse
+                                                    ?.succeeded ??
+                                                true)) {
+                                              context.pushNamed(
+                                                DeviceDetailsATMBuildintWidget
+                                                    .routeName,
+                                                queryParameters: {
+                                                  'did': serializeParam(
+                                                    getJsonField(
+                                                      dataItem,
+                                                      r'''$..DID''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'onlineOfflineStatus':
+                                                      serializeParam(
+                                                    getJsonField(
+                                                      dataItem,
+                                                      r'''$..DeviceStatus''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                  'macID': serializeParam(
+                                                    getJsonField(
+                                                      (_model.deviceStatusResponse
+                                                              ?.jsonBody ??
+                                                          ''),
+                                                      r'''$.deviceStatus.IM''',
+                                                    ).toString(),
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                                extra: <String, dynamic>{
+                                                  kTransitionInfoKey:
+                                                      TransitionInfo(
+                                                    hasTransition: true,
+                                                    transitionType:
+                                                        PageTransitionType.fade,
+                                                    duration: Duration(
+                                                        milliseconds: 0),
+                                                  ),
+                                                },
+                                              );
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Alert'),
+                                                    content: Text(
+                                                        'Something went wrong!'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
                                           } else {
                                             context.pushNamed(
-                                              'DeviceDetailsPLC',
+                                              DeviceDetailsPLCWidget.routeName,
                                               queryParameters: {
                                                 'did': serializeParam(
                                                   getJsonField(
@@ -537,6 +705,8 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                               },
                                             );
                                           }
+
+                                          safeSetState(() {});
                                         },
                                         child: Container(
                                           width:
@@ -612,14 +782,27 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                           context)
                                                       .bodyMedium
                                                       .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
                                                         color:
                                                             Color(0xFF4D4D4D),
                                                         fontSize: 16.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.w600,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
                                                       ),
                                                 ),
                                                 Padding(
@@ -653,8 +836,16 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                       .of(context)
                                                                   .bodyMedium
                                                                   .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
+                                                                    font: GoogleFonts
+                                                                        .readexPro(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w300,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
                                                                     color: Color(
                                                                         0xFF4D4D4D),
                                                                     fontSize:
@@ -664,6 +855,10 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w300,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
                                                                   ),
                                                             ),
                                                             Text(
@@ -672,8 +867,16 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                       .of(context)
                                                                   .bodyMedium
                                                                   .override(
-                                                                    fontFamily:
-                                                                        'Readex Pro',
+                                                                    font: GoogleFonts
+                                                                        .readexPro(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w300,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
                                                                     color: Color(
                                                                         0xFF4D4D4D),
                                                                     fontSize:
@@ -683,6 +886,10 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w300,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
                                                                   ),
                                                             ),
                                                           ],
@@ -729,8 +936,14 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         color: Color(
                                                                             0xFF2D2D2D),
                                                                         fontSize:
@@ -739,6 +952,9 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                             0.0,
                                                                         fontWeight:
                                                                             FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                                 AutoSizeText(
@@ -767,8 +983,14 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                           context)
                                                                       .bodyMedium
                                                                       .override(
-                                                                        fontFamily:
-                                                                            'Readex Pro',
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                         color: Color(
                                                                             0xFF2D2D2D),
                                                                         fontSize:
@@ -777,6 +999,9 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                                                             0.0,
                                                                         fontWeight:
                                                                             FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
                                                                       ),
                                                                 ),
                                                               ],

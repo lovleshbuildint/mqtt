@@ -77,6 +77,16 @@ class FFAppState extends ChangeNotifier {
               .toList() ??
           _stateId;
     });
+    await _safeInitAsync(() async {
+      if (await secureStorage.read(key: 'ff_BSIATMMQTT') != null) {
+        try {
+          _BSIATMMQTT =
+              jsonDecode(await secureStorage.getString('ff_BSIATMMQTT') ?? '');
+        } catch (e) {
+          print("Can't decode persisted json. Error: $e.");
+        }
+      }
+    });
   }
 
   void update(VoidCallback callback) {
@@ -301,6 +311,17 @@ class FFAppState extends ChangeNotifier {
     stateId.insert(index, value);
     secureStorage.setStringList(
         'ff_stateId', _stateId.map((x) => x.toString()).toList());
+  }
+
+  dynamic _BSIATMMQTT;
+  dynamic get BSIATMMQTT => _BSIATMMQTT;
+  set BSIATMMQTT(dynamic value) {
+    _BSIATMMQTT = value;
+    secureStorage.setString('ff_BSIATMMQTT', jsonEncode(value));
+  }
+
+  void deleteBSIATMMQTT() {
+    secureStorage.delete(key: 'ff_BSIATMMQTT');
   }
 }
 

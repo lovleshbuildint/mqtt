@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_video_player.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,9 @@ export 'splash_screen_model.dart';
 
 class SplashScreenWidget extends StatefulWidget {
   const SplashScreenWidget({super.key});
+
+  static String routeName = 'splashScreen';
+  static String routePath = '/splashScreen';
 
   @override
   State<SplashScreenWidget> createState() => _SplashScreenWidgetState();
@@ -62,7 +66,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
               safeSetState(() {});
 
               context.goNamed(
-                'Dashboard',
+                DashboardWidget.routeName,
                 extra: <String, dynamic>{
                   kTransitionInfoKey: TransitionInfo(
                     hasTransition: true,
@@ -95,13 +99,13 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
 
               safeSetState(() {});
 
-              context.goNamed('LogIn');
+              context.goNamed(LogInWidget.routeName);
 
               return;
             }
           } else {
             context.goNamed(
-              'LogIn',
+              LogInWidget.routeName,
               extra: <String, dynamic>{
                 kTransitionInfoKey: TransitionInfo(
                   hasTransition: true,

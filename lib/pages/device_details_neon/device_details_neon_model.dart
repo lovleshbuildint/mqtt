@@ -6,10 +6,12 @@ import '/flutter_flow/instant_timer.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'device_details_neon_widget.dart' show DeviceDetailsNeonWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 
 class DeviceDetailsNeonModel extends FlutterFlowModel<DeviceDetailsNeonWidget> {

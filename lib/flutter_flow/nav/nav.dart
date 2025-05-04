@@ -7,13 +7,14 @@ import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
-import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/lat_lng.dart';
 import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -49,18 +50,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, _) => SplashScreenWidget(),
         ),
         FFRoute(
-          name: 'LogIn',
-          path: '/logIn',
+          name: LogInWidget.routeName,
+          path: LogInWidget.routePath,
           builder: (context, params) => LogInWidget(),
         ),
         FFRoute(
-          name: 'Dashboard',
-          path: '/dashboard',
+          name: DashboardWidget.routeName,
+          path: DashboardWidget.routePath,
           builder: (context, params) => DashboardWidget(),
         ),
         FFRoute(
-          name: 'LocationDetails',
-          path: '/locationDetails',
+          name: LocationDetailsWidget.routeName,
+          path: LocationDetailsWidget.routePath,
           builder: (context, params) => LocationDetailsWidget(
             locName: params.getParam(
               'locName',
@@ -89,28 +90,28 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'Profile',
-          path: '/profile',
+          name: ProfileWidget.routeName,
+          path: ProfileWidget.routePath,
           builder: (context, params) => ProfileWidget(),
         ),
         FFRoute(
-          name: 'CreateUser',
-          path: '/createUser',
+          name: CreateUserWidget.routeName,
+          path: CreateUserWidget.routePath,
           builder: (context, params) => CreateUserWidget(),
         ),
         FFRoute(
-          name: 'Notification',
-          path: '/notification',
+          name: NotificationWidget.routeName,
+          path: NotificationWidget.routePath,
           builder: (context, params) => NotificationWidget(),
         ),
         FFRoute(
-          name: 'UserManagement',
-          path: '/userManagement',
+          name: UserManagementWidget.routeName,
+          path: UserManagementWidget.routePath,
           builder: (context, params) => UserManagementWidget(),
         ),
         FFRoute(
-          name: 'UpdateUsers',
-          path: '/updateUsers',
+          name: UpdateUsersWidget.routeName,
+          path: UpdateUsersWidget.routePath,
           builder: (context, params) => UpdateUsersWidget(
             fullName: params.getParam(
               'fullName',
@@ -149,13 +150,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'splashScreen',
-          path: '/splashScreen',
+          name: SplashScreenWidget.routeName,
+          path: SplashScreenWidget.routePath,
           builder: (context, params) => SplashScreenWidget(),
         ),
         FFRoute(
-          name: 'devControl',
-          path: '/devControl',
+          name: DevControlWidget.routeName,
+          path: DevControlWidget.routePath,
           builder: (context, params) => DevControlWidget(
             did: params.getParam(
               'did',
@@ -164,13 +165,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'ChecklistView',
-          path: '/checklistView',
+          name: ChecklistViewWidget.routeName,
+          path: ChecklistViewWidget.routePath,
           builder: (context, params) => ChecklistViewWidget(),
         ),
         FFRoute(
-          name: 'AlertView',
-          path: '/alertView',
+          name: AlertViewWidget.routeName,
+          path: AlertViewWidget.routePath,
           builder: (context, params) => AlertViewWidget(
             locationIdList: params.getParam<int>(
               'locationIdList',
@@ -180,8 +181,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'DeviceDetailsATM',
-          path: '/deviceDetailsATM',
+          name: DeviceDetailsATMWidget.routeName,
+          path: DeviceDetailsATMWidget.routePath,
           builder: (context, params) => DeviceDetailsATMWidget(
             did: params.getParam(
               'did',
@@ -194,8 +195,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'DeviceDetailsPLC',
-          path: '/deviceDetailsPLC',
+          name: DeviceDetailsPLCWidget.routeName,
+          path: DeviceDetailsPLCWidget.routePath,
           builder: (context, params) => DeviceDetailsPLCWidget(
             did: params.getParam(
               'did',
@@ -208,8 +209,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'liveData',
-          path: '/liveData',
+          name: LiveDataWidget.routeName,
+          path: LiveDataWidget.routePath,
           builder: (context, params) => LiveDataWidget(
             did: params.getParam(
               'did',
@@ -218,8 +219,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'advanceSettings',
-          path: '/advanceSettings',
+          name: AdvanceSettingsWidget.routeName,
+          path: AdvanceSettingsWidget.routePath,
           builder: (context, params) => AdvanceSettingsWidget(
             did: params.getParam(
               'did',
@@ -228,8 +229,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'checkData',
-          path: '/checkData',
+          name: CheckDataWidget.routeName,
+          path: CheckDataWidget.routePath,
           builder: (context, params) => CheckDataWidget(
             did: params.getParam(
               'did',
@@ -238,13 +239,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'TA',
-          path: '/taView',
+          name: TaWidget.routeName,
+          path: TaWidget.routePath,
           builder: (context, params) => TaWidget(),
         ),
         FFRoute(
-          name: 'DeviceDetailsSurveillance',
-          path: '/deviceDetailsSurveillance',
+          name: DeviceDetailsSurveillanceWidget.routeName,
+          path: DeviceDetailsSurveillanceWidget.routePath,
           builder: (context, params) => DeviceDetailsSurveillanceWidget(
             did: params.getParam(
               'did',
@@ -253,8 +254,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'DeviceDetailsNeon',
-          path: '/deviceDetailsNeon',
+          name: DeviceDetailsNeonWidget.routeName,
+          path: DeviceDetailsNeonWidget.routePath,
           builder: (context, params) => DeviceDetailsNeonWidget(
             did: params.getParam(
               'did',
@@ -270,6 +271,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             ),
             mqttTopic: params.getParam(
               'mqttTopic',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: DeviceDetailsATMBuildintWidget.routeName,
+          path: DeviceDetailsATMBuildintWidget.routePath,
+          builder: (context, params) => DeviceDetailsATMBuildintWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+            onlineOfflineStatus: params.getParam(
+              'onlineOfflineStatus',
+              ParamType.String,
+            ),
+            macID: params.getParam(
+              'macID',
               ParamType.String,
             ),
           ),

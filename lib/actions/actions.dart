@@ -3,6 +3,7 @@ import '/backend/api_requests/api_manager.dart';
 import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 
 Future userInfoUpdate(BuildContext context) async {
@@ -72,7 +73,7 @@ Future userInfoUpdate(BuildContext context) async {
 
     FFAppState().update(() {});
 
-    context.goNamed('LogIn');
+    context.goNamed(LogInWidget.routeName);
 
     return;
   }

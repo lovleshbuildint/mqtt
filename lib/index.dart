@@ -27,3 +27,5 @@ export '/pages/device_details_surveillance/device_details_surveillance_widget.da
     show DeviceDetailsSurveillanceWidget;
 export '/pages/device_details_neon/device_details_neon_widget.dart'
     show DeviceDetailsNeonWidget;
+export '/pages/device_details_a_t_m_buildint/device_details_a_t_m_buildint_widget.dart'
+    show DeviceDetailsATMBuildintWidget;
