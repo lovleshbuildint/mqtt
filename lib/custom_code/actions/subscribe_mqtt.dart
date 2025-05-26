@@ -1,5 +1,4 @@
 // Automatic FlutterFlow imports
-import '/backend/schema/structs/index.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -69,10 +68,10 @@ Future<String> subscribeMqtt(
 
       client.updates?.timeout(timeoutDuration, onTimeout: (sink) {
         FFAppState().update(() {
-          FFAppState().deviceStatusDIDJson = Null;
-          FFAppState().mqttTime = "";
-          FFAppState().relayStatusiATM = "";
-          FFAppState().BSIATMMQTT = Null;
+          FFAppState().mqttTime = '';
+          FFAppState().deviceStatusDIDJson = null;
+          FFAppState().relayStatusiATM = '';
+          FFAppState().BSIATMMQTT = null;
         });
       }).listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
         final recMess = c![0].payload as MqttPublishMessage;
@@ -117,7 +116,6 @@ Future<String> subscribeMqtt(
             DateTime now = DateTime.now();
             String timestamp = now.toLocal().toString();
             FFAppState().update(() {
-              FFAppState().mqttResponse = pt;
               FFAppState().mqttTime = timestamp;
               FFAppState().BSIATMMQTT = jsondecodedPT;
             });
@@ -148,7 +146,12 @@ Future<String> subscribeMqtt(
               for (String suffix in suffixes) {
                 String key = '$prefix$suffix';
                 if (jsondecodedPT.containsKey(key)) {
-                  innerMap[suffix] = jsondecodedPT[key];
+                  var value = jsondecodedPT[key];
+                  if (suffix == 'I' && (value == 0 || value == '0')) {
+                    innerMap[suffix] = 0.00;
+                  } else {
+                    innerMap[suffix] = value;
+                  }
                 }
               }
               innerMap['RelayTag'] = prefix;
@@ -158,6 +161,10 @@ Future<String> subscribeMqtt(
               FFAppState().deviceStatusDIDJson = result;
             });
             print(result);
+          } else if (jsondecodedPT.containsKey('Message')) {
+            FFAppState().update(() {
+              FFAppState().mqttResponse = pt;
+            });
           }
         }
       });

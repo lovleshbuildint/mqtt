@@ -29,3 +29,8 @@ export '/pages/device_details_neon/device_details_neon_widget.dart'
     show DeviceDetailsNeonWidget;
 export '/pages/device_details_a_t_m_buildint/device_details_a_t_m_buildint_widget.dart'
     show DeviceDetailsATMBuildintWidget;
+export '/pages/b_si_a_t_m_relay_settings/b_si_a_t_m_relay_settings_widget.dart'
+    show BSiATMRelaySettingsWidget;
+export '/pages/firmware_management/firmware_management_widget.dart'
+    show FirmwareManagementWidget;
+export '/test/test_widget.dart' show TestWidget;

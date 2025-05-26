@@ -72,8 +72,11 @@ class _CheckDataWidgetState extends State<CheckDataWidget> {
         if (!snapshot.hasData) {
           return Scaffold(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            body: Image.asset(
-              'assets/images/Logo_Preloader_buildint.gif',
+            body: Center(
+              child: Image.asset(
+                'assets/images/Logo_Preloader_buildint.gif',
+                fit: BoxFit.cover,
+              ),
             ),
           );
         }

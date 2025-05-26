@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -19,9 +20,11 @@ class SetURLWidget extends StatefulWidget {
   const SetURLWidget({
     super.key,
     required this.deviceMacId,
+    required this.deviceType,
   });
 
   final String? deviceMacId;
+  final String? deviceType;
 
   @override
   State<SetURLWidget> createState() => _SetURLWidgetState();
@@ -381,14 +384,26 @@ class _SetURLWidgetState extends State<SetURLWidget>
                                   () async {
                                     await actions.publishMqtt(
                                       context,
-                                      'Settings',
-                                      _model.setUrl2TextController.text !=
-                                                  null &&
-                                              _model.setUrl2TextController
-                                                      .text !=
-                                                  ''
-                                          ? '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},${_model.setUrl2TextController.text},'
-                                          : '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},',
+                                      widget!.deviceType == 'iATM'
+                                          ? 'Settings'
+                                          : 'Setting/${widget!.deviceMacId}',
+                                      widget!.deviceType == 'iATM'
+                                          ? (_model.setUrl2TextController
+                                                          .text !=
+                                                      null &&
+                                                  _model.setUrl2TextController
+                                                          .text !=
+                                                      ''
+                                              ? '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},${_model.setUrl2TextController.text},'
+                                              : '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},')
+                                          : (_model.setUrl2TextController
+                                                          .text !=
+                                                      null &&
+                                                  _model.setUrl2TextController
+                                                          .text !=
+                                                      ''
+                                              ? '{\"httpUrl1\": \"${_model.setUrl1TextController.text}\", \"httpUrl2\": \"${_model.setUrl2TextController.text}\"}'
+                                              : '{\"httpUrl1\": \"${_model.setUrl1TextController.text}\"}'),
                                       FFAppState().deviceId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
@@ -399,32 +414,42 @@ class _SetURLWidgetState extends State<SetURLWidget>
                                   () async {
                                     await actions.subscribeMqtt(
                                       context,
-                                      'Response',
+                                      widget!.deviceType == 'iATM'
+                                          ? 'Response'
+                                          : 'Response/${widget!.deviceMacId}',
                                       FFAppState().deviceId,
                                       widget!.deviceMacId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
-                                      'iATM - SIFA',
+                                      widget!.deviceType == 'iATM'
+                                          ? 'iATM - SIFA'
+                                          : 'iATM - BuildINT',
                                     );
                                   }(),
                                 );
-                                while (!_model.setResponse &&
-                                    (_model.maxTry! < 17) &&
-                                    !_model.notSetResponse &&
-                                    (FFAppState().mqttResponse != null &&
-                                        FFAppState().mqttResponse != '')) {
-                                  if (((((String var1) {
-                                                return var1.split(',')[0] +
-                                                    var1.split(',')[2] +
-                                                    var1.split(',')[3];
-                                              }(FFAppState().mqttResponse)) ==
-                                              '${widget!.deviceMacId}\$SURLOK') ||
-                                          (((String var1) {
-                                                return var1.split(',')[1] +
-                                                    var1.split(',')[2] +
-                                                    var1.split(',')[3];
-                                              }(FFAppState().mqttResponse)) ==
-                                              '${widget!.deviceMacId}\$SURLOK')) &&
+                                while (_model.maxTry! < 17) {
+                                  if ((widget!.deviceType == 'iATM'
+                                          ? ((((String var1) {
+                                                    return var1.split(',')[0] +
+                                                        var1.split(',')[2] +
+                                                        var1.split(',')[3];
+                                                  }(FFAppState()
+                                                      .mqttResponse)) ==
+                                                  '${widget!.deviceMacId}\$SURLOK') ||
+                                              (((String var1) {
+                                                    return var1.split(',')[1] +
+                                                        var1.split(',')[2] +
+                                                        var1.split(',')[3];
+                                                  }(FFAppState()
+                                                      .mqttResponse)) ==
+                                                  '${widget!.deviceMacId}\$SURLOK'))
+                                          : functions.mapContainsAll(
+                                              FFAppState().mqttResponse,
+                                              <String, dynamic>{
+                                                  'httpUrl1': _model
+                                                      .setUrl1TextController
+                                                      .text,
+                                                })!) &&
                                       (_model.maxTry! < 15)) {
                                     _model.setResponse = true;
                                     _model.checkResponse = false;
@@ -440,6 +465,36 @@ class _SetURLWidgetState extends State<SetURLWidget>
                                         const Duration(milliseconds: 1000));
                                     _model.maxTry = _model.maxTry! + 1;
                                     safeSetState(() {});
+                                    unawaited(
+                                      () async {
+                                        await actions.publishMqtt(
+                                          context,
+                                          widget!.deviceType == 'iATM'
+                                              ? 'Settings'
+                                              : 'Setting/${widget!.deviceMacId}',
+                                          widget!.deviceType == 'iATM'
+                                              ? (_model.setUrl2TextController
+                                                              .text !=
+                                                          null &&
+                                                      _model.setUrl2TextController
+                                                              .text !=
+                                                          ''
+                                                  ? '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},${_model.setUrl2TextController.text},'
+                                                  : '${widget!.deviceMacId}\$SURL${_model.setUrl1TextController.text},')
+                                              : (_model.setUrl2TextController
+                                                              .text !=
+                                                          null &&
+                                                      _model.setUrl2TextController
+                                                              .text !=
+                                                          ''
+                                                  ? '{\"httpUrl1\": \"${_model.setUrl1TextController.text}\", \"httpUrl2\": \"${_model.setUrl2TextController.text}\"}'
+                                                  : '{\"httpUrl1\": \"${_model.setUrl1TextController.text}\"}'),
+                                          FFAppState().deviceId,
+                                          '15.206.230.32',
+                                          'mqtt_buildint_\$\$2023',
+                                        );
+                                      }(),
+                                    );
                                   }
                                 }
                               },
@@ -493,7 +548,7 @@ class _SetURLWidgetState extends State<SetURLWidget>
             child: SafeArea(
               child: Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
-                height: 210.0,
+                height: 260.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(14.0),
@@ -547,7 +602,7 @@ class _SetURLWidgetState extends State<SetURLWidget>
             child: SafeArea(
               child: Container(
                 width: MediaQuery.sizeOf(context).width * 1.0,
-                height: 210.0,
+                height: 260.0,
                 decoration: BoxDecoration(
                   color: FlutterFlowTheme.of(context).secondaryBackground,
                   borderRadius: BorderRadius.circular(14.0),
@@ -564,7 +619,7 @@ class _SetURLWidgetState extends State<SetURLWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 6.0, 0.0, 0.0),
                         child: Text(
-                          'DID SET SUCCESSFULLY',
+                          'URL SET SUCCESSFULLY',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.poppins(

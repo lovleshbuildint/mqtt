@@ -9,6 +9,7 @@ import 'dart:math';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -22,9 +23,11 @@ class DevControlWidget extends StatefulWidget {
   const DevControlWidget({
     super.key,
     required this.did,
+    required this.deviceType,
   });
 
   final String? did;
+  final String? deviceType;
 
   static String routeName = 'devControl';
   static String routePath = '/devControl';
@@ -82,11 +85,11 @@ class _DevControlWidgetState extends State<DevControlWidget>
     _model.acOnTimeDayTextController ??= TextEditingController();
     _model.acOnTimeDayFocusNode ??= FocusNode();
 
-    _model.acOnTimeNightTextController ??= TextEditingController();
-    _model.acOnTimeNightFocusNode ??= FocusNode();
-
     _model.acOffTimeDayTextController ??= TextEditingController();
     _model.acOffTimeDayFocusNode ??= FocusNode();
+
+    _model.acOnTimeNightTextController ??= TextEditingController();
+    _model.acOnTimeNightFocusNode ??= FocusNode();
 
     _model.acOffTimeNightTextController ??= TextEditingController();
     _model.acOffTimeNightFocusNode ??= FocusNode();
@@ -295,148 +298,255 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 15.0, 15.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'AC Selection',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 0.0, 0.0, 0.0),
-                                            child: FlutterFlowDropDown<String>(
-                                              controller: _model
-                                                      .dropDownValueController ??=
-                                                  FormFieldController<String>(
-                                                _model.dropDownValue ??=
-                                                    (String var1) {
-                                                  return var1.split(',')[3];
-                                                }(_model.devResponse),
-                                              ),
-                                              options: List<String>.from(
-                                                  ['002', '001', '003']),
-                                              optionLabels: [
-                                                'AC 1 & AC 2',
-                                                'AC 1 Only',
-                                                'AC 2 Only'
-                                              ],
-                                              onChanged: (val) => safeSetState(
-                                                  () => _model.dropDownValue =
-                                                      val),
-                                              width: 300.0,
-                                              height: 35.0,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                              icon: Icon(
-                                                Icons
-                                                    .keyboard_arrow_down_rounded,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 24.0,
-                                              ),
-                                              fillColor:
+                                  if (widget!.deviceType != 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondaryBackground,
-                                              elevation: 2.0,
-                                              borderColor: Color(0x35404042),
-                                              borderWidth: 1.0,
-                                              borderRadius: 6.0,
-                                              margin: EdgeInsetsDirectional
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              hidesUnderline: true,
-                                              isOverButton: false,
-                                              isSearchable: false,
-                                              isMultiSelect: false,
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Periodicity',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          Theme(
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                materialTapTargetSize:
+                                                    MaterialTapTargetSize
+                                                        .shrinkWrap,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              unselectedWidgetColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                            ),
+                                            child: Checkbox(
+                                              value: _model.ppdctValue ??= true,
+                                              onChanged: (newValue) async {
+                                                safeSetState(() => _model
+                                                    .ppdctValue = newValue!);
+                                              },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              checkColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
+                                  if (widget!.deviceType == 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'AC Selection',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      15.0, 0.0, 0.0, 0.0),
+                                              child:
+                                                  FlutterFlowDropDown<String>(
+                                                controller: _model
+                                                        .dropDownValueController ??=
+                                                    FormFieldController<String>(
+                                                  _model.dropDownValue ??=
+                                                      (String var1) {
+                                                    return var1.split(',')[3];
+                                                  }(_model.devResponse),
+                                                ),
+                                                options: List<String>.from(
+                                                    ['002', '001', '003']),
+                                                optionLabels: [
+                                                  'AC 1 & AC 2',
+                                                  'AC 1 Only',
+                                                  'AC 2 Only'
+                                                ],
+                                                onChanged: (val) =>
+                                                    safeSetState(() => _model
+                                                        .dropDownValue = val),
+                                                width: 300.0,
+                                                height: 35.0,
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                icon: Icon(
+                                                  Icons
+                                                      .keyboard_arrow_down_rounded,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  size: 24.0,
+                                                ),
+                                                fillColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                elevation: 2.0,
+                                                borderColor: Color(0x35404042),
+                                                borderWidth: 1.0,
+                                                borderRadius: 6.0,
+                                                margin: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 0.0),
+                                                hidesUnderline: true,
+                                                isOverButton: false,
+                                                isSearchable: false,
+                                                isMultiSelect: false,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 15.0, 15.0),
@@ -464,7 +574,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
-                                              'Set Time (Day)',
+                                              'Start Time (Day)',
                                               minFontSize: 9.0,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -588,8 +698,9 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                              keyboardType:
-                                                  TextInputType.number,
+                                              keyboardType: const TextInputType
+                                                  .numberWithOptions(
+                                                  decimal: true),
                                               validator: _model
                                                   .setTimeDayTextControllerValidator
                                                   .asValidator(context),
@@ -626,7 +737,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
-                                              'Set Time (Night)',
+                                              'Start Time (Night)',
                                               minFontSize: 9.0,
                                               style: FlutterFlowTheme.of(
                                                       context)
@@ -761,133 +872,55 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 15.0, 15.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'Signage On Time',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 0.0, 0.0, 0.0),
-                                            child: TextFormField(
-                                              controller: _model
-                                                  .signageOnTimeTextController,
-                                              focusNode:
-                                                  _model.signageOnTimeFocusNode,
-                                              autofocus: false,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x35404042),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
+                                  if (widget!.deviceType == 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Signage On Time',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -899,157 +932,93 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                               .bodyMedium
                                                               .fontStyle,
                                                     ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              validator: _model
-                                                  .signageOnTimeTextControllerValidator
-                                                  .asValidator(context),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 15.0, 15.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'Signage Off Time',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 0.0, 0.0, 0.0),
-                                            child: TextFormField(
-                                              controller: _model
-                                                  .signageOffTimeTextController,
-                                              focusNode: _model
-                                                  .signageOffTimeFocusNode,
-                                              autofocus: false,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x35404042),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
                                               ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      15.0, 0.0, 0.0, 0.0),
+                                              child: TextFormField(
+                                                controller: _model
+                                                    .signageOnTimeTextController,
+                                                focusNode: _model
+                                                    .signageOnTimeFocusNode,
+                                                autofocus: false,
+                                                textInputAction:
+                                                    TextInputAction.next,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x35404042),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
                                                       fontWeight:
                                                           FlutterFlowTheme.of(
                                                                   context)
@@ -1061,30 +1030,186 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                               .bodyMedium
                                                               .fontStyle,
                                                     ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              validator: _model
-                                                  .signageOffTimeTextControllerValidator
-                                                  .asValidator(context),
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                validator: _model
+                                                    .signageOnTimeTextControllerValidator
+                                                    .asValidator(context),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
-                                  ),
+                                  if (widget!.deviceType == 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Signage Off Time',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      15.0, 0.0, 0.0, 0.0),
+                                              child: TextFormField(
+                                                controller: _model
+                                                    .signageOffTimeTextController,
+                                                focusNode: _model
+                                                    .signageOffTimeFocusNode,
+                                                autofocus: false,
+                                                textInputAction:
+                                                    TextInputAction.next,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x35404042),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                  ),
+                                                ),
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                validator: _model
+                                                    .signageOffTimeTextControllerValidator
+                                                    .asValidator(context),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 15.0, 15.0),
@@ -1247,6 +1372,110 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                       ],
                                     ),
                                   ),
+                                  if (widget!.deviceType != 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Temperature Control',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Theme(
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                materialTapTargetSize:
+                                                    MaterialTapTargetSize
+                                                        .shrinkWrap,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              unselectedWidgetColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                            ),
+                                            child: Checkbox(
+                                              value: _model.ptmpValue ??= true,
+                                              onChanged: (newValue) async {
+                                                safeSetState(() => _model
+                                                    .ptmpValue = newValue!);
+                                              },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              checkColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         15.0, 0.0, 15.0, 15.0),
@@ -2084,169 +2313,6 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     10.0, 2.0, 10.0, 0.0),
                                             child: AutoSizeText(
-                                              ' AC On time (Night)',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    15.0, 0.0, 0.0, 0.0),
-                                            child: TextFormField(
-                                              controller: _model
-                                                  .acOnTimeNightTextController,
-                                              focusNode:
-                                                  _model.acOnTimeNightFocusNode,
-                                              autofocus: false,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              obscureText: false,
-                                              decoration: InputDecoration(
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: Color(0x35404042),
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                                focusedErrorBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .error,
-                                                    width: 1.0,
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          6.0),
-                                                ),
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                              keyboardType: const TextInputType
-                                                  .numberWithOptions(
-                                                  decimal: true),
-                                              validator: _model
-                                                  .acOnTimeNightTextControllerValidator
-                                                  .asValidator(context),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        15.0, 0.0, 15.0, 15.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
                                               ' AC Off time (Day)',
                                               minFontSize: 9.0,
                                               style: FlutterFlowTheme.of(
@@ -2376,6 +2442,169 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                   decimal: true),
                                               validator: _model
                                                   .acOffTimeDayTextControllerValidator
+                                                  .asValidator(context),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        15.0, 0.0, 15.0, 15.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: 35.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(6.0),
+                                            border: Border.all(
+                                              color: Color(0xFF404042),
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 2.0, 10.0, 0.0),
+                                            child: AutoSizeText(
+                                              ' AC On time (Night)',
+                                              minFontSize: 9.0,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Color(0xFF4D4D4D),
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    15.0, 0.0, 0.0, 0.0),
+                                            child: TextFormField(
+                                              controller: _model
+                                                  .acOnTimeNightTextController,
+                                              focusNode:
+                                                  _model.acOnTimeNightFocusNode,
+                                              autofocus: false,
+                                              textInputAction:
+                                                  TextInputAction.next,
+                                              obscureText: false,
+                                              decoration: InputDecoration(
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color(0x35404042),
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.0),
+                                                ),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.0),
+                                                ),
+                                                errorBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.0),
+                                                ),
+                                                focusedErrorBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .error,
+                                                    width: 1.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          6.0),
+                                                ),
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.readexPro(
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Color(0xFF4D4D4D),
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                              keyboardType: const TextInputType
+                                                  .numberWithOptions(
+                                                  decimal: true),
+                                              validator: _model
+                                                  .acOnTimeNightTextControllerValidator
                                                   .asValidator(context),
                                             ),
                                           ),
@@ -2546,6 +2775,214 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                       ],
                                     ),
                                   ),
+                                  if (widget!.deviceType != 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Night Mode',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Theme(
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                materialTapTargetSize:
+                                                    MaterialTapTargetSize
+                                                        .shrinkWrap,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              unselectedWidgetColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                            ),
+                                            child: Checkbox(
+                                              value: _model.nenValue ??= true,
+                                              onChanged: (newValue) async {
+                                                safeSetState(() => _model
+                                                    .nenValue = newValue!);
+                                              },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              checkColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  if (widget!.deviceType != 'iATM')
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          15.0, 0.0, 15.0, 15.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            height: 35.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.0),
+                                              border: Border.all(
+                                                color: Color(0xFF404042),
+                                                width: 1.0,
+                                              ),
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 2.0, 10.0, 0.0),
+                                              child: AutoSizeText(
+                                                'Auto Mode Recovery',
+                                                minFontSize: 9.0,
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font: GoogleFonts.poppins(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF4D4D4D),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                              ),
+                                            ),
+                                          ),
+                                          Theme(
+                                            data: ThemeData(
+                                              checkboxTheme: CheckboxThemeData(
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                materialTapTargetSize:
+                                                    MaterialTapTargetSize
+                                                        .shrinkWrap,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          4.0),
+                                                ),
+                                              ),
+                                              unselectedWidgetColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .alternate,
+                                            ),
+                                            child: Checkbox(
+                                              value: _model.psmValue ??= true,
+                                              onChanged: (newValue) async {
+                                                safeSetState(() => _model
+                                                    .psmValue = newValue!);
+                                              },
+                                              side: BorderSide(
+                                                width: 2,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .alternate,
+                                              ),
+                                              activeColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                              checkColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .info,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
@@ -2561,17 +2998,50 @@ class _DevControlWidgetState extends State<DevControlWidget>
                               safeSetState(() {});
                               _model.maxTry = 0;
                               _model.checkResponse = true;
+                              _model.applyChanges = widget!.deviceType == 'iATM'
+                                  ? null
+                                  : <String, dynamic>{
+                                      'PSTT':
+                                          _model.setTimeDayTextController.text,
+                                      'PSFT': _model
+                                          .setTimeNightTextController.text,
+                                      'PTMP': _model.ptmpValue! ? '1' : '0',
+                                      'PPDCT': _model.ppdctValue! ? '1' : '0',
+                                      'PSM': _model.psmValue! ? '10' : '0',
+                                      'NEN': _model.nenValue! ? 'ON' : 'OFF',
+                                      'PRMXT':
+                                          _model.maxTempDayTextController.text,
+                                      'PRMNT':
+                                          _model.minTempDayTextController.text,
+                                      'PRNMXT': _model
+                                          .maxTempNightTextController.text,
+                                      'PRNMNT': _model
+                                          .minTempNightTextController.text,
+                                      'PERIOD':
+                                          _model.acOnTimeDayTextController.text,
+                                      'PADDING': _model
+                                          .acOffTimeDayTextController.text,
+                                      'NPERIOD': _model
+                                          .acOnTimeNightTextController.text,
+                                      'NPADDING': _model
+                                          .acOffTimeNightTextController.text,
+                                      'PCS': _model.ppdctValue! ? '1' : '0',
+                                    };
                               safeSetState(() {});
                               unawaited(
                                 () async {
                                   await actions.subscribeMqtt(
                                     context,
-                                    'Response',
+                                    widget!.deviceType == 'iATM'
+                                        ? 'Response'
+                                        : 'Response/${widget!.did}',
                                     FFAppState().deviceId,
                                     widget!.did,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',
-                                    'iATM - SIFA',
+                                    widget!.deviceType == 'iATM'
+                                        ? 'iATM - SIFA'
+                                        : 'iATM - BuildINT',
                                   );
                                 }(),
                               );
@@ -2579,70 +3049,86 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 () async {
                                   await actions.publishMqtt(
                                     context,
-                                    'Settings',
-                                    (String var1,
-                                            String var2,
-                                            String var3,
-                                            String var4,
-                                            String var5,
-                                            String var6,
-                                            String var7,
-                                            String var8,
-                                            String var9,
-                                            String var10,
-                                            String var11,
-                                            String var12,
-                                            String var13,
-                                            String var14,
-                                            String var15) {
-                                      return var15 +
-                                          '\$SDEV' +
-                                          var1 +
-                                          ',' +
-                                          var2 +
-                                          ',' +
-                                          var3 +
-                                          ',' +
-                                          var4 +
-                                          ',' +
-                                          var5 +
-                                          ',' +
-                                          var6 +
-                                          ',' +
-                                          var7 +
-                                          ',' +
-                                          var8 +
-                                          ',' +
-                                          var9 +
-                                          ',' +
-                                          var10 +
-                                          ',' +
-                                          var11 +
-                                          ',' +
-                                          var12 +
-                                          ',' +
-                                          var13 +
-                                          ',' +
-                                          var14 +
-                                          ',001,001,25.0,';
-                                    }(
-                                        _model.dropDownValue!,
-                                        _model.setTimeDayTextController.text,
-                                        _model.setTimeNightTextController.text,
-                                        _model.signageOnTimeTextController.text,
-                                        _model
-                                            .signageOffTimeTextController.text,
-                                        _model.dataIntervalTextController.text,
-                                        _model.maxTempDayTextController.text,
-                                        _model.minTempDayTextController.text,
-                                        _model.maxTempNightTextController.text,
-                                        _model.minTempNightTextController.text,
-                                        _model.acOnTimeDayTextController.text,
-                                        _model.acOnTimeNightTextController.text,
-                                        _model.acOffTimeDayTextController.text,
-                                        _model
-                                            .acOffTimeNightTextController.text,
-                                        widget!.did!),
+                                    widget!.deviceType == 'iATM'
+                                        ? 'Settings'
+                                        : 'Setting/${widget!.did}',
+                                    widget!.deviceType == 'iATM'
+                                        ? ((String var1,
+                                                String var2,
+                                                String var3,
+                                                String var4,
+                                                String var5,
+                                                String var6,
+                                                String var7,
+                                                String var8,
+                                                String var9,
+                                                String var10,
+                                                String var11,
+                                                String var12,
+                                                String var13,
+                                                String var14,
+                                                String var15) {
+                                            return var15 +
+                                                '\$SDEV' +
+                                                var1 +
+                                                ',' +
+                                                var2 +
+                                                ',' +
+                                                var3 +
+                                                ',' +
+                                                var4 +
+                                                ',' +
+                                                var5 +
+                                                ',' +
+                                                var6 +
+                                                ',' +
+                                                var7 +
+                                                ',' +
+                                                var8 +
+                                                ',' +
+                                                var9 +
+                                                ',' +
+                                                var10 +
+                                                ',' +
+                                                var11 +
+                                                ',' +
+                                                var12 +
+                                                ',' +
+                                                var13 +
+                                                ',' +
+                                                var14 +
+                                                ',001,001,25.0,';
+                                          }(
+                                            _model.dropDownValue!,
+                                            _model
+                                                .setTimeDayTextController.text,
+                                            _model.setTimeNightTextController
+                                                .text,
+                                            _model.signageOnTimeTextController
+                                                .text,
+                                            _model.signageOffTimeTextController
+                                                .text,
+                                            _model.dataIntervalTextController
+                                                .text,
+                                            _model
+                                                .maxTempDayTextController.text,
+                                            _model
+                                                .minTempDayTextController.text,
+                                            _model.maxTempNightTextController
+                                                .text,
+                                            _model.minTempNightTextController
+                                                .text,
+                                            _model
+                                                .acOnTimeDayTextController.text,
+                                            _model.acOnTimeNightTextController
+                                                .text,
+                                            _model.acOffTimeDayTextController
+                                                .text,
+                                            _model.acOffTimeNightTextController
+                                                .text,
+                                            widget!.did!))
+                                        : functions.returnEncodeJson(
+                                            _model.applyChanges),
                                     FFAppState().deviceId,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',
@@ -2650,19 +3136,23 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 }(),
                               );
                               while (_model.maxTry < 17) {
-                                if (((((String var1) {
-                                              return var1.split(',')[0] +
-                                                  var1.split(',')[2] +
-                                                  var1.split(',')[3];
-                                            }(FFAppState().mqttResponse)) ==
-                                            '${widget!.did}\$SDEVOK') ||
-                                        (((String var1) {
-                                              return var1.split(',')[1] +
-                                                  var1.split(',')[2] +
-                                                  var1.split(',')[3];
-                                            }(FFAppState().mqttResponse)) ==
-                                            '${widget!.did}\$SDEVOK')) &&
-                                    (_model.maxTry < 15)) {
+                                if ((_model.maxTry < 15) &&
+                                    (widget!.deviceType == 'iATM'
+                                        ? ((((String var1) {
+                                                  return var1.split(',')[0] +
+                                                      var1.split(',')[2] +
+                                                      var1.split(',')[3];
+                                                }(FFAppState().mqttResponse)) ==
+                                                '${widget!.did}\$SDEVOK') ||
+                                            (((String var1) {
+                                                  return var1.split(',')[1] +
+                                                      var1.split(',')[2] +
+                                                      var1.split(',')[3];
+                                                }(FFAppState().mqttResponse)) ==
+                                                '${widget!.did}\$SDEVOK'))
+                                        : functions.mapContainsAll(
+                                            FFAppState().mqttResponse,
+                                            _model.applyChanges)!)) {
                                   _model.setResponse = true;
                                   _model.checkResponse = false;
                                   safeSetState(() {});
@@ -2674,9 +3164,108 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                   break;
                                 } else {
                                   await Future.delayed(
-                                      const Duration(milliseconds: 1000));
+                                      const Duration(milliseconds: 5000));
                                   _model.maxTry = _model.maxTry + 1;
                                   safeSetState(() {});
+                                  unawaited(
+                                    () async {
+                                      await actions.publishMqtt(
+                                        context,
+                                        widget!.deviceType == 'iATM'
+                                            ? 'Settings'
+                                            : 'Setting/${widget!.did}',
+                                        widget!.deviceType == 'iATM'
+                                            ? ((String var1,
+                                                    String var2,
+                                                    String var3,
+                                                    String var4,
+                                                    String var5,
+                                                    String var6,
+                                                    String var7,
+                                                    String var8,
+                                                    String var9,
+                                                    String var10,
+                                                    String var11,
+                                                    String var12,
+                                                    String var13,
+                                                    String var14,
+                                                    String var15) {
+                                                return var15 +
+                                                    '\$SDEV' +
+                                                    var1 +
+                                                    ',' +
+                                                    var2 +
+                                                    ',' +
+                                                    var3 +
+                                                    ',' +
+                                                    var4 +
+                                                    ',' +
+                                                    var5 +
+                                                    ',' +
+                                                    var6 +
+                                                    ',' +
+                                                    var7 +
+                                                    ',' +
+                                                    var8 +
+                                                    ',' +
+                                                    var9 +
+                                                    ',' +
+                                                    var10 +
+                                                    ',' +
+                                                    var11 +
+                                                    ',' +
+                                                    var12 +
+                                                    ',' +
+                                                    var13 +
+                                                    ',' +
+                                                    var14 +
+                                                    ',001,001,25.0,';
+                                              }(
+                                                _model.dropDownValue!,
+                                                _model.setTimeDayTextController
+                                                    .text,
+                                                _model
+                                                    .setTimeNightTextController
+                                                    .text,
+                                                _model
+                                                    .signageOnTimeTextController
+                                                    .text,
+                                                _model
+                                                    .signageOffTimeTextController
+                                                    .text,
+                                                _model
+                                                    .dataIntervalTextController
+                                                    .text,
+                                                _model.maxTempDayTextController
+                                                    .text,
+                                                _model.minTempDayTextController
+                                                    .text,
+                                                _model
+                                                    .maxTempNightTextController
+                                                    .text,
+                                                _model
+                                                    .minTempNightTextController
+                                                    .text,
+                                                _model.acOnTimeDayTextController
+                                                    .text,
+                                                _model
+                                                    .acOnTimeNightTextController
+                                                    .text,
+                                                _model
+                                                    .acOffTimeDayTextController
+                                                    .text,
+                                                _model
+                                                    .acOffTimeNightTextController
+                                                    .text,
+                                                widget!.did!))
+                                            : functions.returnEncodeJson(
+                                                _model.applyChanges),
+                                        FFAppState().deviceId,
+                                        '15.206.230.32',
+                                        'mqtt_buildint_\$\$2023',
+                                      );
+                                    }(),
+                                  );
                                 }
                               }
                             },
@@ -2729,112 +3318,243 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 () async {
                                   await actions.subscribeMqtt(
                                     context,
-                                    'Response',
+                                    widget!.deviceType == 'iATM'
+                                        ? 'Response'
+                                        : 'Response/${widget!.did}',
                                     FFAppState().deviceId,
                                     widget!.did,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',
-                                    'iATM - SIFA',
+                                    widget!.deviceType == 'iATM'
+                                        ? 'iATM - SIFA'
+                                        : 'iATM - BuildINT',
                                   );
                                 }(),
                               );
-                              while (_model.maxTry < 16) {
-                                if ((FFAppState().mqttResponse != null &&
+                              while (_model.maxTry < 17) {
+                                if ((_model.maxTry < 15) &&
+                                    (FFAppState().mqttResponse != null &&
                                         FFAppState().mqttResponse != '') &&
-                                    ((String var1) {
-                                      return var1.split(',')[2] == '\$GDEV'
-                                          ? true
-                                          : false;
-                                    }(FFAppState().mqttResponse))) {
+                                    (widget!.deviceType == 'iATM'
+                                        ? ((String var1) {
+                                            return var1.split(',')[2] ==
+                                                    '\$GDEV'
+                                                ? true
+                                                : false;
+                                          }(FFAppState().mqttResponse))
+                                        : ((String var1) {
+                                            return var1 == "GMR" ? true : false;
+                                          }(getJsonField(
+                                            functions.returnJson(
+                                                FFAppState().mqttResponse),
+                                            r'''$.SIOT''',
+                                          ).toString())))) {
                                   _model.devResponse =
                                       FFAppState().mqttResponse;
                                   safeSetState(() {});
-                                  safeSetState(() {
-                                    _model.dropDownValueController?.value =
-                                        ((String var1) {
-                                      return var1.split(',')[3];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.setTimeDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[4];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.setTimeNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[5];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.signageOnTimeTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[6];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.signageOffTimeTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[7];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.dataIntervalTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[8];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.maxTempDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[9];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.minTempDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[10];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.maxTempNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[11];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.minTempNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[12];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.acOnTimeDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[13];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.acOnTimeNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[14];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.acOffTimeDayTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[15];
-                                    }(_model.devResponse));
-                                  });
-                                  safeSetState(() {
-                                    _model.acOffTimeNightTextController?.text =
-                                        ((String var1) {
-                                      return var1.split(',')[16];
-                                    }(_model.devResponse));
-                                  });
-                                  break;
-                                } else if (_model.maxTry > 14) {
+                                  if (widget!.deviceType == 'iATM') {
+                                    safeSetState(() {
+                                      _model.dropDownValueController?.value =
+                                          ((String var1) {
+                                        return var1.split(',')[3];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.setTimeDayTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[4];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.setTimeNightTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[5];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.signageOnTimeTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[6];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.signageOffTimeTextController
+                                          ?.text = ((String var1) {
+                                        return var1.split(',')[7];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.dataIntervalTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[8];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.maxTempDayTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[9];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.minTempDayTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[10];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.maxTempNightTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[11];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.minTempNightTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[12];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.acOnTimeDayTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[13];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.acOnTimeNightTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[14];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.acOffTimeDayTextController?.text =
+                                          ((String var1) {
+                                        return var1.split(',')[15];
+                                      }(_model.devResponse));
+                                    });
+                                    safeSetState(() {
+                                      _model.acOffTimeNightTextController
+                                          ?.text = ((String var1) {
+                                        return var1.split(',')[16];
+                                      }(_model.devResponse));
+                                    });
+                                  } else {
+                                    safeSetState(() {
+                                      _model.setTimeDayTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PSTT''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.setTimeNightTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PSFT''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.dataIntervalTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.HB''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.maxTempDayTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PRMXT''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.minTempDayTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PRMNT''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.maxTempNightTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PRNMXT''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.minTempNightTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PRNMNT''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.acOnTimeDayTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PERIOD''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.acOnTimeNightTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.NPERIOD''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.acOffTimeDayTextController?.text =
+                                          getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PADDING''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.acOffTimeNightTextController
+                                          ?.text = getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.NPADDING''',
+                                      ).toString();
+                                    });
+                                    safeSetState(() {
+                                      _model.ptmpValue = ((String var1) {
+                                        return var1 == '1' ? true : false;
+                                      }(getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PTMP''',
+                                      ).toString()));
+                                    });
+                                    safeSetState(() {
+                                      _model.ppdctValue = ((String var1) {
+                                        return var1 == '1' ? true : false;
+                                      }(getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PPDCT''',
+                                      ).toString()));
+                                    });
+                                    safeSetState(() {
+                                      _model.psmValue = ((String var1) {
+                                        return var1 == '1' ||
+                                                var1 == '10' ||
+                                                var1 == '11'
+                                            ? true
+                                            : false;
+                                      }(getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.PSM''',
+                                      ).toString()));
+                                    });
+                                    safeSetState(() {
+                                      _model.nenValue = ((String var1) {
+                                        return var1 == 'ON' ? true : false;
+                                      }(getJsonField(
+                                        FFAppState().BSIATMMQTT,
+                                        r'''$.NEN''',
+                                      ).toString()));
+                                    });
+                                  }
+
+                                  return;
+                                } else if (_model.maxTry > 15) {
                                   _model.noResponse = true;
                                   safeSetState(() {});
                                   break;
@@ -2847,8 +3567,12 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                     () async {
                                       await actions.publishMqtt(
                                         context,
-                                        'Settings',
-                                        '${widget!.did}\$GDEV,',
+                                        widget!.deviceType == 'iATM'
+                                            ? 'Settings'
+                                            : 'Setting/${widget!.did}',
+                                        widget!.deviceType == 'iATM'
+                                            ? '${widget!.did}\$GDEV,'
+                                            : '{\"SIOT\": \"GMR\"}',
                                         FFAppState().deviceId,
                                         '15.206.230.32',
                                         'mqtt_buildint_\$\$2023',
@@ -2858,7 +3582,7 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                 }
                               }
                             },
-                            text: 'GET DEV',
+                            text: 'GET DEV/Periodicity',
                             options: FFButtonOptions(
                               height: 40.0,
                               padding: EdgeInsetsDirectional.fromSTEB(

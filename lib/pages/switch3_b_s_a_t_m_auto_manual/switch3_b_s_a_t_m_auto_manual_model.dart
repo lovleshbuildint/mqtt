@@ -24,7 +24,9 @@ class Switch3BSATMAutoManualModel
 
   InstantTimer? instantTimer;
   // State field(s) for Switch widget.
-  bool? switchValue;
+  bool? switchValue1;
+  // State field(s) for Switch widget.
+  bool? switchValue2;
 
   @override
   void initState(BuildContext context) {}

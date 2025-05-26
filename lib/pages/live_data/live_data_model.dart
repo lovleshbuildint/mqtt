@@ -16,13 +16,15 @@ import 'package:provider/provider.dart';
 class LiveDataModel extends FlutterFlowModel<LiveDataWidget> {
   ///  State fields for stateful widgets in this page.
 
-  InstantTimer? instantTimer;
+  InstantTimer? instantTimer1;
+  InstantTimer? instantTimer2;
 
   @override
   void initState(BuildContext context) {}
 
   @override
   void dispose() {
-    instantTimer?.cancel();
+    instantTimer1?.cancel();
+    instantTimer2?.cancel();
   }
 }

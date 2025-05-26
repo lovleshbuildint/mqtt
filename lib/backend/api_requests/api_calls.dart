@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:typed_data';
-import '../schema/structs/index.dart';
-
 import 'package:flutter/foundation.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
@@ -1342,6 +1340,178 @@ class FootageRequestCall {
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetVersionBSCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getVersionBS',
+      apiUrl: 'https://api.app.master.buildint.co/BSiATM/versionInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetVersionBVCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getVersionBV',
+      apiUrl: 'https://api.app.master.buildint.co/BViATM/versionInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetVersionBStestmodeCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getVersionBStestmode',
+      apiUrl: 'https://api.app.master.buildint.co/BSiATM/testmode/versionInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetVersionBVtestmodeCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getVersionBVtestmode',
+      apiUrl: 'https://api.app.master.buildint.co/BViATM/testmode/versionInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SetUpdateBSCall {
+  static Future<ApiCallResponse> call({
+    String? version = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'setUpdateBS',
+      apiUrl: 'https://api.app.master.buildint.co/BSiATM/uploadBin',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'version': version,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SetUpdateBVCall {
+  static Future<ApiCallResponse> call({
+    String? version = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'setUpdateBV',
+      apiUrl: 'https://api.app.master.buildint.co/BViATM/uploadBin',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'version': version,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SetUpdateBStestmodeCall {
+  static Future<ApiCallResponse> call({
+    String? version = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'setUpdateBStestmode',
+      apiUrl: 'https://api.app.master.buildint.co/BSiATM/testmode/uploadBin',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'version': version,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SetUpdateBVtestmodeCall {
+  static Future<ApiCallResponse> call({
+    String? version = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'setUpdateBVtestmode',
+      apiUrl: 'https://api.app.master.buildint.co/BViATM/testmode/uploadBin',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'version': version,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

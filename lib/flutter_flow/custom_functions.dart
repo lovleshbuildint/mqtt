@@ -8,7 +8,6 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'lat_lng.dart';
 import 'place.dart';
 import 'uploaded_file.dart';
-import '/backend/schema/structs/index.dart';
 
 int? checkIndex(
   dynamic list,
@@ -174,4 +173,45 @@ dynamic returnMatrix() {
       }
     ]
   };
+}
+
+dynamic returnJson(String plainText) {
+  Map<String, dynamic> jsondecodedPT = jsonDecode(plainText);
+  return jsondecodedPT;
+}
+
+String? returnEncodeJson(dynamic inputMap) {
+  return jsonEncode(inputMap);
+}
+
+bool? mapContainsAll(
+  String bigMaps,
+  dynamic smallMap,
+) {
+  try {
+    if (bigMaps == null || bigMaps.trim().isEmpty) {
+      return false;
+    }
+
+    final decoded = jsonDecode(bigMaps);
+    if (decoded is! Map<String, dynamic>) {
+      return false;
+    }
+
+    final Map<String, dynamic> bigMap = decoded;
+    if (smallMap is! Map) {
+      return false;
+    }
+
+    for (final entry in smallMap.entries) {
+      if (!bigMap.containsKey(entry.key) || bigMap[entry.key] != entry.value) {
+        return false;
+      }
+    }
+
+    return true;
+  } catch (e) {
+    print('Error parsing JSON or checking map: $e');
+    return false;
+  }
 }

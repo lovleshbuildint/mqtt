@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -19,9 +20,11 @@ class SetDIDWidget extends StatefulWidget {
   const SetDIDWidget({
     super.key,
     required this.deviceMacId,
+    required this.deviceType,
   });
 
   final String? deviceMacId;
+  final String? deviceType;
 
   @override
   State<SetDIDWidget> createState() => _SetDIDWidgetState();
@@ -265,8 +268,12 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                   () async {
                                     await actions.publishMqtt(
                                       context,
-                                      'Settings',
-                                      '${widget!.deviceMacId}\$SDID${_model.setDidTextController.text},1110011,',
+                                      widget!.deviceType == 'iATM'
+                                          ? 'Settings'
+                                          : 'Setting/${widget!.deviceMacId}',
+                                      widget!.deviceType == 'iATM'
+                                          ? '${widget!.deviceMacId}\$SDID${_model.setDidTextController.text},1110011,'
+                                          : '{ \"DID\" : \"${_model.setDidTextController.text}\" }',
                                       FFAppState().deviceId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
@@ -277,47 +284,73 @@ class _SetDIDWidgetState extends State<SetDIDWidget>
                                   () async {
                                     await actions.subscribeMqtt(
                                       context,
-                                      'Response',
+                                      widget!.deviceType == 'iATM'
+                                          ? 'Response'
+                                          : 'Response/${widget!.deviceMacId}',
                                       FFAppState().deviceId,
                                       widget!.deviceMacId,
                                       '15.206.230.32',
                                       'mqtt_buildint_\$\$2023',
-                                      'iATM - SIFA',
+                                      widget!.deviceType == 'iATM'
+                                          ? 'iATM - SIFA'
+                                          : 'iATM - BuildINT',
                                     );
                                   }(),
                                 );
-                                while (!_model.setResponse &&
-                                    (_model.maxTry! < 17) &&
-                                    !_model.notSetResponse &&
-                                    (FFAppState().mqttResponse != null &&
-                                        FFAppState().mqttResponse != '')) {
-                                  if (((((String var1) {
-                                                return var1.split(',')[0] +
-                                                    var1.split(',')[2] +
-                                                    var1.split(',')[3];
-                                              }(FFAppState().mqttResponse)) ==
-                                              '${widget!.deviceMacId}\$SDIDOK') ||
-                                          (((String var1) {
-                                                return var1.split(',')[1] +
-                                                    var1.split(',')[2] +
-                                                    var1.split(',')[3];
-                                              }(FFAppState().mqttResponse)) ==
-                                              '${widget!.deviceMacId}\$SDIDOK')) &&
-                                      (_model.maxTry! < 15)) {
+                                while (_model.maxTry! < 17) {
+                                  if ((_model.maxTry! < 15) &&
+                                      (widget!.deviceType == 'iATM'
+                                          ? ((((String var1) {
+                                                    return var1.split(',')[0] +
+                                                        var1.split(',')[2] +
+                                                        var1.split(',')[3];
+                                                  }(FFAppState()
+                                                      .mqttResponse)) ==
+                                                  '${widget!.deviceMacId}\$SDIDOK') ||
+                                              (((String var1) {
+                                                    return var1.split(',')[1] +
+                                                        var1.split(',')[2] +
+                                                        var1.split(',')[3];
+                                                  }(FFAppState()
+                                                      .mqttResponse)) ==
+                                                  '${widget!.deviceMacId}\$SDIDOK'))
+                                          : functions.mapContainsAll(
+                                              FFAppState().mqttResponse,
+                                              <String, dynamic>{
+                                                  'DID': _model
+                                                      .setDidTextController
+                                                      .text,
+                                                })!)) {
                                     _model.setResponse = true;
                                     _model.checkResponse = false;
                                     safeSetState(() {});
-                                    break;
+                                    return;
                                   } else if (_model.maxTry! > 15) {
                                     _model.notSetResponse = true;
                                     _model.checkResponse = false;
                                     safeSetState(() {});
-                                    break;
+                                    return;
                                   } else {
                                     await Future.delayed(
                                         const Duration(milliseconds: 1000));
                                     _model.maxTry = _model.maxTry! + 1;
                                     safeSetState(() {});
+                                    unawaited(
+                                      () async {
+                                        await actions.publishMqtt(
+                                          context,
+                                          widget!.deviceType == 'iATM'
+                                              ? 'Settings'
+                                              : 'Setting/${widget!.deviceMacId}',
+                                          widget!.deviceType == 'iATM'
+                                              ? '${widget!.deviceMacId}\$SDID${_model.setDidTextController.text},1110011,'
+                                              : '{ \"DID\" : \"${_model.setDidTextController.text}\" }',
+                                          FFAppState().deviceId,
+                                          '15.206.230.32',
+                                          'mqtt_buildint_\$\$2023',
+                                        );
+                                      }(),
+                                    );
                                   }
                                 }
                               },

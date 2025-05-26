@@ -18,9 +18,11 @@ class LiveDataWidget extends StatefulWidget {
   const LiveDataWidget({
     super.key,
     required this.did,
+    required this.deviceType,
   });
 
   final String? did;
+  final String? deviceType;
 
   static String routeName = 'liveData';
   static String routePath = '/liveData';
@@ -43,37 +45,71 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       await action_blocks.userInfoUpdate(context);
       safeSetState(() {});
-      unawaited(
-        () async {
-          await actions.subscribeMqtt(
-            context,
-            'Response',
-            FFAppState().deviceId,
-            widget!.did,
-            '15.206.230.32',
-            'mqtt_buildint_\$\$2023',
-            'iATM - SIFA',
-          );
-        }(),
-      );
-      _model.instantTimer = InstantTimer.periodic(
-        duration: Duration(milliseconds: 15000),
-        callback: (timer) async {
-          unawaited(
-            () async {
-              await actions.publishMqtt(
-                context,
-                'Settings',
-                '${widget!.did}\$GALL,',
-                FFAppState().deviceId,
-                '15.206.230.32',
-                'mqtt_buildint_\$\$2023',
-              );
-            }(),
-          );
-        },
-        startImmediately: true,
-      );
+      if (widget!.deviceType == 'iATM') {
+        unawaited(
+          () async {
+            await actions.subscribeMqtt(
+              context,
+              'Response',
+              FFAppState().deviceId,
+              widget!.did,
+              '15.206.230.32',
+              'mqtt_buildint_\$\$2023',
+              'iATM - SIFA',
+            );
+          }(),
+        );
+        _model.instantTimer1 = InstantTimer.periodic(
+          duration: Duration(milliseconds: 15000),
+          callback: (timer) async {
+            unawaited(
+              () async {
+                await actions.publishMqtt(
+                  context,
+                  'Settings',
+                  '${widget!.did}\$GALL,',
+                  FFAppState().deviceId,
+                  '15.206.230.32',
+                  'mqtt_buildint_\$\$2023',
+                );
+              }(),
+            );
+          },
+          startImmediately: true,
+        );
+      } else {
+        unawaited(
+          () async {
+            await actions.subscribeMqtt(
+              context,
+              'Response/${widget!.did}',
+              FFAppState().deviceId,
+              widget!.did,
+              '15.206.230.32',
+              'mqtt_buildint_\$\$2023',
+              'iATM - BuildINT',
+            );
+          }(),
+        );
+        _model.instantTimer2 = InstantTimer.periodic(
+          duration: Duration(milliseconds: 15000),
+          callback: (timer) async {
+            unawaited(
+              () async {
+                await actions.publishMqtt(
+                  context,
+                  'Setting/${widget!.did}',
+                  '{\"SIOT\":\"GMR\", \"Test\": \"Test\"}',
+                  FFAppState().deviceId,
+                  '15.206.230.32',
+                  'mqtt_buildint_\$\$2023',
+                );
+              }(),
+            );
+          },
+          startImmediately: true,
+        );
+      }
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -212,11 +248,9 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                         width: 10.0,
                                         height: 10.0,
                                         decoration: BoxDecoration(
-                                          color: FFAppState().relayStatusiATM !=
-                                                      null &&
-                                                  FFAppState()
-                                                          .relayStatusiATM !=
-                                                      ''
+                                          color: FFAppState()
+                                                      .deviceStatusDIDJson !=
+                                                  null
                                               ? Color(0xFF07D95A)
                                               : FlutterFlowTheme.of(context)
                                                   .error,
@@ -268,68 +302,52 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                       ],
                     ),
                   ),
-                  if (FFAppState().relayStatusiATM != null &&
-                      FFAppState().relayStatusiATM != '')
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            0.0, 30.0, 0.0, 15.0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 15.0),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'TI',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'TI',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -341,58 +359,62 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              getJsonField(
-                                                FFAppState()
-                                                    .deviceStatusDIDJson,
-                                                r'''$.TI''',
-                                              ).toString(),
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            widget!.deviceType == 'iATM'
+                                                ? getJsonField(
+                                                    FFAppState()
+                                                        .deviceStatusDIDJson,
+                                                    r'''$.TI''',
+                                                  ).toString()
+                                                : getJsonField(
+                                                    FFAppState().BSIATMMQTT,
+                                                    r'''$.TI''',
+                                                  ).toString(),
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -404,65 +426,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'MAC ID',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'MAC ID',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -474,58 +495,62 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              getJsonField(
-                                                FFAppState()
-                                                    .deviceStatusDIDJson,
-                                                r'''$.IM''',
-                                              ).toString(),
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            widget!.deviceType == 'iATM'
+                                                ? getJsonField(
+                                                    FFAppState()
+                                                        .deviceStatusDIDJson,
+                                                    r'''$.IM''',
+                                                  ).toString()
+                                                : getJsonField(
+                                                    FFAppState().BSIATMMQTT,
+                                                    r'''$.Macid''',
+                                                  ).toString(),
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -537,65 +562,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'AS',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'AS',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -607,58 +631,62 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              getJsonField(
-                                                FFAppState()
-                                                    .deviceStatusDIDJson,
-                                                r'''$.AS''',
-                                              ).toString(),
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            widget!.deviceType == 'iATM'
+                                                ? getJsonField(
+                                                    FFAppState()
+                                                        .deviceStatusDIDJson,
+                                                    r'''$.AS''',
+                                                  ).toString()
+                                                : getJsonField(
+                                                    FFAppState().BSIATMMQTT,
+                                                    r'''$.CV''',
+                                                  ).toString(),
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -670,14 +698,28 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
+                            ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -819,6 +861,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -960,6 +1003,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -1101,6 +1145,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -1242,6 +1287,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -1375,6 +1421,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -1508,6 +1555,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -1641,190 +1689,213 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
+                            if (widget!.deviceType != 'iATM')
+                              Builder(
+                                builder: (context) {
+                                  final relayList = getJsonField(
+                                    FFAppState().deviceStatusDIDJson,
+                                    r'''$.*''',
+                                  ).toList();
+
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: List.generate(relayList.length,
+                                        (relayListIndex) {
+                                      final relayListItem =
+                                          relayList[relayListIndex];
+                                      return Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'TM',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
+                                            15.0, 0.0, 15.0, 15.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 5.0, 0.0),
+                                                child: Container(
+                                                  height: 35.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                    border: Border.all(
+                                                      color: Color(0xFF404042),
+                                                      width: 1.0,
                                                     ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
                                                   ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
-                                          ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              getJsonField(
-                                                FFAppState()
-                                                    .deviceStatusDIDJson,
-                                                r'''$.TM''',
-                                              ).toString(),
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 2.0,
+                                                                10.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      getJsonField(
+                                                        relayListItem,
+                                                        r'''$.Label''',
+                                                      ).toString(),
+                                                      minFontSize: 9.0,
+                                                      style:
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .poppins(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: Color(
+                                                                    0xFF4D4D4D),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
                                                     ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
                                                   ),
+                                                ),
+                                              ),
                                             ),
-                                          ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        5.0, 0.0, 0.0, 0.0),
+                                                child: Container(
+                                                  height: 35.0,
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            6.0),
+                                                    border: Border.all(
+                                                      color: Color(0xFF404042),
+                                                      width: 1.0,
+                                                    ),
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(10.0, 2.0,
+                                                                10.0, 0.0),
+                                                    child: AutoSizeText(
+                                                      '${(String var1) {
+                                                        return var1 == "1"
+                                                            ? "ON"
+                                                            : "OFF";
+                                                      }(getJsonField(
+                                                        relayListItem,
+                                                        r'''$.Relay''',
+                                                      ).toString())} - ${getJsonField(
+                                                        relayListItem,
+                                                        r'''$.I''',
+                                                      ).toString()}A',
+                                                      minFontSize: 9.0,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .poppins(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: Color(
+                                                                    0xFF4D4D4D),
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                      );
+                                    }),
+                                  );
+                                },
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'HM',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'TM',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -1836,58 +1907,62 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              getJsonField(
-                                                FFAppState()
-                                                    .deviceStatusDIDJson,
-                                                r'''$.HM''',
-                                              ).toString(),
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            widget!.deviceType == 'iATM'
+                                                ? getJsonField(
+                                                    FFAppState()
+                                                        .deviceStatusDIDJson,
+                                                    r'''$.TM''',
+                                                  ).toString()
+                                                : getJsonField(
+                                                    FFAppState().BSIATMMQTT,
+                                                    r'''$.Temp''',
+                                                  ).toString(),
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -1899,65 +1974,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'VN',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'HM',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -1969,58 +2043,196 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              '${getJsonField(
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            widget!.deviceType == 'iATM'
+                                                ? getJsonField(
+                                                    FFAppState()
+                                                        .deviceStatusDIDJson,
+                                                    r'''$.HM''',
+                                                  ).toString()
+                                                : getJsonField(
+                                                    FFAppState().BSIATMMQTT,
+                                                    r'''$.Hum''',
+                                                  ).toString(),
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'R-PN',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            '${widget!.deviceType == 'iATM' ? getJsonField(
                                                 FFAppState()
                                                     .deviceStatusDIDJson,
                                                 r'''$.VN''',
+                                              ).toString() : getJsonField(
+                                                FFAppState().BSIATMMQTT,
+                                                r'''$.RPN''',
                                               ).toString()}V',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2032,65 +2244,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'VE',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'R-PE',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2102,58 +2313,60 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              '${getJsonField(
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            '${widget!.deviceType == 'iATM' ? getJsonField(
                                                 FFAppState()
                                                     .deviceStatusDIDJson,
                                                 r'''$.VE''',
+                                              ).toString() : getJsonField(
+                                                FFAppState().BSIATMMQTT,
+                                                r'''$.RPE''',
                                               ).toString()}V',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2165,65 +2378,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'VU',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'UPS-PN',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2235,58 +2447,60 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              '${getJsonField(
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            '${widget!.deviceType == 'iATM' ? getJsonField(
                                                 FFAppState()
                                                     .deviceStatusDIDJson,
                                                 r'''$.VU''',
+                                              ).toString() : getJsonField(
+                                                FFAppState().BSIATMMQTT,
+                                                r'''$.UPN''',
                                               ).toString()}V',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2298,65 +2512,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'UE',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'UPS-PE',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2368,58 +2581,60 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              '${getJsonField(
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            '${widget!.deviceType == 'iATM' ? getJsonField(
                                                 FFAppState()
                                                     .deviceStatusDIDJson,
                                                 r'''$.UE''',
+                                              ).toString() : getJsonField(
+                                                FFAppState().BSIATMMQTT,
+                                                r'''$.UPE''',
                                               ).toString()}V',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2431,65 +2646,64 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 0.0, 15.0, 15.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 5.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              'VB',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            'Battery Voltage',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2501,58 +2715,60 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 0.0, 0.0),
-                                        child: Container(
-                                          height: 35.0,
-                                          decoration: BoxDecoration(
-                                            color: FlutterFlowTheme.of(context)
-                                                .secondaryBackground,
-                                            borderRadius:
-                                                BorderRadius.circular(6.0),
-                                            border: Border.all(
-                                              color: Color(0xFF404042),
-                                              width: 1.0,
-                                            ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
                                           ),
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    10.0, 2.0, 10.0, 0.0),
-                                            child: AutoSizeText(
-                                              '${getJsonField(
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
+                                            '${widget!.deviceType == 'iATM' ? getJsonField(
                                                 FFAppState()
                                                     .deviceStatusDIDJson,
                                                 r'''$.VB''',
+                                              ).toString() : getJsonField(
+                                                FFAppState().BSIATMMQTT,
+                                                r'''$.BV''',
                                               ).toString()}V',
-                                              minFontSize: 9.0,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.poppins(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xFF4D4D4D),
-                                                    letterSpacing: 0.0,
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
                                                     fontWeight:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -2564,14 +2780,28 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                             .bodyMedium
                                                             .fontStyle,
                                                   ),
-                                            ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
+                            ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -2705,6 +2935,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
+                            if (widget!.deviceType == 'iATM')
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     15.0, 0.0, 15.0, 15.0),
@@ -2838,11 +3069,11 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                   ],
                                 ),
                               ),
-                            ],
-                          ),
+                          ],
                         ),
                       ),
                     ),
+                  ),
                 ],
               ),
             ),

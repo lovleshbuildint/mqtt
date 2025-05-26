@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'set_u_r_l_widget.dart' show SetURLWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

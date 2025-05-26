@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'set_d_i_d_widget.dart' show SetDIDWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -24,6 +25,8 @@ class SetDIDModel extends FlutterFlowModel<SetDIDWidget> {
   bool notSetResponse = false;
 
   bool checkResponse = false;
+
+  int? testCondition = 0;
 
   ///  State fields for stateful widgets in this component.
 

@@ -16,10 +16,14 @@ export 'advance_settings_model.dart';
 class AdvanceSettingsWidget extends StatefulWidget {
   const AdvanceSettingsWidget({
     super.key,
-    required this.did,
+    required this.macId,
+    required this.deviceType,
+    required this.iATMDID,
   });
 
-  final String? did;
+  final String? macId;
+  final String? deviceType;
+  final String? iATMDID;
 
   static String routeName = 'advanceSettings';
   static String routePath = '/advanceSettings';
@@ -152,7 +156,11 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                       LiveDataWidget.routeName,
                                       queryParameters: {
                                         'did': serializeParam(
-                                          widget!.did,
+                                          widget!.macId,
+                                          ParamType.String,
+                                        ),
+                                        'deviceType': serializeParam(
+                                          widget!.deviceType,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -207,7 +215,7 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                       CheckDataWidget.routeName,
                                       queryParameters: {
                                         'did': serializeParam(
-                                          widget!.did,
+                                          widget!.iATMDID,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -276,7 +284,8 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                             child: Container(
                                               height: 260.0,
                                               child: SetDIDWidget(
-                                                deviceMacId: widget!.did!,
+                                                deviceMacId: widget!.macId!,
+                                                deviceType: widget!.deviceType!,
                                               ),
                                             ),
                                           ),
@@ -336,7 +345,11 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                       DevControlWidget.routeName,
                                       queryParameters: {
                                         'did': serializeParam(
-                                          widget!.did,
+                                          widget!.macId,
+                                          ParamType.String,
+                                        ),
+                                        'deviceType': serializeParam(
+                                          widget!.deviceType,
                                           ParamType.String,
                                         ),
                                       }.withoutNulls,
@@ -405,7 +418,8 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                             child: Container(
                                               height: 260.0,
                                               child: SetURLWidget(
-                                                deviceMacId: widget!.did!,
+                                                deviceMacId: widget!.macId!,
+                                                deviceType: widget!.deviceType!,
                                               ),
                                             ),
                                           ),
@@ -414,6 +428,64 @@ class _AdvanceSettingsWidgetState extends State<AdvanceSettingsWidget> {
                                     ).then((value) => safeSetState(() {}));
                                   },
                                   text: 'Set URL',
+                                  options: FFButtonOptions(
+                                    width:
+                                        MediaQuery.sizeOf(context).width * 0.4,
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                          color: Colors.white,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .fontStyle,
+                                        ),
+                                    elevation: 3.0,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(6.0),
+                                  ),
+                                ),
+                                FFButtonWidget(
+                                  onPressed: () async {
+                                    FFAppState().mqttResponse = '';
+                                    safeSetState(() {});
+
+                                    context.pushNamed(
+                                      BSiATMRelaySettingsWidget.routeName,
+                                      queryParameters: {
+                                        'did': serializeParam(
+                                          widget!.macId,
+                                          ParamType.String,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  text: 'Relay Settings',
                                   options: FFButtonOptions(
                                     width:
                                         MediaQuery.sizeOf(context).width * 0.4,

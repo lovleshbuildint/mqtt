@@ -61,12 +61,25 @@ class _Switch3BSATMAutoManualWidgetState
             ).toString().toString();
             safeSetState(() {});
             safeSetState(() {
-              _model.switchValue = ((String var1) {
+              _model.switchValue1 = ((String var1) {
                 return var1 == "1" ? true : false;
               }(getJsonField(
                 widget!.relayData,
                 r'''$.CS''',
               ).toString().toString()));
+            });
+            safeSetState(() {
+              _model.switchValue2 = ((String var1, String var2) {
+                return (var1 == "1" && var2 == "1") ? true : false;
+              }(
+                  getJsonField(
+                    widget!.relayData,
+                    r'''$.CS''',
+                  ).toString().toString(),
+                  getJsonField(
+                    FFAppState().BSIATMMQTT,
+                    r'''$.PPDCT''',
+                  ).toString().toString()));
             });
           }
         },
@@ -74,12 +87,23 @@ class _Switch3BSATMAutoManualWidgetState
       );
     });
 
-    _model.switchValue = (String var1) {
+    _model.switchValue1 = (String var1) {
       return var1 == "1" ? true : false;
     }(getJsonField(
       widget!.relayData,
       r'''$.CS''',
     ).toString().toString());
+    _model.switchValue2 = (String var1, String var2) {
+      return (var1 == "1" && var2 == "1") ? true : false;
+    }(
+        getJsonField(
+          widget!.relayData,
+          r'''$.CS''',
+        ).toString().toString(),
+        getJsonField(
+          FFAppState().BSIATMMQTT,
+          r'''$.PPDCT''',
+        ).toString().toString());
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -110,13 +134,15 @@ class _Switch3BSATMAutoManualWidgetState
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                if ((double var1, String var2) {
-                  return var1 == 0.00 && var2 == "1" ? true : false;
+                if ((String var1, String var2) {
+                  return double.tryParse(var1) == 0.00 && var2 == "1"
+                      ? true
+                      : false;
                 }(
                     getJsonField(
                       widget!.relayData,
                       r'''$.I''',
-                    ),
+                    ).toString(),
                     getJsonField(
                       widget!.relayData,
                       r'''$.Relay''',
@@ -187,7 +213,8 @@ class _Switch3BSATMAutoManualWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           if (((FFAppState().role == 'Engineer') ||
-                                  (FFAppState().role == 'Super Admin')) &&
+                                  (FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'ATMO')) &&
                               ((String var1) {
                                 return var1 == "0" ? true : false;
                               }(getJsonField(
@@ -212,6 +239,32 @@ class _Switch3BSATMAutoManualWidgetState
                             return;
                           }
                         },
+                        onLongPress: () async {
+                          if (((FFAppState().role == 'Engineer') ||
+                                  (FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'ATMO')) &&
+                              ((String var1) {
+                                return var1 == "1" ? true : false;
+                              }(getJsonField(
+                                widget!.relayData,
+                                r'''$.CS''',
+                              ).toString()))) {
+                            await actions.publishMqtt(
+                              context,
+                              'Setting/${widget!.macID}',
+                              '{ \"${getJsonField(
+                                widget!.relayData,
+                                r'''$.RelayTag''',
+                              ).toString()}RRST\" : \"1\", \"SIOT\": \"GMR\"}',
+                              FFAppState().deviceId,
+                              '15.206.230.32',
+                              'mqtt_buildint_\$\$2023',
+                            );
+                            return;
+                          } else {
+                            return;
+                          }
+                        },
                         child: Container(
                           width: 45.0,
                           height: 45.0,
@@ -227,12 +280,14 @@ class _Switch3BSATMAutoManualWidgetState
                             ),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: (double var1) {
-                                return var1 == 0.00 ? true : false;
+                              color: (String var1) {
+                                return double.tryParse(var1) == 0.00
+                                    ? true
+                                    : false;
                               }(getJsonField(
                                 widget!.relayData,
                                 r'''$.I''',
-                              ))
+                              ).toString())
                                   ? FlutterFlowTheme.of(context).error
                                   : FlutterFlowTheme.of(context)
                                       .secondaryBackground,
@@ -254,7 +309,8 @@ class _Switch3BSATMAutoManualWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           if (((FFAppState().role == 'Engineer') ||
-                                  (FFAppState().role == 'Super Admin')) &&
+                                  (FFAppState().role == 'Super Admin') ||
+                                  (FFAppState().role == 'ATMO')) &&
                               ((String var1) {
                                 return var1 == "0" ? true : false;
                               }(getJsonField(
@@ -332,8 +388,30 @@ class _Switch3BSATMAutoManualWidgetState
                             FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                       ),
                 ),
-                if ((FFAppState().role == 'Engineer') ||
-                    (FFAppState().role == 'Super Admin'))
+                if (getJsonField(
+                          widget!.relayData,
+                          r'''$.PDCT''',
+                        ) !=
+                        null
+                    ? ((String var1, String var2, String var3) {
+                        return (var1 == 'Engineer' ||
+                                var1 == 'Super Admin' ||
+                                var1 == 'ATMO')
+                            ? ((var3 == 'A1' || var3 == 'A2')
+                                ? (var2 == '0' ? true : false)
+                                : true)
+                            : false;
+                      }(
+                        FFAppState().role,
+                        getJsonField(
+                          widget!.relayData,
+                          r'''$.PDCT''',
+                        ).toString(),
+                        getJsonField(
+                          widget!.relayData,
+                          r'''$.RelayTag''',
+                        ).toString()))
+                    : false)
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                     child: Row(
@@ -372,13 +450,14 @@ class _Switch3BSATMAutoManualWidgetState
                           scaleX: 0.7,
                           scaleY: 0.7,
                           child: Switch.adaptive(
-                            value: _model.switchValue!,
+                            value: _model.switchValue1!,
                             onChanged: (newValue) async {
                               safeSetState(
-                                  () => _model.switchValue = newValue!);
+                                  () => _model.switchValue1 = newValue!);
                               if (newValue!) {
                                 if ((FFAppState().role == 'Engineer') ||
-                                    (FFAppState().role == 'Super Admin')) {
+                                    (FFAppState().role == 'Super Admin') ||
+                                    (FFAppState().role == 'ATMO')) {
                                   await actions.publishMqtt(
                                     context,
                                     'Setting/${widget!.macID}',
@@ -396,7 +475,8 @@ class _Switch3BSATMAutoManualWidgetState
                                 }
                               } else {
                                 if ((FFAppState().role == 'Engineer') ||
-                                    (FFAppState().role == 'Super Admin')) {
+                                    (FFAppState().role == 'Super Admin') ||
+                                    (FFAppState().role == 'ATMO')) {
                                   await actions.publishMqtt(
                                     context,
                                     'Setting/${widget!.macID}',
@@ -404,6 +484,107 @@ class _Switch3BSATMAutoManualWidgetState
                                       widget!.relayData,
                                       r'''$.RelayTag''',
                                     ).toString()}CS\" : \"0\", \"SIOT\": \"GMR\"}',
+                                    FFAppState().deviceId,
+                                    '15.206.230.32',
+                                    'mqtt_buildint_\$\$2023',
+                                  );
+                                  return;
+                                } else {
+                                  return;
+                                }
+                              }
+                            },
+                            activeColor: FlutterFlowTheme.of(context).primary,
+                            activeTrackColor:
+                                FlutterFlowTheme.of(context).accent1,
+                            inactiveTrackColor:
+                                FlutterFlowTheme.of(context).alternate,
+                            inactiveThumbColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                if ((String var1, String var2, String var3) {
+                  return (var1 == 'Engineer' ||
+                          var1 == 'Super Admin' ||
+                          var1 == 'ATMO')
+                      ? ((var3 == 'A1' || var3 == 'A2')
+                          ? (var2 == '1' ? true : false)
+                          : false)
+                      : false;
+                }(
+                    FFAppState().role,
+                    getJsonField(
+                      widget!.relayData,
+                      r'''$.PDCT''',
+                    ).toString(),
+                    getJsonField(
+                      widget!.relayData,
+                      r'''$.RelayTag''',
+                    ).toString()))
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Periodicity',
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    font: GoogleFonts.readexPro(
+                                      fontWeight: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontWeight,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .fontStyle,
+                                    ),
+                                    color: Color(0xFF929395),
+                                    fontSize: 10.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontWeight,
+                                    fontStyle: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .fontStyle,
+                                  ),
+                        ),
+                        Transform.scale(
+                          scaleX: 0.7,
+                          scaleY: 0.7,
+                          child: Switch.adaptive(
+                            value: _model.switchValue2!,
+                            onChanged: (newValue) async {
+                              safeSetState(
+                                  () => _model.switchValue2 = newValue!);
+                              if (newValue!) {
+                                if ((FFAppState().role == 'Engineer') ||
+                                    (FFAppState().role == 'Super Admin') ||
+                                    (FFAppState().role == 'ATMO')) {
+                                  await actions.publishMqtt(
+                                    context,
+                                    'Setting/${widget!.macID}',
+                                    '{ \"A1CS\" : \"1\", \"A2CS\" : \"1\", \"SIOT\": \"GMR\", \"PPDCT\": \"1\",\"PCS\":\"1\"}',
+                                    FFAppState().deviceId,
+                                    '15.206.230.32',
+                                    'mqtt_buildint_\$\$2023',
+                                  );
+                                  return;
+                                } else {
+                                  return;
+                                }
+                              } else {
+                                if ((FFAppState().role == 'Engineer') ||
+                                    (FFAppState().role == 'Super Admin') ||
+                                    (FFAppState().role == 'ATMO')) {
+                                  await actions.publishMqtt(
+                                    context,
+                                    'Setting/${widget!.macID}',
+                                    '{ \"A1CS\" : \"0\", \"A2CS\" : \"0\", \"SIOT\": \"GMR\", \"PPDCT\": \"0\",\"PCS\":\"0\"}',
                                     FFAppState().deviceId,
                                     '15.206.230.32',
                                     'mqtt_buildint_\$\$2023',

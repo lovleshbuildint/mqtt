@@ -136,14 +136,18 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                   top: true,
                   child: Stack(
                     children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            100.0, 60.0, 100.0, 0.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: Image.asset(
-                            'assets/images/Group_1000004811.png',
-                            fit: BoxFit.fitWidth,
+                      Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              100.0, 60.0, 100.0, 0.0),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(0.0),
+                            child: Image.asset(
+                              'assets/images/Group_1000004811.png',
+                              fit: BoxFit.fitWidth,
+                              alignment: Alignment(0.0, -1.0),
+                            ),
                           ),
                         ),
                       ),

@@ -1,5 +1,4 @@
 // Automatic FlutterFlow imports
-import '/backend/schema/structs/index.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -18,6 +17,7 @@ import 'package:mqtt_client/mqtt_browser_client.dart';
 Future<String> publishMqtt(BuildContext context, String? pubtopic,
     String? message, String? deviceId, String ip, String pass) async {
   final String webSocketUrl = 'wss://buildint-mqtt.buildint.co/wss';
+  print(message);
 
   // Select the appropriate client based on the platform
   final MqttClient client = kIsWeb

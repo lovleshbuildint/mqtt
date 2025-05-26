@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 
-import '/backend/schema/structs/index.dart';
-
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/lat_lng.dart';
@@ -162,6 +160,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'did',
               ParamType.String,
             ),
+            deviceType: params.getParam(
+              'deviceType',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
@@ -216,14 +218,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'did',
               ParamType.String,
             ),
+            deviceType: params.getParam(
+              'deviceType',
+              ParamType.String,
+            ),
           ),
         ),
         FFRoute(
           name: AdvanceSettingsWidget.routeName,
           path: AdvanceSettingsWidget.routePath,
           builder: (context, params) => AdvanceSettingsWidget(
-            did: params.getParam(
-              'did',
+            macId: params.getParam(
+              'macId',
+              ParamType.String,
+            ),
+            deviceType: params.getParam(
+              'deviceType',
+              ParamType.String,
+            ),
+            iATMDID: params.getParam(
+              'iATMDID',
               ParamType.String,
             ),
           ),
@@ -292,6 +306,26 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: BSiATMRelaySettingsWidget.routeName,
+          path: BSiATMRelaySettingsWidget.routePath,
+          builder: (context, params) => BSiATMRelaySettingsWidget(
+            did: params.getParam(
+              'did',
+              ParamType.String,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: FirmwareManagementWidget.routeName,
+          path: FirmwareManagementWidget.routePath,
+          builder: (context, params) => FirmwareManagementWidget(),
+        ),
+        FFRoute(
+          name: TestWidget.routeName,
+          path: TestWidget.routePath,
+          builder: (context, params) => TestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -364,7 +398,6 @@ class FFParameters {
     String paramName,
     ParamType type, {
     bool isList = false,
-    StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -382,7 +415,6 @@ class FFParameters {
       param,
       type,
       isList,
-      structBuilder: structBuilder,
     );
   }
 }

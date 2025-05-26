@@ -9,6 +9,7 @@ import 'dart:math';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'dev_control_widget.dart' show DevControlWidget;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,12 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
 
   bool checkResponse = false;
 
+  dynamic applyChanges;
+
   ///  State fields for stateful widgets in this page.
 
+  // State field(s) for PPDCT widget.
+  bool? ppdctValue;
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
@@ -56,6 +61,8 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   FocusNode? dataIntervalFocusNode;
   TextEditingController? dataIntervalTextController;
   String? Function(BuildContext, String?)? dataIntervalTextControllerValidator;
+  // State field(s) for PTMP widget.
+  bool? ptmpValue;
   // State field(s) for maxTempDay widget.
   FocusNode? maxTempDayFocusNode;
   TextEditingController? maxTempDayTextController;
@@ -76,19 +83,23 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
   FocusNode? acOnTimeDayFocusNode;
   TextEditingController? acOnTimeDayTextController;
   String? Function(BuildContext, String?)? acOnTimeDayTextControllerValidator;
-  // State field(s) for acOnTimeNight widget.
-  FocusNode? acOnTimeNightFocusNode;
-  TextEditingController? acOnTimeNightTextController;
-  String? Function(BuildContext, String?)? acOnTimeNightTextControllerValidator;
   // State field(s) for acOffTimeDay widget.
   FocusNode? acOffTimeDayFocusNode;
   TextEditingController? acOffTimeDayTextController;
   String? Function(BuildContext, String?)? acOffTimeDayTextControllerValidator;
+  // State field(s) for acOnTimeNight widget.
+  FocusNode? acOnTimeNightFocusNode;
+  TextEditingController? acOnTimeNightTextController;
+  String? Function(BuildContext, String?)? acOnTimeNightTextControllerValidator;
   // State field(s) for acOffTimeNight widget.
   FocusNode? acOffTimeNightFocusNode;
   TextEditingController? acOffTimeNightTextController;
   String? Function(BuildContext, String?)?
       acOffTimeNightTextControllerValidator;
+  // State field(s) for NEN widget.
+  bool? nenValue;
+  // State field(s) for PSM widget.
+  bool? psmValue;
 
   @override
   void initState(BuildContext context) {}
@@ -125,11 +136,11 @@ class DevControlModel extends FlutterFlowModel<DevControlWidget> {
     acOnTimeDayFocusNode?.dispose();
     acOnTimeDayTextController?.dispose();
 
-    acOnTimeNightFocusNode?.dispose();
-    acOnTimeNightTextController?.dispose();
-
     acOffTimeDayFocusNode?.dispose();
     acOffTimeDayTextController?.dispose();
+
+    acOnTimeNightFocusNode?.dispose();
+    acOnTimeNightTextController?.dispose();
 
     acOffTimeNightFocusNode?.dispose();
     acOffTimeNightTextController?.dispose();

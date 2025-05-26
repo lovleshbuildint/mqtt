@@ -217,7 +217,15 @@ class _DeviceDetailsATMBuildintWidgetState
                                   context.pushNamed(
                                     AdvanceSettingsWidget.routeName,
                                     queryParameters: {
-                                      'did': serializeParam(
+                                      'macId': serializeParam(
+                                        widget!.macID,
+                                        ParamType.String,
+                                      ),
+                                      'deviceType': serializeParam(
+                                        'BSiATM',
+                                        ParamType.String,
+                                      ),
+                                      'iATMDID': serializeParam(
                                         widget!.did,
                                         ParamType.String,
                                       ),
@@ -403,52 +411,43 @@ class _DeviceDetailsATMBuildintWidgetState
                           ],
                         ),
                       ),
-                      if (valueOrDefault<bool>(
-                        (getJsonField(
-                                  deviceDetailsATMBuildintGetDeviceStatusResponse
-                                      .jsonBody,
-                                  r'''$.deviceStatus.device_status''',
-                                ) !=
-                                null) ||
-                            ((String var1) {
-                              return var1 != null && var1 != '' ? true : false;
-                            }(FFAppState().deviceStatusDIDJson.toString())),
-                        false,
-                      ))
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              13.0, 20.0, 0.0, 0.0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20.0, 0.0, 0.0, 0.0),
-                                  child: Container(
-                                    width:
-                                        MediaQuery.sizeOf(context).width * 1.0,
-                                    height: 100.0,
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      image: DecorationImage(
-                                        fit: BoxFit.fitWidth,
-                                        image: Image.asset(
-                                          'assets/images/Asset_1@1x.png',
-                                        ).image,
-                                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            13.0, 20.0, 0.0, 5.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    20.0, 0.0, 0.0, 0.0),
+                                child: Container(
+                                  width: MediaQuery.sizeOf(context).width * 1.0,
+                                  height: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    image: DecorationImage(
+                                      fit: BoxFit.fitWidth,
+                                      image: Image.asset(
+                                        'assets/images/Asset_1@1x.png',
+                                      ).image,
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          20.0, 0.0, 13.0, 0.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10.0, 0.0, 15.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
+                                          child: Text(
                                             getJsonField(
                                                       FFAppState().BSIATMMQTT,
                                                       r'''$.Temp''',
@@ -496,61 +495,111 @@ class _DeviceDetailsATMBuildintWidgetState
                                                           .fontStyle,
                                                 ),
                                           ),
-                                          Container(
-                                            width: 30.0,
-                                            height: 30.0,
-                                            decoration: BoxDecoration(
-                                              color: valueOrDefault<Color>(
-                                                ((String var1) {
-                                                          return var1 != null &&
-                                                                  var1 != ''
-                                                              ? (double.parse(
-                                                                  var1))
-                                                              : 0.00;
-                                                        }((getJsonField(
-                                                                  FFAppState()
-                                                                      .BSIATMMQTT,
-                                                                  r'''$.Temp''',
-                                                                ) !=
-                                                                null
-                                                            ? getJsonField(
+                                        ),
+                                        if (FFAppState().BSIATMMQTT != null)
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    5.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              (String? var1) {
+                                                return (var1 != null)
+                                                    ? (double.tryParse(var1!) !=
+                                                            0.0
+                                                        ? 'Power Saving Mode \n${double.parse(var1!).toStringAsFixed(1)} Min.'
+                                                        : '')
+                                                    : '';
+                                              }(getJsonField(
+                                                FFAppState().BSIATMMQTT,
+                                                r'''$.PDDLFT''',
+                                              ).toString()),
+                                              textAlign: TextAlign.center,
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    font: GoogleFonts.readexPro(
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                                    color: Color(0xFF808080),
+                                                    fontSize: 14.0,
+                                                    letterSpacing: 0.0,
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                            ),
+                                          ),
+                                        Container(
+                                          width: 30.0,
+                                          height: 30.0,
+                                          decoration: BoxDecoration(
+                                            color: valueOrDefault<Color>(
+                                              ((String var1) {
+                                                        return var1 != null &&
+                                                                var1 != ''
+                                                            ? (double.parse(
+                                                                var1))
+                                                            : 0.00;
+                                                      }((getJsonField(
                                                                 FFAppState()
                                                                     .BSIATMMQTT,
                                                                 r'''$.Temp''',
-                                                              ).toString()
-                                                            : valueOrDefault<
-                                                                String>(
-                                                                getJsonField(
-                                                                  deviceDetailsATMBuildintGetDeviceStatusResponse
-                                                                      .jsonBody,
-                                                                  r'''$.deviceStatus.TM''',
-                                                                )?.toString(),
-                                                                '0.00',
-                                                              )))) >=
-                                                        30.0
-                                                    ? Color(0x80F71A1A)
-                                                    : Color(0x8007D95A),
-                                                Color(0x80F71A1A),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(4.0),
+                                                              ) !=
+                                                              null
+                                                          ? getJsonField(
+                                                              FFAppState()
+                                                                  .BSIATMMQTT,
+                                                              r'''$.Temp''',
+                                                            ).toString()
+                                                          : valueOrDefault<
+                                                              String>(
+                                                              getJsonField(
+                                                                deviceDetailsATMBuildintGetDeviceStatusResponse
+                                                                    .jsonBody,
+                                                                r'''$.deviceStatus.TM''',
+                                                              )?.toString(),
+                                                              '0.00',
+                                                            )))) >=
+                                                      30.0
+                                                  ? Color(0x80F71A1A)
+                                                  : Color(0x8007D95A),
+                                              Color(0x80F71A1A),
                                             ),
-                                            child: Icon(
-                                              Icons.ac_unit,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondaryBackground,
-                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(4.0),
                                           ),
-                                        ],
-                                      ),
+                                          child: Icon(
+                                            Icons.ac_unit,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+                      ),
                       if ((getJsonField(
                                 deviceDetailsATMBuildintGetDeviceStatusResponse
                                     .jsonBody,
@@ -943,53 +992,64 @@ class _DeviceDetailsATMBuildintWidgetState
                                         ],
                                       ),
                                     ),
-                                    if (FFAppState().deviceStatusDIDJson !=
-                                        null)
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            13.0, 20.0, 13.0, 20.0),
-                                        child: Builder(
-                                          builder: (context) {
-                                            final relayList = getJsonField(
-                                              FFAppState().deviceStatusDIDJson,
-                                              r'''$.*''',
-                                            ).toList();
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          13.0, 20.0, 13.0, 20.0),
+                                      child: Builder(
+                                        builder: (context) {
+                                          final relayList =
+                                              (FFAppState().deviceStatusDIDJson !=
+                                                              null
+                                                          ? getJsonField(
+                                                              FFAppState()
+                                                                  .deviceStatusDIDJson,
+                                                              r'''$.*''',
+                                                              true,
+                                                            )
+                                                          : getJsonField(
+                                                              deviceDetailsATMBuildintGetDeviceStatusResponse
+                                                                  .jsonBody,
+                                                              r'''$.BSiATM.*''',
+                                                              true,
+                                                            ))
+                                                      ?.toList() ??
+                                                  [];
 
-                                            return Wrap(
-                                              spacing: 16.0,
-                                              runSpacing: 16.0,
-                                              alignment: WrapAlignment.center,
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.start,
-                                              direction: Axis.horizontal,
-                                              runAlignment: WrapAlignment.start,
-                                              verticalDirection:
-                                                  VerticalDirection.down,
-                                              clipBehavior: Clip.none,
-                                              children: List.generate(
-                                                  relayList.length,
-                                                  (relayListIndex) {
-                                                final relayListItem =
-                                                    relayList[relayListIndex];
-                                                return Container(
-                                                  child:
-                                                      Switch3BSATMAutoManualWidget(
-                                                    key: Key(
-                                                        'Keypgp_${relayListIndex}_of_${relayList.length}'),
-                                                    macID: widget!.macID!,
-                                                    deviceId:
-                                                        FFAppState().deviceId,
-                                                    relayData: getJsonField(
-                                                      relayListItem,
-                                                      r'''$''',
-                                                    ),
+                                          return Wrap(
+                                            spacing: 16.0,
+                                            runSpacing: 16.0,
+                                            alignment: WrapAlignment.center,
+                                            crossAxisAlignment:
+                                                WrapCrossAlignment.start,
+                                            direction: Axis.horizontal,
+                                            runAlignment: WrapAlignment.start,
+                                            verticalDirection:
+                                                VerticalDirection.down,
+                                            clipBehavior: Clip.none,
+                                            children:
+                                                List.generate(relayList.length,
+                                                    (relayListIndex) {
+                                              final relayListItem =
+                                                  relayList[relayListIndex];
+                                              return Container(
+                                                child:
+                                                    Switch3BSATMAutoManualWidget(
+                                                  key: Key(
+                                                      'Keypgp_${relayListIndex}_of_${relayList.length}'),
+                                                  macID: widget!.macID!,
+                                                  deviceId:
+                                                      FFAppState().deviceId,
+                                                  relayData: getJsonField(
+                                                    relayListItem,
+                                                    r'''$''',
                                                   ),
-                                                );
-                                              }),
-                                            );
-                                          },
-                                        ),
+                                                ),
+                                              );
+                                            }),
+                                          );
+                                        },
                                       ),
+                                    ),
                                   ],
                                 ),
                               ),

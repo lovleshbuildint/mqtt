@@ -255,7 +255,15 @@ class _DeviceDetailsATMWidgetState extends State<DeviceDetailsATMWidget> {
                                   context.pushNamed(
                                     AdvanceSettingsWidget.routeName,
                                     queryParameters: {
-                                      'did': serializeParam(
+                                      'macId': serializeParam(
+                                        widget!.did,
+                                        ParamType.String,
+                                      ),
+                                      'deviceType': serializeParam(
+                                        'iATM',
+                                        ParamType.String,
+                                      ),
+                                      'iATMDID': serializeParam(
                                         widget!.did,
                                         ParamType.String,
                                       ),
