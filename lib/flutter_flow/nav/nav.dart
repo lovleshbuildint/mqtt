@@ -119,9 +119,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'username',
               ParamType.String,
             ),
-            userOrg: params.getParam(
+            userOrg: params.getParam<int>(
               'userOrg',
               ParamType.int,
+              isList: true,
             ),
             userRole: params.getParam(
               'userRole',
@@ -321,11 +322,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: FirmwareManagementWidget.routeName,
           path: FirmwareManagementWidget.routePath,
           builder: (context, params) => FirmwareManagementWidget(),
-        ),
-        FFRoute(
-          name: TestWidget.routeName,
-          path: TestWidget.routePath,
-          builder: (context, params) => TestWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

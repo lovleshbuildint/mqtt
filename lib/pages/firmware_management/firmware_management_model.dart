@@ -33,8 +33,8 @@ class FirmwareManagementModel
   ApiCallResponse? getVersionBSResponse;
   // Stores action output result for [Backend Call - API (getVersionBStestmode)] action in selectDeviceDD widget.
   ApiCallResponse? getVersionBSTestmodeResponse;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataS92 = false;
+  FFUploadedFile uploadedLocalFile_uploadDataS92 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // State field(s) for Switch widget.

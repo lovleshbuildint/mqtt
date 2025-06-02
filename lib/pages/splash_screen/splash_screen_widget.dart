@@ -59,10 +59,6 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget> {
                 (_model.userInfoRespnse?.jsonBody ?? ''),
                 r'''$.user_data.contact_num''',
               );
-              FFAppState().userOrg = getJsonField(
-                (_model.userInfoRespnse?.jsonBody ?? ''),
-                r'''$.user_data.user_org''',
-              );
               safeSetState(() {});
 
               context.goNamed(

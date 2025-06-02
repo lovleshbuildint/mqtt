@@ -30,7 +30,7 @@ class UpdateUsersWidget extends StatefulWidget {
 
   final String fullName;
   final String? username;
-  final int? userOrg;
+  final List<int>? userOrg;
   final String? userRole;
   final int? userContactNum;
   final int? userAccessRoleId;
@@ -1265,13 +1265,14 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                   Expanded(
                                                     child: FlutterFlowDropDown<
                                                         int>(
-                                                      controller: _model
+                                                      multiSelectController: _model
                                                               .organizationValueController ??=
-                                                          FormFieldController<
-                                                              int>(
-                                                        _model.organizationValue ??=
-                                                            widget!.userOrg,
-                                                      ),
+                                                          FormListFieldController<
+                                                              int>(_model
+                                                                  .organizationValue ??=
+                                                              List<int>.from(
+                                                        widget!.userOrg ?? [],
+                                                      )),
                                                       options: List<int>.from(
                                                           getJsonField(
                                                         updateUsersGetOrganizationResponse
@@ -1289,10 +1290,6 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                               .map<String>((s) =>
                                                                   s.toString())
                                                               .toList()!,
-                                                      onChanged: (val) =>
-                                                          safeSetState(() =>
-                                                              _model.organizationValue =
-                                                                  val),
                                                       width: 300.0,
                                                       height: 50.0,
                                                       textStyle:
@@ -1351,7 +1348,12 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                       hidesUnderline: true,
                                                       isOverButton: true,
                                                       isSearchable: false,
-                                                      isMultiSelect: false,
+                                                      isMultiSelect: true,
+                                                      onMultiSelectChanged:
+                                                          (val) => safeSetState(
+                                                              () => _model
+                                                                      .organizationValue =
+                                                                  val),
                                                     ),
                                                   ),
                                                 ],
@@ -1667,20 +1669,23 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                         var _shouldSetState =
                                                             false;
                                                         if ((_model.fullnameTextController.text != null && _model.fullnameTextController.text != '') &&
-                                                            (_model.emailAddressTextController
-                                                                        .text !=
+                                                            (_model.emailAddressTextController.text !=
                                                                     null &&
-                                                                _model.emailAddressTextController
+                                                                _model
+                                                                        .emailAddressTextController
                                                                         .text !=
                                                                     '') &&
                                                             (_model.passwordTextController
                                                                         .text !=
                                                                     null &&
-                                                                _model.passwordTextController
+                                                                _model
+                                                                        .passwordTextController
                                                                         .text !=
                                                                     '') &&
                                                             (_model.organizationValue !=
-                                                                null) &&
+                                                                    null &&
+                                                                (_model.organizationValue)!
+                                                                    .isNotEmpty) &&
                                                             (_model.roleValue !=
                                                                     null &&
                                                                 _model.roleValue !=
@@ -1727,7 +1732,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                     .text,
                                                                 userRole: _model
                                                                     .roleValue,
-                                                                userOrg: _model
+                                                                userOrgList: _model
                                                                     .organizationValue,
                                                                 fullName: _model
                                                                     .fullnameTextController
@@ -1826,7 +1831,7 @@ class _UpdateUsersWidgetState extends State<UpdateUsersWidget> {
                                                                   .text,
                                                               userRole: _model
                                                                   .roleValue,
-                                                              userOrg: _model
+                                                              userOrgList: _model
                                                                   .organizationValue,
                                                               fullName: _model
                                                                   .fullnameTextController

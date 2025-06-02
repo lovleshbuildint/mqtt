@@ -460,7 +460,8 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                   'Demo User';
                                               FFAppState().token =
                                                   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlbW9Nb2RlIiwicm9sZSI6IkFUTU8iLCJkZXZpY2VfaWQiOiIxMjM0NTYiLCJ1c2VyX3Byb2plY3QiOiJpRU1TIiwidXNlcl9vcmciOiI3IiwiZnVsbE5hbWUiOiJEZW1vIFVzZXIiLCJpYXQiOjE3MDgxNzY3Mzl9.mncjy5-hq-CExJ-osJvuaObh2E3jjotpKgOb1UYScyI';
-                                              FFAppState().userOrg = 0;
+                                              FFAppState().userOrg =
+                                                  [0].toList().cast<int>();
                                               safeSetState(() {});
 
                                               context.goNamed(
@@ -538,19 +539,22 @@ class _LogInWidgetState extends State<LogInWidget> {
                                                 )!
                                                         .toList()
                                                         .cast<int>();
-                                                FFAppState().userOrg =
-                                                    getJsonField(
-                                                  (_model.loginResponce
-                                                          ?.jsonBody ??
-                                                      ''),
-                                                  r'''$.user_data.user_org''',
-                                                );
                                                 FFAppState().stateId =
                                                     getJsonField(
                                                   (_model.loginResponce
                                                           ?.jsonBody ??
                                                       ''),
                                                   r'''$.user_data.user_stateId''',
+                                                  true,
+                                                )!
+                                                        .toList()
+                                                        .cast<int>();
+                                                FFAppState().userOrg =
+                                                    getJsonField(
+                                                  (_model.loginResponce
+                                                          ?.jsonBody ??
+                                                      ''),
+                                                  r'''$.user_data.user_org1''',
                                                   true,
                                                 )!
                                                         .toList()

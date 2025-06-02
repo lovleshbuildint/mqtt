@@ -33,4 +33,3 @@ export '/pages/b_si_a_t_m_relay_settings/b_si_a_t_m_relay_settings_widget.dart'
     show BSiATMRelaySettingsWidget;
 export '/pages/firmware_management/firmware_management_widget.dart'
     show FirmwareManagementWidget;
-export '/test/test_widget.dart' show TestWidget;

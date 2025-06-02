@@ -410,7 +410,8 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                               );
                                               if (selectedFiles != null) {
                                                 safeSetState(() => _model
-                                                    .isDataUploading = true);
+                                                        .isDataUploading_uploadDataS92 =
+                                                    true);
                                                 var selectedUploadedFiles =
                                                     <FFUploadedFile>[];
 
@@ -427,14 +428,14 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                               ))
                                                           .toList();
                                                 } finally {
-                                                  _model.isDataUploading =
+                                                  _model.isDataUploading_uploadDataS92 =
                                                       false;
                                                 }
                                                 if (selectedUploadedFiles
                                                         .length ==
                                                     selectedFiles.length) {
                                                   safeSetState(() {
-                                                    _model.uploadedLocalFile =
+                                                    _model.uploadedLocalFile_uploadDataS92 =
                                                         selectedUploadedFiles
                                                             .first;
                                                   });
@@ -444,12 +445,10 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                 }
                                               }
                                             },
-                                            text: _model.uploadedLocalFile !=
+                                            text: _model.uploadedLocalFile_uploadDataS92 !=
                                                         null &&
-                                                    (_model
-                                                            .uploadedLocalFile
-                                                            .bytes
-                                                            ?.isNotEmpty ??
+                                                    (_model.uploadedLocalFile_uploadDataS92
+                                                            .bytes?.isNotEmpty ??
                                                         false)
                                                 ? 'Firmware Selected'
                                                 : 'Select Firmware',
@@ -501,10 +500,10 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                   BorderRadius.circular(8.0),
                                             ),
                                           ),
-                                          if (_model.uploadedLocalFile !=
+                                          if (_model.uploadedLocalFile_uploadDataS92 !=
                                                   null &&
-                                              (_model.uploadedLocalFile.bytes
-                                                      ?.isNotEmpty ??
+                                              (_model.uploadedLocalFile_uploadDataS92
+                                                      .bytes?.isNotEmpty ??
                                                   false))
                                             Padding(
                                               padding: EdgeInsetsDirectional
@@ -525,9 +524,9 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                 ),
                                                 onPressed: () async {
                                                   safeSetState(() {
-                                                    _model.isDataUploading =
+                                                    _model.isDataUploading_uploadDataS92 =
                                                         false;
-                                                    _model.uploadedLocalFile =
+                                                    _model.uploadedLocalFile_uploadDataS92 =
                                                         FFUploadedFile(
                                                             bytes: Uint8List
                                                                 .fromList([]));
@@ -1002,9 +1001,10 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                             ),
                             if ((_model.currentVersion != null &&
                                     _model.currentVersion != '') &&
-                                (_model.uploadedLocalFile != null &&
-                                    (_model.uploadedLocalFile.bytes
-                                            ?.isNotEmpty ??
+                                (_model.uploadedLocalFile_uploadDataS92 !=
+                                        null &&
+                                    (_model.uploadedLocalFile_uploadDataS92
+                                            .bytes?.isNotEmpty ??
                                         false)))
                               Align(
                                 alignment: AlignmentDirectional(0.0, 1.0),
@@ -1052,7 +1052,8 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                         .currentVersion!)) +
                                                     0.1)
                                                 .toStringAsFixed(1),
-                                            file: _model.uploadedLocalFile,
+                                            file: _model
+                                                .uploadedLocalFile_uploadDataS92,
                                           );
 
                                           if ((_model.setVersionBVResponse
@@ -1079,8 +1080,9 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                               },
                                             );
                                             safeSetState(() {
-                                              _model.isDataUploading = false;
-                                              _model.uploadedLocalFile =
+                                              _model.isDataUploading_uploadDataS92 =
+                                                  false;
+                                              _model.uploadedLocalFile_uploadDataS92 =
                                                   FFUploadedFile(
                                                       bytes: Uint8List.fromList(
                                                           []));
@@ -1123,7 +1125,8 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                         .currentVersion!)) +
                                                     0.1)
                                                 .toStringAsFixed(1),
-                                            file: _model.uploadedLocalFile,
+                                            file: _model
+                                                .uploadedLocalFile_uploadDataS92,
                                           );
 
                                           if ((_model
@@ -1151,8 +1154,9 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                               },
                                             );
                                             safeSetState(() {
-                                              _model.isDataUploading = false;
-                                              _model.uploadedLocalFile =
+                                              _model.isDataUploading_uploadDataS92 =
+                                                  false;
+                                              _model.uploadedLocalFile_uploadDataS92 =
                                                   FFUploadedFile(
                                                       bytes: Uint8List.fromList(
                                                           []));
@@ -1196,7 +1200,8 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                         .currentVersion!)) +
                                                     0.1)
                                                 .toStringAsFixed(1),
-                                            file: _model.uploadedLocalFile,
+                                            file: _model
+                                                .uploadedLocalFile_uploadDataS92,
                                           );
 
                                           if ((_model.setVersionBSResponse
@@ -1223,8 +1228,9 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                               },
                                             );
                                             safeSetState(() {
-                                              _model.isDataUploading = false;
-                                              _model.uploadedLocalFile =
+                                              _model.isDataUploading_uploadDataS92 =
+                                                  false;
+                                              _model.uploadedLocalFile_uploadDataS92 =
                                                   FFUploadedFile(
                                                       bytes: Uint8List.fromList(
                                                           []));
@@ -1267,7 +1273,8 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                         .currentVersion!)) +
                                                     0.1)
                                                 .toStringAsFixed(1),
-                                            file: _model.uploadedLocalFile,
+                                            file: _model
+                                                .uploadedLocalFile_uploadDataS92,
                                           );
 
                                           if ((_model
@@ -1295,8 +1302,9 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                               },
                                             );
                                             safeSetState(() {
-                                              _model.isDataUploading = false;
-                                              _model.uploadedLocalFile =
+                                              _model.isDataUploading_uploadDataS92 =
+                                                  false;
+                                              _model.uploadedLocalFile_uploadDataS92 =
                                                   FFUploadedFile(
                                                       bytes: Uint8List.fromList(
                                                           []));

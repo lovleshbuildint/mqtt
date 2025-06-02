@@ -37,13 +37,16 @@ Future userInfoUpdate(BuildContext context) async {
     )!
         .toList()
         .cast<int>();
-    FFAppState().userOrg = getJsonField(
-      (userInfoRespnse?.jsonBody ?? ''),
-      r'''$.user_data.user_org''',
-    );
     FFAppState().stateId = getJsonField(
       (userInfoRespnse?.jsonBody ?? ''),
       r'''$.user_data.user_stateId''',
+      true,
+    )!
+        .toList()
+        .cast<int>();
+    FFAppState().userOrg = getJsonField(
+      (userInfoRespnse?.jsonBody ?? ''),
+      r'''$.user_data.user_org1''',
       true,
     )!
         .toList()

@@ -385,12 +385,17 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 safeSetState(() => _model
                                                     .ppdctValue = newValue!);
                                               },
-                                              side: BorderSide(
-                                                width: 2,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                              ),
+                                              side:
+                                                  (FlutterFlowTheme.of(context)
+                                                              .alternate !=
+                                                          null)
+                                                      ? BorderSide(
+                                                          width: 2,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate!,
+                                                        )
+                                                      : null,
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -1459,12 +1464,17 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 safeSetState(() => _model
                                                     .ptmpValue = newValue!);
                                               },
-                                              side: BorderSide(
-                                                width: 2,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                              ),
+                                              side:
+                                                  (FlutterFlowTheme.of(context)
+                                                              .alternate !=
+                                                          null)
+                                                      ? BorderSide(
+                                                          width: 2,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate!,
+                                                        )
+                                                      : null,
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -2862,12 +2872,17 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 safeSetState(() => _model
                                                     .nenValue = newValue!);
                                               },
-                                              side: BorderSide(
-                                                width: 2,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                              ),
+                                              side:
+                                                  (FlutterFlowTheme.of(context)
+                                                              .alternate !=
+                                                          null)
+                                                      ? BorderSide(
+                                                          width: 2,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate!,
+                                                        )
+                                                      : null,
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
@@ -2966,12 +2981,17 @@ class _DevControlWidgetState extends State<DevControlWidget>
                                                 safeSetState(() => _model
                                                     .psmValue = newValue!);
                                               },
-                                              side: BorderSide(
-                                                width: 2,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .alternate,
-                                              ),
+                                              side:
+                                                  (FlutterFlowTheme.of(context)
+                                                              .alternate !=
+                                                          null)
+                                                      ? BorderSide(
+                                                          width: 2,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .alternate!,
+                                                        )
+                                                      : null,
                                               activeColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,

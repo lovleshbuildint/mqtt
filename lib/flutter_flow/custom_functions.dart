@@ -57,47 +57,67 @@ dynamic filterDashboard(
   dynamic mainData,
   String? searchValue,
   int? status,
+  String? orgName,
 ) {
+// Step 1: Sort by BranchCode
   mainData['locationDetails'].sort((a, b) =>
       (a['BranchCode'] as String).compareTo(b['BranchCode'] as String));
 
-  if (searchValue == null || searchValue.isEmpty) {
-    List<dynamic> filteredData = [];
-    if (status == 2) {
-      for (dynamic data in mainData['locationDetails']) {
-        if (data['OnlineStatus'] == 'Online') {
-          filteredData.add(data);
-        }
+  // Step 2: Filter by OrgName
+  List<dynamic> filteredByOrg = [];
+  if (orgName != null && orgName != 'All') {
+    for (dynamic data in mainData['locationDetails']) {
+      if (data['OrgName'] == orgName) {
+        filteredByOrg.add(data);
       }
-      return filteredData;
-    } else if (status == 3) {
-      for (dynamic data in mainData['locationDetails']) {
-        if (data['OnlineStatus'] == 'Offline') {
-          filteredData.add(data);
-        }
-      }
-      return filteredData;
-    } else if (status == 4) {
-      for (dynamic data in mainData['locationDetails']) {
-        if (data['OnlineStatus'] == 'No Data') {
-          filteredData.add(data);
-        }
-      }
-      return filteredData;
-    } else {
-      return mainData['locationDetails'];
     }
+  } else {
+    filteredByOrg = List.from(mainData['locationDetails']);
   }
 
-  List<dynamic> filteredData = [];
-  String searchValueLowerCase = searchValue.toLowerCase();
-  for (dynamic data in mainData['locationDetails']) {
-    if (data['BranchCode'].toLowerCase().contains(searchValueLowerCase)) {
-      filteredData.add(data);
-    }
+  // Step 3: Calculate OrgDetails counts
+  int totalLocations = filteredByOrg.length;
+  int onlineLocations =
+      filteredByOrg.where((d) => d['OnlineStatus'] == 'Online').length;
+  int offlineLocations =
+      filteredByOrg.where((d) => d['OnlineStatus'] == 'Offline').length;
+
+  Map<String, dynamic> orgDetails = {
+    'OrgName': orgName ?? 'All',
+    'Total_Locations': totalLocations,
+    'Online_Locations': onlineLocations,
+    'Offline_Locations': offlineLocations,
+  };
+
+  // Step 4: Filter by Status
+  List<dynamic> filteredByStatus = [];
+  if (status == 2) {
+    filteredByStatus =
+        filteredByOrg.where((d) => d['OnlineStatus'] == 'Online').toList();
+  } else if (status == 3) {
+    filteredByStatus =
+        filteredByOrg.where((d) => d['OnlineStatus'] == 'Offline').toList();
+  } else if (status == 4) {
+    filteredByStatus =
+        filteredByOrg.where((d) => d['OnlineStatus'] == 'No Data').toList();
+  } else {
+    filteredByStatus = filteredByOrg;
   }
 
-  return filteredData;
+  // Step 5: Filter by Search (BranchCode)
+  if (searchValue != null && searchValue.isNotEmpty) {
+    String searchValueLowerCase = searchValue.toLowerCase();
+    filteredByStatus = filteredByStatus
+        .where((data) => (data['BranchCode'] as String)
+            .toLowerCase()
+            .contains(searchValueLowerCase))
+        .toList();
+  }
+
+  return {
+    'filteredData': filteredByStatus,
+    'OrgDetails': orgDetails,
+  };
 }
 
 String? decimalToBinary(int decimal) {

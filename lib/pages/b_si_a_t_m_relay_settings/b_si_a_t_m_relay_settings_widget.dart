@@ -983,12 +983,16 @@ class _BSiATMRelaySettingsWidgetState extends State<BSiATMRelaySettingsWidget>
                                               safeSetState(() =>
                                                   _model.motValue = newValue!);
                                             },
-                                            side: BorderSide(
-                                              width: 2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
+                                            side: (FlutterFlowTheme.of(context)
+                                                        .alternate !=
+                                                    null)
+                                                ? BorderSide(
+                                                    width: 2,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate!,
+                                                  )
+                                                : null,
                                             activeColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
@@ -1253,12 +1257,16 @@ class _BSiATMRelaySettingsWidgetState extends State<BSiATMRelaySettingsWidget>
                                               safeSetState(() =>
                                                   _model.tmpValue = newValue!);
                                             },
-                                            side: BorderSide(
-                                              width: 2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
+                                            side: (FlutterFlowTheme.of(context)
+                                                        .alternate !=
+                                                    null)
+                                                ? BorderSide(
+                                                    width: 2,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate!,
+                                                  )
+                                                : null,
                                             activeColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
@@ -1692,12 +1700,16 @@ class _BSiATMRelaySettingsWidgetState extends State<BSiATMRelaySettingsWidget>
                                               safeSetState(() =>
                                                   _model.pdctValue = newValue!);
                                             },
-                                            side: BorderSide(
-                                              width: 2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
+                                            side: (FlutterFlowTheme.of(context)
+                                                        .alternate !=
+                                                    null)
+                                                ? BorderSide(
+                                                    width: 2,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate!,
+                                                  )
+                                                : null,
                                             activeColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
@@ -1793,12 +1805,16 @@ class _BSiATMRelaySettingsWidgetState extends State<BSiATMRelaySettingsWidget>
                                               safeSetState(() =>
                                                   _model.wopValue = newValue!);
                                             },
-                                            side: BorderSide(
-                                              width: 2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
+                                            side: (FlutterFlowTheme.of(context)
+                                                        .alternate !=
+                                                    null)
+                                                ? BorderSide(
+                                                    width: 2,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate!,
+                                                  )
+                                                : null,
                                             activeColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,
@@ -1894,12 +1910,16 @@ class _BSiATMRelaySettingsWidgetState extends State<BSiATMRelaySettingsWidget>
                                               safeSetState(() =>
                                                   _model.smValue = newValue!);
                                             },
-                                            side: BorderSide(
-                                              width: 2,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
-                                            ),
+                                            side: (FlutterFlowTheme.of(context)
+                                                        .alternate !=
+                                                    null)
+                                                ? BorderSide(
+                                                    width: 2,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .alternate!,
+                                                  )
+                                                : null,
                                             activeColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primary,

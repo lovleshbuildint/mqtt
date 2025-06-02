@@ -1,7 +1,9 @@
 import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/pages/mac_id_device_id/mac_id_device_id_widget.dart';
 import 'dart:ui';
 import '/actions/actions.dart' as action_blocks;
@@ -66,7 +68,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     return FutureBuilder<ApiCallResponse>(
       future: (_model.apiRequestCompleter ??= Completer<ApiCallResponse>()
             ..complete(MasterGroup.getDashboardCall.call(
-              orgId: FFAppState().userOrg,
+              orgIdList: FFAppState().userOrg,
               accessRoleId: FFAppState().accessRoleId,
               regionIdList: FFAppState().regionId,
               token: FFAppState().token,
@@ -887,15 +889,22 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 4.0, 0.0, 0.0),
                                           child: Text(
-                                            valueOrDefault<String>(
-                                              MasterGroup.getDashboardCall
-                                                  .totalLocation(
-                                                    dashboardGetDashboardResponse
-                                                        .jsonBody,
-                                                  )
-                                                  ?.toString(),
-                                              '0',
-                                            ),
+                                            getJsonField(
+                                              functions.filterDashboard(
+                                                  dashboardGetDashboardResponse
+                                                      .jsonBody,
+                                                  _model.textController.text,
+                                                  _model.fliter,
+                                                  getJsonField(
+                                                            dashboardGetDashboardResponse
+                                                                .jsonBody,
+                                                            r'''$.OrgDetails''',
+                                                          ) !=
+                                                          null
+                                                      ? _model.dropDownValue
+                                                      : 'All'),
+                                              r'''$.OrgDetails.Total_Locations''',
+                                            ).toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
                                                 .override(
@@ -1009,16 +1018,24 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         ),
                                                   ),
                                                   Text(
-                                                    valueOrDefault<String>(
-                                                      MasterGroup
-                                                          .getDashboardCall
-                                                          .onlineLocation(
-                                                            dashboardGetDashboardResponse
-                                                                .jsonBody,
-                                                          )
-                                                          ?.toString(),
-                                                      '0',
-                                                    ),
+                                                    getJsonField(
+                                                      functions.filterDashboard(
+                                                          dashboardGetDashboardResponse
+                                                              .jsonBody,
+                                                          _model.textController
+                                                              .text,
+                                                          _model.fliter,
+                                                          getJsonField(
+                                                                    dashboardGetDashboardResponse
+                                                                        .jsonBody,
+                                                                    r'''$.OrgDetails''',
+                                                                  ) !=
+                                                                  null
+                                                              ? _model
+                                                                  .dropDownValue
+                                                              : 'All'),
+                                                      r'''$.OrgDetails.Online_Locations''',
+                                                    ).toString(),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -1132,16 +1149,24 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                         ),
                                                   ),
                                                   Text(
-                                                    valueOrDefault<String>(
-                                                      MasterGroup
-                                                          .getDashboardCall
-                                                          .offlineLocation(
-                                                            dashboardGetDashboardResponse
-                                                                .jsonBody,
-                                                          )
-                                                          ?.toString(),
-                                                      '0',
-                                                    ),
+                                                    getJsonField(
+                                                      functions.filterDashboard(
+                                                          dashboardGetDashboardResponse
+                                                              .jsonBody,
+                                                          _model.textController
+                                                              .text,
+                                                          _model.fliter,
+                                                          getJsonField(
+                                                                    dashboardGetDashboardResponse
+                                                                        .jsonBody,
+                                                                    r'''$.OrgDetails''',
+                                                                  ) !=
+                                                                  null
+                                                              ? _model
+                                                                  .dropDownValue
+                                                              : 'All'),
+                                                      r'''$.OrgDetails.Offline_Locations''',
+                                                    ).toString(),
                                                     style: FlutterFlowTheme.of(
                                                             context)
                                                         .bodyMedium
@@ -1245,6 +1270,100 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
+                                      if (getJsonField(
+                                            dashboardGetDashboardResponse
+                                                .jsonBody,
+                                            r'''$.OrgDetails''',
+                                          ) !=
+                                          null)
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  15.0, 0.0, 0.0, 0.0),
+                                          child: FlutterFlowDropDown<String>(
+                                            controller: _model
+                                                    .dropDownValueController ??=
+                                                FormFieldController<String>(
+                                              _model.dropDownValue ??=
+                                                  (List<String> var1) {
+                                                return var1[0];
+                                              }((getJsonField(
+                                                dashboardGetDashboardResponse
+                                                    .jsonBody,
+                                                r'''$.OrgDetails''',
+                                                true,
+                                              ) as List)
+                                                      .map<String>(
+                                                          (s) => s.toString())
+                                                      .toList()!),
+                                            ),
+                                            options: (getJsonField(
+                                              dashboardGetDashboardResponse
+                                                  .jsonBody,
+                                              r'''$.OrgDetails''',
+                                              true,
+                                            ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()!,
+                                            onChanged: (val) => safeSetState(
+                                                () =>
+                                                    _model.dropDownValue = val),
+                                            width: 120.0,
+                                            height: 30.0,
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .fontStyle,
+                                                    ),
+                                            hintText: 'Org',
+                                            icon: Icon(
+                                              Icons.keyboard_arrow_down_rounded,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 24.0,
+                                            ),
+                                            fillColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryBackground,
+                                            elevation: 2.0,
+                                            borderColor: Color(0x35404042),
+                                            borderWidth: 1.0,
+                                            borderRadius: 8.0,
+                                            margin:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 0.0, 12.0, 0.0),
+                                            hidesUnderline: true,
+                                            isOverButton: false,
+                                            isSearchable: false,
+                                            isMultiSelect: false,
+                                          ),
+                                        ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             15.0, 0.0, 0.0, 0.0),
@@ -1709,14 +1828,21 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               13.0, 13.0, 13.0, 0.0),
                           child: Builder(
                             builder: (context) {
-                              final locationDetails = functions
-                                      .filterDashboard(
-                                          dashboardGetDashboardResponse
-                                              .jsonBody,
-                                          _model.textController.text,
-                                          _model.fliter)
-                                      ?.toList() ??
-                                  [];
+                              final locationDetails = getJsonField(
+                                functions.filterDashboard(
+                                    dashboardGetDashboardResponse.jsonBody,
+                                    _model.textController.text,
+                                    _model.fliter,
+                                    getJsonField(
+                                              dashboardGetDashboardResponse
+                                                  .jsonBody,
+                                              r'''$.OrgDetails''',
+                                            ) !=
+                                            null
+                                        ? _model.dropDownValue
+                                        : 'All'),
+                                r'''$.filteredData''',
+                              ).toList();
 
                               return RefreshIndicator(
                                 onRefresh: () async {

@@ -351,7 +351,7 @@ class CreateUserCall {
     String? username = '',
     String? password = '',
     String? userRole = '',
-    int? userOrg,
+    List<int>? userOrgList,
     String? fullName = '',
     int? contactNum,
     int? userAccessRole,
@@ -364,6 +364,7 @@ class CreateUserCall {
       token: token,
       deviceId: deviceId,
     );
+    final userOrg = _serializeList(userOrgList);
     final userRegion = _serializeList(userRegionList);
     final userStateManager = _serializeList(userStateManagerList);
 
@@ -373,7 +374,7 @@ class CreateUserCall {
   "password": "${password}",
   "userRole": "${userRole}",
   "fullName": "${fullName}",
-  "user_org": ${userOrg},
+  "user_org": "${userOrg}",
   "deviceId": "${deviceId}",
   "contact_num": "${contactNum}",
   "user_access_role": "${userAccessRole}",
@@ -405,7 +406,7 @@ class UpdateUserCall {
     String? username = '',
     String? password = '',
     String? userRole = '',
-    int? userOrg,
+    List<int>? userOrgList,
     String? fullName = '',
     int? contactNum,
     int? userAccessRole,
@@ -418,6 +419,7 @@ class UpdateUserCall {
       token: token,
       deviceId: deviceId,
     );
+    final userOrg = _serializeList(userOrgList);
     final userRegion = _serializeList(userRegionList);
     final userStateManager = _serializeList(userStateManagerList);
 
@@ -427,7 +429,7 @@ class UpdateUserCall {
   "password": "${password}",
   "userRole": "${userRole}",
   "fullName": "${fullName}",
-  "user_org": ${userOrg},
+  "user_org": "${userOrg}",
   "deviceId": "${deviceId}",
   "contact_num": "${contactNum}",
   "user_access_role": "${userAccessRole}",
@@ -786,7 +788,7 @@ class GetStatesCall {
 
 class GetDashboardCall {
   Future<ApiCallResponse> call({
-    int? orgId,
+    List<int>? orgIdList,
     int? accessRoleId,
     List<int>? regionIdList,
     List<int>? stateIdList,
@@ -797,6 +799,7 @@ class GetDashboardCall {
       token: token,
       deviceId: deviceId,
     );
+    final orgId = _serializeList(orgIdList);
     final regionId = _serializeList(regionIdList);
     final stateId = _serializeList(stateIdList);
 

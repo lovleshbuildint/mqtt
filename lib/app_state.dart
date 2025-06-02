@@ -68,9 +68,6 @@ class FFAppState extends ChangeNotifier {
           _regionId;
     });
     await _safeInitAsync(() async {
-      _userOrg = await secureStorage.getInt('ff_userOrg') ?? _userOrg;
-    });
-    await _safeInitAsync(() async {
       _stateId = (await secureStorage.getStringList('ff_stateId'))
               ?.map(int.parse)
               .toList() ??
@@ -85,6 +82,12 @@ class FFAppState extends ChangeNotifier {
           print("Can't decode persisted json. Error: $e.");
         }
       }
+    });
+    await _safeInitAsync(() async {
+      _userOrg = (await secureStorage.getStringList('ff_userOrg'))
+              ?.map(int.parse)
+              .toList() ??
+          _userOrg;
     });
   }
 
@@ -250,17 +253,6 @@ class FFAppState extends ChangeNotifier {
         'ff_regionId', _regionId.map((x) => x.toString()).toList());
   }
 
-  int _userOrg = 0;
-  int get userOrg => _userOrg;
-  set userOrg(int value) {
-    _userOrg = value;
-    secureStorage.setInt('ff_userOrg', value);
-  }
-
-  void deleteUserOrg() {
-    secureStorage.delete(key: 'ff_userOrg');
-  }
-
   String _mqttResponse = '';
   String get mqttResponse => _mqttResponse;
   set mqttResponse(String value) {
@@ -321,6 +313,51 @@ class FFAppState extends ChangeNotifier {
 
   void deleteBSIATMMQTT() {
     secureStorage.delete(key: 'ff_BSIATMMQTT');
+  }
+
+  List<int> _userOrg = [];
+  List<int> get userOrg => _userOrg;
+  set userOrg(List<int> value) {
+    _userOrg = value;
+    secureStorage.setStringList(
+        'ff_userOrg', value.map((x) => x.toString()).toList());
+  }
+
+  void deleteUserOrg() {
+    secureStorage.delete(key: 'ff_userOrg');
+  }
+
+  void addToUserOrg(int value) {
+    userOrg.add(value);
+    secureStorage.setStringList(
+        'ff_userOrg', _userOrg.map((x) => x.toString()).toList());
+  }
+
+  void removeFromUserOrg(int value) {
+    userOrg.remove(value);
+    secureStorage.setStringList(
+        'ff_userOrg', _userOrg.map((x) => x.toString()).toList());
+  }
+
+  void removeAtIndexFromUserOrg(int index) {
+    userOrg.removeAt(index);
+    secureStorage.setStringList(
+        'ff_userOrg', _userOrg.map((x) => x.toString()).toList());
+  }
+
+  void updateUserOrgAtIndex(
+    int index,
+    int Function(int) updateFn,
+  ) {
+    userOrg[index] = updateFn(_userOrg[index]);
+    secureStorage.setStringList(
+        'ff_userOrg', _userOrg.map((x) => x.toString()).toList());
+  }
+
+  void insertAtIndexInUserOrg(int index, int value) {
+    userOrg.insert(index, value);
+    secureStorage.setStringList(
+        'ff_userOrg', _userOrg.map((x) => x.toString()).toList());
   }
 }
 

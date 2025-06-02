@@ -1219,9 +1219,9 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                           child:
                                                               FlutterFlowDropDown<
                                                                   int>(
-                                                            controller: _model
+                                                            multiSelectController: _model
                                                                     .organizationValueController ??=
-                                                                FormFieldController<
+                                                                FormListFieldController<
                                                                     int>(null),
                                                             options: List<
                                                                     int>.from(
@@ -1242,10 +1242,6 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                         (s) => s
                                                                             .toString())
                                                                     .toList()!,
-                                                            onChanged: (val) =>
-                                                                safeSetState(() =>
-                                                                    _model.organizationValue =
-                                                                        val),
                                                             width: 300.0,
                                                             height: 50.0,
                                                             textStyle:
@@ -1302,8 +1298,12 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                 true,
                                                             isOverButton: true,
                                                             isSearchable: false,
-                                                            isMultiSelect:
-                                                                false,
+                                                            isMultiSelect: true,
+                                                            onMultiSelectChanged:
+                                                                (val) => safeSetState(
+                                                                    () => _model
+                                                                            .organizationValue =
+                                                                        val),
                                                           ),
                                                         ),
                                                       ],
@@ -1706,8 +1706,6 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                     .text,
                                                                 userRole: _model
                                                                     .roleValue,
-                                                                userOrg: _model
-                                                                    .organizationValue,
                                                                 fullName: _model
                                                                     .fullnameTextController
                                                                     .text,
@@ -1730,6 +1728,8 @@ class _CreateUserWidgetState extends State<CreateUserWidget> {
                                                                 userStateManagerList:
                                                                     _model
                                                                         .stateManagerValue,
+                                                                userOrgList: _model
+                                                                    .organizationValue,
                                                               );
 
                                                               if ((_model

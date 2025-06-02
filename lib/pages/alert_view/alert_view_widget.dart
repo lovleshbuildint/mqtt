@@ -936,7 +936,10 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                           ).toString()}&location=${getJsonField(
                                                             alertsItem,
                                                             r'''$..location''',
-                                                          ).toString()}&project=${FFAppState().userOrg.toString()}');
+                                                          ).toString()}&project=${getJsonField(
+                                                            alertsItem,
+                                                            r'''$..org_id''',
+                                                          ).toString()}');
                                                         } else {
                                                           await showDialog(
                                                             context: context,
