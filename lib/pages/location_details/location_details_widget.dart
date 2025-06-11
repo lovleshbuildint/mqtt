@@ -724,296 +724,442 @@ class _LocationDetailsWidgetState extends State<LocationDetailsWidget> {
                                               color: Color(0x27404042),
                                             ),
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    20.0, 12.0, 20.0, 12.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  '${(String var1, String var2, String var3) {
-                                                    return var2 == 'iz'
-                                                        ? (var3 + ' AC')
-                                                        : (var2 == 'LiB'
-                                                            ? var3 + ' Light'
-                                                            : var1);
-                                                  }(getJsonField(
-                                                        dataItem,
-                                                        r'''$..DID''',
-                                                      ).toString(), getJsonField(
-                                                        dataItem,
-                                                        r'''$..dev_type''',
-                                                      ).toString(), getJsonField(
-                                                        dataItem,
-                                                        r'''$..DeviceName''',
-                                                      ).toString())} (${(String var1, String var2) {
-                                                    return var2 == 'iMAX' ||
-                                                            var2 == 'LiB' ||
-                                                            var2 == 'iz'
-                                                        ? ''
-                                                        : var1.split('T').first;
-                                                  }(getJsonField(
-                                                        dataItem,
-                                                        r'''$..evt_dt''',
-                                                      ).toString(), getJsonField(
-                                                        dataItem,
-                                                        r'''$..dev_type''',
-                                                      ).toString())} ${(String var1, String var2) {
-                                                    return var2 == 'iMAX' ||
-                                                            var2 == 'LiB' ||
-                                                            var2 == 'iz'
-                                                        ? ''
-                                                        : var1.split('.').first;
-                                                  }(((String var1) {
-                                                        return var1
-                                                            .split('T')
-                                                            .last;
-                                                      }(getJsonField(
-                                                        dataItem,
-                                                        r'''$..evt_dt''',
-                                                      ).toString())), getJsonField(
-                                                        dataItem,
-                                                        r'''$..dev_type''',
-                                                      ).toString())})',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts
-                                                            .readexPro(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontStyle:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMedium
-                                                                  .fontStyle,
-                                                        ),
-                                                        color:
-                                                            Color(0xFF4D4D4D),
-                                                        fontSize: 16.0,
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                ),
-                                                Padding(
+                                          child: Builder(
+                                            builder: (context) {
+                                              if ((String var1) {
+                                                return var1 == "LiB";
+                                              }(getJsonField(
+                                                dataItem,
+                                                r'''$..dev_type''',
+                                              ).toString())) {
+                                                return Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 9.0, 0.0, 0.0),
-                                                  child: Row(
+                                                      .fromSTEB(20.0, 12.0,
+                                                          20.0, 12.0),
+                                                  child: Column(
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.start,
                                                     children: [
+                                                      Text(
+                                                        'Smart Switches',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .readexPro(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                              color: Color(
+                                                                  0xFF4D4D4D),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
-                                                                    11.0,
                                                                     0.0,
+                                                                    9.0,
                                                                     0.0,
                                                                     0.0),
-                                                        child: Column(
+                                                        child: Row(
                                                           mainAxisSize:
                                                               MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Text(
-                                                              'Device Type',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w300,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: Color(
-                                                                        0xFF4D4D4D),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
-                                                                    fontStyle: FlutterFlowTheme.of(
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          11.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    'Devices',
+                                                                    style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
-                                                                        .fontStyle,
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.readexPro(
+                                                                            fontWeight:
+                                                                                FontWeight.w300,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              Color(0xFF4D4D4D),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w300,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
                                                                   ),
+                                                                ],
+                                                              ),
                                                             ),
-                                                            Text(
-                                                              'Status',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w300,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: Color(
-                                                                        0xFF4D4D4D),
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w300,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
+                                                            Expanded(
+                                                              child: Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1.0,
+                                                                        0.0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      AutoSizeText(
+                                                                        (String
+                                                                            var1) {
+                                                                          return var1 == "Zion"
+                                                                              ? "BigIO"
+                                                                              : (var1 == "iz" ? "Neon" : var1);
+                                                                        }(getJsonField(
+                                                                          dataItem,
+                                                                          r'''$..dev_type''',
+                                                                        ).toString()),
+                                                                        minFontSize:
+                                                                            10.0,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.readexPro(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              color: Color(0xFF2D2D2D),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                    ],
                                                                   ),
+                                                                ),
+                                                              ),
                                                             ),
                                                           ],
                                                         ),
                                                       ),
-                                                      Expanded(
-                                                        child: Align(
-                                                          alignment:
-                                                              AlignmentDirectional(
-                                                                  1.0, 0.0),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        20.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                AutoSizeText(
-                                                                  (String
-                                                                      var1) {
-                                                                    return var1 ==
-                                                                            "Zion"
-                                                                        ? "BigIO"
-                                                                        : (var1 ==
-                                                                                "iz"
-                                                                            ? "Neon"
-                                                                            : var1);
-                                                                  }(getJsonField(
-                                                                    dataItem,
-                                                                    r'''$..dev_type''',
-                                                                  ).toString()),
-                                                                  minFontSize:
-                                                                      10.0,
-                                                                  style: FlutterFlowTheme.of(
+                                                    ],
+                                                  ),
+                                                );
+                                              } else {
+                                                return Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(20.0, 12.0,
+                                                          20.0, 12.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        '${(String var1, String var2, String var3) {
+                                                          return var2 == 'iz'
+                                                              ? (var3 + ' AC')
+                                                              : (var2 == 'LiB'
+                                                                  ? var3 +
+                                                                      ' Light'
+                                                                  : var1);
+                                                        }(getJsonField(
+                                                              dataItem,
+                                                              r'''$..DID''',
+                                                            ).toString(), getJsonField(
+                                                              dataItem,
+                                                              r'''$..dev_type''',
+                                                            ).toString(), getJsonField(
+                                                              dataItem,
+                                                              r'''$..DeviceName''',
+                                                            ).toString())} (${(String var1, String var2) {
+                                                          return var2 == 'iMAX' ||
+                                                                  var2 ==
+                                                                      'LiB' ||
+                                                                  var2 == 'iz'
+                                                              ? ''
+                                                              : var1
+                                                                  .split('T')
+                                                                  .first;
+                                                        }(getJsonField(
+                                                              dataItem,
+                                                              r'''$..evt_dt''',
+                                                            ).toString(), getJsonField(
+                                                              dataItem,
+                                                              r'''$..dev_type''',
+                                                            ).toString())} ${(String var1, String var2) {
+                                                          return var2 == 'iMAX' ||
+                                                                  var2 ==
+                                                                      'LiB' ||
+                                                                  var2 == 'iz'
+                                                              ? ''
+                                                              : var1
+                                                                  .split('.')
+                                                                  .first;
+                                                        }(((String var1) {
+                                                              return var1
+                                                                  .split('T')
+                                                                  .last;
+                                                            }(getJsonField(
+                                                              dataItem,
+                                                              r'''$..evt_dt''',
+                                                            ).toString())), getJsonField(
+                                                              dataItem,
+                                                              r'''$..dev_type''',
+                                                            ).toString())})',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .readexPro(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                              color: Color(
+                                                                  0xFF4D4D4D),
+                                                              fontSize: 16.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: Color(
-                                                                            0xFF2D2D2D),
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                                AutoSizeText(
-                                                                  (String var1,
-                                                                          String
-                                                                              var2) {
-                                                                    return var2 == 'iMAX' ||
-                                                                            var2 ==
-                                                                                'LiB' ||
-                                                                            var2 ==
-                                                                                'iz'
-                                                                        ? 'Online'
-                                                                        : var1;
-                                                                  }(
-                                                                      getJsonField(
-                                                                        dataItem,
-                                                                        r'''$..DeviceStatus''',
-                                                                      ).toString(),
-                                                                      getJsonField(
-                                                                        dataItem,
-                                                                        r'''$..dev_type''',
-                                                                      ).toString()),
-                                                                  minFontSize:
-                                                                      10.0,
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight:
-                                                                              FontWeight.bold,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: Color(
-                                                                            0xFF2D2D2D),
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.bold,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ],
+                                                                      .fontStyle,
                                                             ),
-                                                          ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    9.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          11.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Text(
+                                                                    'Device Type',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.readexPro(
+                                                                            fontWeight:
+                                                                                FontWeight.w300,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              Color(0xFF4D4D4D),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w300,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                  Text(
+                                                                    'Status',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.readexPro(
+                                                                            fontWeight:
+                                                                                FontWeight.w300,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              Color(0xFF4D4D4D),
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w300,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child: Align(
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        1.0,
+                                                                        0.0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          20.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Column(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      AutoSizeText(
+                                                                        (String
+                                                                            var1) {
+                                                                          return var1 == "Zion"
+                                                                              ? "BigIO"
+                                                                              : (var1 == "iz" ? "Neon" : var1);
+                                                                        }(getJsonField(
+                                                                          dataItem,
+                                                                          r'''$..dev_type''',
+                                                                        ).toString()),
+                                                                        minFontSize:
+                                                                            10.0,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.readexPro(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              color: Color(0xFF2D2D2D),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                      AutoSizeText(
+                                                                        (String var1,
+                                                                                String var2) {
+                                                                          return var2 == 'iMAX' || var2 == 'LiB' || var2 == 'iz'
+                                                                              ? 'Online'
+                                                                              : var1;
+                                                                        }(
+                                                                            getJsonField(
+                                                                              dataItem,
+                                                                              r'''$..DeviceStatus''',
+                                                                            ).toString(),
+                                                                            getJsonField(
+                                                                              dataItem,
+                                                                              r'''$..dev_type''',
+                                                                            ).toString()),
+                                                                        minFontSize:
+                                                                            10.0,
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.readexPro(
+                                                                                fontWeight: FontWeight.bold,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              color: Color(0xFF2D2D2D),
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
                                                       ),
                                                     ],
                                                   ),
-                                                ),
-                                              ],
-                                            ),
+                                                );
+                                              }
+                                            },
                                           ),
                                         ),
                                       ),

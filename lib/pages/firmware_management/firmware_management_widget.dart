@@ -147,7 +147,7 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                       controller: _model
                                               .selectDeviceDDValueController ??=
                                           FormFieldController<String>(null),
-                                      options: ['iATM-BS', 'iATM-BV'],
+                                      options: ['iATM-BS', 'iATM-BV', 'LiB'],
                                       onChanged: (val) async {
                                         safeSetState(() =>
                                             _model.selectDeviceDDValue = val);
@@ -287,6 +287,81 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                     title: Text('Alert'),
                                                     content: Text((_model
                                                             .getVersionBSTestmodeResponse
+                                                            ?.bodyText ??
+                                                        '')),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+                                          }
+                                        } else if (_model.selectDeviceDDValue ==
+                                            'LiB') {
+                                          if (_model.switchValue == true) {
+                                            _model.getVersionBLiBResponse =
+                                                await GetVersionBLiBCall.call();
+
+                                            _shouldSetState = true;
+                                            if ((_model.getVersionBLiBResponse
+                                                    ?.succeeded ??
+                                                true)) {
+                                              _model.currentVersion = (_model
+                                                      .getVersionBLiBResponse
+                                                      ?.bodyText ??
+                                                  '');
+                                              safeSetState(() {});
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Alert'),
+                                                    content: Text((_model
+                                                            .getVersionBLiBResponse
+                                                            ?.bodyText ??
+                                                        '')),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  );
+                                                },
+                                              );
+                                            }
+                                          } else {
+                                            _model.getVersionBLiBTestmodeResponse =
+                                                await GetVersionBLiBtestmodeCall
+                                                    .call();
+
+                                            _shouldSetState = true;
+                                            if ((_model
+                                                    .getVersionBLiBTestmodeResponse
+                                                    ?.succeeded ??
+                                                true)) {
+                                              _model.currentVersion = (_model
+                                                      .getVersionBLiBTestmodeResponse
+                                                      ?.bodyText ??
+                                                  '');
+                                              safeSetState(() {});
+                                            } else {
+                                              await showDialog(
+                                                context: context,
+                                                builder: (alertDialogContext) {
+                                                  return AlertDialog(
+                                                    title: Text('Alert'),
+                                                    content: Text((_model
+                                                            .getVersionBLiBTestmodeResponse
                                                             ?.bodyText ??
                                                         '')),
                                                     actions: [
@@ -756,6 +831,91 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                         );
                                                       }
                                                     }
+                                                  } else if (_model
+                                                          .selectDeviceDDValue ==
+                                                      'LiB') {
+                                                    if (_model.switchValue ==
+                                                        true) {
+                                                      _model.getVersionBLiBResponse1 =
+                                                          await GetVersionBLiBCall
+                                                              .call();
+
+                                                      _shouldSetState = true;
+                                                      if ((_model
+                                                              .getVersionBLiBResponse1
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        _model.currentVersion =
+                                                            (_model.getVersionBLiBResponse1
+                                                                    ?.bodyText ??
+                                                                '');
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title:
+                                                                  Text('Alert'),
+                                                              content: Text((_model
+                                                                      .getVersionBLiBResponse1
+                                                                      ?.bodyText ??
+                                                                  '')),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                    } else {
+                                                      _model.getVersionBLiBTestmodeResponse1 =
+                                                          await GetVersionBLiBtestmodeCall
+                                                              .call();
+
+                                                      _shouldSetState = true;
+                                                      if ((_model
+                                                              .getVersionBLiBTestmodeResponse1
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        _model.currentVersion =
+                                                            (_model.getVersionBLiBTestmodeResponse1
+                                                                    ?.bodyText ??
+                                                                '');
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title:
+                                                                  Text('Alert'),
+                                                              content: Text((_model
+                                                                      .getVersionBLiBTestmodeResponse1
+                                                                      ?.bodyText ??
+                                                                  '')),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                    }
                                                   } else {
                                                     if (_shouldSetState)
                                                       safeSetState(() {});
@@ -920,6 +1080,91 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                                   Text('Alert'),
                                                               content: Text((_model
                                                                       .getVersionBSTestmodeResponse1Copy
+                                                                      ?.bodyText ??
+                                                                  '')),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                    }
+                                                  } else if (_model
+                                                          .selectDeviceDDValue ==
+                                                      'LiB') {
+                                                    if (_model.switchValue ==
+                                                        true) {
+                                                      _model.getVersionBLiBResponse1Copy =
+                                                          await GetVersionBLiBCall
+                                                              .call();
+
+                                                      _shouldSetState = true;
+                                                      if ((_model
+                                                              .getVersionBLiBResponse1Copy
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        _model.currentVersion =
+                                                            (_model.getVersionBLiBResponse1Copy
+                                                                    ?.bodyText ??
+                                                                '');
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title:
+                                                                  Text('Alert'),
+                                                              content: Text((_model
+                                                                      .getVersionBLiBResponse1Copy
+                                                                      ?.bodyText ??
+                                                                  '')),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
+                                                      }
+                                                    } else {
+                                                      _model.getVersionBLiBTestmodeResponse1Copy =
+                                                          await GetVersionBLiBtestmodeCall
+                                                              .call();
+
+                                                      _shouldSetState = true;
+                                                      if ((_model
+                                                              .getVersionBLiBTestmodeResponse1Copy
+                                                              ?.succeeded ??
+                                                          true)) {
+                                                        _model.currentVersion =
+                                                            (_model.getVersionBLiBTestmodeResponse1Copy
+                                                                    ?.bodyText ??
+                                                                '');
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title:
+                                                                  Text('Alert'),
+                                                              content: Text((_model
+                                                                      .getVersionBLiBTestmodeResponse1Copy
                                                                       ?.bodyText ??
                                                                   '')),
                                                               actions: [
@@ -1192,7 +1437,8 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                             );
                                           }
                                         }
-                                      } else {
+                                      } else if (_model.selectDeviceDDValue ==
+                                          'iATM-BS') {
                                         if (_model.switchValue == true) {
                                           _model.setVersionBSResponse =
                                               await SetUpdateBSCall.call(
@@ -1325,6 +1571,155 @@ class _FirmwareManagementWidgetState extends State<FirmwareManagementWidget> {
                                                   title: Text('Alert'),
                                                   content: Text((_model
                                                           .setVersionBSTestmodeResponse
+                                                          ?.bodyText ??
+                                                      '')),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        }
+                                      } else if (_model.selectDeviceDDValue ==
+                                          'LiB') {
+                                        if (_model.switchValue == true) {
+                                          _model.setVersionBLIBResponse =
+                                              await SetUpdateBLiBCall.call(
+                                            version: (double.parse((_model
+                                                        .currentVersion!)) +
+                                                    0.1)
+                                                .toStringAsFixed(1),
+                                            file: _model
+                                                .uploadedLocalFile_uploadDataS92,
+                                          );
+
+                                          if ((_model.setVersionBLIBResponse
+                                                  ?.succeeded ??
+                                              true)) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('INFO'),
+                                                  content: Text((_model
+                                                          .setVersionBLIBResponse
+                                                          ?.bodyText ??
+                                                      '')),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                            safeSetState(() {
+                                              _model.isDataUploading_uploadDataS92 =
+                                                  false;
+                                              _model.uploadedLocalFile_uploadDataS92 =
+                                                  FFUploadedFile(
+                                                      bytes: Uint8List.fromList(
+                                                          []));
+                                            });
+
+                                            safeSetState(() {
+                                              _model
+                                                  .selectDeviceDDValueController
+                                                  ?.reset();
+                                            });
+                                            _model.currentVersion = null;
+                                            safeSetState(() {});
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Alert'),
+                                                  content: Text((_model
+                                                          .setVersionBLIBResponse
+                                                          ?.bodyText ??
+                                                      '')),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          }
+                                        } else {
+                                          _model.setVersionBLiBTestmodeResponse =
+                                              await SetUpdateBLiBtestmodeCall
+                                                  .call(
+                                            version: (double.parse((_model
+                                                        .currentVersion!)) +
+                                                    0.1)
+                                                .toStringAsFixed(1),
+                                            file: _model
+                                                .uploadedLocalFile_uploadDataS92,
+                                          );
+
+                                          if ((_model
+                                                  .setVersionBLiBTestmodeResponse
+                                                  ?.succeeded ??
+                                              true)) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('INFO'),
+                                                  content: Text((_model
+                                                          .setVersionBLiBTestmodeResponse
+                                                          ?.bodyText ??
+                                                      '')),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                            safeSetState(() {
+                                              _model.isDataUploading_uploadDataS92 =
+                                                  false;
+                                              _model.uploadedLocalFile_uploadDataS92 =
+                                                  FFUploadedFile(
+                                                      bytes: Uint8List.fromList(
+                                                          []));
+                                            });
+
+                                            safeSetState(() {
+                                              _model
+                                                  .selectDeviceDDValueController
+                                                  ?.reset();
+                                            });
+                                            _model.currentVersion = null;
+                                            safeSetState(() {});
+                                          } else {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Alert'),
+                                                  content: Text((_model
+                                                          .setVersionBLiBTestmodeResponse
                                                           ?.bodyText ??
                                                       '')),
                                                   actions: [

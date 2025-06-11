@@ -1371,6 +1371,24 @@ class GetVersionBSCall {
   }
 }
 
+class GetVersionBLiBCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getVersionBLiB',
+      apiUrl: 'https://api.app.master.buildint.co/BLiB/versionInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class GetVersionBVCall {
   static Future<ApiCallResponse> call() async {
     return ApiManager.instance.makeApiCall(
@@ -1394,6 +1412,24 @@ class GetVersionBStestmodeCall {
     return ApiManager.instance.makeApiCall(
       callName: 'getVersionBStestmode',
       apiUrl: 'https://api.app.master.buildint.co/BSiATM/testmode/versionInfo',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class GetVersionBLiBtestmodeCall {
+  static Future<ApiCallResponse> call() async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getVersionBLiBtestmode',
+      apiUrl: 'https://api.app.master.buildint.co/BLiB/testmode/versionInfo',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -1450,6 +1486,31 @@ class SetUpdateBSCall {
   }
 }
 
+class SetUpdateBLiBCall {
+  static Future<ApiCallResponse> call({
+    String? version = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'setUpdateBLiB',
+      apiUrl: 'https://api.app.master.buildint.co/BLiB/uploadBin',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'version': version,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class SetUpdateBVCall {
   static Future<ApiCallResponse> call({
     String? version = '',
@@ -1483,6 +1544,31 @@ class SetUpdateBStestmodeCall {
     return ApiManager.instance.makeApiCall(
       callName: 'setUpdateBStestmode',
       apiUrl: 'https://api.app.master.buildint.co/BSiATM/testmode/uploadBin',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'version': version,
+        'file': file,
+      },
+      bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class SetUpdateBLiBtestmodeCall {
+  static Future<ApiCallResponse> call({
+    String? version = '',
+    FFUploadedFile? file,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'setUpdateBLiBtestmode',
+      apiUrl: 'https://api.app.master.buildint.co/BLiB/testmode/uploadBin',
       callType: ApiCallType.POST,
       headers: {},
       params: {

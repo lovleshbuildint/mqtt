@@ -478,6 +478,142 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 2.0, 10.0, 0.0),
                                           child: AutoSizeText(
+                                            'DID',
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          5.0, 0.0, 0.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: SelectionArea(
+                                              child: AutoSizeText(
+                                            valueOrDefault<String>(
+                                              widget!.deviceType == 'iATM'
+                                                  ? widget!.did
+                                                  : getJsonField(
+                                                      FFAppState().BSIATMMQTT,
+                                                      r'''$.DID''',
+                                                    ).toString(),
+                                              'DID',
+                                            ),
+                                            minFontSize: 9.0,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.poppins(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: Color(0xFF4D4D4D),
+                                                  letterSpacing: 0.0,
+                                                  fontWeight:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontWeight,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                ),
+                                          )),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  15.0, 0.0, 15.0, 15.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 5.0, 0.0),
+                                      child: Container(
+                                        height: 35.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                          borderRadius:
+                                              BorderRadius.circular(6.0),
+                                          border: Border.all(
+                                            color: Color(0xFF404042),
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10.0, 2.0, 10.0, 0.0),
+                                          child: AutoSizeText(
                                             'MAC ID',
                                             minFontSize: 9.0,
                                             style: FlutterFlowTheme.of(context)
@@ -535,7 +671,8 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
                                                   10.0, 2.0, 10.0, 0.0),
-                                          child: AutoSizeText(
+                                          child: SelectionArea(
+                                              child: AutoSizeText(
                                             widget!.deviceType == 'iATM'
                                                 ? getJsonField(
                                                     FFAppState()
@@ -575,7 +712,7 @@ class _LiveDataWidgetState extends State<LiveDataWidget> {
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                          ),
+                                          )),
                                         ),
                                       ),
                                     ),

@@ -33,6 +33,10 @@ class FirmwareManagementModel
   ApiCallResponse? getVersionBSResponse;
   // Stores action output result for [Backend Call - API (getVersionBStestmode)] action in selectDeviceDD widget.
   ApiCallResponse? getVersionBSTestmodeResponse;
+  // Stores action output result for [Backend Call - API (getVersionBLiB)] action in selectDeviceDD widget.
+  ApiCallResponse? getVersionBLiBResponse;
+  // Stores action output result for [Backend Call - API (getVersionBLiBtestmode)] action in selectDeviceDD widget.
+  ApiCallResponse? getVersionBLiBTestmodeResponse;
   bool isDataUploading_uploadDataS92 = false;
   FFUploadedFile uploadedLocalFile_uploadDataS92 =
       FFUploadedFile(bytes: Uint8List.fromList([]));
@@ -47,6 +51,10 @@ class FirmwareManagementModel
   ApiCallResponse? getVersionBSResponse1;
   // Stores action output result for [Backend Call - API (getVersionBStestmode)] action in Switch widget.
   ApiCallResponse? getVersionBSTestmodeResponse1;
+  // Stores action output result for [Backend Call - API (getVersionBLiB)] action in Switch widget.
+  ApiCallResponse? getVersionBLiBResponse1;
+  // Stores action output result for [Backend Call - API (getVersionBLiBtestmode)] action in Switch widget.
+  ApiCallResponse? getVersionBLiBTestmodeResponse1;
   // Stores action output result for [Backend Call - API (getVersionBV)] action in Switch widget.
   ApiCallResponse? getVersionBVResponse1Copy;
   // Stores action output result for [Backend Call - API (getVersionBVtestmode)] action in Switch widget.
@@ -55,6 +63,10 @@ class FirmwareManagementModel
   ApiCallResponse? getVersionBSResponse1Copy;
   // Stores action output result for [Backend Call - API (getVersionBStestmode)] action in Switch widget.
   ApiCallResponse? getVersionBSTestmodeResponse1Copy;
+  // Stores action output result for [Backend Call - API (getVersionBLiB)] action in Switch widget.
+  ApiCallResponse? getVersionBLiBResponse1Copy;
+  // Stores action output result for [Backend Call - API (getVersionBLiBtestmode)] action in Switch widget.
+  ApiCallResponse? getVersionBLiBTestmodeResponse1Copy;
   // Stores action output result for [Backend Call - API (setUpdateBV)] action in Button widget.
   ApiCallResponse? setVersionBVResponse;
   // Stores action output result for [Backend Call - API (setUpdateBVtestmode)] action in Button widget.
@@ -63,6 +75,10 @@ class FirmwareManagementModel
   ApiCallResponse? setVersionBSResponse;
   // Stores action output result for [Backend Call - API (setUpdateBStestmode)] action in Button widget.
   ApiCallResponse? setVersionBSTestmodeResponse;
+  // Stores action output result for [Backend Call - API (setUpdateBLiB)] action in Button widget.
+  ApiCallResponse? setVersionBLIBResponse;
+  // Stores action output result for [Backend Call - API (setUpdateBLiBtestmode)] action in Button widget.
+  ApiCallResponse? setVersionBLiBTestmodeResponse;
 
   @override
   void initState(BuildContext context) {}

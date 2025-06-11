@@ -526,25 +526,18 @@ class _Switch3BSATMAutoManualWidgetState
                     ).toString()))
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Periodicity',
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    font: GoogleFonts.readexPro(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF929395),
-                                    fontSize: 10.0,
-                                    letterSpacing: 0.0,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Periodicity',
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  font: GoogleFonts.readexPro(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .fontWeight,
@@ -552,59 +545,70 @@ class _Switch3BSATMAutoManualWidgetState
                                         .bodyMedium
                                         .fontStyle,
                                   ),
-                        ),
-                        Transform.scale(
-                          scaleX: 0.7,
-                          scaleY: 0.7,
-                          child: Switch.adaptive(
-                            value: _model.switchValue2!,
-                            onChanged: (newValue) async {
-                              safeSetState(
-                                  () => _model.switchValue2 = newValue!);
-                              if (newValue!) {
-                                if ((FFAppState().role == 'Engineer') ||
-                                    (FFAppState().role == 'Super Admin') ||
-                                    (FFAppState().role == 'ATMO')) {
-                                  await actions.publishMqtt(
-                                    context,
-                                    'Setting/${widget!.macID}',
-                                    '{ \"A1CS\" : \"1\", \"A2CS\" : \"1\", \"SIOT\": \"GMR\", \"PPDCT\": \"1\",\"PCS\":\"1\"}',
-                                    FFAppState().deviceId,
-                                    '15.206.230.32',
-                                    'mqtt_buildint_\$\$2023',
-                                  );
-                                  return;
-                                } else {
-                                  return;
-                                }
-                              } else {
-                                if ((FFAppState().role == 'Engineer') ||
-                                    (FFAppState().role == 'Super Admin') ||
-                                    (FFAppState().role == 'ATMO')) {
-                                  await actions.publishMqtt(
-                                    context,
-                                    'Setting/${widget!.macID}',
-                                    '{ \"A1CS\" : \"0\", \"A2CS\" : \"0\", \"SIOT\": \"GMR\", \"PPDCT\": \"0\",\"PCS\":\"0\"}',
-                                    FFAppState().deviceId,
-                                    '15.206.230.32',
-                                    'mqtt_buildint_\$\$2023',
-                                  );
-                                  return;
-                                } else {
-                                  return;
-                                }
-                              }
-                            },
-                            activeColor: FlutterFlowTheme.of(context).primary,
-                            activeTrackColor:
-                                FlutterFlowTheme.of(context).accent1,
-                            inactiveTrackColor:
-                                FlutterFlowTheme.of(context).alternate,
-                            inactiveThumbColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
+                                  color: Color(0xFF929395),
+                                  fontSize: 10.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .fontStyle,
+                                ),
                           ),
-                        ),
-                      ],
+                          Transform.scale(
+                            scaleX: 0.7,
+                            scaleY: 0.7,
+                            child: Switch.adaptive(
+                              value: _model.switchValue2!,
+                              onChanged: (newValue) async {
+                                safeSetState(
+                                    () => _model.switchValue2 = newValue!);
+                                if (newValue!) {
+                                  if ((FFAppState().role == 'Engineer') ||
+                                      (FFAppState().role == 'Super Admin') ||
+                                      (FFAppState().role == 'ATMO')) {
+                                    await actions.publishMqtt(
+                                      context,
+                                      'Setting/${widget!.macID}',
+                                      '{ \"A1CS\" : \"1\", \"A2CS\" : \"1\", \"SIOT\": \"GMR\", \"PPDCT\": \"1\",\"PCS\":\"1\"}',
+                                      FFAppState().deviceId,
+                                      '15.206.230.32',
+                                      'mqtt_buildint_\$\$2023',
+                                    );
+                                    return;
+                                  } else {
+                                    return;
+                                  }
+                                } else {
+                                  if ((FFAppState().role == 'Engineer') ||
+                                      (FFAppState().role == 'Super Admin') ||
+                                      (FFAppState().role == 'ATMO')) {
+                                    await actions.publishMqtt(
+                                      context,
+                                      'Setting/${widget!.macID}',
+                                      '{ \"A1CS\" : \"0\", \"A2CS\" : \"0\", \"SIOT\": \"GMR\", \"PPDCT\": \"0\",\"PCS\":\"0\"}',
+                                      FFAppState().deviceId,
+                                      '15.206.230.32',
+                                      'mqtt_buildint_\$\$2023',
+                                    );
+                                    return;
+                                  } else {
+                                    return;
+                                  }
+                                }
+                              },
+                              activeColor: FlutterFlowTheme.of(context).primary,
+                              activeTrackColor:
+                                  FlutterFlowTheme.of(context).accent1,
+                              inactiveTrackColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              inactiveThumbColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
               ],

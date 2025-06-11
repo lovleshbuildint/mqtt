@@ -606,8 +606,8 @@ class _AlertViewWidgetState extends State<AlertViewWidget> {
                                                   alertsItem,
                                                   r'''$..assigned_on''',
                                                 ).toString())))}'
-                                              : null,
-                                          'Null',
+                                              : '-',
+                                          '-',
                                         ),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
